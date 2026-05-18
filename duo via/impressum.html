@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressum — Duo ViA!</title>
+<meta name="description" content="Impressum und Kontakt für Duo ViA!.">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --sage: #93A5A1;
+  --sage-deep: #788B87;
+  --sage-darker: #5F716D;
+  --paper: #EFEDE7;
+  --ink: #1B2422;
+  --white: #FFFFFF;
+  --white-72: rgba(255,255,255,0.72);
+  --white-48: rgba(255,255,255,0.48);
+  --white-24: rgba(255,255,255,0.24);
+  --sans: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --nav-h: 60px;
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+}
+html { font-size: 16px; overflow-x: hidden; }
+body {
+  min-height: 100vh;
+  background: var(--sage);
+  color: var(--white);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+#nav-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 800;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; background: rgba(147,165,161,0.85);
+  backdrop-filter: blur(14px); border-bottom: 1px solid var(--white-24);
+}
+#nav-logo {
+  font-size: .82rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--white); text-decoration: none;
+}
+#nav-logo span { font-weight: 400; opacity: .7; }
+#nav-quick {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  display: flex; gap: 2.6rem; list-style: none;
+}
+#nav-quick a {
+  font-size: .68rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--white-72); text-decoration: none;
+}
+#nav-quick a:hover { color: var(--white); }
+#nav-burger { display: none; }
+#nav-overlay { display: none; }
+.legal-page {
+  width: min(1480px, calc(100% - 4rem));
+  min-height: calc(100vh - var(--nav-h));
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 4rem) 0 5rem;
+}
+.legal-kicker {
+  font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--white-72); margin-bottom: 1.2rem;
+}
+.legal-title {
+  font-size: clamp(3.6rem, 11vw, 10rem);
+  line-height: .9; letter-spacing: -0.045em; text-transform: uppercase; max-width: 8ch;
+}
+.legal-content {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: minmax(0, 32rem) minmax(0, 1fr);
+  gap: 2rem;
+  border-top: 1px solid var(--white-24);
+  padding-top: 2rem;
+}
+.legal-content h2 {
+  font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--white-72); margin-bottom: .8rem;
+}
+.legal-content p {
+  font-size: 1rem; line-height: 1.65; color: var(--white);
+  max-width: 58ch;
+  overflow-wrap: anywhere;
+}
+.legal-content a { color: var(--white); text-underline-offset: .25rem; }
+.legal-note { color: var(--white-72) !important; margin-top: 1rem; }
+footer {
+  background: var(--sage-deep); border-top: 1px solid var(--white-24);
+  padding: 3rem 2rem 2rem;
+}
+.footer-inner {
+  max-width: 1480px; margin: 0 auto; display: grid;
+  grid-template-columns: minmax(0,1fr) auto; align-items: end; gap: 1.4rem 2.5rem;
+}
+.footer-booking {
+  grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0,1fr) auto;
+  gap: 1.5rem; align-items: end; padding-bottom: 2rem; border-bottom: 1px solid var(--white-24);
+}
+.footer-booking h2 {
+  font-size: clamp(2.2rem, 5vw, 5rem); font-weight: 500; line-height: .95;
+  letter-spacing: -0.025em; text-transform: uppercase; color: var(--white);
+  max-width: 14ch; text-wrap: balance;
+}
+.footer-cta {
+  color: var(--sage-darker); background: var(--white); border: 1px solid var(--white);
+  text-decoration: none; font-size: .68rem; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; padding: .95rem 1.15rem; min-height: 44px;
+  display: inline-flex; align-items: center; gap: .8rem; white-space: nowrap;
+}
+.footer-cta::after { content: ''; width: .85rem; height: 1px; background: currentColor; }
+.footer-logo {
+  display: grid; gap: .35rem; color: var(--white); text-decoration: none;
+  font-size: .82rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+}
+.footer-logo span {
+  font-size: .72rem; font-weight: 400; letter-spacing: .04em; line-height: 1.45;
+  text-transform: none; opacity: .72;
+}
+.footer-nav, .footer-meta, .footer-copy { justify-self: end; }
+.footer-links, .footer-meta, .footer-legal {
+  list-style: none; display: flex; gap: .3rem 1rem; flex-wrap: wrap;
+}
+.footer-links a, .footer-meta a, .footer-legal a {
+  min-height: 40px; display: inline-flex; align-items: center;
+  color: var(--white-72); text-decoration: none; font-size: .64rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+}
+.footer-links a:hover, .footer-meta a:hover, .footer-legal a:hover { color: var(--white); }
+.footer-legal { grid-column: 1; }
+.footer-copy { font-size: .72rem; letter-spacing: .06em; color: var(--white-48); }
+@media (max-width: 880px) {
+  #nav-quick { display: none; }
+  .legal-page { width: calc(100% - 2.8rem); padding-top: calc(var(--nav-h) + 2.5rem); }
+  .legal-content, .footer-inner, .footer-booking { grid-template-columns: 1fr; align-items: start; }
+  .footer-nav, .footer-meta, .footer-copy { justify-self: start; }
+  .footer-legal { grid-column: auto; }
+}
+@media (max-width: 560px) {
+  footer { padding: 2.4rem 1.4rem calc(1.8rem + env(safe-area-inset-bottom, 0px)); }
+  .footer-cta { justify-content: center; width: 100%; }
+  .footer-links, .footer-meta, .footer-legal { display: grid; grid-template-columns: 1fr; gap: .1rem; }
+}
+</style>
+<link rel="stylesheet" href="includes/nav.css">
+</head>
+<body>
+<div id="shared-nav"></div>
+
+<main class="legal-page">
+  <div class="legal-kicker">Rechtliches</div>
+  <h1 class="legal-title">Impressum</h1>
+  <section class="legal-content" aria-label="Impressum">
+    <div>
+      <h2>Kontakt</h2>
+      <p>Duo ViA!<br>Sinn Yang &amp; Harald Oeler<br><a href="mailto:booking@duovia.de">booking@duovia.de</a></p>
+    </div>
+    <div>
+      <h2>Hinweis</h2>
+      <p>Weitere Pflichtangaben werden ergänzt, sobald die finalen Veröffentlichungsdaten für diese Website vorliegen.</p>
+      <p class="legal-note">Für Buchungs-, Presse- und Rechteanfragen erreichen Sie Duo ViA! direkt per E-Mail.</p>
+    </div>
+  </section>
+</main>
+
+<div id="shared-footer"></div>
+<script src="includes/include.js" defer></script>
+</body>
+</html>

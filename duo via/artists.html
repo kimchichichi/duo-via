@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Künstler — Duo ViA!</title>
+<meta name="description" content="Sinn Yang (Violine) und Harald Oeler (Akkordeon) — Biografien, Auszeichnungen und künstlerische Profile des Duo ViA!">
+<meta property="og:title" content="Künstler — Duo ViA!">
+<meta property="og:description" content="Sinn Yang (Violine) und Harald Oeler (Akkordeon) — Duo ViA! Saison 2026/27.">
+<meta property="og:image" content="https://duovia.de/hero.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://duovia.de/artists.html">
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS — SAGE THEME · HELVETICA
+   (shared with projects.html)
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sage:        #93A5A1;
+  --sage-deep:   #788B87;
+  --sage-darker: #5F716D;
+  --sage-soft:   #A8B7B3;
+  --sage-tint:   #C0CBC8;
+  --paper:       #EFEDE7;
+  --ink:         #1B2422;
+  --white:       #FFFFFF;
+  --white-72:    rgba(255,255,255,0.78);
+  --white-48:    rgba(255,255,255,0.52);
+  --white-24:    rgba(255,255,255,0.24);
+  --rule:        rgba(255,255,255,0.28);
+
+  --sans:        'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --nav-h:       60px;
+  --ease:        cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+html { scroll-behavior: smooth; font-size: 100%; overflow-x: hidden; }
+
+body {
+  background: var(--sage);
+  color: var(--white);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  font-weight: 400;
+}
+
+img { max-width: 100%; display: block; }
+
+/* ─── Skip link ─────────────────────────── */
+.skip-link {
+  position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+}
+.skip-link:focus {
+  position: fixed; left: 1rem; top: 1rem; width: auto; height: auto; overflow: visible;
+  padding: .65rem 1rem; background: var(--ink); color: var(--white);
+  font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; text-decoration: none; z-index: 9999;
+  outline: 2px solid var(--white); outline-offset: 2px;
+}
+
+/* ─── Cursor ─────────────────────────────── */
+#cur-dot {
+  position: fixed; width: 4px; height: 4px; background: var(--white);
+  border-radius: 50%; pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+}
+#cur-ring {
+  position: fixed; width: 24px; height: 24px;
+  border: 1px solid rgba(255,255,255,0.3); border-radius: 50%;
+  pointer-events: none; z-index: 9998; transform: translate(-50%,-50%);
+}
+
+/* ═══════════════════════════════════════════
+   NAV — identical to projects.html
+═══════════════════════════════════════════ */
+#nav-bar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-h); z-index: 800;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem;
+  background: rgba(147,165,161,0.85);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--white-24);
+}
+.nav-open #nav-bar { border-color: transparent; background: transparent; backdrop-filter: none; }
+
+#nav-logo {
+  font-family: var(--sans); font-size: .82rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--white); text-decoration: none;
+  position: relative; z-index: 820;
+}
+#nav-logo span { font-weight: 400; opacity: .7; }
+
+#nav-quick {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  display: flex; gap: 2.6rem; list-style: none;
+}
+.nav-open #nav-quick { opacity: 0; pointer-events: none; }
+#nav-quick a {
+  font-family: var(--sans); font-weight: 500; font-size: .68rem;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--white-72); text-decoration: none;
+  transition: color .2s;
+}
+#nav-quick a:hover { color: var(--white); }
+#nav-quick a[aria-current="page"] { color: var(--white); }
+#nav-quick a[aria-current="page"]::before {
+  content:''; display:inline-block; width:6px; height:6px;
+  background: var(--white); border-radius: 50%;
+  margin-right: .55rem; vertical-align: middle;
+}
+.nav-sub {
+  font-size: .22em; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--sage); font-weight: 400;
+}
+
+#nav-burger {
+  position: relative; z-index: 820;
+  width: 92px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer;
+}
+.nav-close-label {
+  position: absolute; right: 48px;
+  font-size: .62rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--white); opacity: 0;
+  transform: translateX(.4rem);
+  transition: opacity .25s, transform .25s;
+}
+.nav-open .nav-close-label { opacity: .78; transform: translateX(0); }
+.bline {
+  position: absolute; right: 9px; width: 22px; height: 1.5px;
+  background: var(--white); transform-origin: center;
+  transition: transform .45s var(--ease), top .45s var(--ease);
+}
+.bline-top { top: 16px; }
+.bline-bottom { top: 23px; }
+.nav-open .bline-top    { top: 19.5px; transform: rotate(45deg); }
+.nav-open .bline-bottom { top: 19.5px; transform: rotate(-45deg); }
+
+#nav-overlay {
+  position: fixed; inset: 0; z-index: 700;
+  background: var(--ink);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: calc(var(--nav-h) + 2rem) 3rem 2.2rem;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path .55s var(--ease);
+  pointer-events: none;
+}
+.nav-open #nav-overlay { clip-path: inset(0% 0 0 0); pointer-events: all; }
+.nav-links-main { list-style: none; margin: auto 0; }
+.nav-links-main li { overflow: hidden; padding: .2rem 0; }
+.nav-links-main a {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(3.4rem, 7vw, 7rem) minmax(0, auto) minmax(12rem, 25rem);
+  align-items: baseline; gap: 1.1rem;
+  font-family: var(--sans);
+  font-size: clamp(2.4rem, 7vw, 5.8rem);
+  font-weight: 500; line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: rgba(255,255,255,0.62);
+  text-decoration: none;
+  transform: translateY(110%);
+  transition: transform .55s var(--ease), color .25s;
+}
+.nav-links-main a::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: .02em;
+  height: 1px; background: rgba(255,255,255,0.28);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .34s var(--ease);
+}
+.nav-links-main a:hover::after,
+.nav-links-main a:focus-visible::after,
+.nav-links-main a[aria-current="page"]::after { transform: scaleX(1); }
+.nav-links-main a span,
+.nav-sub {
+  font-size: .22em; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--sage); font-weight: 400;
+}
+.nav-item-main { color: inherit; font-size: 1em !important; letter-spacing: -0.025em !important; text-transform: none !important; }
+.nav-item-desc {
+  align-self: center;
+  max-width: 28ch;
+  color: var(--white-72) !important;
+  font-size: clamp(.72rem, 1vw, .92rem) !important;
+  line-height: 1.45;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  transform: translateX(-.35rem);
+  opacity: .72;
+  transition: opacity .25s, transform .25s;
+}
+.nav-links-main a:hover .nav-item-desc,
+.nav-links-main a:focus-visible .nav-item-desc,
+.nav-links-main a[aria-current="page"] .nav-item-desc { opacity: 1; transform: translateX(0); color: var(--white) !important; }
+.nav-links-main a[aria-current="page"] { color: var(--white); }
+.nav-links-main a[aria-current="page"] .nav-sub { color: var(--white); }
+.nav-booking-item {
+  margin-top: .7rem;
+  padding-top: .9rem !important;
+  border-top: 1px solid var(--white-24);
+}
+.nav-booking-item a {
+  width: fit-content;
+  padding: .18em .34em .24em;
+  border: 1px solid var(--white-24);
+}
+.nav-overlay-footer {
+  display: flex; flex-wrap: wrap; gap: 1rem 1.6rem;
+  align-items: center;
+  font-size: .68rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--white-72);
+}
+.nav-overlay-footer a { color: var(--white); text-decoration: none; }
+.nav-overlay-footer a:hover { color: var(--sage-tint); }
+.nav-open .nav-links-main a { transform: translateY(0); }
+.nav-links-main a:hover { color: var(--white); }
+.nav-links-main li:nth-child(1) a { transition-delay: .02s; }
+.nav-links-main li:nth-child(2) a { transition-delay: .07s; }
+.nav-links-main li:nth-child(3) a { transition-delay: .12s; }
+.nav-links-main li:nth-child(4) a { transition-delay: .17s; }
+.nav-links-main li:nth-child(5) a { transition-delay: .22s; }
+
+/* ═══════════════════════════════════════════
+   HERO — stacked two-line display + 4-col ledger
+   (Structurally distinct from projects' single-line hero
+    with num+spec+intro 3-col bottom.)
+═══════════════════════════════════════════ */
+.hero {
+  padding: calc(var(--nav-h) + 2.6rem) 2rem 1.6rem;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.8rem;
+}
+.eyebrow-stack {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.5;
+}
+.eyebrow-stack span { display: block; opacity: .72; font-weight: 400; }
+.hero-meta {
+  text-align: right;
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--white-72);
+}
+.hero-meta b { font-weight: 500; color: var(--white); display: block; }
+
+/* Two-line stacked display — structurally different from projects' single-line REPER/TOIRE */
+.hero-display {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(3.6rem, 12vw, 13rem);
+  line-height: .90;
+  letter-spacing: -0.045em;
+  color: var(--white);
+  margin: 0 0 .3rem;
+  text-wrap: balance;
+}
+.hero-display .line {
+  display: block;
+}
+.hero-display .line + .line {
+  padding-left: clamp(1rem, 7vw, 6rem);
+}
+.hero-display .lt { font-weight: 300; }
+.hero-display .amp {
+  display: inline-block;
+  font-weight: 300;
+  font-style: italic;
+  opacity: .72;
+  padding: 0 .2em 0 .1em;
+  transform: translateY(-.04em);
+}
+
+.hero-rule { border: 0; border-top: 1px solid var(--white-24); margin: 2rem 0 2rem; }
+
+/* Staggered entrance for hero elements */
+.hero .hero-display.reveal { transition-delay: .12s; }
+.hero .hero-ledger.reveal  { transition-delay: .24s; }
+
+/* Horizontal ledger — replaces projects' num+spec+intro grid */
+.hero-ledger {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 0;
+}
+.ledger-cell {
+  padding: 0 1.4rem 0 0;
+  border-left: 1px solid var(--white-24);
+  padding-left: 1.4rem;
+  min-width: 0;
+}
+.ledger-cell:first-child { border-left: 0; padding-left: 0; }
+.ledger-cell-num {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  margin-bottom: .6rem;
+}
+.ledger-cell-val {
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.ledger-cell-val small {
+  display: block;
+  font-size: .75rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--white-72);
+  margin-top: .4rem;
+  line-height: 1.4;
+}
+
+/* ═══════════════════════════════════════════
+   INDEX STRIP — 2-col, matches chooser visual but for artists
+═══════════════════════════════════════════ */
+.chooser-label {
+  max-width: 1480px;
+  margin: 4rem auto 0;
+  padding: 0 2rem .8rem;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--white-72);
+}
+.quick-paths {
+  max-width: 1480px;
+  margin: 0 auto 1.2rem;
+  padding: .6rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 300;
+  background: rgba(147,165,161,0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--white-24);
+  border-bottom: 1px solid var(--white-24);
+}
+.quick-paths a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: .72rem .9rem;
+  border: 1px solid var(--white-24);
+  color: var(--white);
+  text-decoration: none;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.quick-paths a:hover,
+.quick-paths a:focus-visible {
+  background: var(--white);
+  color: var(--sage-darker);
+  border-color: var(--white);
+  outline: 0;
+}
+.chooser {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 1px;
+  background: var(--white-24);
+  border-top: 1px solid var(--white-24);
+  border-bottom: 1px solid var(--white-24);
+}
+.choice {
+  background: var(--sage);
+  padding: 1.6rem 1.6rem 1.4rem;
+  color: var(--white);
+  text-decoration: none;
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 1.2rem;
+  align-items: center;
+  transition: background .2s;
+}
+.choice:hover,
+.choice:focus-visible {
+  background: var(--sage-deep);
+  outline: 1px solid var(--white);
+  outline-offset: -1px;
+}
+.choice-num {
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  transition: transform .2s var(--ease);
+}
+.choice:hover .choice-num { transform: translateX(5px); }
+.choice-body em {
+  display: block;
+  font-style: normal;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  margin-bottom: .2rem;
+}
+.choice-body strong {
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+.choice-body strong span { font-weight: 300; }
+.choice-meta {
+  text-align: right;
+  font-size: .76rem;
+  font-weight: 500;
+  letter-spacing: .02em;
+  text-transform: none;
+  line-height: 1.55;
+  color: var(--white-72);
+}
+.choice-meta b { font-weight: 500; color: var(--white); display: block; }
+
+/* ═══════════════════════════════════════════
+   ARTIST BLOCK — full-bleed 50/50 zigzag
+   (Structurally distinct from projects' 80/220/1fr
+    num+sticky-aside+main grid.)
+═══════════════════════════════════════════ */
+.artist {
+  display: grid;
+  grid-template-columns: 42fr 58fr;
+  align-items: center;
+  min-height: clamp(360px, 50vh, 580px);
+  border-top: 1px solid var(--white-24);
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+.artist.flip { grid-template-columns: 58fr 42fr; }
+.artist.flip .artist-portrait { order: 2; }
+.artist.flip .artist-body     { order: 1; }
+
+.artist-portrait {
+  position: relative;
+  background: var(--sage-deep);
+  overflow: hidden;
+  width: 100%;
+  min-height: 420px;
+  aspect-ratio: 4 / 5;
+  border-right: 1px solid var(--white-24);
+}
+.artist.flip .artist-portrait {
+  border-right: 0;
+  border-left: 1px solid var(--white-24);
+}
+.artist-portrait::before {
+  /* placeholder stripe pattern — sits behind any real image */
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(135deg,
+      rgba(255,255,255,0.04) 0 14px,
+      transparent 14px 28px),
+    linear-gradient(180deg, var(--sage-deep), var(--sage-darker));
+}
+.artist-portrait picture,
+.artist-portrait img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+}
+.artist-portrait img {
+  object-fit: cover;
+  object-position: center center;
+  filter: grayscale(8%) contrast(1.02);
+}
+.portrait-sinn img,
+.portrait-harald img { object-position: center center; }
+.media-fallback {
+  position: absolute; inset: 0;
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  text-align: center;
+  background:
+    linear-gradient(180deg, rgba(27,36,34,0.08), rgba(27,36,34,0.46)),
+    repeating-linear-gradient(135deg,
+      rgba(255,255,255,0.06) 0 14px,
+      transparent 14px 28px),
+    linear-gradient(180deg, var(--sage-deep), var(--sage-darker));
+  color: var(--white);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+.media-fallback strong {
+  display: block;
+  font-size: clamp(2.1rem, 6vw, 4.6rem);
+  font-weight: 500;
+  line-height: .95;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+.media-fallback span {
+  display: block;
+  margin-top: .7rem;
+  color: var(--white-72);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
+.artist-portrait.media-missing img { opacity: 0; }
+.artist-portrait.media-missing .media-fallback { opacity: 1; }
+.artist-portrait::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 52%;
+  background: linear-gradient(to top, rgba(27,36,34,0.72) 0%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Roman numeral lives ON the portrait, not as a separate column */
+.portrait-numeral {
+  position: absolute;
+  left: 2rem; top: 2rem;
+  font-size: 5rem;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--white);
+  z-index: 2;
+}
+.portrait-numeral small {
+  display: block;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  margin-top: .6rem;
+}
+.portrait-tag {
+  position: absolute;
+  right: 2rem; top: 2rem;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--white);
+  padding: .38rem .6rem;
+  border: 1px solid var(--white-72);
+  z-index: 2;
+}
+.artist.flip .portrait-tag {
+  right: auto;
+  left: 2rem;
+}
+.portrait-caption {
+  position: absolute;
+  left: 2rem; right: 2rem; bottom: 2rem;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--white-48);
+}
+.portrait-caption .pc-name {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--white);
+  line-height: 1;
+}
+.portrait-caption .pc-meta {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  text-align: right;
+}
+
+.placeholder-note {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Courier New', monospace;
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--white-48);
+  z-index: 1;
+  pointer-events: none;
+}
+.artist-portrait.is-placeholder::before {
+  background:
+    linear-gradient(180deg, rgba(27,36,34,0.08), rgba(27,36,34,0.46)),
+    repeating-linear-gradient(135deg,
+      rgba(255,255,255,0.06) 0 14px,
+      transparent 14px 28px),
+    linear-gradient(180deg, var(--sage-deep), var(--sage-darker));
+}
+.artist-portrait.is-placeholder .placeholder-note {
+  max-width: 18rem;
+  width: calc(100% - 4rem);
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--white-24);
+  background: rgba(27,36,34,0.22);
+  text-align: center;
+  line-height: 1.55;
+}
+
+/* Bio panel — vertically generous, internally bounded */
+.artist-body {
+  padding: clamp(2.2rem, 5vw, 4.5rem) clamp(1.6rem, 4vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.body-inner {
+  max-width: 38rem;
+}
+
+.p-kicker {
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 1.4rem;
+  display: inline-flex; align-items: center; gap: .7rem;
+}
+.p-kicker::before {
+  content:''; width: 1.6rem; height: 1px; background: var(--white-48);
+}
+.artist-name {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(2.6rem, 6vw, 5.4rem);
+  line-height: .92;
+  letter-spacing: -0.035em;
+  color: var(--white);
+  margin-bottom: .25rem;
+  text-transform: uppercase;
+}
+.artist-name em {
+  font-style: normal;
+  font-weight: 300;
+  display: block;
+  font-size: .62em;
+  line-height: 1;
+  margin-top: .12em;
+  color: var(--white-72);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.artist-byline {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--white-72);
+  margin: 1.4rem 0 1.3rem;
+  max-width: 50ch;
+}
+.artist-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--white-24);
+  border-bottom: 1px solid var(--white-24);
+  margin: 1.6rem 0 1.4rem;
+}
+.summary-item {
+  padding: .85rem 1rem .85rem 0;
+  border-left: 1px solid var(--white-24);
+  padding-left: 1rem;
+  min-width: 0;
+}
+.summary-item:first-child { border-left: 0; padding-left: 0; }
+.summary-item span {
+  display: block;
+  color: var(--white-72);
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: .35rem;
+}
+.summary-item strong,
+.summary-item a {
+  color: var(--white);
+  font-size: .82rem;
+  font-weight: 500;
+  line-height: 1.28;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.summary-item a:hover,
+.summary-item a:focus-visible { text-decoration: underline; outline: 0; }
+.artist-bio {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--white);
+  max-width: 54ch;
+  text-wrap: pretty;
+  margin-bottom: 1rem;
+}
+
+/* Inline horizontal data band — replaces projects' sticky aside column */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--white-24);
+  border-bottom: 1px solid var(--white-24);
+  margin: 1.8rem 0;
+}
+.fact {
+  padding: 1rem 1.2rem 1rem 0;
+  border-left: 1px solid var(--white-24);
+  padding-left: 1.2rem;
+}
+.fact:first-child { border-left: 0; padding-left: 0; }
+.fact dt {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  margin-bottom: .45rem;
+}
+.fact dd {
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.35;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tag row — same vocabulary as projects */
+.tag-row {
+  display: flex; flex-wrap: wrap;
+  gap: .4rem; align-items: center;
+  margin-bottom: 1.6rem;
+}
+.tag-label {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  margin-right: .5rem;
+}
+.tag {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--white);
+  padding: .42rem .8rem;
+  border: 1px solid var(--white-24);
+  white-space: nowrap;
+}
+.tag-accent { background: var(--white); color: var(--sage-darker); border-color: var(--white); }
+
+/* Actions */
+.artist-actions {
+  display: flex; flex-wrap: wrap;
+  gap: .55rem;
+}
+.p-action {
+  display: inline-flex; align-items: center; justify-content: center; gap: .8rem;
+  min-height: 44px;
+  color: var(--white); text-decoration: none;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  padding: .9rem 1.2rem;
+  border: 1px solid var(--white-24);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.p-action:hover { background: var(--white); color: var(--sage-darker); border-color: var(--white); }
+.p-action.primary { background: var(--white); color: var(--sage-darker); border-color: var(--white); }
+.p-action.primary:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.p-action::after { content:''; width: .8rem; height: 1px; background: currentColor; }
+.p-action:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+#nav-burger:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; border-radius: 2px; }
+.booking-cta:focus-visible { outline: 2px solid var(--sage-soft); outline-offset: 2px; }
+
+/* Inline press quote inside bio */
+.bio-quote {
+  margin: 1.6rem 0 1.6rem;
+  padding-left: 1.4rem;
+  border-left: 1px solid var(--white-48);
+}
+.bio-quote p {
+  font-size: clamp(1.05rem, 1.3vw, 1.18rem);
+  font-weight: 300;
+  line-height: 1.4;
+  color: var(--white);
+  letter-spacing: -0.004em;
+  text-wrap: pretty;
+}
+.bio-quote p::before {
+  content: '\201C';
+  font-size: 2em;
+  line-height: 0;
+  vertical-align: -.24em;
+  color: var(--white-48);
+  margin-right: .06em;
+}
+.bio-quote cite {
+  display: block;
+  margin-top: .7rem;
+  font-style: normal;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: none;
+  color: var(--white);
+}
+
+/* ═══════════════════════════════════════════
+   DUO CAPSULE — centered statement
+═══════════════════════════════════════════ */
+.duo-capsule {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 4.5rem 2rem 4.5rem;
+  border-top: 1px solid var(--white-24);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+.duo-capsule-inner {
+  max-width: 56ch;
+  text-align: center;
+}
+.duo-capsule-kicker {
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  margin-bottom: 1.4rem;
+  display: inline-flex; align-items: center; gap: .7rem;
+}
+.duo-capsule-kicker::before,
+.duo-capsule-kicker::after {
+  content:''; width: 1.6rem; height: 1px; background: var(--white-48);
+}
+.duo-capsule blockquote {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(1.4rem, 2.4vw, 2.2rem);
+  line-height: 1.22;
+  letter-spacing: -0.018em;
+  color: var(--white);
+  text-wrap: balance;
+}
+.duo-capsule blockquote em {
+  font-style: normal;
+  color: var(--white-72);
+}
+.duo-capsule blockquote footer {
+  margin-top: 1.2rem;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--white-72);
+}
+.duo-capsule blockquote footer cite { font-style: normal; }
+.duo-points {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--white-24);
+  margin-top: 2rem;
+  text-align: left;
+}
+.duo-points li {
+  background: var(--sage);
+  padding: 1.1rem;
+  color: var(--white);
+  font-size: .9rem;
+  line-height: 1.45;
+}
+.duo-points strong {
+  display: block;
+  font-size: .64rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  margin-bottom: .5rem;
+}
+
+/* ═══════════════════════════════════════════
+   BOOKING BAND — dark band, full width
+═══════════════════════════════════════════ */
+.booking-band {
+  background: var(--ink);
+  color: var(--white);
+  padding: 3.2rem 2rem;
+}
+.booking-band-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2rem;
+  align-items: center;
+}
+.booking-small {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: .8rem;
+  display: block;
+}
+.booking-band h2 {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  max-width: 22ch;
+}
+.booking-cta {
+  display: inline-flex; align-items: center; justify-content: space-between;
+  min-height: 44px;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--white);
+  text-decoration: none;
+  padding: 1rem 1.2rem;
+  transition: background .25s, color .25s;
+  gap: 1rem;
+}
+.booking-cta:hover { background: var(--sage); color: var(--white); }
+.booking-cta .arrow {
+  display: inline-block; width: 1.2rem; height: 1px; background: currentColor; position: relative;
+}
+.booking-cta .arrow::after {
+  content:''; position: absolute; right: 0; top: 50%;
+  width: 7px; height: 7px;
+  border-top: 1px solid currentColor; border-right: 1px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER — identical to projects.html
+═══════════════════════════════════════════ */
+#shared-footer footer {
+  background: var(--sage-deep);
+  border-top: 1px solid var(--white-24);
+  padding: 3rem 2rem 2rem;
+}
+.footer-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  align-items: end;
+  gap: 1.4rem 2.5rem;
+}
+.footer-booking {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 1.5rem;
+  align-items: end;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--white-24);
+}
+.footer-booking h2 {
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  font-weight: 500;
+  line-height: .95;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  color: var(--white);
+  max-width: 14ch;
+  text-wrap: balance;
+}
+.footer-cta {
+  color: var(--sage-darker);
+  background: var(--white);
+  border: 1px solid var(--white);
+  text-decoration: none;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .95rem 1.15rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  transition: background .2s, color .2s, border-color .2s;
+  white-space: nowrap;
+}
+.footer-cta::after { content: ''; width: .85rem; height: 1px; background: currentColor; }
+.footer-cta:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.footer-nav { justify-self: end; }
+.footer-meta,
+.footer-legal {
+  display: flex;
+  gap: .55rem 1.2rem;
+  flex-wrap: wrap;
+}
+.footer-logo {
+  display: grid;
+  gap: .35rem;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+}
+.footer-logo span {
+  font-size: .72rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  line-height: 1.45;
+  text-transform: none;
+  opacity: .72;
+}
+.footer-links {
+  list-style: none; display: flex; gap: .3rem 1rem; flex-wrap: wrap;
+}
+.footer-links a,
+.footer-meta a,
+.footer-legal a {
+  color: var(--white-72);
+  font-size: .64rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  transition: color .2s;
+}
+.footer-links a:hover,
+.footer-links a[aria-current="page"],
+.footer-meta a:hover,
+.footer-legal a:hover { color: var(--white); }
+.footer-links a[aria-current="page"] { text-decoration: underline; text-underline-offset: .35rem; }
+.footer-meta { justify-self: end; }
+.footer-legal { grid-column: 1; }
+.footer-copy {
+  justify-self: end;
+  font-size: .62rem; font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--white-48);
+}
+
+/* ═══════════════════════════════════════════
+   REVEAL
+═══════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  #nav-quick { display: none; }
+}
+@media (max-width: 1080px) {
+  .hero-display { font-size: clamp(3rem, 11vw, 8rem); }
+  .hero-ledger { grid-template-columns: repeat(3, minmax(0,1fr)); row-gap: 1rem; }
+}
+@media (max-width: 880px) {
+  #nav-burger { width: 40px; }
+  .nav-close-label { display: none; }
+  #nav-overlay { justify-content: flex-start; padding: calc(var(--nav-h) + 1.6rem) 1.4rem max(1.6rem, env(safe-area-inset-bottom)); }
+  .nav-links-main { margin: 0 0 auto; }
+  .nav-links-main a {
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: .4rem 1rem;
+    font-size: clamp(2.2rem, 12vw, 4.2rem);
+  }
+  .nav-item-desc { grid-column: 2; max-width: none; font-size: .68rem !important; }
+  .nav-booking-item { margin-top: 1.1rem; }
+  .nav-overlay-footer { margin-top: 1.6rem; display: grid; gap: .85rem; }
+  .hero-display .line + .line { padding-left: 0; }
+  .artist { grid-template-columns: 1fr; min-height: 0; }
+  .artist.flip .artist-portrait { order: 0; border-left: 0; }
+  .artist.flip .artist-body { order: 0; }
+  .artist-portrait { aspect-ratio: 16 / 11; min-height: auto; border-right: 0; border-bottom: 1px solid var(--white-24); }
+  .facts { grid-template-columns: 1fr; }
+  .fact { border-left: 0; padding-left: 0; border-top: 1px solid var(--white-24); padding-top: .9rem; }
+  .fact:first-child { border-top: 1px solid var(--white-24); }
+  .booking-band-inner { grid-template-columns: 1fr; }
+  .chooser { grid-template-columns: 1fr; padding: 0 1.4rem; }
+  .chooser-label, .quick-paths { padding-left: 1.4rem; padding-right: 1.4rem; }
+  .hero { padding: calc(var(--nav-h) + 2rem) 1.4rem 1.2rem; }
+  .duo-capsule { padding: 3rem 1.4rem; }
+  .artist-summary { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .summary-item:nth-child(3) { border-left: 0; padding-left: 0; border-top: 1px solid var(--white-24); }
+  .summary-item:nth-child(4) { border-top: 1px solid var(--white-24); }
+  .duo-points { grid-template-columns: 1fr; }
+  .footer-inner,
+  .footer-booking {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .footer-nav,
+  .footer-meta,
+  .footer-copy {
+    justify-self: start;
+  }
+  .footer-legal { grid-column: auto; }
+}
+@media (max-width: 560px) {
+  .hero-display { font-size: clamp(3rem, 18vw, 5.5rem); line-height: .95; letter-spacing: -0.04em; }
+  .choice { grid-template-columns: 1fr; }
+  .choice-meta { text-align: left; }
+  .quick-paths {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .quick-paths::-webkit-scrollbar { display: none; }
+  .quick-paths a { flex: 0 0 auto; }
+  .artist-portrait { aspect-ratio: 4 / 5; }
+  .artist-actions .p-action { flex: 1 1 auto; justify-content: center; }
+  .artist-actions .p-action::after { display: none; }
+  .hero-eyebrow { flex-direction: column; }
+  .hero-meta { text-align: left; }
+  .portrait-numeral { font-size: 3.4rem; }
+  .portrait-caption { flex-direction: column; align-items: flex-start; }
+  .portrait-caption .pc-meta { text-align: left; }
+  .hero-ledger { grid-template-columns: 1fr; }
+  .ledger-cell,
+  .ledger-cell:nth-child(3) { border-left: 0; padding-left: 0; border-top: 1px solid var(--white-24); padding-top: 1rem; }
+  .ledger-cell:first-child { border-top: 0; padding-top: 0; }
+  .artist-summary { grid-template-columns: repeat(2, 1fr); }
+  .summary-item { border-left: 1px solid var(--white-24); padding-left: 1rem; border-top: 0; }
+  .summary-item:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .summary-item:nth-child(3),
+  .summary-item:nth-child(4) { border-top: 1px solid var(--white-24); padding-top: .85rem; }
+  .summary-item:first-child,
+  .summary-item:nth-child(2) { border-top: 0; }
+  .booking-cta { width: 100%; justify-content: space-between; }
+  #shared-footer footer { padding: 2.4rem 1.4rem calc(1.8rem + env(safe-area-inset-bottom, 0px)); }
+  .footer-booking { gap: 1rem; padding-bottom: 1.5rem; }
+  .footer-cta { justify-content: center; width: 100%; }
+  .footer-links,
+  .footer-meta,
+  .footer-legal {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; transition-delay: 0s !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+@media (pointer: coarse) { #cur-dot, #cur-ring { display: none; } html, body, a, button { cursor: auto; } }
+</style>
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+<link rel="stylesheet" href="includes/nav.css">
+</head>
+<body>
+
+<a class="skip-link" href="#content">Zum Inhalt springen</a>
+<div id="cur-dot" aria-hidden="true"></div>
+<div id="cur-ring" aria-hidden="true"></div>
+
+<!-- NAV -->
+<div id="shared-nav"></div>
+<script src="includes/include.js" defer></script>
+
+<main id="content">
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow reveal">
+    <div class="eyebrow-stack">
+      Künstler<br><span>Duo ViA! — Saison 2026 / 27</span>
+    </div>
+    <div class="hero-meta">
+      <b>2 Musiker</b>
+      1 Konzertpartnerschaft<br>4 Jahrhunderte Repertoire
+    </div>
+  </div>
+
+  <h1 class="hero-display reveal">
+    <span class="line">SINN <span class="lt">YANG</span></span>
+    <span class="line"><span class="amp">&amp;</span>HARALD <span class="lt">OELER</span></span>
+  </h1>
+
+  
+</section>
+
+<!-- INDEX STRIP -->
+
+<div class="chooser reveal">
+  <a class="choice" href="#sinn-yang">
+    <div class="choice-num">01</div>
+    <div class="choice-body">
+      <em>Musikerin I</em>
+      <strong>Sinn Yang <span>/ Violine</span></strong>
+    </div>
+    <div class="choice-meta">
+      <b>Konzertmeisterin</b>
+       Solistin · Pädagogein
+    </div>
+  </a>
+  <a class="choice" href="#harald-oeler">
+    <div class="choice-num">02</div>
+    <div class="choice-body">
+      <em>Musiker II</em>
+      <strong>Harald Oeler <span>/ Akkordeon</span></strong>
+    </div>
+    <div class="choice-meta">
+      <b>Komponist · Arrangeur</b>
+      Solist · Pädagoge
+    </div>
+  </a>
+  <a class="choice" href="#duo-via">
+    <div class="choice-num">03</div>
+    <div class="choice-body">
+      <em>Duo ViA! </em>
+      <strong>Duo ViA!<span> / Violine & Akkordeon</span></strong>
+    </div>
+    <div class="choice-meta">
+      <b></b>
+    </div>
+  </a>
+</div>
+
+<!-- ARTIST I — Sinn Yang -->
+<article class="artist reveal" id="sinn-yang" aria-labelledby="sinn-yang-heading">
+  <div class="artist-portrait portrait-sinn">
+    <picture>
+      <source media="(max-width: 560px)" srcset="hero.webp">
+      <img src="hero.webp" alt="Sinn Yang, Violinistin im Duo ViA!" loading="lazy" decoding="async" width="800" height="1000" onerror="this.closest('.artist-portrait').classList.add('media-missing')">
+    </picture>
+    <div class="media-fallback" aria-hidden="true"><div><strong>Sinn Yang</strong><span>Violine</span></div></div>
+    <div class="portrait-numeral">I<small>Violine</small></div>
+    <span class="portrait-tag">N° 01 / 02</span>
+    <div class="portrait-caption">
+      <span class="pc-name">Sinn Yang</span>
+      <span class="pc-meta">Konzertmeisterin<br>Luzerner Sinfonieorchester</span>
+    </div>
+  </div>
+  <div class="artist-body">
+    <div class="body-inner">
+      <span class="p-kicker">Musikerin I · Violine</span>
+      <h2 class="artist-name" id="sinn-yang-heading">Sinn<em>Yang</em></h2>
+      <p class="artist-byline">Solistin, Kammermusikerin und Konzertmeisterin — zwischen Würzburg, Lübeck und Luzern.</p>
+      <div class="artist-summary" aria-label="Kurzprofil Sinn Yang">
+        <div class="summary-item"><span>Instrument</span><strong>Violine</strong></div>
+        <div class="summary-item"><span>Rolle</span><strong>Stv. Konzertmeisterin</strong></div>
+        <div class="summary-item"><span>Vita</span><a href="mailto:booking@duovia.de?subject=Vita%20Sinn%20Yang%20anfragen">Per E-Mail anfragen</a></div>
+        <div class="summary-item"><span>Website</span><a href="https://www.sinnyang.com" target="_blank" rel="noopener noreferrer">sinnyang.com</a></div>
+      </div>
+      <p class="artist-bio">Die Geigerin Sinn Yang (*1982, Würzburg) verbindet eine internationale Solisten- und Orchesterlaufbahn mit engagierter Kammermusik und Lehrtätigkeit. Sie studierte bei Prof. Max Speermann (HfM Würzburg) und Prof. Thomas Brandis (MH Lübeck) und absolvierte 2009 ihr Solistenklasse-Examen.</p>
+      <p class="artist-bio">Als Solistin trat sie mit dem Deutschen Symphonie-Orchester Berlin, den Nürnberger Philharmonikern und weiteren Klangkörpern auf. Seit 2014/15 ist sie stellvertretende Konzertmeisterin des Luzerner Sinfonieorchesters.</p>
+
+      <dl class="facts">
+        <div class="fact"><dt>Position</dt><dd>Stv. Konzertmeisterin<br>Luzerner Sinfonieorchester</dd></div>
+        <div class="fact"><dt>Examen</dt><dd>Solistenklasse<br>MH Lübeck, 2009</dd></div>
+        <div class="fact"><dt>Auszeichnungen</dt><dd>Kulturförderpreis Würzburg<br>1. Preis „Ton und Erklärung"</dd></div>
+      </dl>
+
+      <div class="bio-quote">
+        <p>Yang und Oeler spielen wie aufeinander eingeschworen — sie bilden nicht nur rhythmisch eine Einheit.</p>
+        <cite>NDR Kultur · Pressestimme</cite>
+      </div>
+
+      <div class="tag-row">
+        <span class="tag-label">Schwerpunkte</span>
+        <span class="tag tag-accent">Solo</span>
+        <span class="tag">Kammermusik</span>
+        <span class="tag">Orchester</span>
+        <span class="tag">Lehre</span>
+      </div>
+
+      <div class="artist-actions">
+        <a class="p-action primary" href="https://www.sinnyang.com" target="_blank" rel="noopener noreferrer">sinnyang.com</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ARTIST II — Harald Oeler (flipped) -->
+<article class="artist flip reveal" id="harald-oeler" aria-labelledby="harald-oeler-heading">
+  <div class="artist-portrait portrait-harald">
+    <picture>
+      <source media="(max-width: 560px)" srcset="hero.webp">
+      <img src="hero.webp" alt="Harald Oeler, Akkordeonist im Duo ViA!" loading="lazy" decoding="async" width="800" height="1000" onerror="this.closest('.artist-portrait').classList.add('media-missing')">
+    </picture>
+    <div class="media-fallback" aria-hidden="true"><div><strong>Harald Oeler</strong><span>Akkordeon</span></div></div>
+    <div class="portrait-numeral">II<small>Akkordeon</small></div>
+    <span class="portrait-tag">N° 02 / 02</span>
+    <div class="portrait-caption">
+      <span class="pc-name">Harald Oeler</span>
+      <span class="pc-meta">Komponist · Arrangeur<br>Solist</span>
+    </div>
+  </div>
+  <div class="artist-body">
+    <div class="body-inner">
+      <span class="p-kicker">Musiker II · Akkordeon</span>
+      <h2 class="artist-name" id="harald-oeler-heading">Harald<em>Oeler</em></h2>
+      <p class="artist-byline">Akkordeonist, Komponist und Arrangeur — künstlerischer Kopf des Duo ViA!</p>
+      <div class="artist-summary" aria-label="Kurzprofil Harald Oeler">
+        <div class="summary-item"><span>Instrument</span><strong>Akkordeon</strong></div>
+        <div class="summary-item"><span>Rolle</span><strong>Komponist · Arrangeur</strong></div>
+        <div class="summary-item"><span>Vita</span><a href="mailto:booking@duovia.de?subject=Vita%20Harald%20Oeler%20anfragen">Per E-Mail anfragen</a></div>
+        <div class="summary-item"><span>Website</span><a href="https://www.haraldoeler.com" target="_blank" rel="noopener noreferrer">haraldoeler.com</a></div>
+      </div>
+      <p class="artist-bio">Harald Oeler ist ein international konzertierender Akkordeonist, Arrangeur und Komponist mit Schwerpunkt auf klassischer und genreübergreifender Kammermusik. Seit dem Kindesalter ausgebildet, gewann er Preise bei nationalen und internationalen Wettbewerben, darunter den 3. Platz beim JAA Tokyo.</p>
+      <p class="artist-bio">Als Mitgründer und künstlerischer Kopf von Duo ViA! verantwortet er sämtliche Eigenarrangements und kompositorischen Neuentwürfe. Konzerte führten ihn durch Deutschland, Europa und in außereuropäische Länder.</p>
+
+      <dl class="facts">
+        <div class="fact"><dt>Rolle</dt><dd>Komponist &amp; Arrangeur<br>aller Duo ViA!-Programme</dd></div>
+        <div class="fact"><dt>Wettbewerbe</dt><dd>3. Platz, JAA Tokyo<br>Stipendiat Studienstiftung</dd></div>
+        <div class="fact"><dt>Konzerte</dt><dd>Deutschland · Europa<br>International</dd></div>
+      </dl>
+
+      <div class="bio-quote">
+        <p>Das Akkordeon wird unter Oelers Händen zum vollwertigen kammermusikalischen Partner — orchestral, intim, präzise.</p>
+        <cite>Süddeutsche Zeitung · Pressestimme</cite>
+      </div>
+
+      <div class="tag-row">
+        <span class="tag-label">Schwerpunkte</span>
+        <span class="tag tag-accent">Komposition</span>
+        <span class="tag">Arrangement</span>
+        <span class="tag">Solo</span>
+        <span class="tag">Kammermusik</span>
+      </div>
+
+      <div class="artist-actions">
+        <a class="p-action primary" href="https://www.haraldoeler.com" target="_blank" rel="noopener noreferrer">haraldoeler.com</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- Duo ViA! -->
+<article class="artist reveal" id="duo-via" aria-labelledby="duo-via-heading">
+  <div class="artist-portrait portrait-duo-via">
+    <picture>
+      <source media="(max-width: 560px)" srcset="hero.webp">
+      <img src="hero.webp" alt="Duo ViA!" loading="lazy" decoding="async" width="800" height="1000" onerror="this.closest('.artist-portrait').classList.add('media-missing')">
+    </picture>
+    <div class="media-fallback" aria-hidden="true"><div><strong>Duo</strong><span>ViA!</span></div></div>
+    <div class="portrait-numeral">III<small>Duo</small></div>
+    <span class="portrait-tag">N° 01 / 02</span>
+    <div class="portrait-caption">
+      <span class="pc-name">Duo ViA!</span>
+      <span class="pc-meta"></span>
+    </div>
+  </div>
+  <div class="artist-body">
+    <div class="body-inner">
+      <span class="p-kicker">Musikerin I · Violine</span>
+      <h2 class="artist-name" id="duo-via-heading">Duo <em>ViA!</em></h2>
+      <p class="artist-byline">Solistin, Kammermusikerin und Konzertmeisterin — zwischen Würzburg, Lübeck und Luzern.</p>
+      <div class="artist-summary" aria-label="Kurzprofil Sinn Yang">
+        <div class="summary-item"><span>Instrument</span><strong>Violine</strong></div>
+        <div class="summary-item"><span>Rolle</span><strong>Stv. Konzertmeisterin</strong></div>
+        <div class="summary-item"><span>Vita</span><a href="mailto:booking@duovia.de?subject=Vita%20Sinn%20Yang%20anfragen">Per E-Mail anfragen</a></div>
+        <div class="summary-item"><span>Website</span><a href="https://www.sinnyang.com" target="_blank" rel="noopener noreferrer">sinnyang.com</a></div>
+      </div>
+      <p class="artist-bio">Die Geigerin Sinn Yang (*1982, Würzburg) verbindet eine internationale Solisten- und Orchesterlaufbahn mit engagierter Kammermusik und Lehrtätigkeit. Sie studierte bei Prof. Max Speermann (HfM Würzburg) und Prof. Thomas Brandis (MH Lübeck) und absolvierte 2009 ihr Solistenklasse-Examen.</p>
+      <p class="artist-bio">Als Solistin trat sie mit dem Deutschen Symphonie-Orchester Berlin, den Nürnberger Philharmonikern und weiteren Klangkörpern auf. Seit 2014/15 ist sie stellvertretende Konzertmeisterin des Luzerner Sinfonieorchesters.</p>
+
+      <dl class="facts">
+        <div class="fact"><dt>Position</dt><dd>Stv. Konzertmeisterin<br>Luzerner Sinfonieorchester</dd></div>
+        <div class="fact"><dt>Examen</dt><dd>Solistenklasse<br>MH Lübeck, 2009</dd></div>
+        <div class="fact"><dt>Auszeichnungen</dt><dd>Kulturförderpreis Würzburg<br>1. Preis „Ton und Erklärung"</dd></div>
+      </dl>
+
+      <div class="bio-quote">
+        <p>Yang und Oeler spielen wie aufeinander eingeschworen — sie bilden nicht nur rhythmisch eine Einheit.</p>
+        <cite>NDR Kultur · Pressestimme</cite>
+      </div>
+
+      <div class="tag-row">
+        <span class="tag-label">Schwerpunkte</span>
+        <span class="tag tag-accent">Solo</span>
+        <span class="tag">Kammermusik</span>
+        <span class="tag">Orchester</span>
+        <span class="tag">Lehre</span>
+      </div>
+
+      <div class="artist-actions">
+        <a class="p-action primary" href="https://www.sinnyang.com" target="_blank" rel="noopener noreferrer">sinnyang.com</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+<!-- DUO CAPSULE -->
+<section class="duo-capsule reveal">
+  <div class="duo-capsule-inner">
+    <span class="duo-capsule-kicker">Über das Ensemble</span>
+    <blockquote>
+      Zwei Instrumente, vier Jahrhunderte — Violine und klassisches Akkordeon
+      verschmelzen in Eigenarrangements von Harald Oeler zu einer gemeinsamen
+      Sprache. <em>Vom barocken Affekt bis zum argentinischen Tango.</em>
+      <footer><cite>— Duo ViA!</cite></footer>
+    </blockquote>
+    <ul class="duo-points" aria-label="Duo ViA! Profil">
+      <li><strong>Klang</strong>Violine und klassisches Akkordeon als gleichberechtigte kammermusikalische Stimmen.</li>
+      <li><strong>Programme</strong>Eigenarrangierte Konzertformate vom Barock bis zu Tango und Gegenwart.</li>
+      <li><strong>Booking</strong>Geeignet für Festivals, Kulturhäuser, Konzertreihen und moderierte Programme.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PERFORMANCE HISTORY -->
+<section class="section-wrap" style="padding: 5rem 3rem;">
+  <div class="section-eyebrow reveal">Konzertgeschichte</div>
+  <h2 class="section-heading reveal">Seit 2009 auf großen Bühnen</h2>
+  <div class="reveal" style="max-width: 54ch;">
+    <p class="artist-bio">Zahlreiche Festival-Konzerte mit Duo ViA! führten das Ensemble auf renommierte Bühnen wie die Würzburger Residenz, das Prinzregententheater München und das Teo Otto Theater Remscheid. Seit der Gründung 2009 konzertiert Duo ViA! regelmäßig auf internationalen Kammermusik-Festivals und in Kulturhäusern im deutschsprachigen Raum.</p>
+    <p class="artist-bio">Highlights der Konzerttätigkeit umfassen eine Tournee durch Südkorea mit Auftritt am Daejon Arts Center sowie Engagements beim internationalen Festival „Heidelberger Frühling". Das Programm „8 Jahreszeiten" (Vivaldi &amp; Piazzolla) wurde dabei zu einer Signaturproduktion des Ensembles.</p>
+    <p class="artist-bio">Eine vollständige Konzertliste der vergangenen Jahre finden Sie im <a href="konzerte.html#cal-archive" style="color: var(--white); border-bottom: 1px solid var(--white-48); text-decoration: none; transition: border-color .2s;">Konzertarchiv</a>.</p>
+  </div>
+</section>
+
+<!-- BOOKING BAND -->
+<section class="booking-band">
+  <div class="booking-band-inner">
+    <div>
+      <span class="booking-small">Anfragen &amp; Engagements</span>
+      <h2>Duo ViA! für Ihr Konzert buchen</h2>
+    </div>
+    <a class="booking-cta" href="mailto:booking@duovia.de">
+      Booking anfragen
+      <span class="arrow"></span>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<div id="shared-footer"></div>
+
+<script>
+const dot  = document.getElementById('cur-dot');
+const ring = document.getElementById('cur-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+});
+(function tick() {
+  rx += (mx - rx) * .13; ry += (my - ry) * .13;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(tick);
+})();
+if ('ontouchstart' in window) {
+  dot.style.display = 'none';
+  ring.style.display = 'none';
+}
+
+let menuOpen = false;
+let menuReturnFocus = null;
+let previousBodyOverflow = '';
+const navFocusables = () => Array.from(document.querySelectorAll('#nav-overlay a[href], #nav-overlay button:not([disabled])'));
+function setOverlayTabState(open) { navFocusables().forEach(el => open ? el.removeAttribute('tabindex') : el.setAttribute('tabindex','-1')); }
+function openMenu(){
+  const overlay = document.getElementById('nav-overlay');
+  const burger = document.getElementById('nav-burger');
+  if (!overlay || !burger) return;
+  menuOpen = true;
+  menuReturnFocus = document.activeElement;
+  previousBodyOverflow = document.body.style.overflow;
+  document.body.style.overflow = 'hidden';
+  document.body.classList.add('nav-open');
+  overlay.setAttribute('aria-hidden','false');
+  burger.setAttribute('aria-expanded','true');
+  burger.setAttribute('aria-label','Navigation schließen');
+  setOverlayTabState(true);
+  setTimeout(() => { const target = overlay.querySelector('[aria-current="page"]') || navFocusables()[0]; if (target) target.focus(); }, 80);
+}
+function closeMenu(){
+  const overlay = document.getElementById('nav-overlay');
+  const burger = document.getElementById('nav-burger');
+  if (!overlay || !burger) return;
+  menuOpen = false;
+  document.body.classList.remove('nav-open');
+  document.body.style.overflow = previousBodyOverflow;
+  overlay.setAttribute('aria-hidden','true');
+  burger.setAttribute('aria-expanded','false');
+  burger.setAttribute('aria-label','Navigation öffnen');
+  setOverlayTabState(false);
+  if (menuReturnFocus && document.contains(menuReturnFocus)) menuReturnFocus.focus({ preventScroll: true });
+}
+function toggleMenu(){ menuOpen ? closeMenu() : openMenu(); }
+window.toggleMenu = toggleMenu;
+setTimeout(() => setOverlayTabState(false), 0);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeMenu();
+  if (e.key !== 'Tab' || !menuOpen) return;
+  const focusables = navFocusables();
+  if (!focusables.length) return;
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('#nav-burger')) return;
+  setTimeout(() => {
+    const overlay = document.getElementById('nav-overlay');
+    if (!overlay || overlay.getAttribute('aria-hidden') === 'true') return;
+    (overlay.querySelector('[aria-current="page"]') || navFocusables()[0])?.focus();
+  }, 120);
+});
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

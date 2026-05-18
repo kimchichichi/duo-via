@@ -1,0 +1,2197 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Konzertkalender — Duo ViA!</title>
+<meta property="og:title" content="Konzertkalender — Duo ViA!">
+<meta property="og:description" content="Konzerttermine und buchbare Formate für die Saison 2026/27 — Duo ViA! mit Violine und Akkordeon.">
+<meta property="og:image" content="https://duovia.de/hero.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#5F716D">
+<link rel="canonical" href="https://duovia.de/konzerte.html">
+<meta name="description" content="Konzerttermine und buchbare Formate für Duo ViA! — Sinn Yang und Harald Oeler. Kammermusik für Festivals, Kulturhäuser und Konzertreihen. Saison 2026/27.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%235F716D'/%3E%3Ctext x='16' y='24' font-family='Georgia%2Cserif' font-size='18' font-style='italic' text-anchor='middle' fill='%23C9A24A'%3EV%3C%2Ftext%3E%3C%2Fsvg%3E">
+<style>
+@font-face {
+  font-family: 'RecifeDisplay';
+  src: url('RecifeDisplay-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'RecifeDisplay';
+  src: url('RecifeDisplay-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ═══════════════════════════════════════════
+   TOKENS & RESET
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sage:        #93A5A1;
+  --sage-deep:   #788B87;
+  --sage-darker: #5F716D;
+  --paper:       #93A5A1;
+  --paper-warm:  #788B87;
+  --ink:         #FFFFFF;
+  --ash:         rgba(255,255,255,0.82);
+  --rule:        rgba(255,255,255,0.28);
+  --gold:        #F6D77C;
+  --gold-lt:     #FFE8AA;
+  --night:       #ECE6D9;
+  --serif:       'Cormorant Garamond', Georgia, serif;
+  --disp:        'Cormorant', Georgia, serif;
+  --recife:      'RecifeDisplay', Georgia, serif;
+  --sans:        'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --nav-h:       64px;
+  --ease:        cubic-bezier(0.76, 0, 0.24, 1);
+  --dur:         0.72s;
+}
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
+@keyframes bodyFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bodyFadeOut { to { opacity: 0; } }
+
+body {
+  background: var(--sage-darker);
+  color: var(--ink);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  animation: bodyFadeIn .4s ease forwards;
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL PROGRESS
+═══════════════════════════════════════════ */
+#scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px; width: 0%;
+  background: var(--gold);
+  z-index: 900;
+  pointer-events: none;
+  transition: width .08s linear;
+}
+
+/* ═══════════════════════════════════════════
+   CUSTOM CURSOR
+═══════════════════════════════════════════ */
+#cur-dot {
+  position: fixed; width: 5px; height: 5px;
+  background: var(--ink); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: background .4s, width .2s, height .2s;
+}
+#cur-ring {
+  position: fixed; width: 26px; height: 26px;
+  border: 1px solid rgba(255,255,255,0.30); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: border-color .4s;
+}
+.nav-open #cur-dot  { background: rgba(17,27,45,.8); }
+.nav-open #cur-ring { border-color: rgba(17,27,45,.3); }
+
+/* ═══════════════════════════════════════════
+   GRAIN OVERLAY
+═══════════════════════════════════════════ */
+.grain {
+  position: fixed; inset: -50%; width: 200%; height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .045; pointer-events: none; z-index: 5000;
+  mix-blend-mode: overlay;
+  animation: gShift 7s steps(2) infinite;
+}
+@keyframes gShift {
+  0%  { transform: translate(0,0); }
+  25% { transform: translate(-2%,1%); }
+  50% { transform: translate(1%,-2%); }
+  75% { transform: translate(-1%,2%); }
+}
+
+/* ═══════════════════════════════════════════
+   NAVIGATION BAR
+═══════════════════════════════════════════ */
+#nav-bar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-h); z-index: 800;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem 0 2.2rem;
+  background: rgba(95,113,109,0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.24);
+  transition: border-color var(--dur) var(--ease),
+              background  var(--dur) var(--ease);
+}
+.nav-open #nav-bar {
+  border-color: transparent;
+  background: transparent;
+  backdrop-filter: none;
+}
+
+/* Logo */
+.nav-logo {
+  font-family: var(--recife);
+  font-style: italic;
+  font-size: 1.1rem;
+  letter-spacing: .04em;
+  color: var(--ink);
+  text-decoration: none;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 820;
+  transition: color .3s ease;
+}
+.nav-logo em { font-style: normal; color: var(--gold); }
+.nav-open .nav-logo { color: rgba(17,27,45,0.75); }
+
+/* Inline quick-links */
+#nav-quick {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  display: flex; gap: 2.4rem; list-style: none;
+  transition: opacity .3s ease, transform .35s ease;
+}
+.nav-open #nav-quick { opacity: 0; pointer-events: none; transform: translate(-50%, calc(-50% - 8px)); }
+#nav-quick a {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.05rem;
+  letter-spacing: .04em;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .48rem;
+  transition: color .2s, opacity .2s;
+}
+#nav-quick a span {
+  font-size: .78rem;
+  letter-spacing: .08em;
+  color: rgba(255,255,255,0.82);
+}
+#nav-quick a:hover { opacity: .75; }
+#nav-quick a[aria-current="page"] { color: var(--gold); }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Burger */
+#nav-burger {
+  position: relative; z-index: 820;
+  width: 104px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer; flex-shrink: 0;
+}
+.nav-close-label {
+  position: absolute; right: 52px;
+  font-family: var(--sans); font-size: .62rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(17,27,45,.85); opacity: 0;
+  transform: translateX(.4rem);
+  transition: opacity .25s, transform .25s;
+}
+.nav-open .nav-close-label { opacity: 1; transform: translateX(0); }
+.bline {
+  position: absolute; right: 10px; width: 24px; height: 1px;
+  background: var(--ink); transform-origin: center;
+  transition: transform .58s var(--ease), opacity .32s ease,
+              top .58s var(--ease), background .4s ease;
+}
+.bline-top    { top: 18px; }
+.bline-mid    { top: 23px; }
+.bline-bottom { top: 28px; }
+.nav-open .bline          { background: rgba(17,27,45,.85); }
+.nav-open .bline-top      { top: 23px; transform: rotate(45deg); }
+.nav-open .bline-mid      { opacity: 0; transform: scaleX(0); }
+.nav-open .bline-bottom   { top: 23px; transform: rotate(-45deg); }
+
+/* ═══════════════════════════════════════════
+   FULLSCREEN OVERLAY
+═══════════════════════════════════════════ */
+#nav-overlay {
+  position: fixed; inset: 0; z-index: 700;
+  background: var(--night);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 2.6rem 3.5rem;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path var(--dur) var(--ease);
+  pointer-events: none;
+}
+.nav-open #nav-overlay { clip-path: inset(0% 0 0 0); pointer-events: all; }
+
+#nav-overlay::before {
+  content:''; position:absolute; inset:-50%; width:200%; height:200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.05; pointer-events:none; animation:gShift 7s steps(2) infinite;
+}
+
+.nav-links-main { list-style: none; margin-bottom: 3rem; }
+.nav-links-main li { overflow: hidden; line-height: 1; padding: .1rem 0; }
+.nav-links-main a {
+  display: grid;
+  grid-template-columns: clamp(2.5rem, 5vw, 4rem) minmax(0, auto) minmax(12rem, 26rem);
+  align-items: baseline; gap: .65rem 1rem;
+  font-family: var(--recife);
+  font-size: clamp(2.6rem, 6.8vw, 6.2rem);
+  font-weight: 400; line-height: 1.05;
+  color: rgba(17,27,45,0.78); text-decoration: none;
+  transform: translateY(115%);
+  transition: transform var(--dur) var(--ease), color .25s;
+  will-change: transform;
+}
+.nav-links-main a em {
+  font-style: normal; font-size: clamp(.72rem, 1vw, .92rem); letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(17,27,45,0.55);
+  font-family: var(--sans); line-height: 1.45; transform: translateX(-.35rem); transition: color .25s, transform .25s, opacity .25s;
+  opacity: .76;
+}
+.nav-links-main a:hover em,
+.nav-links-main a:focus-visible em,
+.nav-links-main a[aria-current="page"] em { opacity: 1; transform: translateX(0); }
+.nav-item-main { color: inherit; }
+.nav-booking-item {
+  margin-top: .7rem;
+  padding-top: .9rem !important;
+  border-top: 1px solid rgba(17,27,45,0.12);
+}
+.nav-booking-item a {
+  width: fit-content;
+  padding: .12em .28em .2em;
+  border: 1px solid rgba(17,27,45,0.16);
+}
+.nav-links-main li:nth-child(1) a { transition-delay: .02s; }
+.nav-links-main li:nth-child(2) a { transition-delay: .09s; }
+.nav-links-main li:nth-child(3) a { transition-delay: .16s; }
+.nav-links-main li:nth-child(4) a { transition-delay: .23s; }
+.nav-links-main li:nth-child(5) a { transition-delay: .30s; }
+.nav-open .nav-links-main a  { transform: translateY(0); }
+.nav-links-main a:hover      { color: rgba(17,27,45,1); }
+.nav-links-main a:hover em   { color: rgba(17,27,45,0.5); }
+.nav-links-main a[aria-current="page"] { color: rgba(17,27,45,1); }
+
+.nav-num {
+  font-family: var(--serif); font-size: .26em; letter-spacing: .1em;
+  color: var(--gold); opacity: 0; transform: translateX(-10px);
+  transition: opacity .25s, transform .25s; align-self: center;
+}
+.nav-links-main a:hover .nav-num { opacity: 1; transform: translateX(0); }
+.nav-links-main a[aria-current="page"] .nav-num { opacity: 1; transform: translateX(0); }
+
+.nav-rule {
+  border: none; border-top: 1px solid rgba(17,27,45,0.1); margin-bottom: 2rem;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .65s var(--ease) .32s;
+}
+.nav-open .nav-rule { transform: scaleX(1); }
+
+.nav-bottom {
+  display: flex; align-items: flex-end;
+  justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .5s ease .42s, transform .55s var(--ease) .42s;
+}
+.nav-open .nav-bottom { opacity: 1; transform: translateY(0); }
+
+.nav-contact { display: flex; flex-direction: column; gap: .4rem; }
+.nav-contact-label {
+  font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(17,27,45,0.62); margin-bottom: .25rem; display: block;
+}
+.nav-contact a {
+  font-size: .92rem; letter-spacing: .04em;
+  color: rgba(17,27,45,0.80); text-decoration: none; transition: color .2s;
+}
+.nav-contact a:hover { color: rgba(17,27,45,0.95); }
+
+.nav-socials { list-style: none; display: flex; gap: 1.8rem; }
+.nav-socials a {
+  font-size: .80rem; letter-spacing: .16em; text-transform: uppercase;
+  color: rgba(17,27,45,0.72); text-decoration: none; transition: color .2s;
+}
+.nav-socials a:hover { color: rgba(17,27,45,0.92); }
+
+/* ═══════════════════════════════════════════
+   STICKY BOOKING CTA
+═══════════════════════════════════════════ */
+#sticky-cta {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  z-index: 600;
+  background: var(--gold);
+  color: #1B2422;
+  font-family: var(--sans);
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: .85rem 1.3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  opacity: 0;
+  transform: translateY(.8rem);
+  transition: opacity .35s, transform .35s, background .2s, color .2s;
+  pointer-events: none;
+  box-shadow: 0 4px 20px rgba(27,36,34,0.25);
+}
+#sticky-cta.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
+#sticky-cta:hover { background: #1B2422; color: var(--ink); }
+#sticky-cta::after { content:''; width: .65rem; height: 1px; background: currentColor; }
+
+/* ═══════════════════════════════════════════
+   SHARED SECTION UTILITIES
+═══════════════════════════════════════════ */
+.section-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 7rem 3rem;
+}
+
+.section-eyebrow {
+  font-family: var(--sans);
+  font-size: .82rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: .8rem;
+}
+.section-eyebrow::before {
+  content: ''; width: 2rem; height: 1px; background: var(--gold); flex-shrink: 0;
+}
+
+.section-heading {
+  font-family: var(--recife);
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.05;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+
+.calendar-hero {
+  position: relative;
+  min-height: 76vh;
+  padding-top: calc(var(--nav-h) + 5rem);
+  padding-bottom: 4rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 66% 24%, rgba(201,162,74,0.18), transparent 28%),
+    linear-gradient(135deg, #090d0c 0%, #1B2422 56%, #070807 100%);
+}
+.calendar-hero::before {
+  content: '';
+  position: absolute;
+  inset: clamp(14px, 2vw, 32px);
+  background: url('hero.webp') 50% 22% / cover no-repeat;
+  filter: grayscale(100%) contrast(1.05) brightness(0.93);
+  box-shadow:
+    0 34px 90px rgba(0,0,0,0.38),
+    inset 0 0 0 1px rgba(245,241,232,0.18),
+    inset 0 0 0 14px rgba(8,11,10,0.14);
+  z-index: 0;
+  pointer-events: none;
+}
+.calendar-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(8,11,10,0.62) 0%, rgba(8,11,10,0.18) 39%, rgba(8,11,10,0.08) 100%),
+    linear-gradient(to bottom, rgba(27,36,34,0.18) 0%, rgba(27,36,34,0.04) 28%, rgba(27,36,34,0.42) 70%, rgba(9,12,11,0.88) 100%),
+    radial-gradient(circle at 55% 22%, rgba(245,241,232,0.1), transparent 28%);
+  z-index: 1;
+  pointer-events: none;
+}
+.calendar-hero-frame {
+  position: absolute;
+  inset: clamp(26px, 3vw, 52px);
+  border: 1px solid rgba(245,241,232,0.2);
+  z-index: 2;
+  pointer-events: none;
+}
+.calendar-hero-frame::before,
+.calendar-hero-frame::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  width: clamp(70px, 10vw, 160px);
+  height: 1px;
+  background: var(--gold);
+  opacity: .72;
+}
+.calendar-hero-frame::before { left: 0; }
+.calendar-hero-frame::after { right: 0; }
+.calendar-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: minmax(0, 6.5fr) minmax(280px, 4.5fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: end;
+}
+.calendar-hero-inner > div { min-width: 0; }
+.calendar-kicker {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .5rem;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+}
+.calendar-title {
+  font-family: var(--recife);
+  font-size: clamp(3.4rem, 7.4vw, 7.6rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: .95;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  max-width: 12ch;
+  margin-bottom: 0;
+  text-wrap: balance;
+}
+.calendar-title em {
+  font-style: normal;
+  color: var(--ink);
+  display: block;
+}
+.calendar-title em::before {
+  content: '';
+  display: inline-block;
+  width: 0.7em;
+  height: 1px;
+  background: var(--gold);
+  vertical-align: middle;
+  margin-right: 0.35em;
+  transform: translateY(-0.18em);
+}
+.calendar-intro {
+  max-width: 42ch;
+  font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+  line-height: 1.5;
+  color: rgba(255,255,255,0.48);
+  font-style: italic;
+  margin-bottom: .7rem;
+  text-wrap: pretty;
+}
+.calendar-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem 1.4rem;
+  margin-top: 1.6rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--rule);
+  max-width: 42rem;
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.62);
+}
+.calendar-hero-meta span {
+  display: inline;
+}
+.calendar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+  margin-top: 1.6rem;
+}
+.calendar-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: .72rem 1.05rem;
+  background: var(--gold);
+  color: #1B2422;
+  font-family: var(--sans);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background .2s, transform .2s;
+}
+.calendar-cta:hover,
+.calendar-cta:focus-visible {
+  background: var(--gold-lt);
+  transform: translateY(-1px);
+  outline: none;
+}
+.calendar-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  color: rgba(255,255,255,0.72);
+  font-family: var(--sans);
+  font-size: .68rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.calendar-link:hover,
+.calendar-link:focus-visible {
+  color: var(--gold);
+  outline: none;
+}
+.next-card {
+  position: relative;
+  border-top: 1px solid var(--rule);
+  border-bottom: 0;
+  padding: 1.3rem 0 0;
+  background: transparent;
+}
+.next-card-label {
+  font-family: var(--sans);
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+.next-card-date {
+  display: flex;
+  align-items: baseline;
+  gap: .75rem;
+  margin-bottom: 1.15rem;
+}
+.next-card-date strong {
+  font-family: var(--recife);
+  font-size: clamp(3rem, 5vw, 4.6rem);
+  font-weight: 400;
+  line-height: .9;
+  color: var(--ink);
+}
+.next-card-date span {
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.58);
+}
+.next-card-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--ink);
+  margin-bottom: .35rem;
+}
+.next-card-meta {
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .06em;
+  color: rgba(255,255,255,0.56);
+  margin-bottom: 1.4rem;
+}
+/* Scroll reveal */
+.reveal {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity .75s ease, transform .75s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════════
+   CALENDAR TABS
+═══════════════════════════════════════════ */
+.cal-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--rule);
+}
+.cal-tab {
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: rgba(255,255,255,0.85);
+  background: none;
+  border: none;
+  padding: 0.8rem 0;
+  margin-right: 2.5rem;
+  cursor: pointer;
+  position: relative;
+  transition: color .2s;
+}
+.cal-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .28s var(--ease);
+}
+.cal-tab.active { color: var(--ink); }
+.cal-tab.active::after { transform: scaleX(1); }
+.cal-tab:hover { color: var(--ink); }
+
+/* ═══════════════════════════════════════════
+   EVENT ROWS (editorial card layout)
+═══════════════════════════════════════════ */
+.event-list { margin-bottom: 3rem; }
+
+.event-section {
+  margin-top: 3.8rem;
+}
+.event-section:first-child {
+  margin-top: 0;
+}
+.event-section-title {
+  font-family: var(--sans);
+  font-size: 1rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.3rem;
+}
+
+.event-row {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  gap: 2.5rem;
+  padding: 2.8rem 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+  position: relative;
+  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
+  transition: background .28s ease, padding-left .28s var(--ease), padding-right .28s var(--ease);
+}
+.event-row:first-child { border-top: 1px solid var(--rule); }
+.event-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.6rem;
+  bottom: 1.6rem;
+  width: 1px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform .28s var(--ease);
+}
+.event-row:hover {
+  background: rgba(255,255,255,0.055);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.event-row:hover::before {
+  transform: scaleY(1);
+}
+.event-row--featured {
+  margin: 0 -1.2rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0));
+  border-top: 1px solid rgba(246,215,124,0.5);
+}
+.event-row--featured .ev-name::before {
+  content: 'Nächster Termin';
+  display: block;
+  font-family: var(--sans);
+  font-size: .85rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .7rem;
+}
+
+.event-date {
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
+}
+.date-day {
+  font-family: var(--sans);
+  font-size: .88rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.date-num {
+  font-family: var(--recife);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--ink);
+}
+.date-month {
+  font-family: var(--sans);
+  font-size: .90rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+  margin-top: .25rem;
+}
+
+.event-body { display: flex; flex-direction: column; gap: .62rem; padding-top: .4rem; }
+
+.ev-name {
+  font-family: var(--serif);
+  font-size: clamp(1.36rem, 1.7vw, 1.62rem);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.ev-prog {
+  font-family: var(--serif);
+  font-size: 1.10rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.84);
+  font-style: normal;
+}
+
+.ev-loc {
+  font-family: var(--sans);
+  font-size: .92rem;
+  letter-spacing: .02em;
+  color: rgba(255,255,255,0.8);
+  margin-top: .25rem;
+}
+.ev-venue {
+  font-family: var(--sans);
+  font-size: .96rem;
+  letter-spacing: .02em;
+  color: rgba(255,255,255,0.94);
+  margin-top: .25rem;
+}
+.ev-meta-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .65rem;
+  font-family: var(--sans);
+  font-size: .92rem;
+  letter-spacing: .01em;
+  color: rgba(255,255,255,0.78);
+}
+.ev-presenter {
+  font-family: var(--sans);
+  font-size: .9rem;
+  letter-spacing: .01em;
+  color: rgba(255,255,255,0.74);
+}
+.ev-presenter span {
+  color: rgba(255,255,255,0.92);
+}
+
+/* Status badges — three distinct treatments */
+.event-status {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: .5rem;
+  border-radius: 2px;
+  padding: .32rem .75rem;
+  font-family: var(--sans);
+  font-size: .82rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.event-status--confirmed {
+  background: var(--gold);
+  color: #1B2422;
+}
+.event-status--planning {
+  border: 1px solid var(--rule);
+  color: rgba(255,255,255,0.82);
+}
+.event-status--bookable {
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.8);
+}
+
+.event-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding-top: .55rem;
+  gap: .75rem;
+  flex-shrink: 0;
+}
+
+.ticket-link {
+  font-family: var(--sans);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: .82rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  transition: color .2s, gap .2s;
+  white-space: nowrap;
+}
+.ticket-link::after {
+  content: '→';
+  font-style: normal;
+  transition: transform .2s;
+}
+.ticket-link:hover { color: var(--gold); }
+.ticket-link:hover::after { transform: translateX(3px); }
+.event-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: .55rem .9rem;
+}
+.meta-link {
+  font-family: var(--sans);
+  color: rgba(255,255,255,0.78);
+  text-decoration: none;
+  font-size: .78rem;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  transition: color .2s;
+}
+.meta-link:hover { color: var(--gold); }
+.meta-link--primary {
+  color: var(--ink);
+  font-size: .88rem;
+  letter-spacing: .08em;
+}
+.meta-link--primary::after {
+  content: '→';
+  margin-left: .45rem;
+  transition: transform .2s;
+}
+.meta-link--primary:hover::after {
+  display: inline-block;
+  transform: translateX(3px);
+}
+.event-secondary-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: .55rem .9rem;
+  width: 100%;
+}
+
+/* Archive rows — slightly muted */
+.event-row--archive .ev-name { color: rgba(255,255,255,0.7); }
+.event-row--archive .date-num { color: rgba(255,255,255,0.35); font-size: clamp(2rem, 3.5vw, 3rem); }
+
+/* Past event rows — visually muted, non-interactive */
+.event-row--past { opacity: 0.46; }
+.event-row--past .date-num { color: rgba(255,255,255,0.32); }
+.calendar-empty {
+  display: none;
+  margin: 1.5rem 0 2.5rem;
+  padding: 2rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.calendar-empty.is-visible { display: block; }
+.calendar-empty-title {
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+  font-style: italic;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: .7rem;
+}
+.calendar-empty-copy {
+  max-width: 44rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.72);
+}
+.calendar-empty .meta-link {
+  display: inline-flex;
+  margin-top: 1.1rem;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER CTA BAND
+═══════════════════════════════════════════ */
+.cal-footer {
+  border-top: 1px solid var(--rule);
+  padding: 5rem 0 2rem;
+  text-align: center;
+}
+
+.cal-footer-eyebrow {
+  font-family: var(--sans);
+  font-size: .6rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .8rem;
+}
+.cal-footer-eyebrow::before,
+.cal-footer-eyebrow::after {
+  content: ''; width: 2rem; height: 1px; background: var(--gold);
+}
+
+.cal-footer-text {
+  font-family: var(--recife);
+  font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: .75rem;
+}
+
+.cal-footer-sub {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: rgba(255,255,255,0.82);
+  font-style: italic;
+  margin-bottom: 2.5rem;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  background: var(--gold);
+  color: #1B2422;
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  transition: background .2s, color .2s;
+}
+.btn-primary::after { content: ''; width: .65rem; height: 1px; background: currentColor; }
+.btn-primary:hover { background: #1B2422; color: var(--ink); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  transition: background .2s, border-color .2s;
+}
+.btn-secondary::after { content: ''; width: .65rem; height: 1px; background: currentColor; }
+.btn-secondary:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.5); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: #435553;
+  border-top: 1px solid rgba(255,255,255,0.24);
+  padding: 3rem 2rem 2rem;
+}
+.footer-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  align-items: end;
+  gap: 2rem 2.5rem;
+}
+.footer-booking {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 1.5rem;
+  align-items: end;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.24);
+}
+.footer-booking h2 {
+  font-family: var(--recife);
+  font-style: italic;
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  font-weight: 400;
+  line-height: .98;
+  color: var(--ink);
+  max-width: 12ch;
+}
+.footer-booking a {
+  color: #1B2422;
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  padding: .95rem 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.footer-booking a::after {
+  content: '';
+  width: .85rem;
+  height: 1px;
+  background: currentColor;
+}
+.footer-booking a:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.footer-logo {
+  display: grid;
+  gap: .35rem;
+  font-family: var(--sans);
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+.footer-logo span {
+  font-size: .72rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  line-height: 1.45;
+  text-transform: none;
+  opacity: .72;
+}
+
+.footer-nav { justify-self: end; }
+.footer-links {
+  list-style: none;
+  display: flex;
+  gap: .3rem 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a,
+.footer-meta a,
+.footer-legal a {
+  color: rgba(255,255,255,0.72);
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: .64rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  transition: color .2s;
+}
+.footer-links a:hover,
+.footer-links a[aria-current="page"],
+.footer-meta a:hover,
+.footer-legal a:hover { color: var(--ink); }
+.footer-links a[aria-current="page"] { text-decoration: underline; text-underline-offset: .35rem; }
+
+.footer-meta,
+.footer-legal {
+  display: flex;
+  gap: .55rem 1.2rem;
+  flex-wrap: wrap;
+}
+.footer-meta { justify-self: end; }
+.footer-legal { grid-column: 1; }
+
+.footer-copy {
+  grid-column: 1 / -1;
+  justify-self: end;
+  font-family: var(--sans);
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: rgba(255,255,255,0.72);
+}
+
+.mobile-booking { display: none; }
+
+/* Season label for bookable-format date column */
+.date-season {
+  font-family: var(--sans);
+  font-size: .88rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.4;
+  padding-top: .4rem;
+  display: block;
+}
+
+/* Ensure hidden attribute hides panels without needing inline display:none */
+[hidden] { display: none !important; }
+
+/* ═══════════════════════════════════════════
+   ARCHIVE NOTE
+═══════════════════════════════════════════ */
+.archive-note {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.78);
+  font-style: italic;
+  margin-bottom: 3rem;
+}
+.archive-note a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color .2s;
+}
+.archive-note a:hover { color: var(--gold-lt); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1120px) {
+  .calendar-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 1.7rem;
+  }
+  .calendar-title { max-width: 10ch; }
+  .calendar-intro { max-width: 48ch; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-booking { grid-template-columns: 1fr; align-items: start; }
+  .footer-nav,
+  .footer-meta,
+  .footer-copy { justify-self: start; }
+  .footer-legal { grid-column: auto; }
+}
+
+@media (max-width: 760px) {
+  #nav-burger { width: 44px; }
+  .nav-close-label { display: none; }
+  #nav-overlay {
+    justify-content: flex-start;
+    padding: calc(var(--nav-h) + 1.6rem) 1.4rem max(1.6rem, env(safe-area-inset-bottom));
+  }
+  .nav-links-main { margin-bottom: auto; }
+  .nav-links-main a {
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+    gap: .35rem .85rem;
+    font-size: clamp(2.25rem, 12vw, 4.1rem);
+  }
+  .nav-links-main a em { grid-column: 2; max-width: none; font-size: .68rem; }
+  .nav-booking-item { margin-top: 1.1rem; }
+  .nav-bottom { margin-top: 1.6rem; display: grid; gap: 1rem; }
+  .calendar-hero-inner {
+    padding: 0 1.4rem;
+  }
+  .calendar-hero {
+    min-height: 72vh;
+    padding-top: calc(var(--nav-h) + 3rem);
+  }
+  .calendar-title {
+    max-width: 10ch;
+    font-size: clamp(3.3rem, 16vw, 5rem);
+  }
+  .calendar-intro {
+    font-size: 1.05rem;
+    max-width: 48ch;
+  }
+  .calendar-hero-meta {
+    font-size: 10px;
+    line-height: 1.7;
+  }
+  .next-card {
+    max-width: none;
+  }
+
+  .section-wrap { padding: 5.5rem 1.4rem; }
+
+  #nav-quick { display: none; }
+
+  .event-row {
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1.7rem 0;
+  }
+  .event-row--featured {
+    margin: 0 -.7rem;
+    padding-left: .7rem;
+    padding-right: .7rem;
+  }
+  .event-date { gap: .15rem; }
+  .date-num { font-size: 2.2rem; }
+  .date-day {
+    display: block;
+    font-size: .72rem;
+    letter-spacing: .06em;
+  }
+  .date-month {
+    font-size: .72rem;
+    line-height: 1.25;
+  }
+  .event-body {
+    min-width: 0;
+  }
+
+  .event-action {
+    grid-column: 2;
+    align-items: flex-start;
+    padding-top: 0;
+  }
+  .event-links,
+  .event-secondary-links {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .meta-link--primary {
+    order: -1;
+    display: inline-flex;
+    margin-bottom: .15rem;
+  }
+
+  .cal-footer { padding: 3.5rem 0 2rem; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-cta { justify-content: center; width: 100%; }
+  .footer-links,
+  .footer-meta,
+  .footer-legal {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .1rem;
+  }
+
+  #sticky-cta { display: none; }
+
+  .mobile-booking {
+    display: flex;
+    position: fixed;
+    left: 1rem; right: 1rem; bottom: 1rem;
+    z-index: 900;
+    justify-content: center;
+    background: var(--gold);
+    color: #1B2422;
+    text-decoration: none;
+    padding: 0.9rem 1rem;
+    font-family: var(--sans);
+    font-size: .88rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(.8rem);
+    pointer-events: none;
+    transition: opacity .35s, transform .35s;
+  }
+  .mobile-booking.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+}
+
+
+/* Gold label readability */
+:where(
+  .nav-contact-label,
+  .sidebar-label,
+  .quick-info-label,
+  .right-meta-tl,
+  .hero-rotated-label,
+  .hero-eyebrow,
+  .eyebrow,
+  .hero-intro-label,
+  .choice-meta,
+  .p-kicker,
+  .werkfolge-footer-label,
+  .tag-label,
+  .programme-kicker,
+  .tag-row-label,
+  .calendar-kicker,
+  .next-card-label,
+  .section-eyebrow,
+  .event-status,
+  .date-day,
+  .date-month,
+  .cal-footer-eyebrow,
+  .artist-kicker,
+  .pc-meta,
+  .footer-contact-label,
+  .artist-img-label,
+  .press-eyebrow,
+  .video-kicker,
+  .video-meta,
+  .photo-card-kicker,
+  .dl-tag,
+  .dl-meta,
+  .contact-overline,
+  .info-label,
+  .formats-label,
+  .creds dt
+) {
+  font-size: 0.82rem;
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-shadow: 0 1px 2px rgba(27, 36, 34, 0.28);
+}
+
+
+/* Language toggle */
+.language-toggle {
+  position: relative;
+  z-index: 830;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  margin-left: auto;
+  margin-right: 1rem;
+  font-family: var(--sans, Arial, sans-serif);
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.language-toggle a {
+  color: currentColor;
+  text-decoration: none;
+  opacity: .62;
+  transition: opacity .2s, color .2s;
+}
+.language-toggle a:hover,
+.language-toggle a[aria-current="true"] { opacity: 1; }
+.language-toggle span { opacity: .35; }
+@media (max-width: 640px) {
+  .language-toggle { margin-left: 0; margin-right: .55rem; }
+}
+
+
+/* UX enhancement layer: mobile CTA scope, active nav, readable copy */
+.mobile-booking { display: none !important; }
+@media (max-width: 760px) {
+  body[data-mobile-cta="true"] .mobile-booking {
+    position: fixed;
+    inset-inline: 1rem;
+    inset-block-end: calc(1rem + env(safe-area-inset-bottom));
+    z-index: 80;
+    min-block-size: 48px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 1.15rem;
+    border-radius: 999px;
+    border: 1px solid rgba(237,234,228,.26);
+    background: rgba(17,27,45,.94);
+    color: #f7f2e8;
+    font: 600 .86rem/1 var(--font-sans, var(--sans, system-ui, sans-serif));
+    text-decoration: none;
+    box-shadow: 0 16px 42px rgba(0,0,0,.24);
+    backdrop-filter: blur(12px);
+  }
+  body.nav-open .mobile-booking { display: none !important; }
+}
+#nav-quick a[aria-current="page"],
+.nav-links-main a[aria-current="page"] {
+  color: var(--gold, #b9964f) !important;
+}
+#nav-quick a[aria-current="page"]::after {
+  content: "";
+  inline-size: .38rem;
+  block-size: .38rem;
+  border-radius: 999px;
+  background: currentColor;
+  flex: 0 0 auto;
+}
+:where(.hero-intro, .hero-lede, .lede, .p-desc, .programme-desc, .artist-bio, .program-card-desc) {
+  max-inline-size: 68ch;
+  text-wrap: pretty;
+}
+.copy-collapse-toggle {
+  min-block-size: 44px;
+  margin-block-start: .65rem;
+  padding: .55rem .8rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: 600 .78rem/1 var(--font-sans, var(--sans, system-ui, sans-serif));
+  cursor: pointer;
+}
+.copy-collapse-toggle:hover { background: rgba(185,150,79,.12); }
+.copy-collapse-toggle:focus-visible { outline: 2px solid var(--gold, #b9964f); outline-offset: 3px; }
+@media (min-width: 641px) { .copy-collapse-toggle { display: none; } }
+@media (max-width: 640px) {
+  .is-collapsible-copy:not(.is-expanded) {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+</style>
+<link rel="stylesheet" href="site-footer.css">
+<link rel="alternate" hreflang="de" href="konzerte.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MusicEvent",
+      "name": "Four Seasons – One World",
+      "startDate": "2026-04-18T19:00:00+02:00",
+      "location": {
+        "@type": "Place",
+        "name": "Berlin-Neukölln",
+        "address": {"@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE"}
+      },
+      "performer": {"@type": "MusicGroup", "name": "Duo ViA!"},
+      "url": "https://duovia.de/konzerte.html#event-berlin-2026-04-18"
+    },
+    {
+      "@type": "MusicEvent",
+      "name": "Four Seasons – One World",
+      "startDate": "2026-05-07T19:30:00+02:00",
+      "location": {
+        "@type": "Place",
+        "name": "Mozartareal",
+        "address": {"@type": "PostalAddress", "addressLocality": "Würzburg", "addressCountry": "DE"}
+      },
+      "performer": {"@type": "MusicGroup", "name": "Duo ViA!"},
+      "organizer": {"@type": "Organization", "name": "Kammermusik Würzburg"},
+      "url": "https://duovia.de/konzerte.html#event-wuerzburg-2026-05-07"
+    },
+    {
+      "@type": "MusicEvent",
+      "name": "Duo ViA! — Muttertagskonzert",
+      "startDate": "2026-05-09T13:00:00+02:00",
+      "location": {
+        "@type": "Place",
+        "name": "MühlenForum Glattbach",
+        "address": {"@type": "PostalAddress", "addressLocality": "Glattbach", "addressRegion": "Bayern", "addressCountry": "DE"}
+      },
+      "performer": {"@type": "MusicGroup", "name": "Duo ViA!"},
+      "organizer": {"@type": "Organization", "name": "MühlenForum Glattbach"},
+      "offers": {"@type": "Offer", "price": "45", "priceCurrency": "EUR"},
+      "url": "https://duovia.de/konzerte.html#event-glattbach-2026-05-09"
+    },
+    {
+      "@type": "MusicEvent",
+      "name": "4. Meisterkonzert — Four Seasons – One World",
+      "startDate": "2026-05-13T19:30:00+02:00",
+      "location": {
+        "@type": "Place",
+        "name": "Teo Otto Theater",
+        "address": {"@type": "PostalAddress", "addressLocality": "Remscheid", "addressCountry": "DE"}
+      },
+      "performer": {"@type": "MusicGroup", "name": "Duo ViA!"},
+      "organizer": {"@type": "Organization", "name": "Bergische Symphoniker"},
+      "offers": {"@type": "Offer", "price": "20", "priceCurrency": "EUR"},
+      "url": "https://duovia.de/konzerte.html#event-remscheid-2026-05-13"
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="includes/nav.css">
+</head>
+<body>
+<!-- ─────────────────────────────────────────
+     PROGRESS + CURSOR + OVERLAYS
+───────────────────────────────────────── -->
+<div id="scroll-progress"></div>
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+<div class="grain"></div>
+
+<!-- ─────────────────────────────────────────
+     STICKY BOOKING CTA
+───────────────────────────────────────── -->
+<a id="sticky-cta" href="mailto:booking@duovia.de">Konzert buchen</a>
+
+<!-- ─────────────────────────────────────────
+     NAVIGATION
+───────────────────────────────────────── -->
+<header id="nav-bar">
+  <a href="landing.html" class="nav-logo" aria-label="Duo ViA! — Startseite">Duo <em>ViA!</em></a>
+
+  <ul id="nav-quick">
+    <li><a href="projects.html">Programme</a></li>
+    <li><a href="artists.html">Künstler</a></li>
+    <li><a href="presse.html">Presse</a></li>
+    <li><a href="konzerte.html" aria-current="page">Konzerte</a></li>
+    <li><a href="mailto:booking@duovia.de">Booking</a></li>
+  </ul>
+
+    <div class="language-toggle" aria-label="Sprachauswahl">
+    <a href="konzerte.html" lang="de" hreflang="de" aria-current="true">DE</a>
+    <span aria-hidden="true">/</span>
+    <span lang="en" aria-disabled="true">EN</span>
+  </div>
+<button id="nav-burger" aria-label="Navigation öffnen" onclick="toggleMenu()">
+    <span class="nav-close-label">Schließen</span>
+    <span class="bline bline-top"></span>
+    <span class="bline bline-mid"></span>
+    <span class="bline bline-bottom"></span>
+  </button>
+</header>
+
+<!-- ─────────────────────────────────────────
+     FULLSCREEN OVERLAY
+───────────────────────────────────────── -->
+<nav id="nav-overlay" aria-hidden="true">
+  <ul class="nav-links-main">
+    <li><a href="projects.html"><span class="nav-num">01</span><span class="nav-item-main">Programme</span><em>Repertoire &amp; Konzertformate</em></a></li>
+    <li><a href="artists.html"><span class="nav-num">02</span><span class="nav-item-main">Künstler</span><em>Sinn Yang &amp; Harald Oeler</em></a></li>
+    <li><a href="presse.html"><span class="nav-num">03</span><span class="nav-item-main">Presse</span><em>Fotos, Bio &amp; Pressematerial</em></a></li>
+    <li><a href="konzerte.html" aria-current="page"><span class="nav-num">04</span><span class="nav-item-main">Konzerte</span><em>Termine &amp; Saison 2026/27</em></a></li>
+    <li class="nav-booking-item"><a href="mailto:booking@duovia.de"><span class="nav-num">05</span><span class="nav-item-main">Booking</span><em>booking@duovia.de</em></a></li>
+  </ul>
+
+  <hr class="nav-rule">
+
+  <div class="nav-bottom">
+    <div class="nav-contact">
+      <span class="nav-contact-label">Kontakt &amp; Booking</span>
+      <a href="mailto:booking@duovia.de">booking@duovia.de</a>
+    </div>
+    <ul class="nav-socials">
+      <li><a href="https://open.spotify.com/album/0MfH41bgOifWl6W9fXDcW1" target="_blank" rel="noopener noreferrer">Spotify</a></li>
+      <li><a href="mailto:booking@duovia.de?subject=Social%20links%20Duo%20ViA!">Socials anfragen</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ─────────────────────────────────────────
+     CALENDAR
+───────────────────────────────────────── -->
+<section class="calendar-hero" aria-labelledby="calendar-title">
+  <div class="calendar-hero-frame" aria-hidden="true"></div>
+  <div class="calendar-hero-inner">
+    <div>
+      <div class="calendar-kicker">N°&nbsp;IV — Konzerte</div>
+      <h1 id="calendar-title" class="calendar-title">
+        Konzerte &amp;&nbsp;<em>Termine.</em>
+      </h1>
+    </div>
+    <div>
+      <p class="calendar-intro">
+        Konzerttermine, kommende Programme und buchbare Formate für Kulturhäuser,
+        Festivals und Konzertreihen — Violine und Akkordeon in eigenarrangierter
+        Kammermusik.
+      </p>
+      <div class="calendar-hero-meta" aria-label="Programmschwerpunkte">
+        <span>Violine &amp; Akkordeon</span>
+        <span>Konzertsaison 2026/27</span>
+        <span>Festival · Kammermusik · Kulturhaus</span>
+      </div>
+      <div class="calendar-actions">
+        <a class="calendar-cta" href="mailto:booking@duovia.de">Booking anfragen</a>
+        <a class="calendar-link" href="#calendar">Zum Kalender</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="calendar">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Konzertkalender</div>
+    <h2 class="section-heading">Kommende Konzerte</h2>
+
+    <!-- Tab controls -->
+    <div class="cal-tabs" role="tablist" aria-label="Kalenderansicht">
+      <button id="tab-upcoming" class="cal-tab active" data-tab="upcoming" onclick="switchTab('upcoming')" role="tab" aria-selected="true" aria-controls="cal-upcoming" tabindex="0">Kommende Konzerte</button>
+      <button id="tab-archive" class="cal-tab" data-tab="archive" onclick="switchTab('archive')" role="tab" aria-selected="false" aria-controls="cal-archive" tabindex="-1">Archiv</button>
+    </div>
+
+    <!-- Upcoming -->
+    <div id="cal-upcoming" role="tabpanel" aria-labelledby="tab-upcoming">
+      <div class="calendar-empty" id="calendar-empty" aria-live="polite">
+        <div class="calendar-empty-title">Neue Konzerttermine folgen.</div>
+        <p class="calendar-empty-copy">Die zuletzt gelisteten Termine liegen bereits zurück. Duo ViA! ist weiterhin für Festivals, Konzertreihen und Kulturhäuser buchbar.</p>
+        <a class="meta-link meta-link--primary" href="mailto:booking@duovia.de">Booking anfragen</a>
+      </div>
+      <div class="event-section">
+        <div class="event-section-title">Konzerttermine</div>
+        <div class="event-list">
+
+        <div class="event-row reveal" id="event-berlin-2026-04-18" data-date="2026-04-18">
+          <div class="event-date">
+            <span class="date-day">Samstag</span>
+            <span class="date-num">18</span>
+            <span class="date-month">Apr 2026</span>
+          </div>
+          <div class="event-body">
+            <div class="ev-name">Four Seasons – One World</div>
+            <div class="ev-prog">Musik aus verschiedenen Kulturen &amp; Traditionen</div>
+            <div class="ev-venue">Berlin-Neukölln</div>
+            <div class="ev-meta-line"><span>Berlin</span><span>19:00 Uhr</span></div>
+            <div class="ev-presenter">Veranstalter: <span>wird bekanntgegeben</span></div>
+            <span class="event-status event-status--confirmed">Konzert</span>
+          </div>
+          <div class="event-action">
+            <div class="event-links">
+              <a class="meta-link meta-link--primary" href="mailto:booking@duovia.de">Anfrage senden</a>
+              <div class="event-secondary-links">
+                <a class="meta-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Four%20Seasons%20%E2%80%93%20One%20World&dates=20260418T170000Z/20260418T190000Z&location=Berlin-Neuk%C3%B6lln&details=Duo%20ViA%21" target="_blank" rel="noopener noreferrer">Kalender</a>
+                <a class="meta-link" href="https://www.google.com/maps/search/?api=1&query=Berlin-Neuk%C3%B6lln" target="_blank" rel="noopener noreferrer">Karte</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-row reveal" id="event-wuerzburg-2026-05-07" data-date="2026-05-07" style="transition-delay:.09s">
+          <div class="event-date">
+            <span class="date-day">Donnerstag</span>
+            <span class="date-num">07</span>
+            <span class="date-month">Mai 2026</span>
+          </div>
+          <div class="event-body">
+            <div class="ev-name">Four Seasons – One World</div>
+            <div class="ev-prog">Barock bis Orient · Vivaldi, Piazzolla u.a.</div>
+            <div class="ev-venue">Mozartareal</div>
+            <div class="ev-meta-line"><span>Würzburg</span><span>19:30 Uhr</span></div>
+            <div class="ev-presenter">Veranstalter: <span>Kammermusik Würzburg</span></div>
+            <span class="event-status event-status--confirmed">Konzert</span>
+          </div>
+          <div class="event-action">
+            <div class="event-links">
+              <a class="meta-link meta-link--primary" href="https://www.kammermusik-wuerzburg.de/duo-via" target="_blank" rel="noopener noreferrer">Zur Veranstalterseite</a>
+              <div class="event-secondary-links">
+                <a class="meta-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Four%20Seasons%20%E2%80%93%20One%20World&dates=20260507T173000Z/20260507T193000Z&location=Mozartareal%2C%20W%C3%BCrzburg&details=Duo%20ViA%21" target="_blank" rel="noopener noreferrer">Kalender</a>
+                <a class="meta-link" href="https://www.google.com/maps/search/?api=1&query=Mozartareal%20W%C3%BCrzburg" target="_blank" rel="noopener noreferrer">Karte</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-row reveal" id="event-glattbach-2026-05-09" data-date="2026-05-09" style="transition-delay:.18s">
+          <div class="event-date">
+            <span class="date-day">Samstag</span>
+            <span class="date-num">09</span>
+            <span class="date-month">Mai 2026</span>
+          </div>
+          <div class="event-body">
+            <div class="ev-name">Duo ViA! — Muttertagskonzert</div>
+            <div class="ev-prog">8 Jahreszeiten · Vivaldi &amp; Piazzolla</div>
+            <div class="ev-venue">MühlenForum Glattbach</div>
+            <div class="ev-meta-line"><span>Glattbach, Bayern</span><span>13:00 Uhr</span><span>45 €</span></div>
+            <div class="ev-presenter">Veranstalter: <span>MühlenForum Glattbach</span></div>
+            <span class="event-status event-status--confirmed">Konzert</span>
+          </div>
+          <div class="event-action">
+            <div class="event-links">
+              <a class="meta-link meta-link--primary" href="https://www.muehlenforum-glattbach.de/events" target="_blank" rel="noopener noreferrer">Tickets kaufen</a>
+              <div class="event-secondary-links">
+                <a class="meta-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Duo%20ViA%21%20%E2%80%94%20Muttertagskonzert&dates=20260509T110000Z/20260509T130000Z&location=M%C3%BChlenForum%20Glattbach%2C%20Bayern&details=8%20Jahreszeiten%20%C2%B7%20Vivaldi%20%26%20Piazzolla" target="_blank" rel="noopener noreferrer">Kalender</a>
+                <a class="meta-link" href="https://www.google.com/maps/search/?api=1&query=M%C3%BChlenForum%20Glattbach" target="_blank" rel="noopener noreferrer">Karte</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-row reveal" id="event-remscheid-2026-05-13" data-date="2026-05-13" style="transition-delay:.27s">
+          <div class="event-date">
+            <span class="date-day">Mittwoch</span>
+            <span class="date-num">13</span>
+            <span class="date-month">Mai 2026</span>
+          </div>
+          <div class="event-body">
+            <div class="ev-name">4. Meisterkonzert</div>
+            <div class="ev-prog">Four Seasons – One World</div>
+            <div class="ev-venue">Teo Otto Theater</div>
+            <div class="ev-meta-line"><span>Remscheid</span><span>19:30 Uhr</span><span>20 €</span></div>
+            <div class="ev-presenter">Veranstalter: <span>Bergische Symphoniker</span></div>
+            <span class="event-status event-status--confirmed">Konzert</span>
+          </div>
+          <div class="event-action">
+            <div class="event-links">
+              <a class="meta-link meta-link--primary" href="https://www.bergischesymphoniker.de/konzert/4-meisterkonzert-593104666/" target="_blank" rel="noopener noreferrer">Tickets kaufen</a>
+              <div class="event-secondary-links">
+                <a class="meta-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=4.%20Meisterkonzert%20%E2%80%94%20Duo%20ViA%21&dates=20260513T173000Z/20260513T193000Z&location=Teo%20Otto%20Theater%2C%20Remscheid&details=Four%20Seasons%20%E2%80%93%20One%20World" target="_blank" rel="noopener noreferrer">Kalender</a>
+                <a class="meta-link" href="https://www.google.com/maps/search/?api=1&query=Teo%20Otto%20Theater%20Remscheid" target="_blank" rel="noopener noreferrer">Karte</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-row reveal" id="event-booking-2026-06-21" data-date="2026-06-21" style="transition-delay:.36s">
+          <div class="event-date">
+            <span class="date-day">Sonntag</span>
+            <span class="date-num">21</span>
+            <span class="date-month">Jun 2026</span>
+          </div>
+          <div class="event-body">
+            <div class="ev-name">Four Seasons – One World</div>
+            <div class="ev-prog">Sommertermin für Festivals &amp; Kulturhäuser</div>
+            <div class="ev-venue">Deutschlandweit buchbar</div>
+            <div class="ev-meta-line"><span>Open Air · Saal · Matinee</span><span>Uhrzeit nach Vereinbarung</span></div>
+            <div class="ev-presenter">Booking: <span>Terminfenster 2026</span></div>
+            <span class="event-status event-status--bookable">Buchbar</span>
+          </div>
+          <div class="event-action">
+            <div class="event-links">
+              <a class="meta-link meta-link--primary" href="mailto:booking@duovia.de?subject=Booking%20Duo%20ViA%21%20-%2021.%20Juni%202026">Termin anfragen</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-row reveal" id="event-booking-2026-09-18" data-date="2026-09-18" style="transition-delay:.45s">
+          <div class="event-date">
+            <span class="date-day">Freitag</span>
+            <span class="date-num">18</span>
+            <span class="date-month">Sep 2026</span>
+          </div>
+          <div class="event-body">
+            <div class="ev-name">8 Jahreszeiten</div>
+            <div class="ev-prog">Vivaldi &amp; Piazzolla in eigener Duo-Fassung</div>
+            <div class="ev-venue">Konzertreihen &amp; Kammermusikformate</div>
+            <div class="ev-meta-line"><span>D-A-CH</span><span>Abendkonzert buchbar</span></div>
+            <div class="ev-presenter">Booking: <span>Saisonstart Herbst 2026</span></div>
+            <span class="event-status event-status--bookable">Buchbar</span>
+          </div>
+          <div class="event-action">
+            <div class="event-links">
+              <a class="meta-link meta-link--primary" href="mailto:booking@duovia.de?subject=Booking%20Duo%20ViA%21%20-%2018.%20September%202026">Termin anfragen</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-row reveal" id="event-booking-2026-11-29" data-date="2026-11-29" style="transition-delay:.54s">
+          <div class="event-date">
+            <span class="date-day">Sonntag</span>
+            <span class="date-num">29</span>
+            <span class="date-month">Nov 2026</span>
+          </div>
+          <div class="event-body">
+            <div class="ev-name">Winterkonzert Duo ViA!</div>
+            <div class="ev-prog">Festliches Programm für Advent &amp; Jahresausklang</div>
+            <div class="ev-venue">Kirchen, Kulturhäuser &amp; besondere Spielorte</div>
+            <div class="ev-meta-line"><span>Deutschlandweit</span><span>Nachmittags oder abends</span></div>
+            <div class="ev-presenter">Booking: <span>Adventszeit 2026</span></div>
+            <span class="event-status event-status--bookable">Buchbar</span>
+          </div>
+          <div class="event-action">
+            <div class="event-links">
+              <a class="meta-link meta-link--primary" href="mailto:booking@duovia.de?subject=Booking%20Duo%20ViA%21%20-%2029.%20November%202026">Termin anfragen</a>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Archive -->
+    <div id="cal-archive" role="tabpanel" aria-labelledby="tab-archive" hidden>
+
+      <div class="event-section">
+        <div class="event-section-title">2024</div>
+        <div class="event-list">
+          <div class="event-row event-row--archive">
+            <div class="event-date">
+              <span class="date-day">Samstag</span>
+              <span class="date-num">11</span>
+              <span class="date-month">Mai 2024</span>
+            </div>
+            <div class="event-body">
+              <div class="ev-name">Benefizkonzert ZONTA Würzburg</div>
+              <div class="ev-prog">8 Jahreszeiten · Vivaldi &amp; Piazzolla · 20:00 Uhr</div>
+              <div class="ev-loc">Kaisersaal der Residenz, Würzburg</div>
+            </div>
+            <div class="event-action">
+              <a href="projects.html" class="ticket-link">Zum Programm</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-section">
+        <div class="event-section-title">2023</div>
+        <div class="event-list">
+          <div class="event-row event-row--archive">
+            <div class="event-date">
+              <span class="date-day">Sonntag</span>
+              <span class="date-num">14</span>
+              <span class="date-month">Mai 2023</span>
+            </div>
+            <div class="event-body">
+              <div class="ev-name">Die 8 Jahreszeiten — Muttertagskonzert</div>
+              <div class="ev-prog">#muttertagskonzert · Vivaldi &amp; Piazzolla · 19:00 Uhr</div>
+              <div class="ev-loc">Keller Z87, Würzburg</div>
+            </div>
+            <div class="event-action">
+              <a href="projects.html" class="ticket-link">Zum Programm</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-section">
+        <div class="event-section-title">2022</div>
+        <div class="event-list">
+          <div class="event-row event-row--archive">
+            <div class="event-date">
+              <span class="date-season">2022</span>
+            </div>
+            <div class="event-body">
+              <div class="ev-name">Kulturhaus-Reihe</div>
+              <div class="ev-prog">8 Jahreszeiten</div>
+              <div class="ev-loc">Bayern &amp; Baden-Württemberg</div>
+            </div>
+            <div class="event-action">
+              <a href="projects.html" class="ticket-link">Zum Programm</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="archive-note">Duo ViA! konzertiert seit 2009 — vollständige Konzertliste auf Anfrage. <a href="mailto:booking@duovia.de">Booking anfragen →</a></p>
+    </div>
+
+    <!-- Footer CTA band -->
+    <div class="cal-footer reveal">
+      <div class="cal-footer-eyebrow">Buchungsanfragen</div>
+      <div class="cal-footer-text">Weitere Termine &amp; individuelle Buchungen</div>
+      <div class="cal-footer-sub">Duo ViA! ist für Festivals, Konzertreihen und Kulturhäuser buchbar.</div>
+      <a href="mailto:booking@duovia.de" class="btn-secondary">Termin anfragen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────
+     FOOTER
+───────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-booking">
+      <h2>Programm für Ihre Bühne?</h2>
+      <a class="footer-cta" href="mailto:booking@duovia.de">Booking anfragen</a>
+    </div>
+
+    <a class="footer-logo" href="landing.html" aria-label="Duo ViA! — Startseite">
+      Duo ViA!
+      <span>Sinn Yang, Violine · Harald Oeler, Akkordeon</span>
+    </a>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <ul class="footer-links">
+        <li><a href="projects.html">Programme</a></li>
+        <li><a href="artists.html">Künstler</a></li>
+        <li><a href="presse.html">Presse</a></li>
+        <li><a href="konzerte.html">Konzerte</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-meta">
+      <a href="mailto:booking@duovia.de">booking@duovia.de</a>
+      <a href="https://open.spotify.com/album/0MfH41bgOifWl6W9fXDcW1" target="_blank" rel="noopener noreferrer">Spotify</a>
+      <a href="mailto:booking@duovia.de?subject=Social%20links%20Duo%20ViA!">Socials anfragen</a>
+    </div>
+
+    <div class="footer-legal" aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+
+    <div class="footer-copy">© 2026 Duo ViA! · Violine &amp; Akkordeon</div>
+  </div>
+</footer>
+
+<a class="mobile-booking" href="mailto:booking@duovia.de">Termin anfragen</a>
+
+<!-- ─────────────────────────────────────────
+     SCRIPTS
+───────────────────────────────────────── -->
+<script>
+/* ── SCROLL PROGRESS ── */
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  document.getElementById('scroll-progress').style.width = pct + '%';
+});
+
+/* ── STICKY CTA + MOBILE BOOKING ── */
+const stickyCta = document.getElementById('sticky-cta');
+const mobileBooking = document.querySelector('.mobile-booking');
+window.addEventListener('scroll', () => {
+  const past = window.scrollY > 300;
+  stickyCta.classList.toggle('visible', past);
+  if (mobileBooking) mobileBooking.classList.toggle('visible', past);
+}, { passive: true });
+
+/* ── CURSOR ── */
+const dot  = document.getElementById('cur-dot');
+const ring = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+(function tick(){ rx+=(mx-rx)*.13; ry+=(my-ry)*.13; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(tick); })();
+
+/* ── MENU ── */
+let menuOpen = false;
+let menuReturnFocus = null;
+let previousBodyOverflow = '';
+const navFocusables = () => Array.from(document.querySelectorAll('#nav-overlay a[href], #nav-overlay button:not([disabled])'));
+function setOverlayTabState(open) { navFocusables().forEach(el => open ? el.removeAttribute('tabindex') : el.setAttribute('tabindex','-1')); }
+function openMenu(){
+  const overlay = document.getElementById('nav-overlay');
+  const burger = document.getElementById('nav-burger');
+  if (!overlay || !burger) return;
+  menuOpen = true;
+  menuReturnFocus = document.activeElement;
+  previousBodyOverflow = document.body.style.overflow;
+  document.body.style.overflow = 'hidden';
+  document.body.classList.add('nav-open');
+  overlay.setAttribute('aria-hidden','false');
+  burger.setAttribute('aria-expanded','true');
+  burger.setAttribute('aria-label','Navigation schließen');
+  setOverlayTabState(true);
+  setTimeout(() => { const target = overlay.querySelector('[aria-current="page"]') || navFocusables()[0]; if (target) target.focus(); }, 80);
+}
+function closeMenu(){
+  const overlay = document.getElementById('nav-overlay');
+  const burger = document.getElementById('nav-burger');
+  if (!overlay || !burger) return;
+  menuOpen = false;
+  document.body.classList.remove('nav-open');
+  document.body.style.overflow = previousBodyOverflow;
+  overlay.setAttribute('aria-hidden','true');
+  burger.setAttribute('aria-expanded','false');
+  burger.setAttribute('aria-label','Navigation öffnen');
+  setOverlayTabState(false);
+  if (menuReturnFocus && document.contains(menuReturnFocus)) menuReturnFocus.focus({ preventScroll: true });
+}
+function toggleMenu(){ menuOpen ? closeMenu() : openMenu(); }
+setOverlayTabState(false);
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape') closeMenu();
+  if (e.key !== 'Tab' || !menuOpen) return;
+  const focusables = navFocusables();
+  if (!focusables.length) return;
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('#nav-burger')) return;
+  setTimeout(() => {
+    const overlay = document.getElementById('nav-overlay');
+    if (!overlay || overlay.getAttribute('aria-hidden') === 'true') return;
+    (overlay.querySelector('[aria-current="page"]') || navFocusables()[0])?.focus();
+  }, 120);
+});
+
+/* ── CALENDAR TABS ── */
+function switchTab(tab) {
+  document.querySelectorAll('.cal-tab').forEach(t => {
+    const active = t.dataset.tab === tab;
+    t.classList.toggle('active', active);
+    t.setAttribute('aria-selected', String(active));
+    t.setAttribute('tabindex', active ? '0' : '-1');
+  });
+  document.getElementById('cal-upcoming').hidden = tab !== 'upcoming';
+  document.getElementById('cal-archive').hidden  = tab !== 'archive';
+}
+document.querySelectorAll('.cal-tab').forEach((tabEl, index, tabs) => {
+  tabEl.addEventListener('keydown', e => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
+    e.preventDefault();
+    let nextIndex = index;
+    if (e.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+    if (e.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+    if (e.key === 'Home') nextIndex = 0;
+    if (e.key === 'End') nextIndex = tabs.length - 1;
+    tabs[nextIndex].focus();
+    switchTab(tabs[nextIndex].dataset.tab);
+  });
+});
+
+/* ── PAGE TRANSITIONS ── */
+document.querySelectorAll('a[href]').forEach(a => {
+  try {
+    const url = new URL(a.href, location.href);
+    if (url.hostname !== location.hostname) return;
+    if (a.target === '_blank') return;
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
+    if (url.pathname === location.pathname && url.hash) return;
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const dest = a.href;
+      document.body.style.animation = 'bodyFadeOut 0.28s ease forwards';
+      setTimeout(() => { location.href = dest; }, 280);
+    });
+  } catch(_) {}
+});
+
+/* ── SCROLL REVEAL ── */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+},{ threshold: 0.1 });
+revealEls.forEach(el=>io.observe(el));
+</script>
+
+<script>
+(() => {
+  const pageAliases = {
+    "landing.html": "home", "land.html": "home", "": "home",
+    "projects.html": "programme", "projects.html": "programme", "projects draft.html": "programme",
+    "artists.html": "artists", "artists1.html": "artists",
+    "presse.html": "media", "presse.html": "media",
+    "konzerte.html": "calendar", "konzerte.html": "calendar",
+    "booking.html": "booking", "contact.html": "booking"
+  };
+  const fileName = decodeURIComponent(location.pathname.split("/").pop() || "");
+  const currentSection = pageAliases[fileName] || fileName;
+  const stickyCtaPages = new Set(["home", "programme", "media", "booking", "calendar"]);
+  document.body.dataset.mobileCta = stickyCtaPages.has(currentSection) ? "true" : "false";
+
+  document.querySelectorAll("#nav-quick a, .nav-links-main a, .footer-links a").forEach(link => {
+    const raw = link.getAttribute("href") || "";
+    if (!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:")) return;
+    let targetFile = "";
+    try { targetFile = decodeURIComponent(new URL(raw, location.href).pathname.split("/").pop() || ""); } catch (_) { return; }
+    const targetSection = pageAliases[targetFile] || targetFile;
+    if (targetSection === currentSection) link.setAttribute("aria-current", "page");
+    else if (link.getAttribute("aria-current") === "page") link.removeAttribute("aria-current");
+  });
+
+  const overlay = document.getElementById("nav-overlay");
+  const burger = document.getElementById("nav-burger") || document.getElementById("nav-menu-trigger");
+  let menuReturnFocus = null;
+  const overlayFocusables = () => overlay ? Array.from(overlay.querySelectorAll("a[href], button:not([disabled]), [tabindex]:not([tabindex=\"-1\"])")) : [];
+  const setOverlayTabState = open => overlayFocusables().forEach(el => open ? el.removeAttribute("tabindex") : el.setAttribute("tabindex", "-1"));
+
+  if (overlay && burger) {
+    burger.setAttribute("aria-controls", overlay.id);
+    burger.setAttribute("aria-expanded", document.body.classList.contains("nav-open") ? "true" : "false");
+    setOverlayTabState(document.body.classList.contains("nav-open"));
+
+    const originalOpenMenu = window.openMenu;
+    const originalCloseMenu = window.closeMenu;
+    window.openMenu = function enhancedOpenMenu(...args) {
+      menuReturnFocus = document.activeElement;
+      if (typeof originalOpenMenu === "function") originalOpenMenu.apply(this, args);
+      document.body.classList.add("nav-open");
+      document.body.style.overflow = "hidden";
+      overlay.setAttribute("aria-hidden", "false");
+      burger.setAttribute("aria-expanded", "true");
+      burger.setAttribute("aria-label", "Navigation schließen");
+      setOverlayTabState(true);
+      requestAnimationFrame(() => overlayFocusables()[0]?.focus());
+    };
+    window.closeMenu = function enhancedCloseMenu(...args) {
+      if (typeof originalCloseMenu === "function") originalCloseMenu.apply(this, args);
+      document.body.classList.remove("nav-open");
+      document.body.style.overflow = "";
+      overlay.setAttribute("aria-hidden", "true");
+      burger.setAttribute("aria-expanded", "false");
+      burger.setAttribute("aria-label", "Navigation öffnen");
+      setOverlayTabState(false);
+      if (menuReturnFocus && typeof menuReturnFocus.focus === "function") menuReturnFocus.focus();
+    };
+    window.toggleMenu = function enhancedToggleMenu() {
+      document.body.classList.contains("nav-open") ? window.closeMenu() : window.openMenu();
+    };
+
+    document.addEventListener("keydown", event => {
+      if (!document.body.classList.contains("nav-open")) return;
+      if (event.key === "Escape") { event.preventDefault(); window.closeMenu(); return; }
+      if (event.key !== "Tab") return;
+      const items = overlayFocusables();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }, true);
+  }
+
+  document.querySelectorAll(".p-desc, .programme-desc").forEach((copy, index) => {
+    if ((copy.textContent || "").trim().length < 180 || copy.dataset.copyEnhanced === "true") return;
+    copy.dataset.copyEnhanced = "true";
+    copy.classList.add("is-collapsible-copy");
+    copy.id ||= `programme-copy-${index + 1}`;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "copy-collapse-toggle";
+    button.setAttribute("aria-controls", copy.id);
+    button.setAttribute("aria-expanded", "false");
+    button.textContent = "Mehr lesen";
+    button.addEventListener("click", () => {
+      const expanded = copy.classList.toggle("is-expanded");
+      button.setAttribute("aria-expanded", expanded ? "true" : "false");
+      button.textContent = expanded ? "Weniger anzeigen" : "Mehr lesen";
+    });
+    copy.insertAdjacentElement("afterend", button);
+  });
+})();
+</script>
+
+
+<script>
+/* ── PAST / FEATURED EVENTS + HERO NEXT-CARD ── */
+(function () {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  let firstFuture = null;
+
+  document.querySelectorAll('.event-row[data-date]').forEach(row => {
+    const d = new Date(row.dataset.date + 'T00:00:00');
+    if (d < today) {
+      row.classList.add('event-row--past');
+    } else if (!firstFuture) {
+      firstFuture = { row, date: d };
+      row.classList.add('event-row--featured');
+    }
+  });
+
+  const labelEl = document.getElementById('hero-next-label');
+  const dateEl  = document.getElementById('hero-next-date');
+  const dayEl   = document.getElementById('hero-next-day');
+  const monthEl = document.getElementById('hero-next-month');
+  const titleEl = document.getElementById('hero-next-title');
+  const metaEl  = document.getElementById('hero-next-meta');
+
+  if (firstFuture) {
+    const d = firstFuture.date;
+    if (dayEl) dayEl.textContent = String(d.getDate()).padStart(2, '0');
+    if (monthEl) monthEl.textContent = d.toLocaleDateString('de-DE', { month: 'short', year: 'numeric' });
+    if (dateEl) dateEl.removeAttribute('hidden');
+    const nameEl  = firstFuture.row.querySelector('.ev-name');
+    const venueEl = firstFuture.row.querySelector('.ev-venue');
+    if (labelEl)            labelEl.textContent = 'Nächster Termin';
+    if (titleEl && nameEl)  titleEl.textContent = nameEl.textContent.trim();
+    if (metaEl  && venueEl) metaEl.textContent  = venueEl.textContent.trim();
+  } else {
+    document.getElementById('calendar-empty')?.classList.add('is-visible');
+    if (labelEl) labelEl.textContent = 'Neue Termine';
+    if (titleEl) titleEl.textContent = 'Neue Konzerttermine folgen.';
+    if (metaEl) metaEl.textContent = 'Für Festivals, Konzertreihen und Kulturhäuser buchbar.';
+  }
+})();
+</script>
+</body>
+</html>
