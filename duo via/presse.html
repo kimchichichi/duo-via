@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Presse &amp; Pressemappe — Duo ViA!</title>
-<meta name="description" content="Pressematerial, Biografien, Rider und Pressefotos für Duo ViA! — Sinn Yang &amp; Harald Oeler. Pressemappe-Downloads für Veranstalter und Redaktionen.">
+<meta name="description" content="Pressematerial, Biografien, Rider und Pressefotos für Duo ViA! — Sinn Yang &amp; Harald Oeler. Kurzinfo zum Download und weitere Materialien auf Anfrage.">
 <meta property="og:title" content="Pressemappe — Duo ViA!">
-<meta property="og:description" content="Pressefotos, Biografien und Programmtexte für Duo ViA! — Sinn Yang &amp; Harald Oeler. Downloads für Veranstalter und Redaktionen.">
+<meta property="og:description" content="Pressefotos, Biografien und Programmtexte für Duo ViA! — Sinn Yang &amp; Harald Oeler. Kurzinfo zum Download und weitere Materialien auf Anfrage.">
 <meta property="og:image" content="https://duovia.de/hero.webp">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -200,7 +200,7 @@ body {
 .hero-split {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: calc(var(--nav-h) + 3rem) 2rem 2.6rem;
+  padding: 3rem 2rem 2.6rem;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
   gap: 2.4rem;
@@ -537,6 +537,7 @@ body {
   display: grid;
   gap: 2rem;
   grid-template-columns: 1fr;
+  align-items: start;
 }
 @media (min-width: 900px) {
   .feature-band-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -557,6 +558,7 @@ body {
   appearance: none;
   width: 100%;
   padding: 0;
+  align-self: start;
 }
 .feature-thumb {
   position: relative;
@@ -865,7 +867,7 @@ body {
 }
 .foto-strip {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1px;
   background: var(--white-24);
   border: 1px solid var(--white-24);
@@ -1064,11 +1066,25 @@ body {
   display: flex; flex-wrap: wrap; gap: .5rem;
 }
 .bio-chip {
+  display: inline-flex;
+  align-items: center;
   font-size: .72rem; font-weight: 500;
   letter-spacing: .2em; text-transform: uppercase;
   color: var(--white);
   padding: .4rem .65rem;
   border: 1px solid var(--white-24);
+  background: transparent;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.bio-chip:hover,
+.bio-chip:focus-visible {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--ink);
+  outline: none;
 }
 
 /* ═══════════════════════════════════════════
@@ -1377,6 +1393,9 @@ footer {
 /* ═══════════════════════════════════════════
    STATUS BAR
 ═══════════════════════════════════════════ */
+#main-content {
+  padding-top: var(--nav-h);
+}
 .status-bar {
   background: var(--sage-deep);
   border-bottom: 1px solid var(--white-12);
@@ -1433,6 +1452,7 @@ footer {
   backdrop-filter: blur(10px);
   padding: 1.2rem;
 }
+#video-modal[hidden] { display: none; }
 #video-modal.open { opacity: 1; pointer-events: all; }
 .video-modal-outer {
   position: relative;
@@ -1482,8 +1502,7 @@ footer {
   .hero-headline { font-size: clamp(4rem, calc((100cqw - 1.5rem) / 3.55), 10rem); }
   .hero-right { min-height: 0; }
   .feature-trailer { grid-template-columns: 1fr; }
-  .kit-grid { grid-template-columns: repeat(2, 1fr); }
-  .kit-card:last-child { grid-column: span 2; min-height: auto; }
+  .kit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .bio-quotes { grid-template-columns: 1fr; }
 }
 
@@ -1500,7 +1519,7 @@ footer {
   .nav-item-desc { grid-column: 2; max-width: none; font-size: .68rem !important; }
   .nav-booking-item { margin-top: 1.1rem; }
   .nav-overlay-footer { margin-top: 1.6rem; display: grid; gap: .85rem; }
-  .hero-split { padding: calc(var(--nav-h) + 1.4rem) 1.4rem 1.6rem; gap: 1rem; }
+  .hero-split { padding: 1.4rem 1.4rem 1.6rem; gap: 1rem; }
   .hero-left { padding: 1rem 0 0; gap: 1.2rem; }
   .hero-top { flex-direction: column; gap: 1rem; }
   .hero-coord { text-align: left; }
@@ -1559,7 +1578,6 @@ footer {
   .contact-band { padding-top: 3rem; padding-bottom: 3.5rem; }
   .section-head { grid-template-columns: 1fr; gap: .6rem; }
   .kit-grid { grid-template-columns: 1fr; }
-  .kit-card:last-child { grid-column: auto; }
   .foto-strip { grid-template-columns: 1fr 1fr; }
   .foto-cell.wide { grid-column: span 2; aspect-ratio: 4/3; }
   .bio-grid { grid-template-columns: 1fr; }
@@ -1592,10 +1610,19 @@ footer {
   .kit-card { padding: 1.35rem; min-height: 15rem; }
   .kit-card-details span { font-size: .62rem; }
   .press-essential { padding: .8rem; }
-  .index-inner { grid-template-columns: 1fr; }
-  .index-item { border-right: 0 !important; }
-  .index-item { padding: .9rem 0; }
-  .index-item:not(:last-child) { border-bottom: 1px solid var(--white-24); }
+  .index-inner {
+    flex-wrap: nowrap;
+    gap: .45rem;
+    overflow-x: auto;
+    padding: .25rem 0;
+    scrollbar-width: none;
+  }
+  .index-inner::-webkit-scrollbar { display: none; }
+  .index-item {
+    flex: 0 0 auto;
+    border: 1px solid var(--white-24) !important;
+    padding: .72rem .8rem;
+  }
   .foto-strip { grid-template-columns: 1fr; }
   .foto-cell.wide { grid-column: auto; aspect-ratio: 4/3; }
   .foto-cell-actions { position: static; padding: 1rem; background: rgba(27,36,34,.72); }
@@ -1621,6 +1648,18 @@ footer {
 }
 @media (pointer: coarse) { #cur-dot, #cur-ring { display: none; } html, body, a, button { cursor: auto; } }
 
+.kit-card-status,
+.kit-card-details span,
+.kit-card-meta span,
+.foto-cell-tag,
+.foto-cell-credit,
+.foto-cell-actions a,
+.foto-cell-actions button,
+.bio-chip,
+.contact-row dt {
+  font-size: max(.72rem, 12px);
+}
+
 .skip-link {
   position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
 }
@@ -1636,7 +1675,7 @@ footer {
 </head>
 <body>
 
-<a class="skip-link" href="#material">Zum Inhalt springen</a>
+<a class="skip-link" href="#main-content">Zum Inhalt springen</a>
 <div id="cur-dot" aria-hidden="true"></div>
 <div id="cur-ring" aria-hidden="true"></div>
 
@@ -1645,7 +1684,8 @@ footer {
 <script src="includes/include.js" defer></script>
 
 <!-- STATUS BAR -->
-<div class="status-bar">Downloads ab Herbst&nbsp;2026 &middot; Material aktuell per E-Mail anfragen: <a href="mailto:booking@duovia.de">booking@duovia.de</a></div>
+<main id="main-content" tabindex="-1">
+<div class="status-bar">Kurzinfo und Pressebilder jetzt verfügbar &middot; Weitere Materialien ab Herbst&nbsp;2026</div>
 
 <!-- HERO — SPLIT SCREEN -->
 <section class="hero-split">
@@ -1665,28 +1705,28 @@ footer {
     <div class="hero-lede">
       <p>Pressematerial für Duo ViA!: Fotos, Biografien, Videos und Kontakt für Ankündigungen.</p>
       <div class="hero-lede-meta">
-        <b>Downloads</b>
-        ab Herbst 2026
+        <b>Material</b>
+        sofort verfügbar
       </div>
     </div>
     <div class="hero-actions">
-      <a class="hero-button" href="mailto:booking@duovia.de?subject=Pressemappe%20Duo%20ViA%21%20anfragen&body=Name%20%2F%20Institution%3A%0AMedium%20%2F%20Veranstaltung%3A%0ABen%C3%B6tigtes%20Material%3A%0AFrist%3A%0A%0ANachricht%3A">Material anfragen</a>
-      <a class="hero-link" href="#trailer">Trailer ansehen</a>
+      <a class="hero-button" href="#material">Material ansehen</a>
+      <a class="hero-link" href="#fotos">Pressefotos</a>
     </div>
   </div>
 
   <aside class="hero-right reveal">
     <span class="kit-eyebrow">Pressemappe</span>
     <h2 class="kit-title">Press Essentials<em>für Ihre Ankündigung</em></h2>
-    <p class="kit-summary">Die Download-Pakete werden vorbereitet. Bis dahin senden wir passendes Material direkt per E-Mail.</p>
+    <p class="kit-summary">Kurztext und Pressefotos sind sofort verfügbar. Langbios und Rider senden wir direkt per E-Mail.</p>
     <dl class="press-essentials">
       <div class="press-essential"><dt>Besetzung</dt><dd>Violine &amp; Akkordeon</dd></div>
       <div class="press-essential"><dt>Künstler:innen</dt><dd>Sinn Yang · Harald Oeler</dd></div>
-      <div class="press-essential"><dt>Material</dt><dd>Fotos · Bios · Videos · Kontakt</dd></div>
+      <div class="press-essential"><dt>Material</dt><dd>Kurztext · Fotos · Rider</dd></div>
       <div class="press-essential"><dt>Kontakt</dt><dd><a href="mailto:booking@duovia.de">booking@duovia.de</a></dd></div>
     </dl>
-    <a href="mailto:booking@duovia.de?subject=Pressemappe%20Duo%20ViA%21%20anfragen&body=Name%20%2F%20Institution%3A%0AMedium%20%2F%20Veranstaltung%3A%0ABen%C3%B6tigtes%20Material%3A%0AFrist%3A%0A%0ANachricht%3A" class="kit-cta">
-      Pressemappe anfragen
+    <a href="#material" class="kit-cta">
+      Materialien ansehen
       <span class="arrow"></span>
     </a>
   </aside>
@@ -1695,68 +1735,30 @@ footer {
 <!-- QUICK INDEX BAND -->
 <nav class="index-band reveal" aria-label="Schnellzugriff">
   <div class="index-inner">
-    <a class="index-item" href="#trailer">Trailer &amp; Hörprobe</a>
     <a class="index-item" href="#material">Pressemappe</a>
     <a class="index-item" href="#fotos">Pressefotos</a>
     <a class="index-item" href="#bios">Biografien</a>
+    <a class="index-item" href="#trailer">Trailer</a>
     <a class="index-item" href="#pressestimmen">Pressestimmen</a>
   </div>
 </nav>
 
-<!-- FEATURED TRAILER BAND -->
-<section class="feature-band reveal" id="trailer">
-  <header class="section-head">
-    <div class="section-num">01</div>
-    <h2 class="section-title">Erst hören<em>Trailer &amp; Hörprobe · 2 Clips</em></h2>
-  </header>
-  <div class="feature-band-grid">
-  <button class="feature-trailer" type="button" data-video="AJ6uhwH7-gI" aria-label="Trailer 8 Jahreszeiten ansehen">
-    <span class="feature-thumb" aria-hidden="true">
-      <span class="feature-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
-      <span class="feature-meta">
-        <span class="feature-time">YouTube · HD · 02:18</span>
-        <span class="feature-time"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg> Trailer</span>
-      </span>
-    </span>
-    <span class="feature-copy">
-      <span class="feature-kicker">Trailer · Studio · 2025</span>
-      <span class="feature-headline"><span class="feature-headline-main">8 Jahreszeiten</span> <em>in Bewegung erleben</em></span>
-      <span class="feature-body">Kurzvideo für Programmhefte und Pressearbeit.</span>
-    </span>
-  </button>
-  <button class="feature-trailer" type="button" data-video="wiQTY9AOcVg" aria-label="Making of Duo ViA! ansehen">
-    <span class="feature-thumb" aria-hidden="true" style="background-image: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)), url('https://img.youtube.com/vi/wiQTY9AOcVg/maxresdefault.jpg');">
-      <span class="feature-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
-      <span class="feature-meta">
-        <span class="feature-time">YouTube · HD</span>
-        <span class="feature-time"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg> Making-of</span>
-      </span>
-    </span>
-    <span class="feature-copy">
-      <span class="feature-kicker">Making-of · rbb · 2014</span>
-      <span class="feature-headline"><span class="feature-headline-main">Making of</span> <span class="feature-headline-sub">Duo ViA!</span> <em>CD 8 Jahreszeiten</em></span>
-      <span class="feature-body">Making-of-Clip aus der rbb-Produktion, kompakt und nutzbar für Presse.</span>
-    </span>
-  </button>
-  </div>
-</section>
-
-<!-- MATERIAL — 3-up press kit grid -->
+<!-- MATERIAL -->
 <section class="kit-section reveal" id="material">
   <header class="section-head">
-    <div class="section-num">02</div>
-    <h2 class="section-title">Pressemappe<em>3 Pakete · DE / EN · als Download</em></h2>
+    <div class="section-num">01</div>
+    <h2 class="section-title">Pressemappe<em>Kurzinfo sofort · weitere Materialien auf Anfrage</em></h2>
   </header>
   <div class="kit-grid">
-    <a class="kit-card" href="mailto:booking@duovia.de?subject=Komplette%20Pressemappe%20Duo%20ViA%21%20anfragen&body=Name%20%2F%20Institution%3A%0AMedium%20%2F%20Veranstaltung%3A%0ABen%C3%B6tigtes%20Material%3A%20Komplette%20Pressemappe%0AFrist%3A%0A%0ANachricht%3A">
+    <a class="kit-card" href="download/duo-via-kurzinfo.txt" download>
       <div class="kit-card-head">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        <span class="kit-card-status">Ab Herbst 2026</span>
+        <span class="kit-card-status">Jetzt verfügbar</span>
       </div>
-      <h3 class="kit-card-title">Komplette Pressemappe</h3>
-      <div class="kit-card-details"><span>ZIP · DE / EN</span><span>PDF / DOCX / JPG</span><span>Größe folgt</span></div>
-      <p class="kit-card-desc">Alle Texte, Fotos und Kontaktdaten in einem Paket.</p>
-      <div class="kit-card-meta"><span>Komplett-Paket anfragen</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></div>
+      <h3 class="kit-card-title">Presse-Kurzinfo</h3>
+      <div class="kit-card-details"><span>TXT</span><span>Deutsch</span><span>Kurzbio &amp; Kontakt</span></div>
+      <p class="kit-card-desc">Kopierfertiger Kurztext mit Besetzung, Kontakt und Hinweisen zur Bildnutzung.</p>
+      <div class="kit-card-meta"><span>Datei speichern</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg></div>
     </a>
 
     <a class="kit-card" href="mailto:booking@duovia.de?subject=Biografien%20Duo%20ViA%21%20anfragen&body=Name%20%2F%20Institution%3A%0AMedium%20%2F%20Veranstaltung%3A%0ABen%C3%B6tigtes%20Material%3A%20Biografien%0AFrist%3A%0A%0ANachricht%3A">
@@ -1770,15 +1772,15 @@ footer {
       <div class="kit-card-meta"><span>Bios anfragen</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></div>
     </a>
 
-    <a class="kit-card" href="mailto:booking@duovia.de?subject=Pressefotos%20Duo%20ViA%21%20anfragen&body=Name%20%2F%20Institution%3A%0AMedium%20%2F%20Veranstaltung%3A%0ABen%C3%B6tigtes%20Material%3A%20Pressefotos%0AFrist%3A%0A%0ANachricht%3A">
+    <a class="kit-card" href="#fotos">
       <div class="kit-card-head">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <span class="kit-card-status">Ab Herbst 2026</span>
+        <span class="kit-card-status">Auf Anfrage</span>
       </div>
       <h3 class="kit-card-title">Pressefotos</h3>
-      <div class="kit-card-details"><span>3 Motive</span><span>300 dpi</span><span>JPG / TIFF</span></div>
-      <p class="kit-card-desc">Druckfähige Fotos in 300 dpi für Print &amp; Online.</p>
-      <div class="kit-card-meta"><span>Fotos anfragen</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></div>
+      <div class="kit-card-details"><span>2 Bilder</span><span>WebP</span><span>© Iréne Zandel</span></div>
+      <p class="kit-card-desc">Zwei Pressebilder mit sichtbarem Credit für Ihre Ankündigung.</p>
+      <div class="kit-card-meta"><span>Bilder ansehen</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></div>
     </a>
 
   </div>
@@ -1787,65 +1789,48 @@ footer {
 <!-- FOTOSTRIP -->
 <section class="foto-section reveal" id="fotos">
   <header class="section-head">
-    <div class="section-num">03</div>
-    <h2 class="section-title">Pressefotos<em>3 Motive · 300 dpi · JPG / TIFF</em></h2>
+    <div class="section-num">02</div>
+    <h2 class="section-title">Pressefotos<em>2 Bilder · © Iréne Zandel</em></h2>
   </header>
 
   <div class="foto-strip">
     <div class="foto-cell">
-      <div class="foto-cell-bg" style="background: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)), url('download/duo%20via%201.jpg') center/cover no-repeat;"></div>
-      <span class="foto-cell-tag">01 · Porträt</span>
-      <span class="foto-cell-credit">Credit im Paket</span>
+      <div class="foto-cell-bg" style="background: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)), url('image/duo%20via%201.webp') center/cover no-repeat;"></div>
+      <span class="foto-cell-tag">01 · Duo-Porträt</span>
+      <span class="foto-cell-credit">© Iréne Zandel</span>
       <div class="foto-cell-actions">
-        <a href="download/duo%20via%201.jpg">Vorschau öffnen</a>
-        <button type="button" data-copy="Credit im Paket">Credit kopieren</button>
-        <a href="mailto:booking@duovia.de?subject=Bildrechte%20Pressefoto%2001%20Duo%20ViA%21">Rechte anfragen</a>
+        <a href="image/duo%20via%201.webp" download="Duo-ViA-Pressefoto-01.webp">Bild speichern</a>
+        <button type="button" data-copy="© Iréne Zandel">Credit kopieren</button>
       </div>
       <div class="foto-cell-caption">
-        <span>Hochformat</span>
+        <span>Querformat · WebP</span>
         <strong>Sinn Yang &amp; Harald Oeler</strong>
       </div>
     </div>
     <div class="foto-cell wide">
-      <div class="foto-cell-bg" style="background: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)), url('download/duo%20via%201.jpg') center/cover no-repeat;"></div>
-      <span class="foto-cell-tag">02 · Porträt</span>
+      <div class="foto-cell-bg" style="background: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)), url('image/duo%20via%20trailer.webp') center/cover no-repeat;"></div>
+      <span class="foto-cell-tag">02 · Trailerstill</span>
       <span class="foto-cell-credit">© Iréne Zandel</span>
       <div class="foto-cell-actions">
-        <a href="download/duo%20via%201.jpg">Vorschau öffnen</a>
+        <a href="image/duo%20via%20trailer.webp" download="Duo-ViA-Pressefoto-02.webp">Bild speichern</a>
         <button type="button" data-copy="© Iréne Zandel">Credit kopieren</button>
-        <a href="mailto:booking@duovia.de?subject=Bildrechte%20Pressefoto%2002%20Duo%20ViA%21">Rechte anfragen</a>
       </div>
       <div class="foto-cell-caption">
-        <span>Querformat — Live</span>
-        <strong>Konzert · Duo ViA!</strong>
-      </div>
-    </div>
-    <div class="foto-cell">
-      <div class="foto-cell-bg"></div>
-      <span class="foto-cell-tag">03 · Banner</span>
-      <span class="foto-cell-credit">Credit im Paket</span>
-      <div class="foto-cell-actions">
-        <button type="button" disabled>Vorschau folgt</button>
-        <button type="button" data-copy="Credit im Paket">Credit kopieren</button>
-        <a href="mailto:booking@duovia.de?subject=Bildrechte%20Pressebanner%20Duo%20ViA%21">Rechte anfragen</a>
-      </div>
-      <div class="foto-cell-caption">
-        <span>Pressebanner</span>
-        <strong>Violine &amp; Akkordeon</strong>
+        <span>Querformat · Vorschau</span>
+        <strong>8 Jahreszeiten · Duo ViA!</strong>
       </div>
     </div>
   </div>
 
   <div class="foto-footer">
-    <p class="foto-footer-note">Abdruck und Online-Verwendung nur mit Quellenangabe. Hochauflösende Dateien: 3 Motive · 300 dpi · JPG / TIFF · Paketgröße folgt.</p>
-    <a class="foto-request" href="mailto:booking@duovia.de?subject=Pressefotos%20Duo%20ViA%21%20anfragen&body=Name%20%2F%20Institution%3A%0AMedium%20%2F%20Veranstaltung%3A%0ABen%C3%B6tigtes%20Material%3A%20Pressefotos%0AFrist%3A%0A%0ANachricht%3A">Foto-Paket anfragen <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></a>
+    <p class="foto-footer-note">Für Presse- und Veranstaltungsankündigungen. Bitte bei Veröffentlichung den Credit © Iréne Zandel sichtbar angeben.</p>
   </div>
 </section>
 
 <!-- BIOS — 2-up -->
 <section class="bio-section reveal" id="bios">
   <header class="section-head">
-    <div class="section-num">04</div>
+    <div class="section-num">03</div>
     <h2 class="section-title">Biografien<em>Kurz · Lang · Duo · DE / EN</em></h2>
   </header>
 
@@ -1855,9 +1840,9 @@ footer {
       <h3 class="bio-name">Sinn Yang<em>Violine</em></h3>
       <p class="bio-text">Konzertiert international als Solistin und Kammermusikerin. Ihr Spiel verbindet barocke Klarheit mit der Energie zeitgenössischer Bühnenformate — Festivals, Kulturreihen und Rundfunkproduktionen in Europa und Asien.</p>
       <div class="bio-foot">
-        <span class="bio-chip">Kurzfassung</span>
-        <span class="bio-chip">Langfassung</span>
-        <span class="bio-chip">DE / EN</span>
+        <button class="bio-chip" type="button" data-copy-text="Sinn Yang konzertiert international als Solistin und Kammermusikerin. Ihr Spiel verbindet barocke Klarheit mit der Energie zeitgenössischer Bühnenformate.">Kurzbio kopieren</button>
+        <a class="bio-chip" href="mailto:booking@duovia.de?subject=Langbiografie%20Sinn%20Yang%20anfragen">Langbio anfragen</a>
+        <a class="bio-chip" href="mailto:booking@duovia.de?subject=English%20biography%20Sinn%20Yang%20request">EN anfragen</a>
       </div>
     </article>
     <article class="bio-card">
@@ -1865,21 +1850,63 @@ footer {
       <h3 class="bio-name">Harald Oeler<em>Klassisches Akkordeon</em></h3>
       <p class="bio-text">Arrangeur und Solist mit Schwerpunkt auf Eigenarrangements zwischen Barock, Tango und Neuer Musik. Konzertiert in renommierten Häusern und schreibt das Repertoire des Duo ViA! kontinuierlich fort.</p>
       <div class="bio-foot">
-        <span class="bio-chip">Kurzfassung</span>
-        <span class="bio-chip">Langfassung</span>
-        <span class="bio-chip">DE / EN</span>
+        <button class="bio-chip" type="button" data-copy-text="Harald Oeler ist Arrangeur und Solist mit Schwerpunkt auf Eigenarrangements zwischen Barock, Tango und Neuer Musik und schreibt das Repertoire des Duo ViA! fort.">Kurzbio kopieren</button>
+        <a class="bio-chip" href="mailto:booking@duovia.de?subject=Langbiografie%20Harald%20Oeler%20anfragen">Langbio anfragen</a>
+        <a class="bio-chip" href="mailto:booking@duovia.de?subject=English%20biography%20Harald%20Oeler%20request">EN anfragen</a>
       </div>
     </article>
   </div>
-  <div class="bio-quotes">
-    <blockquote class="bio-quote-item">
-      <p>Yang und Oeler spielen wie aufeinander eingeschworen — sie bilden nicht nur rhythmisch eine Einheit.</p>
-      <cite>NDR Kultur</cite>
-    </blockquote>
-    <blockquote class="bio-quote-item">
-      <p>Akkordeon und Solo-Geige verschmelzen auf eine neue, man könnte fast sagen: ideale Weise.</p>
-      <cite>NDR Kultur · Konzertkritik</cite>
-    </blockquote>
+</section>
+
+<!-- TRAILER -->
+<section class="feature-band reveal" id="trailer">
+  <header class="section-head">
+    <div class="section-num">04</div>
+    <h2 class="section-title">Videos<em>Hörprobe &amp; Einblick · 3 Clips</em></h2>
+  </header>
+  <div class="feature-band-grid">
+    <button class="feature-trailer" type="button" data-video="AJ6uhwH7-gI" aria-label="Trailer 8 Jahreszeiten ansehen">
+      <span class="feature-thumb" aria-hidden="true">
+        <span class="feature-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+        <span class="feature-meta">
+          <span class="feature-time">YouTube · HD · 02:18</span>
+          <span class="feature-time"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg> Trailer</span>
+        </span>
+      </span>
+      <span class="feature-copy">
+        <span class="feature-kicker">Trailer · Studio · 2025</span>
+        <span class="feature-headline"><span class="feature-headline-main">8 Jahreszeiten</span> <em>in Bewegung erleben</em></span>
+        <span class="feature-body">Kurzvideo für Programmhefte und Pressearbeit.</span>
+      </span>
+    </button>
+    <button class="feature-trailer" type="button" data-video="wiQTY9AOcVg" aria-label="Making of Duo ViA! ansehen">
+      <span class="feature-thumb" aria-hidden="true" style="background-image: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)), url('https://img.youtube.com/vi/wiQTY9AOcVg/maxresdefault.jpg');">
+        <span class="feature-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+        <span class="feature-meta">
+          <span class="feature-time">YouTube · HD</span>
+          <span class="feature-time"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg> Making-of</span>
+        </span>
+      </span>
+      <span class="feature-copy">
+        <span class="feature-kicker">Making-of · rbb · 2014</span>
+        <span class="feature-headline"><span class="feature-headline-main">Making of</span> <span class="feature-headline-sub">Duo ViA!</span> <em>CD 8 Jahreszeiten</em></span>
+        <span class="feature-body">Making-of-Clip aus der rbb-Produktion, kompakt und nutzbar für Presse.</span>
+      </span>
+    </button>
+    <button class="feature-trailer" type="button" data-video="GfzeqN5tr98" aria-label="Live-Video: 8 Jahreszeiten im MühlenForum Glattbach ansehen">
+      <span class="feature-thumb" aria-hidden="true" style="background-image: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)), url('https://img.youtube.com/vi/GfzeqN5tr98/maxresdefault.jpg');">
+        <span class="feature-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+        <span class="feature-meta">
+          <span class="feature-time">YouTube · Live</span>
+          <span class="feature-time"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg> Konzert</span>
+        </span>
+      </span>
+      <span class="feature-copy">
+        <span class="feature-kicker">Konzert · MühlenForum Glattbach · 2026</span>
+        <span class="feature-headline"><span class="feature-headline-main">8 Jahreszeiten</span> <em>Live im Konzert</em></span>
+        <span class="feature-body">Live-Mitschnitt aus dem Programm „8 Jahreszeiten“ im MühlenForum Glattbach.</span>
+      </span>
+    </button>
   </div>
 </section>
 
@@ -1913,36 +1940,36 @@ footer {
     <div class="contact-copy">
       <span class="contact-eyebrow">Kontakt</span>
       <h3 class="contact-head">Material für Ihr Event<em>per E-Mail anfragen</em></h3>
-      <p class="contact-body">Pressemappe, Fotos, Biografien und Rider werden ab Herbst 2026 direkt hier zum Download bereitgestellt. Bis dahin senden wir Material und Bildrechte auf Anfrage.</p>
-      <div class="contact-options" aria-label="Download-Materialien">
+      <p class="contact-body">Die Presse-Kurzinfo und zwei Pressebilder sind sofort verfügbar. Biografien und Rider senden wir aktuell auf Anfrage.</p>
+      <div class="contact-options" aria-label="Pressematerialien">
         <span>Pressemappe</span>
         <span>Fotos</span>
         <span>Bio</span>
         <span>Rider</span>
       </div>
       <div class="contact-actions">
-        <a class="contact-action" href="mailto:booking@duovia.de?subject=Pressemappe%20Duo%20ViA%21%20anfragen&body=Name%20%2F%20Institution%3A%0AAnlass%20%2F%20Medium%3A%0ABen%C3%B6tigtes%20Material%3A%0AFrist%3A%0A%0ANachricht%3A">Material anfragen</a>
-        <a class="contact-action ghost" href="mailto:booking@duovia.de?subject=Presse-%20und%20Buchungsanfrage%20Duo%20ViA%21&body=Name%20%2F%20Institution%3A%0AAnlass%20%2F%20Medium%3A%0ABen%C3%B6tigtes%20Material%3A%0AFrist%3A%0A%0ANachricht%3A">E-Mail schreiben</a>
+        <a class="contact-action" href="mailto:booking@duovia.de?subject=Presse-%20und%20Buchungsanfrage%20Duo%20ViA%21&body=Name%20%2F%20Institution%3A%0AAnlass%20%2F%20Medium%3A%0ABen%C3%B6tigtes%20Material%3A%0AFrist%3A%0A%0ANachricht%3A">Material anfragen</a>
       </div>
     </div>
     <div class="contact-side">
       <span class="contact-side-eyebrow">Kanäle</span>
       <dl>
         <div class="contact-row"><dt>E-Mail</dt><dd><a href="mailto:booking@duovia.de">booking@duovia.de</a></dd></div>
-        <div class="contact-row"><dt>Verfügbar</dt><dd>Herbst 2026</dd></div>
+        <div class="contact-row"><dt>Verfügbar</dt><dd>Kurzinfo sofort · Pakete Herbst 2026</dd></div>
         <div class="contact-row"><dt>Sprachen</dt><dd>Deutsch · English</dd></div>
-        <div class="contact-row"><dt>Format</dt><dd>ZIP / PDF / DOCX / JPG</dd></div>
+        <div class="contact-row"><dt>Format</dt><dd>TXT / WebP sofort · PDF auf Anfrage</dd></div>
         <div class="contact-row"><dt>Stand</dt><dd>Saison 2026 / 27</dd></div>
       </dl>
     </div>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <div id="shared-footer"></div>
 
 <!-- VIDEO MODAL -->
-<div id="video-modal" role="dialog" aria-modal="true" aria-label="Video">
+<div id="video-modal" role="dialog" aria-modal="true" aria-label="Video" aria-hidden="true" hidden>
   <div class="video-modal-outer">
     <button id="video-close" type="button" onclick="closeVideo()"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Schließen</button>
     <div class="video-modal-wrap">
@@ -2008,8 +2035,20 @@ function toggleMenu(){ menuOpen ? closeMenu() : openMenu(); }
 window.toggleMenu = toggleMenu;
 setTimeout(() => setOverlayTabState(false), 0);
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeMenu(); closeVideo(); }
-  if (e.key !== 'Tab' || !menuOpen) return;
+  if (e.key === 'Escape') {
+    if (menuOpen) closeMenu();
+    if (!videoModal.hidden) closeVideo();
+  }
+  if (e.key !== 'Tab') return;
+  if (!videoModal.hidden) {
+    const focusables = [videoClose, videoIframe];
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    return;
+  }
+  if (!menuOpen) return;
   const focusables = navFocusables();
   if (!focusables.length) return;
   const first = focusables[0];
@@ -2033,6 +2072,8 @@ function openVideo(id, trigger) {
   videoReturnFocus = trigger || document.activeElement;
   videoPreviousBodyOverflow = document.body.style.overflow;
   videoIframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+  videoModal.hidden = false;
+  videoModal.setAttribute('aria-hidden', 'false');
   videoModal.classList.add('open');
   document.body.style.overflow = 'hidden';
   videoClose.focus({ preventScroll: true });
@@ -2040,6 +2081,8 @@ function openVideo(id, trigger) {
 function closeVideo() {
   if (!videoModal.classList.contains('open')) return;
   videoModal.classList.remove('open');
+  videoModal.hidden = true;
+  videoModal.setAttribute('aria-hidden', 'true');
   videoIframe.src = '';
   document.body.style.overflow = videoPreviousBodyOverflow;
   if (videoReturnFocus && document.contains(videoReturnFocus)) videoReturnFocus.focus({ preventScroll: true });
@@ -2049,15 +2092,17 @@ videoModal.addEventListener('click', e => { if (e.target === videoModal) closeVi
 document.querySelectorAll('[data-video]').forEach(btn => {
   btn.addEventListener('click', () => openVideo(btn.dataset.video, btn));
 });
-document.querySelectorAll('[data-copy]').forEach(btn => {
+document.querySelectorAll('[data-copy], [data-copy-text]').forEach(btn => {
+  btn.setAttribute('aria-live', 'polite');
   btn.addEventListener('click', async () => {
     const original = btn.textContent;
     try {
-      await navigator.clipboard.writeText(btn.dataset.copy);
+      await navigator.clipboard.writeText(btn.dataset.copy || btn.dataset.copyText);
       btn.textContent = 'Kopiert';
       setTimeout(() => { btn.textContent = original; }, 1400);
     } catch {
-      btn.textContent = btn.dataset.copy;
+      btn.textContent = 'Bitte manuell kopieren';
+      setTimeout(() => { btn.textContent = original; }, 1800);
     }
   });
 });

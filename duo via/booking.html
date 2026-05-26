@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Buchung & Kontakt — Duo ViA!</title>
+<title>Buchung &amp; Kontakt — Duo ViA!</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%235F716D'/%3E%3Ctext x='16' y='24' font-family='Helvetica%2CArial%2Csans-serif' font-size='14' font-weight='700' letter-spacing='1' text-anchor='middle' fill='white'%3EV%3C%2Ftext%3E%3C/svg%3E">
 <meta name="description" content="Konzertanfragen und Buchung für Duo ViA! — Sinn Yang (Violine) und Harald Oeler (Akkordeon). Für Festivals, Konzertreihen und Kulturhäuser.">
-<meta property="og:title" content="Buchung & Kontakt — Duo ViA!">
+<meta property="og:title" content="Buchung &amp; Kontakt — Duo ViA!">
 <meta property="og:description" content="Konzertanfragen, EPK und Buchung für Duo ViA! — Sinn Yang (Violine) und Harald Oeler (Akkordeon). Antwort innerhalb von zwei Werktagen.">
 <meta property="og:image" content="https://duovia.de/hero.webp">
 <meta property="og:type" content="website">
@@ -87,7 +87,7 @@ img { max-width: 100%; display: block; }
    HERO HEADER
 ═══════════════════════════════════════════ */
 .contact-hero {
-  padding: calc(var(--nav-h) + 5rem) max(3rem, env(safe-area-inset-right)) 3rem max(3rem, env(safe-area-inset-left));
+  padding: calc(var(--nav-h) + 3.75rem) max(3rem, env(safe-area-inset-right)) 2.5rem max(3rem, env(safe-area-inset-left));
   max-width: var(--maxw);
   margin: 0 auto;
 }
@@ -102,7 +102,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   gap: .9rem;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.35rem;
 }
 .contact-overline::before {
   content: '';
@@ -114,12 +114,12 @@ img { max-width: 100%; display: block; }
 
 .contact-title {
   font-family: var(--sans);
-  font-size: clamp(5rem, 14vw, 13rem);
+  font-size: clamp(3.6rem, 9vw, 8rem);
   font-weight: 500;
   line-height: .88;
   color: var(--white);
   letter-spacing: -0.04em;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   text-transform: uppercase;
 }
 
@@ -130,23 +130,13 @@ img { max-width: 100%; display: block; }
 }
 .contact-intro {
   max-width: 60ch;
-  margin-top: 1.6rem;
+  margin-top: 1.3rem;
   font-family: var(--sans);
   font-size: 1.05rem;
   line-height: 1.55;
   color: var(--white-72);
   font-weight: 300;
   letter-spacing: .01em;
-}
-.contact-intro span {
-  display: block;
-}
-.contact-intro .artist-line {
-  color: var(--white);
-  font-weight: 400;
-}
-.contact-intro .request-line {
-  margin-top: .7rem;
 }
 .hero-actions {
   display: flex;
@@ -182,8 +172,8 @@ img { max-width: 100%; display: block; }
   margin: 2rem auto 7rem;
   padding: 4.5rem max(3rem, env(safe-area-inset-right)) 5rem max(3rem, env(safe-area-inset-left));
   display: grid;
-  grid-template-columns: 38fr 62fr;
-  gap: 6rem;
+  grid-template-columns: 30fr 70fr;
+  gap: clamp(3rem, 5vw, 5rem);
   align-items: start;
   background: var(--sage-darker);
   border: 1px solid rgba(255,255,255,0.18);
@@ -299,45 +289,6 @@ img { max-width: 100%; display: block; }
   padding: .25rem 0;
 }
 .assurance-item svg { flex-shrink: 0; margin-top: .18rem; opacity: .65; }
-.booking-flow {
-  margin-top: 2rem;
-  border: 1px solid var(--rule);
-  padding: 1.2rem;
-}
-.booking-flow-title {
-  display: block;
-  margin-bottom: .75rem;
-  color: var(--white);
-  font-family: var(--sans);
-  font-size: .68rem;
-  font-weight: 500;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-}
-.booking-flow ol {
-  list-style: none;
-  counter-reset: flow;
-  display: grid;
-  gap: .55rem;
-}
-.booking-flow li {
-  counter-increment: flow;
-  display: grid;
-  grid-template-columns: 2rem 1fr;
-  gap: .75rem;
-  align-items: start;
-  color: var(--white-72);
-  font-family: var(--sans);
-  font-size: .84rem;
-  line-height: 1.45;
-}
-.booking-flow li::before {
-  content: counter(flow, decimal-leading-zero);
-  color: var(--white);
-  font-size: .7rem;
-  letter-spacing: .12em;
-}
-
 /* ── Right: Form ── */
 .contact-form {
   display: flex;
@@ -473,20 +424,11 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid var(--rule);
 }
 .submit-note a:hover { color: var(--white-72); }
-.form-required-note {
-  font-family: var(--sans);
-  font-size: .72rem;
-  letter-spacing: .12em;
-  color: var(--white-48);
-  margin-bottom: 1.6rem;
-  font-weight: 300;
-}
-.form-required-note::before { content: '* Pflichtfelder · '; color: var(--white); }
 .response-note {
   display: flex;
   align-items: center;
   gap: .65rem;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.8rem;
   color: var(--white-72);
   font-family: var(--sans);
   font-size: .82rem;
@@ -498,16 +440,6 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
   opacity: .65;
 }
-.submit-mailto-note {
-  font-family: var(--sans);
-  font-size: .78rem;
-  letter-spacing: .03em;
-  line-height: 1.5;
-  color: var(--white-72);
-  margin-bottom: 1.6rem;
-  font-weight: 300;
-}
-
 .btn-submit {
   font-family: var(--sans);
   font-size: .72rem;
@@ -676,7 +608,6 @@ img { max-width: 100%; display: block; }
 .booking-page .footer-booking {
   display: none;
 }
-.mobile-booking { display: none; }
 
 /* ═══════════════════════════════════════════
    RESPONSIVE
@@ -691,7 +622,7 @@ img { max-width: 100%; display: block; }
     gap: 3.5rem;
     padding: 3.5rem 2rem 4rem;
   }
-  .contact-title { font-size: clamp(4rem, 17vw, 8rem); }
+  .contact-title { font-size: clamp(3.4rem, 14vw, 6.5rem); }
   .field-row { grid-template-columns: 1fr; gap: 0; }
   .footer-inner { grid-template-columns: 1fr; }
   .footer-booking { flex-direction: column; align-items: flex-start; }
@@ -708,24 +639,6 @@ img { max-width: 100%; display: block; }
   .hero-actions { flex-direction: column; }
   .hero-action { width: 100%; }
   .footer-inner { grid-template-columns: 1fr; }
-  .mobile-booking {
-    position: fixed;
-    left: 1rem;
-    right: 1rem;
-    bottom: max(1rem, env(safe-area-inset-bottom));
-    z-index: 900;
-    display: inline-flex;
-    justify-content: center;
-    padding: .9rem 1rem;
-    background: var(--white);
-    color: var(--ink);
-    text-decoration: none;
-    font-family: var(--sans);
-    font-size: .74rem;
-    font-weight: 500;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-  }
 }
 
 /* ─── Focus & motion ─────────────────────── */
@@ -760,7 +673,7 @@ a:focus-visible, button:focus-visible {
   <span class="contact-overline">Buchung &amp; Kontakt</span>
   <h1 class="contact-title">Buchung</h1>
   <hr class="contact-hero-rule">
-
+  <p class="contact-intro">Konzertanfragen für Festivals, Konzertreihen und Kulturhäuser.</p>
 </div>
 
 <!-- ═══════════════════════════════════════
@@ -774,14 +687,6 @@ a:focus-visible, button:focus-visible {
     <div class="info-item">
       <span class="info-label">E-Mail</span>
       <a href="mailto:booking@duovia.de" class="info-link">booking@duovia.de</a>
-    </div>
-
-    <div class="info-item">
-      <span class="info-label">Künstler</span>
-      <span class="info-text">Sinn Yang · Violine</span>
-      <span class="info-text">Harald Oeler · Akkordeon</span>
-      <a href="https://www.sinnyang.com" target="_blank" rel="noopener" class="info-link">sinnyang.com</a>
-      <a href="https://www.haraldoeler.com" target="_blank" rel="noopener" class="info-link">haraldoeler.com</a>
     </div>
 
     <div class="info-item">
@@ -799,37 +704,20 @@ a:focus-visible, button:focus-visible {
       </ul>
     </div>
 
-    <div class="booking-flow" aria-label="Ablauf einer Buchung">
-      <span class="booking-flow-title">Ablauf</span>
-      <ol>
-        <li>Anfrage mit Termin, Ort und Format senden</li>
-        <li>Programm, Dauer und Rahmenbedingungen abstimmen</li>
-        <li>EPK, Pressefotos und technischen Rider erhalten</li>
-        <li>Vertrag und technische Details finalisieren</li>
-      </ol>
-    </div>
-
-    <div class="info-item">
-      <span class="info-label">Standort</span>
-      <span class="info-text">Deutschland</span>
-    </div>
-
   </aside>
 
   <!-- Right: Form -->
   <form id="booking-form" class="contact-form reveal" onsubmit="submitForm(event)" novalidate method="POST">
     <p class="response-note">
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Antwort meist innerhalb von zwei Werktagen.
+      Antwort meist innerhalb von zwei Werktagen. * Pflichtfelder
     </p>
-    <p class="submit-mailto-note">Öffnet eine vorbereitete E-Mail.</p>
-    <p class="form-required-note">Name, E-Mail und Nachricht sind erforderlich.</p>
 
     <div class="field-row">
       <div class="field">
         <input type="text" id="f-name" name="name" placeholder=" " autocomplete="name" required>
-        <label for="f-name">Name / Institution *</label>
-        <span class="field-error">Bitte Namen oder Institution eintragen.</span>
+        <label for="f-name">Ihr Name oder Veranstalter *</label>
+        <span class="field-error">Bitte Namen oder Veranstalter eintragen.</span>
       </div>
       <div class="field">
         <input type="email" id="f-email" name="email" placeholder=" " autocomplete="email" required>
@@ -841,23 +729,23 @@ a:focus-visible, button:focus-visible {
     <div class="field-row">
       <div class="field field--static-label">
         <input type="text" id="f-date" name="date" placeholder="Oktober 2026 oder flexibel" inputmode="text" autocomplete="off">
-        <label for="f-date">Datum / Zeitraum (optional)</label>
+        <label for="f-date">Wunschtermin (optional)</label>
       </div>
       <div class="field">
         <input type="text" id="f-venue" name="venue" placeholder=" " autocomplete="organization">
-        <label for="f-venue">Veranstaltungsort (optional)</label>
+        <label for="f-venue">Ort / Spielstätte (optional)</label>
       </div>
     </div>
 
     <div class="field field--full">
       <textarea id="f-msg" name="message" placeholder=" " rows="4" required></textarea>
-      <label for="f-msg">Nachricht *</label>
-      <span class="field-hint">Kurze Beschreibung des Anlasses, ca. 3–5 Sätze</span>
+      <label for="f-msg">Ihre Anfrage *</label>
+      <span class="field-hint">Anlass, gewünschter Termin, Ort und Konzertformat</span>
       <span class="field-error">Bitte kurz Anlass, Ort oder Frage beschreiben.</span>
     </div>
 
     <div class="form-footer">
-      <button type="submit" class="btn-submit">E-Mail vorbereiten</button>
+      <button type="submit" class="btn-submit">Anfrage per E-Mail senden</button>
       <span class="submit-note">Oder direkt an <a href="mailto:booking@duovia.de">booking@duovia.de</a></span>
     </div>
 
@@ -867,7 +755,6 @@ a:focus-visible, button:focus-visible {
 </div>
 
 <div id="shared-footer"></div>
-<a class="mobile-booking" href="mailto:booking@duovia.de?subject=Buchungsanfrage%20Duo%20ViA%21&body=Name%20%2F%20Institution%3A%0ADatum%20%2F%20Zeitraum%3A%0AVeranstaltungsort%3A%0AProgramm%20%2F%20Format%3A%0APublikumsgr%C3%B6%C3%9Fe%3A%0A%0ANachricht%3A">E-Mail an Buchung</a>
 
 <!-- SCRIPTS -->
 <script>
@@ -901,10 +788,10 @@ function submitForm(e) {
     message:   document.getElementById('f-msg').value
   };
   const body = [
-    `Name / Institution: ${f.name}`,
+    `Name / Veranstalter: ${f.name}`,
     `E-Mail: ${f.email}`,
-    `Datum / Zeitraum: ${f.date}`,
-    `Veranstaltungsort: ${f.venue}`,
+    `Wunschtermin: ${f.date}`,
+    `Ort / Spielstätte: ${f.venue}`,
     'Programm / Format:',
     'Publikumsgröße:',
     'Technische Rahmenbedingungen:',

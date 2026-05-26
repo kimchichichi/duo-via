@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Duo ViA!//Konzerte//DE
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:event-glattbach-2026-05-09@duovia.de
+DTSTAMP:20260526T000000Z
+DTSTART:20260509T110000Z
+DTEND:20260509T130000Z
+SUMMARY:Duo ViA! - Muttertagskonzert
+DESCRIPTION:8 Jahreszeiten - Vivaldi und Piazzolla
+LOCATION:MuehlenForum Glattbach\, Glattbach
+URL:https://duovia.de/konzerte.html#event-glattbach-2026-05-09
+END:VEVENT
+END:VCALENDAR

@@ -54,7 +54,6 @@ body {
 .tag-label,
 .tag,
 .p-action,
-.booking-small,
 .footer-links a {
   letter-spacing: .12em;
 }
@@ -448,26 +447,82 @@ body {
 }
 .p-aside {
   display: grid;
-  gap: .9rem;
+  gap: 0;
   align-self: start;
   position: sticky;
   top: calc(var(--nav-h) + 1.4rem);
+  padding: 1.1rem;
+  background: rgba(255,255,255,0.045);
+  border: 1px solid var(--white-12);
+  border-radius: 8px;
+}
+.p-aside-title {
+  padding-bottom: .9rem;
+  border-bottom: 1px solid var(--white-12);
+  color: var(--white-72);
+  font-size: .66rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
 }
 .p-aside-row {
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  line-height: 1.55;
+  padding: .7rem 0;
+  border-bottom: 1px solid var(--white-12);
   color: var(--white-72);
+  font-size: .66rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  line-height: 1.4;
 }
-.p-aside-row b { display: block; font-weight: 500; color: var(--white); }
+.p-aside-row b {
+  display: block;
+  margin-top: .28rem;
+  color: var(--white);
+  font-size: .9rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.4;
+  text-transform: none;
+}
+.p-aside-tags {
+  padding: .8rem 0 .9rem;
+  border-bottom: 1px solid var(--white-12);
+}
+.p-aside-label {
+  display: block;
+  margin-bottom: .55rem;
+  color: var(--white-72);
+  font-size: .66rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.p-aside-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+.p-aside-chip {
+  padding: .26rem .38rem;
+  border: 1px solid var(--white-24);
+  color: var(--white);
+  font-size: .63rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.p-aside-row.recommended {
+  margin-top: .95rem;
+  padding: .8rem;
+  border-bottom: 0;
+  background: var(--sage-darker);
+}
 .p-aside-row.recommended b {
-  color: var(--ink);
-  background: var(--white);
-  display: inline-block;
-  margin-top: .18rem;
-  padding: .18rem .36rem;
+  color: var(--white);
+  font-size: .86rem;
+  font-weight: 500;
 }
 
 .p-main { min-width: 0; padding: 1.05rem 1.15rem; background: rgba(255,255,255,0.07); border-radius: 10px; }
@@ -539,12 +594,7 @@ body {
 .p-desc + .p-desc {
   margin-top: -1rem;
 }
-.programme-fit {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .4rem;
-  margin: 0 0 1.5rem;
-}
+
 .fit-chip {
   font-size: .72rem;
   font-weight: 500;
@@ -626,6 +676,23 @@ body {
   background: rgba(255,255,255,0.14);
   padding-inline: .5rem;
   border-left: 2px solid var(--white);
+}
+.werkfolge li.programme-pause {
+  counter-increment: none;
+  display: block;
+  color: var(--white-72);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  cursor: default;
+}
+.werkfolge li.programme-pause::before {
+  content: none;
+}
+.werkfolge li.programme-pause:hover {
+  background: none;
+  padding-inline: 0;
 }
 .werk-composer {
   font-size: .72rem;
@@ -896,47 +963,6 @@ body {
   72%, 100% { transform: translateX(115%); }
 }
 
-.epk-callout {
-  display: grid;
-  grid-template-columns: minmax(0,1fr) auto;
-  gap: 1.2rem;
-  align-items: center;
-  margin: 0 0 1.8rem;
-  padding: 1.1rem 1.2rem;
-  color: var(--white);
-  text-decoration: none;
-  border: 1px solid var(--white-24);
-  background: rgba(255,255,255,0.08);
-  transition: background .2s, border-color .2s, transform .2s;
-}
-.epk-callout:hover,
-.epk-callout:focus-visible {
-  background: rgba(255,255,255,0.14);
-  border-color: var(--white);
-  transform: translateY(-1px);
-  outline: none;
-}
-.epk-callout span {
-  display: block;
-  margin-bottom: .28rem;
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--white-72);
-}
-.epk-callout strong {
-  display: block;
-  font-size: clamp(1.08rem, 1.7vw, 1.42rem);
-  font-weight: 400;
-  line-height: 1.16;
-}
-.epk-callout::after {
-  content: '';
-  width: 1.2rem;
-  height: 1px;
-  background: currentColor;
-}
 
 /* ═══════════════════════════════════════════
    PULL QUOTE
@@ -1161,138 +1187,6 @@ body {
   max-width: 28ch;
   text-wrap: balance;
 }
-
-/* ═══════════════════════════════════════════
-   RIDER + BOOKING
-═══════════════════════════════════════════ */
-.bottom-grid {
-  max-width: 1480px;
-  margin: 0 auto;
-  padding: 4rem 2rem 4rem;
-  display: grid;
-  grid-template-columns: 80px 220px minmax(0, 1fr);
-  gap: 2.4rem;
-  align-items: start;
-}
-.bottom-num {
-  font-size: 2.6rem;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--white);
-}
-.bottom-aside {
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--white-72);
-  line-height: 1.55;
-}
-.bottom-aside b { display: block; color: var(--white); font-weight: 500; }
-
-.bottom-main {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: 2.5rem;
-}
-
-.rider-head {
-  font-size: 1.6rem;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  text-transform: uppercase;
-  color: var(--white);
-  margin-bottom: 1.2rem;
-  line-height: 1;
-}
-.rider-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  column-gap: 2rem;
-  border-top: 1px solid var(--white-24);
-}
-.rider-grid dl { margin: 0; }
-.rider-row {
-  display: grid;
-  grid-template-columns: 6rem 1fr;
-  gap: .8rem;
-  align-items: baseline;
-  padding: .7rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-}
-.rider-row dt {
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--white-72);
-}
-.rider-row dd {
-  font-size: .9rem;
-  font-weight: 400;
-  color: var(--white);
-  line-height: 1.35;
-}
-.num { font-variant-numeric: tabular-nums; }
-
-/* Booking */
-.booking {
-  background: var(--ink);
-  color: var(--white);
-  padding: 1.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  align-self: stretch;
-}
-.booking-small {
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--sage);
-}
-.booking h4 {
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
-  line-height: 1;
-  letter-spacing: -0.025em;
-  text-transform: uppercase;
-  text-wrap: balance;
-  flex: 1;
-}
-.booking-cta {
-  display: inline-flex; align-items: center; justify-content: space-between;
-  font-size: .68rem;
-  font-weight: 500;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--ink);
-  background: var(--white);
-  text-decoration: none;
-  padding: 1rem 1.2rem;
-  transition: background .25s, color .25s;
-  gap: 1rem;
-}
-.booking-cta:hover { background: var(--sage); color: var(--white); }
-.booking-cta .arrow {
-  display: inline-block; width: 1.2rem; height: 1px; background: currentColor; position: relative;
-}
-.booking-cta .arrow::after {
-  content:''; position: absolute; right: 0; top: 50%;
-  width: 7px; height: 7px;
-  border-top: 1px solid currentColor; border-right: 1px solid currentColor;
-  transform: translateY(-50%) rotate(45deg);
-}
-.booking-contact {
-  font-size: .74rem;
-  font-weight: 400;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.5;
-}
-.booking-contact a { color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3); }
 
 /* ═══════════════════════════════════════════
    FOOTER
@@ -1563,7 +1457,6 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
   .hero-display { font-size: clamp(3.6rem, 12vw, 9rem); }
   .programme { grid-template-columns: 60px 180px minmax(0,1fr); gap: 1.6rem; }
   .pull-quote { grid-template-columns: 60px 180px minmax(0,1fr); gap: 1.6rem; }
-  .bottom-grid { grid-template-columns: 60px 180px minmax(0,1fr); gap: 1.6rem; }
   .hero-bottom { grid-template-columns: 60px 180px minmax(0,1fr); gap: 1.6rem; }
 }
 
@@ -1589,8 +1482,12 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
   .hero-spec { grid-template-columns: repeat(3, minmax(0,1fr)); }
   .chooser { position: static; grid-template-columns: 1fr; gap: 1px; }
   .programme { grid-template-columns: 1fr; gap: 1.2rem; padding: 2.6rem 1.4rem 3rem; }
-  .p-aside { position: static; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .8rem 1.2rem; }
+  .p-num { order: 1; }
+  .p-main { order: 2; }
+  .p-aside { order: 3; position: static; grid-template-columns: 1fr; margin-top: .3rem; }
   .werkfolge { grid-template-columns: 1fr; }
+  #one-world-werkfolge li:not(.programme-pause) { grid-template-columns: 2.2rem minmax(0, 1fr); }
+  #one-world-werkfolge .werk-composer { grid-column: 2; white-space: normal; }
   .trailer-callout { grid-template-columns: 1fr; }
   .trailer-thumb { min-height: 10rem; }
   .trailer-copy { padding: 0 1rem; }
@@ -1603,8 +1500,6 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
   .press-quotes { grid-template-columns: 1fr; }
   .press-quote-item { min-height: auto; padding: 1.15rem 1rem 1.2rem; }
   .press-quote-source { padding-top: 0; }
-  .bottom-grid { grid-template-columns: 1fr; gap: 1.4rem; padding: 2.6rem 1.4rem; }
-  .bottom-main { grid-template-columns: 1fr; }
   .hero { padding: calc(var(--nav-h) + 2rem) 1.4rem 1.2rem; }
   .chooser { padding: 0 1.4rem; }
   .comparison-table { grid-template-columns: 1fr; }
@@ -1625,8 +1520,6 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
 @media (max-width: 560px) {
   .choice { grid-template-columns: 1fr; }
   .choice-meta { text-align: left; }
-  .rider-grid { grid-template-columns: 1fr; }
-  .rider-row { grid-template-columns: 5rem 1fr; }
   .p-actions .p-action { flex: 1 1 auto; justify-content: center; }
   .trailer-callout { gap: .85rem; }
   .trailer-play { width: 3.2rem; }
@@ -1762,12 +1655,20 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
 <!-- PROGRAMME I -->
 <article class="programme reveal" id="eight-seasons">
   <div class="p-num">01</div>
-  <aside class="p-aside">
+  <aside class="p-aside" aria-label="8 Jahreszeiten auf einen Blick">
+    <div class="p-aside-title">Auf einen Blick</div>
     <div class="p-aside-row">Dauer<b>45 / 60 / 90 Min</b></div>
-    <div class="p-aside-row">Ideal für<b>Festivals · Kammermusikreihen</b></div>
-    <div class="p-aside-row">Publikum<b>Klassik · Tango · Familie</b></div>
-    <div class="p-aside-row">Technik<b>Akustisch / Mikrofonierung ab großen Sälen</b></div>
-    <div class="p-aside-row recommended">Format<b>Empfohlen 90 Min · DE / EN</b></div>
+    <div class="p-aside-row">Besetzung<b>Violine / Akkordeon</b></div>
+    <div class="p-aside-row">Arrangement<b>Harald Oeler</b></div>
+    <div class="p-aside-tags">
+      <span class="p-aside-label">Geeignet für</span>
+      <div class="p-aside-chips">
+        <span class="p-aside-chip">Festival</span>
+        <span class="p-aside-chip">Kammermusikreihe</span>
+        <span class="p-aside-chip">Familie</span>
+      </div>
+    </div>
+    <div class="p-aside-row recommended">Empfohlenes Format<b>90 Min · DE / EN</b></div>
   </aside>
   <div class="p-main">
     <span class="p-kicker">Hauptprogramm · Vivaldi · Piazzolla</span>
@@ -1780,12 +1681,6 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
     <div class="p-desc-cols">
       <p class="p-desc">Duo ViA!s CD der »8 Jahreszeiten« von Vivaldi und Piazzolla erschien 2014 bei OehmsClassics und erhielt begeisterte Kritiken. Duo ViA! (Sinn Yang & Harald Oeler) debütierte 2009 mit dem Programm Jahreszeiten beim Festival „Heidelberger Frühling”. Es erforderte damals eine Menge Mut, sich dem Publikum mit einem der wohl populärsten und meistgespielten Werke der Klassik, den I quattro stagioni von Vivaldi in Kombination mit Astor Piazzollas Las cuatro portenas vor ausverkauftem Saal zu präsentieren. Für das Duo war und ist dieses Programm Jahreszeiten ein Experiment und Wagnis.</p>
     </div>
-    <div class="programme-fit" aria-label="Geeignete Kontexte">
-      <span class="fit-chip">Festival</span>
-      <span class="fit-chip">Kammermusikreihe</span>
-      <span class="fit-chip">Matinée</span>
-      <span class="fit-chip">Family</span>
-    </div>
 
     <a class="trailer-callout" href="https://youtu.be/AJ6uhwH7-gI?si=9EyDyEvR9CdvExny" target="_blank" rel="noopener noreferrer" data-trailer-trigger data-event="trailer_open" data-programme="eight-seasons" aria-label="Trailer 8 Jahreszeiten ansehen">
       <span class="trailer-thumb" aria-hidden="true">
@@ -1794,6 +1689,17 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
       <span class="trailer-copy">
         <span>Vor dem Lesen ansehen · Trailer</span>
         <strong>8 Jahreszeiten in Bewegung erleben</strong>
+      </span>
+      <span class="trailer-time">Video ansehen</span>
+    </a>
+
+    <a class="trailer-callout" href="https://youtu.be/GfzeqN5tr98?si=DCrkcgypjUbx_ir3" target="_blank" rel="noopener noreferrer" data-trailer-trigger data-video="GfzeqN5tr98" data-video-title="Live im Konzert: 8 Jahreszeiten im MühlenForum Glattbach" data-event="concert_video_open" data-programme="eight-seasons" aria-label="Live-Video: 8 Jahreszeiten im MühlenForum Glattbach ansehen">
+      <span class="trailer-thumb" aria-hidden="true" style="background-image: linear-gradient(rgba(27,36,34,0.16), rgba(27,36,34,0.34)), url('https://img.youtube.com/vi/GfzeqN5tr98/maxresdefault.jpg');">
+        <span class="trailer-play" aria-hidden="true"></span>
+      </span>
+      <span class="trailer-copy">
+        <span>Live im Konzert · MühlenForum Glattbach</span>
+        <strong>8 Jahreszeiten auf der Bühne erleben</strong>
       </span>
       <span class="trailer-time">Video ansehen</span>
     </a>
@@ -1837,37 +1743,38 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
 <!-- PROGRAMME II -->
 <article class="programme reveal" id="one-world">
   <div class="p-num">02</div>
-  <aside class="p-aside">
+  <aside class="p-aside" aria-label="Four Seasons One World auf einen Blick">
+    <div class="p-aside-title">Auf einen Blick</div>
     <div class="p-aside-row">Dauer<b>60 / 90 Min</b></div>
-    <div class="p-aside-row">Ideal für<b>Festivals · Kulturhäuser</b></div>
-    <div class="p-aside-row">Publikum<b>Crossover · Education · Themenreihen</b></div>
-    <div class="p-aside-row">Technik<b>Akustisch / Mikrofonierung nach Raum</b></div>
-    <div class="p-aside-row recommended">Format<b>Empfohlen 60 Min · mit Werkeinführung</b></div>
+    <div class="p-aside-row">Besetzung<b>Violine / Akkordeon</b></div>
+    <div class="p-aside-row">Arrangement<b>Harald Oeler</b></div>
+    <div class="p-aside-tags">
+      <span class="p-aside-label">Geeignet für</span>
+      <div class="p-aside-chips">
+        <span class="p-aside-chip">Festival</span>
+        <span class="p-aside-chip">Kulturhaus</span>
+        <span class="p-aside-chip">Education</span>
+        <span class="p-aside-chip">Themenreihe</span>
+      </div>
+    </div>
+    <div class="p-aside-row recommended">Empfohlenes Format<b>60 Min · mit Werkeinführung</b></div>
   </aside>
   <div class="p-main">
     <span class="p-kicker">Erweitert · Vivaldi · Piazzolla · Oeler</span>
     <h2 class="p-title" lang="en">Four Seasons<em>One World</em></h2>
     <p class="p-byline">Vier Klimazonen — ein Dialog der Kulturen.</p>
     <p class="p-desc">Im Programm „Four Seasons – One World“ vereint das Duo Musik aus verschiedenen Kulturen mit ihren ursprünglichen musikalischen Traditionen. Die vier Jahreszeiten erklingen in unterschiedlichen Musikstilen und werden von Violine und Akkordeon lebendig interpretiert – klassisch, modern und klanglich vielseitig zugleich. Von Barock-klassisch über Jazz-Bebop, Klezmer, Tango Nuevo, New Musette bis hin zur Orientalischen Melodie: Jedes Werk öffnet ein Fenster in eine andere Kultur und im Konzert verbinden sich die Einzigartigkeiten zu einem harmonischen Ganzen. So entsteht eine musikalische Reise, die Grenzen überwindet und die Welt in ihren Jahreszeiten hörbar macht. </p>
-    <div class="programme-fit" aria-label="Geeignete Kontexte">
-      <span class="fit-chip">Festival</span>
-      <span class="fit-chip">Kulturhaus</span>
-      <span class="fit-chip">Bildungsreihe</span>
-      <span class="fit-chip">Interkulturell</span>
-    </div>
 
-    <a class="epk-callout" href="presse.html" data-event="epk_open" data-programme="one-world">
-      <span>Material für Veranstalter</span>
-      <strong>EPK, Programmtext und Presseinfos öffnen</strong>
-    </a>
 
     <ol class="werkfolge single-col" id="one-world-werkfolge">
-      <li><span class="werk-piece">Concerto „La Primavera"</span><span class="werk-composer">Vivaldi</span></li>
-      <li><span class="werk-piece">Estaciones Porteñas <i>— Suite</i></span><span class="werk-composer">Piazzolla</span></li>
-      <li><span class="werk-piece">Nordlicht <i>— Étude</i></span><span class="werk-composer">Oeler · 2023</span></li>
-      <li><span class="werk-piece">Monsunstudie</span><span class="werk-composer">Oeler · 2024</span></li>
-      <li><span class="werk-piece">Concerto „L'Inverno"</span><span class="werk-composer">Vivaldi</span></li>
-      <li><span class="werk-piece">Invierno Porteño <i>— Reprise</i></span><span class="werk-composer">Piazzolla</span></li>
+      <li><span class="werk-piece"><i>Las Estaciones Porteñas</i> — Verano porteño / Sommer</span><span class="werk-composer">Astor Piazzolla · 1921–1992</span></li>
+      <li><span class="werk-piece"><i>Soleil</i></span><span class="werk-composer">Richard Galliano · *1950</span></li>
+      <li><span class="werk-piece">Concerto No. 3 „Herbst" <i>— Op. 8 No. 3, RV 293 · Allegro — Adagio molto — Allegro</i></span><span class="werk-composer">Antonio Vivaldi · 1678–1741</span></li>
+      <li><span class="werk-piece"><i>Sherele</i></span><span class="werk-composer">Traditionell</span></li>
+      <li class="programme-pause">Pause</li>
+      <li><span class="werk-piece">Concerto No. 4 „Winter" <i>— Op. 8 No. 4, RV 297 · Allegro non molto — Largo — Allegro</i></span><span class="werk-composer">Antonio Vivaldi · 1678–1741</span></li>
+      <li><span class="werk-piece"><i>Las Estaciones Porteñas</i> — Primavera porteña / Frühling</span><span class="werk-composer">Astor Piazzolla · 1921–1992</span></li>
+      <li><span class="werk-piece"><i>Remembering Paris</i></span><span class="werk-composer">Harald Oeler</span></li>
     </ol>
   </div>
 </article>
@@ -1898,44 +1805,6 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
       <blockquote class="press-quote-text">Hier haben sich zwei Interpreten außergewöhnlichen Ranges zusammengefunden, um Altbewährtes in neuem Gewande und auf höchstem Niveau vorzustellen.</blockquote>
     </li>
   </ul>
-</section>
-
-
-<!-- RIDER + BOOKING -->
-<section class="bottom-grid reveal">
-  <div class="bottom-num">04</div>
-  <aside class="bottom-aside">
-    Technical<b>Rider 2026</b>
-  </aside>
-  <div class="bottom-main">
-    <div class="rider">
-      <h3 class="rider-head">Anforderungen</h3>
-      <div class="rider-grid">
-        <dl>
-          <div class="rider-row"><dt>Bühne</dt><dd><span class="num">3 × 3 m</span>, eben &amp; rutschfest</dd></div>
-          <div class="rider-row"><dt>Stühle</dt><dd>1 × armlehnenfrei</dd></div>
-          <div class="rider-row"><dt>Licht</dt><dd>2 Spots warmweiß</dd></div>
-        </dl>
-        <dl>
-          <div class="rider-row"><dt>Sound</dt><dd>Ab <span class="num">200</span> Pers.: 2 Mikros</dd></div>
-          <div class="rider-row"><dt>Stimmraum</dt><dd>Separat, beheizt</dd></div>
-          <div class="rider-row"><dt>Formate</dt><dd><span class="num">30 / 45 / 60 / 90</span> Min</dd></div>
-        </dl>
-      </div>
-    </div>
-    <aside class="booking">
-      <span class="booking-small">Buchung</span>
-      <h4>Erleben Sie Duo ViA! auf Ihrer Bühne</h4>
-      <a href="mailto:booking@duovia.de?subject=Buchungsanfrage%20Duo%20ViA%21&body=Programm%3A%0AGew%C3%BCnschtes%20Datum%20%2F%20Zeitraum%3A%0AVeranstaltungsort%3A%0APublikumsgr%C3%B6%C3%9Fe%3A%0AGew%C3%BCnschtes%20Format%3A%0ATechnische%20Rahmenbedingungen%3A%0A%0ANachricht%3A" class="booking-cta">
-        Verfügbarkeit anfragen
-        <span class="arrow"></span>
-      </a>
-      <div class="booking-contact">
-        Antwort innerhalb von 48 Stunden.<br>
-        <a href="mailto:booking@duovia.de">booking@duovia.de</a>
-      </div>
-    </aside>
-  </div>
 </section>
 
 <!-- FOOTER -->
@@ -2040,8 +1909,12 @@ document.addEventListener('click', e => {
 const trailerModal = document.getElementById('trailer-modal');
 const trailerIframe = document.getElementById('trailer-iframe');
 
-function openTrailer() {
-  trailerIframe.src = 'https://www.youtube.com/embed/AJ6uhwH7-gI?autoplay=1&rel=0&modestbranding=1';
+function openTrailer(trigger) {
+  const videoId = trigger?.dataset.video || 'AJ6uhwH7-gI';
+  const title = trigger?.dataset.videoTitle || 'Trailer: 8 Jahreszeiten';
+  trailerIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+  trailerIframe.title = title;
+  trailerModal.setAttribute('aria-label', title);
   trailerModal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -2058,7 +1931,7 @@ trailerModal.addEventListener('click', e => { if (e.target === trailerModal) clo
 document.querySelectorAll('[data-trailer-trigger]').forEach(trigger => {
   trigger.addEventListener('click', e => {
     e.preventDefault();
-    openTrailer();
+    openTrailer(trigger);
   });
 });
 

@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Duo ViA!//Konzerte//DE
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:event-wuerzburg-2026-05-07@duovia.de
+DTSTAMP:20260526T000000Z
+DTSTART:20260507T173000Z
+DTEND:20260507T193000Z
+SUMMARY:Four Seasons - One World | Duo ViA!
+DESCRIPTION:Barock bis Orient - Vivaldi\, Piazzolla u.a.
+LOCATION:Mozartareal\, Wuerzburg
+URL:https://duovia.de/konzerte.html#event-wuerzburg-2026-05-07
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Duo ViA!//Konzerte//DE
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:event-berlin-2026-04-18@duovia.de
+DTSTAMP:20260526T000000Z
+DTSTART:20260418T170000Z
+DTEND:20260418T190000Z
+SUMMARY:Four Seasons - One World | Duo ViA!
+DESCRIPTION:Musik aus verschiedenen Kulturen und Traditionen
+LOCATION:Berlin-Neukoelln\, Berlin
+URL:https://duovia.de/konzerte.html#event-berlin-2026-04-18
+END:VEVENT
+END:VCALENDAR

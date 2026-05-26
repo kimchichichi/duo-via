@@ -37,10 +37,6 @@ body {
   transition: width .08s linear;
 }
 
-/* ─── Cursor ─────────────────────────────── */
-#cur-dot { position: fixed; width: 4px; height: 4px; background: var(--white); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); }
-#cur-ring { position: fixed; width: 24px; height: 24px; border: 1px solid rgba(255,255,255,0.30); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); }
-
 /* ─── Grain ─────────────────────────────── */
 .grain {
   position: fixed; inset: -50%; width: 200%; height: 200%;
@@ -179,12 +175,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--white); outline
 .nav-links-main li:nth-child(4) a { transition-delay: .17s; }
 .nav-links-main li:nth-child(5) a { transition-delay: .22s; }
 
-/* ─── Sticky CTA ─────────────────────────── */
-#sticky-cta { position: fixed; bottom: 2rem; right: 2rem; z-index: 600; background: var(--white); color: var(--sage-darker); font-family: var(--sans); font-size: .68rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; text-decoration: none; padding: .85rem 1.3rem; display: inline-flex; align-items: center; gap: .75rem; opacity: 0; transform: translateY(.8rem); transition: opacity .35s, transform .35s, background .2s, color .2s; pointer-events: none; }
-#sticky-cta.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
-#sticky-cta:hover { background: var(--ink); color: var(--white); }
-#sticky-cta::after { content:''; width: .65rem; height: 1px; background: currentColor; }
-
 /* ═══════════════════════════════════════════
    HERO — same pattern as projects / artists
 ═══════════════════════════════════════════ */
@@ -194,9 +184,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--white); outline
   margin: 0 auto;
 }
 .hero-eyebrow { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; margin-bottom: 1.8rem; }
-.eyebrow-stack { font-size: .68rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--white); line-height: 1.5; }
+.eyebrow-stack { font-size: .8rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--white); line-height: 1.5; }
 .eyebrow-stack span { display: block; opacity: .72; font-weight: 400; }
-.hero-meta { text-align: right; font-size: .68rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; line-height: 1.6; color: var(--white-72); }
+.hero-meta { text-align: right; font-size: .8rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; line-height: 1.6; color: var(--muted-white); }
 .hero-meta b { font-weight: 500; color: var(--white); display: block; }
 
 .hero-display {
@@ -210,6 +200,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--white); outline
   text-wrap: balance;
 }
 .hero-display .lt { font-weight: 300; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2.1rem; }
+.hero-action { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: .88rem 1.35rem; border: 1px solid var(--white); color: var(--sage-darker); background: var(--white); font-size: .8rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; transition: background .2s, color .2s, border-color .2s; }
+.hero-action:hover { background: var(--ink); border-color: var(--ink); color: var(--white); }
+.hero-action--secondary { color: var(--white); background: transparent; border-color: var(--white-24); }
+.hero-action--secondary:hover { background: rgba(255,255,255,.08); border-color: var(--white); }
 .hero-rule { border: 0; border-top: 1px solid var(--white-24); margin: 2rem 0; }
 
 .hero-ledger { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -226,7 +221,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--white); outline
 ═══════════════════════════════════════════ */
 .chooser {
   max-width: 1480px; margin: 3.5rem auto 0;
-  display: grid; grid-template-columns: repeat(3, minmax(0,1fr));
+  display: grid; grid-template-columns: repeat(2, minmax(0,1fr));
   gap: 1px; background: var(--white-24);
   border-top: 1px solid var(--white-24);
   border-bottom: 1px solid var(--white-24);
@@ -235,17 +230,17 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--white); outline
 .choice:hover, .choice:focus-visible { background: var(--sage-deep); outline: 1px solid var(--white); outline-offset: -1px; }
 .choice-num { font-size: 1.6rem; font-weight: 400; letter-spacing: -0.02em; color: var(--white); transition: transform .2s var(--ease); }
 .choice:hover .choice-num { transform: translateX(5px); }
-.choice-body em { display: block; font-style: normal; font-size: .68rem; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; color: var(--white-72); margin-bottom: .2rem; }
+.choice-body em { display: block; font-style: normal; font-size: .8rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-white); margin-bottom: .2rem; }
 .choice-body strong { font-size: 1.55rem; font-weight: 500; letter-spacing: -0.015em; line-height: 1.05; }
 .choice-body strong span { font-weight: 300; }
-.choice-meta { text-align: right; font-size: .76rem; font-weight: 500; letter-spacing: .02em; line-height: 1.55; color: var(--white-72); }
+.choice-meta { text-align: right; font-size: .82rem; font-weight: 500; letter-spacing: .02em; line-height: 1.55; color: var(--muted-white); }
 .choice-meta b { font-weight: 500; color: var(--white); display: block; }
 
 /* ═══════════════════════════════════════════
    SECTION UTILITIES
 ═══════════════════════════════════════════ */
 .section-wrap { max-width: 1200px; margin: 0 auto; padding: 7rem 3rem; }
-.section-eyebrow { font-family: var(--sans); font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--white-72); margin-bottom: 1.2rem; display: flex; align-items: center; gap: .8rem; }
+.section-eyebrow { font-family: var(--sans); font-size: .8rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-white); margin-bottom: 1.2rem; display: flex; align-items: center; gap: .8rem; }
 .section-eyebrow::before { content: ''; width: 2rem; height: 1px; background: var(--white-48); flex-shrink: 0; }
 .section-heading { font-family: var(--sans); font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 500; line-height: .95; letter-spacing: -0.03em; text-transform: uppercase; color: var(--white); margin-bottom: 2.5rem; text-wrap: balance; }
 .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
@@ -255,7 +250,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--white); outline
    CALENDAR TABS
 ═══════════════════════════════════════════ */
 .cal-tabs { display: flex; margin-bottom: 3rem; border-bottom: 1px solid var(--rule); }
-.cal-tab { font-family: var(--sans); font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--white-72); background: none; border: none; padding: .8rem 0; margin-right: 2.5rem; cursor: pointer; position: relative; transition: color .2s; }
+.cal-tab { font-family: var(--sans); font-size: .8rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-white); background: none; border: none; padding: .8rem 0; margin-right: 2.5rem; cursor: pointer; position: relative; transition: color .2s; }
 .cal-tab::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 1px; background: var(--white); transform: scaleX(0); transform-origin: left; transition: transform .28s var(--ease); }
 .cal-tab.active { color: var(--white); }
 .cal-tab.active::after { transform: scaleX(1); }
@@ -267,7 +262,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--white); outline
 .event-list { margin-bottom: 3rem; }
 .event-section { margin-top: 3.8rem; }
 .event-section:first-child { margin-top: 0; }
-.event-section-title { font-family: var(--sans); font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--white-72); margin-bottom: 1.3rem; }
+.event-section-title { font-family: var(--sans); font-size: .8rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-white); margin-bottom: 1.3rem; }
 
 .event-row {
   display: grid; grid-template-columns: 140px 1fr auto;
@@ -281,38 +276,45 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--white); outline
 .event-row:hover { background: rgba(255,255,255,0.07); padding-left: 1rem; padding-right: 1rem; }
 .event-row:hover::before { transform: scaleY(1); }
 .event-row--featured { margin: 0 -1.2rem; padding-left: 1.2rem; padding-right: 1.2rem; background: rgba(255,255,255,0.07); border-top: 1px solid var(--white-24); }
-.event-row--featured .ev-name::before { content: 'Nächster Termin'; display: block; font-family: var(--sans); font-size: .68rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--white-72); margin-bottom: .7rem; }
+.event-row--featured .ev-name::before { content: 'Nächster Termin'; display: block; font-family: var(--sans); font-size: .8rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-white); margin-bottom: .7rem; }
 
 .event-date { display: flex; flex-direction: column; gap: .1rem; }
-.date-day { font-family: var(--sans); font-size: .68rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--white-72); }
+.date-day { font-family: var(--sans); font-size: .8rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-white); }
 .date-num { font-family: var(--sans); font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 400; line-height: 1; letter-spacing: -0.03em; color: var(--white); }
-.date-month { font-family: var(--sans); font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--white-72); margin-top: .25rem; }
-.date-season { font-family: var(--sans); font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--white-72); line-height: 1.4; padding-top: .4rem; display: block; }
+.date-month { font-family: var(--sans); font-size: .8rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-white); margin-top: .25rem; }
+.date-season { font-family: var(--sans); font-size: .8rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-white); line-height: 1.4; padding-top: .4rem; display: block; }
 
 .event-body { display: flex; flex-direction: column; gap: .62rem; padding-top: .4rem; }
 .ev-name { margin: 0; font-family: var(--sans); font-size: clamp(1.2rem, 1.7vw, 1.55rem); font-weight: 500; letter-spacing: -0.01em; color: var(--white); line-height: 1.2; }
 .ev-prog { font-family: var(--sans); font-size: .92rem; font-weight: 400; line-height: 1.55; color: var(--white-72); }
 .ev-loc { font-family: var(--sans); font-size: .92rem; color: var(--white-72); margin-top: .1rem; }
 .ev-venue { font-family: var(--sans); font-size: .92rem; font-weight: 400; color: var(--muted-white); margin-top: .1rem; }
-.ev-meta-line { display: flex; flex-wrap: wrap; gap: .45rem .55rem; font-family: var(--sans); font-size: .68rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--white-72); }
-.ev-meta-line span { display: inline-flex; align-items: center; min-height: 28px; padding: .28rem .6rem; border: 1px solid var(--white-24); }
-.ev-presenter { font-family: var(--sans); font-size: .72rem; font-weight: 400; color: rgba(255,255,255,0.6); }
-.ev-presenter span { color: rgba(255,255,255,0.85); }
+.ev-meta-line { font-family: var(--sans); font-size: .86rem; font-weight: 500; line-height: 1.5; letter-spacing: .02em; color: var(--white); }
+.ev-presenter { font-family: var(--sans); font-size: .82rem; font-weight: 400; line-height: 1.5; color: var(--white-72); }
+.ev-presenter span { color: var(--muted-white); }
 
-.event-status { display: inline-flex; align-self: flex-start; margin-top: .5rem; padding: .32rem .75rem; font-family: var(--sans); font-size: .68rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
+.event-status { display: inline-flex; align-self: flex-start; margin-top: .5rem; padding: .38rem .75rem; font-family: var(--sans); font-size: .78rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
 .event-status--confirmed { background: var(--white); color: var(--sage-darker); }
-.event-status--planning { border: 1px solid var(--rule); color: var(--white-72); }
-.event-status--bookable { background: rgba(255,255,255,0.12); color: var(--white-72); }
+.event-status--planning { border: 1px solid var(--rule); color: var(--muted-white); }
+.event-status--bookable { border: 1px solid var(--white-24); background: rgba(255,255,255,0.12); color: var(--muted-white); }
 
 .event-action { display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; padding-top: .55rem; gap: .75rem; flex-shrink: 0; }
-.ticket-link { font-family: var(--sans); color: var(--white-72); text-decoration: none; font-size: .68rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; display: inline-flex; align-items: center; gap: .5rem; transition: color .2s; white-space: nowrap; }
+.ticket-link { font-family: var(--sans); color: var(--muted-white); text-decoration: none; font-size: .8rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; display: inline-flex; align-items: center; gap: .5rem; transition: color .2s; white-space: nowrap; }
 .ticket-link::after { content: '→'; font-style: normal; transition: transform .2s; }
 .ticket-link:hover { color: var(--white); }
 .ticket-link:hover::after { transform: translateX(3px); }
 .event-links { display: flex; flex-direction: column; align-items: flex-end; gap: .55rem .9rem; }
-.meta-link { font-family: var(--sans); color: var(--white-72); text-decoration: none; font-size: .68rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; transition: color .2s; }
+.meta-link { font-family: var(--sans); color: var(--muted-white); text-decoration: none; font-size: .8rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; transition: color .2s; }
+button.meta-link { appearance: none; border: 0; background: transparent; padding: 0; cursor: pointer; }
 .meta-link:hover { color: var(--white); }
-.meta-link--primary { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; padding: .66rem .95rem; background: var(--white); color: var(--sage-darker); border: 1px solid var(--white); font-size: .68rem; letter-spacing: .18em; transition: background .2s, border-color .2s, color .2s; }
+.icon-action { position: relative; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--white-24); border-radius: 999px; color: var(--muted-white); transition: color .2s, border-color .2s, background .2s; }
+button.meta-link.icon-action { border: 1px solid var(--white-24); }
+.icon-action:hover, .icon-action:focus-visible { color: var(--white); border-color: rgba(255,255,255,.58); background: rgba(255,255,255,.08); }
+.icon-action svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.share-link.is-confirmed { color: var(--white); border-color: var(--white); }
+.share-link.is-confirmed::after { content: 'Link kopiert'; position: absolute; right: 50%; bottom: calc(100% + .55rem); transform: translateX(50%); padding: .42rem .55rem; background: var(--ink); color: var(--white); font-size: .7rem; letter-spacing: .08em; white-space: nowrap; }
+.meta-link--primary { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: .66rem .95rem; background: var(--white); color: var(--sage-darker); border: 1px solid var(--white); font-size: .8rem; letter-spacing: .12em; transition: background .2s, border-color .2s, color .2s; }
 .meta-link--primary::after { content: ''; width: .65rem; height: 1px; background: currentColor; margin-left: .45rem; }
 .meta-link--primary:hover { background: var(--ink); border-color: var(--ink); color: var(--white); }
 .event-secondary-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .55rem .9rem; width: 100%; }
@@ -330,31 +332,26 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--white); outline
 
 /* ─── Footer CTA band ────────────────────── */
 .cal-footer { border-top: 1px solid var(--rule); padding: 5rem 0 2rem; text-align: center; }
-.cal-footer-eyebrow { font-family: var(--sans); font-size: .68rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--white-72); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: .8rem; }
+.cal-footer-eyebrow { font-family: var(--sans); font-size: .8rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-white); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: .8rem; }
 .cal-footer-eyebrow::before, .cal-footer-eyebrow::after { content: ''; width: 2rem; height: 1px; background: var(--white-48); }
 .cal-footer-text { font-family: var(--sans); font-size: clamp(1.8rem, 3.5vw, 3.2rem); font-weight: 500; letter-spacing: -0.025em; text-transform: uppercase; color: var(--white); line-height: 1.05; margin-bottom: .75rem; text-wrap: balance; }
 .cal-footer-sub { font-family: var(--sans); font-size: 1rem; font-weight: 400; color: var(--white-72); margin-bottom: 2.5rem; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.55; }
-.btn-secondary { display: inline-flex; align-items: center; gap: .75rem; background: transparent; color: var(--white); border: 1px solid var(--white-24); padding: 1rem 2.5rem; text-decoration: none; font-family: var(--sans); font-size: .68rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; transition: background .2s, border-color .2s; }
+.btn-secondary { display: inline-flex; align-items: center; gap: .75rem; background: transparent; color: var(--white); border: 1px solid var(--white-24); padding: 1rem 2.5rem; text-decoration: none; font-family: var(--sans); font-size: .8rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; transition: background .2s, border-color .2s; }
 .btn-secondary::after { content: ''; width: .65rem; height: 1px; background: currentColor; }
 .btn-secondary:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.5); }
 
 /* ─── Footer ─────────────────────────────── */
 footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); padding: 3rem 2rem 2rem; }
 .footer-inner { max-width: 1480px; margin: 0 auto; display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: end; gap: 2rem 2.5rem; }
-.footer-booking { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 1.5rem; align-items: end; padding-bottom: 2rem; border-bottom: 1px solid var(--white-24); }
-.footer-booking h2 { font-family: var(--sans); font-size: clamp(2.2rem, 5vw, 5rem); font-weight: 500; line-height: .95; letter-spacing: -0.025em; text-transform: uppercase; color: var(--white); max-width: 14ch; text-wrap: balance; }
-.footer-booking a { color: var(--sage-darker); background: var(--white); border: 1px solid var(--white); text-decoration: none; font-family: var(--sans); font-size: .68rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; padding: .95rem 1.2rem; display: inline-flex; align-items: center; gap: .8rem; transition: background .2s, color .2s, border-color .2s; white-space: nowrap; }
-.footer-booking a::after { content: ''; width: .85rem; height: 1px; background: currentColor; }
-.footer-booking a:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
 .footer-logo { font-family: var(--sans); font-size: .82rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--white); }
 .footer-logo span { font-weight: 400; opacity: .72; }
 .footer-links { list-style: none; display: flex; gap: 1.4rem; flex-wrap: wrap; }
-.footer-links a { color: var(--white-72); text-decoration: none; font-family: var(--sans); font-size: .64rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; transition: color .2s; }
+.footer-links a { color: var(--muted-white); text-decoration: none; font-family: var(--sans); font-size: .78rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; transition: color .2s; }
 .footer-links a:hover { color: var(--white); }
 .footer-social { list-style: none; display: flex; gap: 1rem; flex-wrap: wrap; border-left: 1px solid var(--white-24); padding-left: 2.5rem; }
-.footer-social a { color: var(--white-72); font-size: .64rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; text-decoration: none; font-family: var(--sans); transition: color .2s; }
+.footer-social a { color: var(--muted-white); font-size: .78rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; font-family: var(--sans); transition: color .2s; }
 .footer-social a:hover { color: var(--white); }
-.footer-copy { grid-column: 1 / -1; font-family: var(--sans); font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--white-48); }
+.footer-copy { grid-column: 1 / -1; font-family: var(--sans); font-size: .78rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--white-72); }
 
 .archive-note { font-family: var(--sans); font-size: .92rem; font-weight: 400; color: var(--white-72); margin-bottom: 3rem; line-height: 1.55; }
 .archive-note a { color: var(--white); text-decoration: none; border-bottom: 1px solid var(--white-24); transition: border-color .2s; }
@@ -368,7 +365,6 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
 ═══════════════════════════════════════════ */
 @media (max-width: 1120px) {
   .footer-inner { grid-template-columns: 1fr; }
-  .footer-booking { grid-template-columns: 1fr; align-items: start; }
   .footer-social { border-left: 0; padding-left: 0; }
   .footer-copy { grid-column: 1 / -1; }
   .chooser { grid-template-columns: 1fr; }
@@ -399,7 +395,7 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
   #nav-quick { display: none; }
 
   .cal-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .35rem; padding: .3rem; border: 1px solid var(--rule); border-radius: 999px; background: rgba(255,255,255,0.06); }
-  .cal-tab { min-height: 44px; margin-right: 0; padding: .72rem .8rem; border-radius: 999px; font-size: .72rem; font-weight: 600; letter-spacing: .08em; }
+  .cal-tab { min-height: 44px; margin-right: 0; padding: .72rem .8rem; border-radius: 999px; font-size: .8rem; font-weight: 600; letter-spacing: .08em; }
   .cal-tab::after { display: none; }
   .cal-tab.active { background: var(--white); color: var(--sage-darker); }
 
@@ -416,8 +412,6 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
   .cal-footer { padding: 3.5rem 0 2rem; }
   .footer-inner { grid-template-columns: 1fr; }
   .footer-social, .footer-copy { border-left: 0; padding-left: 0; }
-  .footer-booking a { justify-content: center; }
-  #sticky-cta { display: none; }
 }
 
 @media (max-width: 760px) {
@@ -426,12 +420,14 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
     z-index: 80; min-block-size: 48px; display: inline-flex !important;
     align-items: center; justify-content: center; padding-inline: 1.15rem;
     border: 1px solid var(--white-24); background: var(--white); color: var(--sage-darker);
-    font: 500 .72rem/1 var(--sans); text-decoration: none; letter-spacing: .14em; text-transform: uppercase;
+    font: 500 .8rem/1 var(--sans); text-decoration: none; letter-spacing: .12em; text-transform: uppercase;
+    opacity: 0; visibility: hidden; transform: translateY(.75rem); pointer-events: none;
+    transition: opacity .24s ease, transform .24s ease, visibility .24s;
   }
+  body[data-mobile-cta="true"] .mobile-booking.visible { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
+  body.mobile-cta-visible { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
   body.nav-open .mobile-booking { display: none !important; }
 }
-
-@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) { #cur-dot, #cur-ring { display: none; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:.01ms!important; } }
 
 .skip-link { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
@@ -463,10 +459,7 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
 <body>
 <a class="skip-link" href="#calendar">Zum Inhalt springen</a>
 <div id="scroll-progress"></div>
-<div id="cur-dot"></div>
-<div id="cur-ring"></div>
 <div class="grain"></div>
-<a id="sticky-cta" href="mailto:booking@duovia.de">Konzert buchen</a>
 
 <!-- NAV -->
 <div id="shared-nav"></div>
@@ -485,26 +478,6 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
   </div>
 
   <h1 id="hero-title" class="hero-display reveal">KON<span class="lt">ZERTE</span></h1>
-
-  <hr class="hero-rule">
-
-  <div class="hero-ledger reveal">
-    <div class="ledger-cell">
-      <div class="ledger-cell-num" id="hero-next-label">Nächster Termin</div>
-      <div class="ledger-cell-val">
-        <span id="hero-next-title">Neue Konzerttermine folgen.</span>
-        <small id="hero-next-meta">Für Festivals, Konzertreihen und Kulturhäuser buchbar.</small>
-      </div>
-    </div>
-    <div class="ledger-cell">
-      <div class="ledger-cell-num">Programm</div>
-      <div class="ledger-cell-val">Violine &amp; Akkordeon<small>8 Jahreszeiten · Four Seasons — One World</small></div>
-    </div>
-    <div class="ledger-cell">
-      <div class="ledger-cell-num">Booking</div>
-      <div class="ledger-cell-val">Anfragen<small><a href="mailto:booking@duovia.de">booking@duovia.de</a></small></div>
-    </div>
-  </div>
 </section>
 
 <!-- CHOOSER STRIP -->
@@ -529,17 +502,6 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
     <div class="choice-meta">
       <b>Seit 2009</b>
       Konzertliste
-    </div>
-  </a>
-  <a class="choice" href="mailto:booking@duovia.de">
-    <div class="choice-num">—</div>
-    <div class="choice-body">
-      <em>Anfragen</em>
-      <strong>Booking <span>anfragen</span></strong>
-    </div>
-    <div class="choice-meta">
-      <b>Jetzt buchbar</b>
-      Alle Formate
     </div>
   </a>
 </div>
@@ -578,17 +540,18 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
             <div class="event-body">
               <h3 class="ev-name">Four Seasons – One World</h3>
               <div class="ev-prog">Musik aus verschiedenen Kulturen &amp; Traditionen</div>
-              <div class="ev-venue">Berlin-Neukölln</div>
-              <div class="ev-meta-line"><span>Berlin</span><span>19:00 Uhr</span></div>
+              <div class="ev-venue">Berlin · Berlin-Neukölln</div>
+              <div class="ev-meta-line">19:00 Uhr</div>
               <div class="ev-presenter">Veranstalter: <span>wird bekanntgegeben</span></div>
-              <span class="event-status event-status--confirmed">Konzert</span>
+              <span class="event-status event-status--planning">Details folgen</span>
             </div>
             <div class="event-action">
               <div class="event-links">
-                <a class="meta-link meta-link--primary" href="mailto:booking@duovia.de">Anfrage senden</a>
                 <div class="event-secondary-links">
-                  <a class="meta-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Four%20Seasons%20%E2%80%93%20One%20World&dates=20260418T170000Z/20260418T190000Z&location=Berlin-Neuk%C3%B6lln&details=Duo%20ViA%21" target="_blank" rel="noopener noreferrer">Kalender</a>
-                  <a class="meta-link" href="https://www.google.com/maps/search/?api=1&query=Berlin-Neuk%C3%B6lln" target="_blank" rel="noopener noreferrer">Karte</a>
+                  <a class="meta-link icon-action" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Four%20Seasons%20%E2%80%93%20One%20World&dates=20260418T170000Z/20260418T190000Z&location=Berlin-Neuk%C3%B6lln&details=Duo%20ViA%21" target="_blank" rel="noopener noreferrer" aria-label="Google Kalender öffnen" title="Google Kalender öffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg><span class="sr-only">Google Kalender öffnen</span></a>
+                  <a class="meta-link icon-action" href="calendar/duo-via-berlin-2026-04-18.ics" download aria-label="Apple Kalender herunterladen" title="Apple Kalender herunterladen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg><span class="sr-only">Apple Kalender herunterladen</span></a>
+                  <a class="meta-link icon-action" href="https://www.google.com/maps/search/?api=1&query=Berlin-Neuk%C3%B6lln" target="_blank" rel="noopener noreferrer" aria-label="Karte öffnen" title="Karte öffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span class="sr-only">Karte öffnen</span></a>
+                  <button class="meta-link icon-action share-link" type="button" aria-label="Konzert teilen" title="Konzert teilen" aria-live="polite" data-share-title="Four Seasons - One World | Duo ViA!" data-share-text="Duo ViA! in Berlin am 18. April 2026, 19:00 Uhr." data-share-event="event-berlin-2026-04-18"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98"/><path d="m15.41 6.51-6.82 3.98"/></svg><span class="sr-only">Konzert teilen</span></button>
                 </div>
               </div>
             </div>
@@ -603,17 +566,19 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
             <div class="event-body">
               <h3 class="ev-name">Four Seasons – One World</h3>
               <div class="ev-prog">Barock bis Orient · Vivaldi, Piazzolla u.a.</div>
-              <div class="ev-venue">Mozartareal</div>
-              <div class="ev-meta-line"><span>Würzburg</span><span>19:30 Uhr</span></div>
+              <div class="ev-venue">Würzburg · Mozartareal</div>
+              <div class="ev-meta-line">19:30 Uhr</div>
               <div class="ev-presenter">Veranstalter: <span>Kammermusik Würzburg</span></div>
-              <span class="event-status event-status--confirmed">Konzert</span>
+              <span class="event-status event-status--planning">Details beim Veranstalter</span>
             </div>
             <div class="event-action">
               <div class="event-links">
-                <a class="meta-link meta-link--primary" href="https://www.kammermusik-wuerzburg.de/duo-via" target="_blank" rel="noopener noreferrer">Zur Veranstalterseite</a>
+                <a class="meta-link meta-link--primary" href="https://www.kammermusik-wuerzburg.de/duo-via" target="_blank" rel="noopener noreferrer">Details</a>
                 <div class="event-secondary-links">
-                  <a class="meta-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Four%20Seasons%20%E2%80%93%20One%20World&dates=20260507T173000Z/20260507T193000Z&location=Mozartareal%2C%20W%C3%BCrzburg&details=Duo%20ViA%21" target="_blank" rel="noopener noreferrer">Kalender</a>
-                  <a class="meta-link" href="https://www.google.com/maps/search/?api=1&query=Mozartareal%20W%C3%BCrzburg" target="_blank" rel="noopener noreferrer">Karte</a>
+                  <a class="meta-link icon-action" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Four%20Seasons%20%E2%80%93%20One%20World&dates=20260507T173000Z/20260507T193000Z&location=Mozartareal%2C%20W%C3%BCrzburg&details=Duo%20ViA%21" target="_blank" rel="noopener noreferrer" aria-label="Google Kalender öffnen" title="Google Kalender öffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg><span class="sr-only">Google Kalender öffnen</span></a>
+                  <a class="meta-link icon-action" href="calendar/duo-via-wuerzburg-2026-05-07.ics" download aria-label="Apple Kalender herunterladen" title="Apple Kalender herunterladen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg><span class="sr-only">Apple Kalender herunterladen</span></a>
+                  <a class="meta-link icon-action" href="https://www.google.com/maps/search/?api=1&query=Mozartareal%20W%C3%BCrzburg" target="_blank" rel="noopener noreferrer" aria-label="Karte öffnen" title="Karte öffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span class="sr-only">Karte öffnen</span></a>
+                  <button class="meta-link icon-action share-link" type="button" aria-label="Konzert teilen" title="Konzert teilen" aria-live="polite" data-share-title="Four Seasons - One World | Duo ViA!" data-share-text="Duo ViA! in Würzburg am 7. Mai 2026, 19:30 Uhr." data-share-event="event-wuerzburg-2026-05-07"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98"/><path d="m15.41 6.51-6.82 3.98"/></svg><span class="sr-only">Konzert teilen</span></button>
                 </div>
               </div>
             </div>
@@ -628,17 +593,19 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
             <div class="event-body">
               <h3 class="ev-name">Duo ViA! — Muttertagskonzert</h3>
               <div class="ev-prog">8 Jahreszeiten · Vivaldi &amp; Piazzolla</div>
-              <div class="ev-venue">MühlenForum Glattbach</div>
-              <div class="ev-meta-line"><span>Glattbach, Bayern</span><span>13:00 Uhr</span><span>45 €</span></div>
+              <div class="ev-venue">Glattbach · MühlenForum Glattbach</div>
+              <div class="ev-meta-line">13:00 Uhr · 45 €</div>
               <div class="ev-presenter">Veranstalter: <span>MühlenForum Glattbach</span></div>
-              <span class="event-status event-status--confirmed">Konzert</span>
+              <span class="event-status event-status--confirmed">Tickets verfügbar</span>
             </div>
             <div class="event-action">
               <div class="event-links">
-                <a class="meta-link meta-link--primary" href="https://www.muehlenforum-glattbach.de/events" target="_blank" rel="noopener noreferrer">Tickets kaufen</a>
+                <a class="meta-link meta-link--primary" href="https://www.muehlenforum-glattbach.de/events" target="_blank" rel="noopener noreferrer">Tickets</a>
                 <div class="event-secondary-links">
-                  <a class="meta-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Duo%20ViA%21%20%E2%80%94%20Muttertagskonzert&dates=20260509T110000Z/20260509T130000Z&location=M%C3%BChlenForum%20Glattbach%2C%20Bayern&details=8%20Jahreszeiten%20%C2%B7%20Vivaldi%20%26%20Piazzolla" target="_blank" rel="noopener noreferrer">Kalender</a>
-                  <a class="meta-link" href="https://www.google.com/maps/search/?api=1&query=M%C3%BChlenForum%20Glattbach" target="_blank" rel="noopener noreferrer">Karte</a>
+                  <a class="meta-link icon-action" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Duo%20ViA%21%20%E2%80%94%20Muttertagskonzert&dates=20260509T110000Z/20260509T130000Z&location=M%C3%BChlenForum%20Glattbach%2C%20Bayern&details=8%20Jahreszeiten%20%C2%B7%20Vivaldi%20%26%20Piazzolla" target="_blank" rel="noopener noreferrer" aria-label="Google Kalender öffnen" title="Google Kalender öffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg><span class="sr-only">Google Kalender öffnen</span></a>
+                  <a class="meta-link icon-action" href="calendar/duo-via-glattbach-2026-05-09.ics" download aria-label="Apple Kalender herunterladen" title="Apple Kalender herunterladen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg><span class="sr-only">Apple Kalender herunterladen</span></a>
+                  <a class="meta-link icon-action" href="https://www.google.com/maps/search/?api=1&query=M%C3%BChlenForum%20Glattbach" target="_blank" rel="noopener noreferrer" aria-label="Karte öffnen" title="Karte öffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span class="sr-only">Karte öffnen</span></a>
+                  <button class="meta-link icon-action share-link" type="button" aria-label="Konzert teilen" title="Konzert teilen" aria-live="polite" data-share-title="Muttertagskonzert | Duo ViA!" data-share-text="Duo ViA! in Glattbach am 9. Mai 2026, 13:00 Uhr." data-share-event="event-glattbach-2026-05-09"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98"/><path d="m15.41 6.51-6.82 3.98"/></svg><span class="sr-only">Konzert teilen</span></button>
                 </div>
               </div>
             </div>
@@ -653,17 +620,19 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
             <div class="event-body">
               <h3 class="ev-name">4. Meisterkonzert</h3>
               <div class="ev-prog">Four Seasons – One World</div>
-              <div class="ev-venue">Teo Otto Theater</div>
-              <div class="ev-meta-line"><span>Remscheid</span><span>19:30 Uhr</span><span>20 €</span></div>
+              <div class="ev-venue">Remscheid · Teo Otto Theater</div>
+              <div class="ev-meta-line">19:30 Uhr · 20 €</div>
               <div class="ev-presenter">Veranstalter: <span>Bergische Symphoniker</span></div>
-              <span class="event-status event-status--confirmed">Konzert</span>
+              <span class="event-status event-status--confirmed">Tickets verfügbar</span>
             </div>
             <div class="event-action">
               <div class="event-links">
-                <a class="meta-link meta-link--primary" href="https://www.bergischesymphoniker.de/konzert/4-meisterkonzert-593104666/" target="_blank" rel="noopener noreferrer">Tickets kaufen</a>
+                <a class="meta-link meta-link--primary" href="https://www.bergischesymphoniker.de/konzert/4-meisterkonzert-593104666/" target="_blank" rel="noopener noreferrer">Tickets</a>
                 <div class="event-secondary-links">
-                  <a class="meta-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=4.%20Meisterkonzert%20%E2%80%94%20Duo%20ViA%21&dates=20260513T173000Z/20260513T193000Z&location=Teo%20Otto%20Theater%2C%20Remscheid&details=Four%20Seasons%20%E2%80%93%20One%20World" target="_blank" rel="noopener noreferrer">Kalender</a>
-                  <a class="meta-link" href="https://www.google.com/maps/search/?api=1&query=Teo%20Otto%20Theater%20Remscheid" target="_blank" rel="noopener noreferrer">Karte</a>
+                  <a class="meta-link icon-action" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=4.%20Meisterkonzert%20%E2%80%94%20Duo%20ViA%21&dates=20260513T173000Z/20260513T193000Z&location=Teo%20Otto%20Theater%2C%20Remscheid&details=Four%20Seasons%20%E2%80%93%20One%20World" target="_blank" rel="noopener noreferrer" aria-label="Google Kalender öffnen" title="Google Kalender öffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg><span class="sr-only">Google Kalender öffnen</span></a>
+                  <a class="meta-link icon-action" href="calendar/duo-via-remscheid-2026-05-13.ics" download aria-label="Apple Kalender herunterladen" title="Apple Kalender herunterladen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg><span class="sr-only">Apple Kalender herunterladen</span></a>
+                  <a class="meta-link icon-action" href="https://www.google.com/maps/search/?api=1&query=Teo%20Otto%20Theater%20Remscheid" target="_blank" rel="noopener noreferrer" aria-label="Karte öffnen" title="Karte öffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span class="sr-only">Karte öffnen</span></a>
+                  <button class="meta-link icon-action share-link" type="button" aria-label="Konzert teilen" title="Konzert teilen" aria-live="polite" data-share-title="4. Meisterkonzert | Duo ViA!" data-share-text="Duo ViA! in Remscheid am 13. Mai 2026, 19:30 Uhr." data-share-event="event-remscheid-2026-05-13"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98"/><path d="m15.41 6.51-6.82 3.98"/></svg><span class="sr-only">Konzert teilen</span></button>
                 </div>
               </div>
             </div>
@@ -679,55 +648,13 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
               <h3 class="ev-name">Four Seasons – One World</h3>
               <div class="ev-prog">Sommertermin für Festivals &amp; Kulturhäuser</div>
               <div class="ev-venue">Deutschlandweit buchbar</div>
-              <div class="ev-meta-line"><span>Open Air · Saal · Matinee</span><span>Uhrzeit nach Vereinbarung</span></div>
+              <div class="ev-meta-line">Open Air · Saal · Matinee · Uhrzeit nach Vereinbarung</div>
               <div class="ev-presenter">Booking: <span>Terminfenster 2026</span></div>
-              <span class="event-status event-status--bookable">Buchbar</span>
+              <span class="event-status event-status--bookable">Für Veranstalter buchbar</span>
             </div>
             <div class="event-action">
               <div class="event-links">
-                <a class="meta-link meta-link--primary" href="mailto:booking@duovia.de?subject=Booking%20Duo%20ViA%21%20-%2021.%20Juni%202026">Termin anfragen</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="event-row reveal" id="event-booking-2026-09-18" data-date="2026-09-18" style="transition-delay:.45s">
-            <div class="event-date">
-              <span class="date-day">Freitag</span>
-              <span class="date-num">18</span>
-              <span class="date-month">Sep 2026</span>
-            </div>
-            <div class="event-body">
-              <h3 class="ev-name">8 Jahreszeiten</h3>
-              <div class="ev-prog">Vivaldi &amp; Piazzolla in eigener Duo-Fassung</div>
-              <div class="ev-venue">Konzertreihen &amp; Kammermusikformate</div>
-              <div class="ev-meta-line"><span>D-A-CH</span><span>Abendkonzert buchbar</span></div>
-              <div class="ev-presenter">Booking: <span>Saisonstart Herbst 2026</span></div>
-              <span class="event-status event-status--bookable">Buchbar</span>
-            </div>
-            <div class="event-action">
-              <div class="event-links">
-                <a class="meta-link meta-link--primary" href="mailto:booking@duovia.de?subject=Booking%20Duo%20ViA%21%20-%2018.%20September%202026">Termin anfragen</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="event-row reveal" id="event-booking-2026-11-29" data-date="2026-11-29" style="transition-delay:.54s">
-            <div class="event-date">
-              <span class="date-day">Sonntag</span>
-              <span class="date-num">29</span>
-              <span class="date-month">Nov 2026</span>
-            </div>
-            <div class="event-body">
-              <h3 class="ev-name">Winterkonzert Duo ViA!</h3>
-              <div class="ev-prog">Festliches Programm für Advent &amp; Jahresausklang</div>
-              <div class="ev-venue">Kirchen, Kulturhäuser &amp; besondere Spielorte</div>
-              <div class="ev-meta-line"><span>Deutschlandweit</span><span>Nachmittags oder abends</span></div>
-              <div class="ev-presenter">Booking: <span>Adventszeit 2026</span></div>
-              <span class="event-status event-status--bookable">Buchbar</span>
-            </div>
-            <div class="event-action">
-              <div class="event-links">
-                <a class="meta-link meta-link--primary" href="mailto:booking@duovia.de?subject=Booking%20Duo%20ViA%21%20-%2029.%20November%202026">Termin anfragen</a>
+                <a class="meta-link meta-link--primary" href="mailto:booking@duovia.de?subject=Booking%20Duo%20ViA%21%20-%2021.%20Juni%202026">Booking anfragen</a>
               </div>
             </div>
           </div>
@@ -808,7 +735,7 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
       <div class="cal-footer-eyebrow">Buchungsanfragen</div>
       <div class="cal-footer-text">Weitere Termine &amp; individuelle Buchungen</div>
       <div class="cal-footer-sub">Duo ViA! ist für Festivals, Konzertreihen und Kulturhäuser buchbar.</div>
-      <a href="mailto:booking@duovia.de" class="btn-secondary">Termin anfragen</a>
+      <a href="booking.html" class="btn-secondary">Booking anfragen</a>
     </div>
   </div>
 </section>
@@ -816,14 +743,10 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-inner">
-    <div class="footer-booking">
-      <h2>Programm für Ihre Bühne?</h2>
-      <a href="mailto:booking@duovia.de">Booking anfragen</a>
-    </div>
     <div class="footer-logo">Duo ViA! <span>/ Sinn Yang &amp; Harald Oeler</span></div>
     <ul class="footer-links">
       <li><a href="projects.html">Programme</a></li>
-      <li><a href="artists.html">Künstler</a></li>
+      <li><a href="ueber-uns.html">Über uns</a></li>
       <li><a href="presse.html">Pressemappe</a></li>
       <li><a href="konzerte.html">Konzerte</a></li>
       <li><a href="mailto:booking@duovia.de">Booking</a></li>
@@ -836,7 +759,7 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
   </div>
 </footer>
 
-<a class="mobile-booking" href="mailto:booking@duovia.de">Termin anfragen</a>
+<a class="mobile-booking" href="booking.html">Booking anfragen</a>
 
 <script>
 /* ── Scroll progress ── */
@@ -845,21 +768,49 @@ window.addEventListener('scroll', () => {
   document.getElementById('scroll-progress').style.width = pct + '%';
 });
 
-/* ── Sticky CTA ── */
-const stickyCta = document.getElementById('sticky-cta');
+/* ── Mobile booking prompt ── */
 const mobileBooking = document.querySelector('.mobile-booking');
-window.addEventListener('scroll', () => {
-  const past = window.scrollY > 300;
-  stickyCta.classList.toggle('visible', past);
-  if (mobileBooking) mobileBooking.classList.toggle('visible', past);
-}, { passive: true });
+function updateMobileBooking() {
+  if (!mobileBooking) return;
+  const firstListing = document.querySelector('#cal-upcoming .event-row:not(.event-row--past)');
+  const threshold = firstListing ? firstListing.offsetTop + firstListing.offsetHeight : 500;
+  const visible = window.scrollY > threshold;
+  mobileBooking.classList.toggle('visible', visible);
+  document.body.classList.toggle('mobile-cta-visible', visible);
+}
+window.addEventListener('scroll', updateMobileBooking, { passive: true });
+window.addEventListener('resize', updateMobileBooking);
 
-/* ── Cursor ── */
-const dot = document.getElementById('cur-dot');
-const ring = document.getElementById('cur-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
-(function tick(){ rx+=(mx-rx)*.13; ry+=(my-ry)*.13; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(tick); })();
+/* ── Share public concerts ── */
+document.querySelectorAll('.share-link').forEach(button => {
+  button.addEventListener('click', async () => {
+    const eventUrl = `${location.href.split('#')[0]}#${button.dataset.shareEvent}`;
+    const shareData = {
+      title: button.dataset.shareTitle,
+      text: button.dataset.shareText,
+      url: eventUrl
+    };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(eventUrl);
+        const originalLabel = button.getAttribute('aria-label');
+        const originalTitle = button.getAttribute('title');
+        button.setAttribute('aria-label', 'Link kopiert');
+        button.setAttribute('title', 'Link kopiert');
+        button.classList.add('is-confirmed');
+        setTimeout(() => {
+          button.setAttribute('aria-label', originalLabel);
+          button.setAttribute('title', originalTitle);
+          button.classList.remove('is-confirmed');
+        }, 1800);
+      }
+    } catch (_) {
+      /* Sharing may be dismissed or clipboard permission may be unavailable. */
+    }
+  });
+});
 
 /* ── Menu ── */
 let menuOpen = false;
@@ -948,6 +899,7 @@ document.querySelectorAll('a[href]').forEach(a => {
     const url = new URL(a.href, location.href);
     if (url.hostname !== location.hostname) return;
     if (a.target === '_blank') return;
+    if (a.hasAttribute('download')) return;
     if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
     if (url.pathname === location.pathname && url.hash) return;
     a.addEventListener('click', e => {
@@ -971,7 +923,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   const pageAliases = {
     "index.html": "home", "land.html": "home", "": "home",
     "projects.html": "programme", "projects draft.html": "programme",
-    "artists.html": "artists", "artists1.html": "artists",
+    "ueber-uns.html": "about",
     "presse.html": "media", "konzerte.html": "calendar",
     "booking.html": "booking", "contact.html": "booking"
   };
@@ -1056,6 +1008,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
       document.getElementById(`cal-${tab}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
+  updateMobileBooking();
 })();
 </script>
 </body>
