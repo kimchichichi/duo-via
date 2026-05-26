@@ -11,30 +11,14 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://duovia.de/artists.html">
+<link rel="stylesheet" href="includes/tokens.css">
 <style>
-/* ═══════════════════════════════════════════
-   TOKENS — SAGE THEME · HELVETICA
-   (shared with projects.html)
-═══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-  --sage:        #93A5A1;
-  --sage-deep:   #788B87;
-  --sage-darker: #5F716D;
-  --sage-soft:   #A8B7B3;
-  --sage-tint:   #C0CBC8;
-  --paper:       #EFEDE7;
-  --ink:         #1B2422;
-  --white:       #FFFFFF;
-  --white-72:    rgba(255,255,255,0.78);
-  --white-48:    rgba(255,255,255,0.52);
-  --white-24:    rgba(255,255,255,0.24);
-  --rule:        rgba(255,255,255,0.28);
-
-  --sans:        'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  --nav-h:       60px;
-  --ease:        cubic-bezier(0.65, 0, 0.35, 1);
+#scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+  background: var(--white); z-index: 900; pointer-events: none;
+  transition: width .08s linear;
 }
 
 html { scroll-behavior: smooth; font-size: 100%; overflow-x: hidden; }
@@ -212,7 +196,6 @@ img { max-width: 100%; display: block; }
 .nav-booking-item a {
   width: fit-content;
   padding: .18em .34em .24em;
-  border: 1px solid var(--white-24);
 }
 .nav-overlay-footer {
   display: flex; flex-wrap: wrap; gap: 1rem 1.6rem;
@@ -684,8 +667,8 @@ img { max-width: 100%; display: block; }
 .artist-name em {
   font-style: normal;
   font-weight: 300;
-  display: block;
-  font-size: .62em;
+  display: inline;
+  font-size: 1em;
   line-height: 1;
   margin-top: .12em;
   color: var(--white-72);
@@ -1216,6 +1199,7 @@ img { max-width: 100%; display: block; }
 </head>
 <body>
 
+<div id="scroll-progress" aria-hidden="true"></div>
 <a class="skip-link" href="#content">Zum Inhalt springen</a>
 <div id="cur-dot" aria-hidden="true"></div>
 <div id="cur-ring" aria-hidden="true"></div>
@@ -1270,14 +1254,15 @@ img { max-width: 100%; display: block; }
       Solist · Pädagoge
     </div>
   </a>
-  <a class="choice" href="#duo-via">
+  <a class="choice" href="ensemble.html">
     <div class="choice-num">03</div>
     <div class="choice-body">
-      <em>Duo ViA! </em>
-      <strong>Duo ViA!<span> / Violine & Akkordeon</span></strong>
+      <em>Das Ensemble</em>
+      <strong>Duo ViA!<span> / Violine &amp; Akkordeon</span></strong>
     </div>
     <div class="choice-meta">
-      <b></b>
+      <b>Seit 2009</b>
+      Geschichte &amp; Profil
     </div>
   </a>
 </div>
@@ -1391,111 +1376,17 @@ img { max-width: 100%; display: block; }
     </div>
   </div>
 </article>
-
-<!-- Duo ViA! -->
-<article class="artist reveal" id="duo-via" aria-labelledby="duo-via-heading">
-  <div class="artist-portrait portrait-duo-via">
-    <picture>
-      <source media="(max-width: 560px)" srcset="hero.webp">
-      <img src="hero.webp" alt="Duo ViA!" loading="lazy" decoding="async" width="800" height="1000" onerror="this.closest('.artist-portrait').classList.add('media-missing')">
-    </picture>
-    <div class="media-fallback" aria-hidden="true"><div><strong>Duo</strong><span>ViA!</span></div></div>
-    <div class="portrait-numeral">III<small>Duo</small></div>
-    <span class="portrait-tag">N° 01 / 02</span>
-    <div class="portrait-caption">
-      <span class="pc-name">Duo ViA!</span>
-      <span class="pc-meta"></span>
-    </div>
-  </div>
-  <div class="artist-body">
-    <div class="body-inner">
-      <span class="p-kicker">Musikerin I · Violine</span>
-      <h2 class="artist-name" id="duo-via-heading">Duo <em>ViA!</em></h2>
-      <p class="artist-byline">Solistin, Kammermusikerin und Konzertmeisterin — zwischen Würzburg, Lübeck und Luzern.</p>
-      <div class="artist-summary" aria-label="Kurzprofil Sinn Yang">
-        <div class="summary-item"><span>Instrument</span><strong>Violine</strong></div>
-        <div class="summary-item"><span>Rolle</span><strong>Stv. Konzertmeisterin</strong></div>
-        <div class="summary-item"><span>Vita</span><a href="mailto:booking@duovia.de?subject=Vita%20Sinn%20Yang%20anfragen">Per E-Mail anfragen</a></div>
-        <div class="summary-item"><span>Website</span><a href="https://www.sinnyang.com" target="_blank" rel="noopener noreferrer">sinnyang.com</a></div>
-      </div>
-      <p class="artist-bio">Die Geigerin Sinn Yang (*1982, Würzburg) verbindet eine internationale Solisten- und Orchesterlaufbahn mit engagierter Kammermusik und Lehrtätigkeit. Sie studierte bei Prof. Max Speermann (HfM Würzburg) und Prof. Thomas Brandis (MH Lübeck) und absolvierte 2009 ihr Solistenklasse-Examen.</p>
-      <p class="artist-bio">Als Solistin trat sie mit dem Deutschen Symphonie-Orchester Berlin, den Nürnberger Philharmonikern und weiteren Klangkörpern auf. Seit 2014/15 ist sie stellvertretende Konzertmeisterin des Luzerner Sinfonieorchesters.</p>
-
-      <dl class="facts">
-        <div class="fact"><dt>Position</dt><dd>Stv. Konzertmeisterin<br>Luzerner Sinfonieorchester</dd></div>
-        <div class="fact"><dt>Examen</dt><dd>Solistenklasse<br>MH Lübeck, 2009</dd></div>
-        <div class="fact"><dt>Auszeichnungen</dt><dd>Kulturförderpreis Würzburg<br>1. Preis „Ton und Erklärung"</dd></div>
-      </dl>
-
-      <div class="bio-quote">
-        <p>Yang und Oeler spielen wie aufeinander eingeschworen — sie bilden nicht nur rhythmisch eine Einheit.</p>
-        <cite>NDR Kultur · Pressestimme</cite>
-      </div>
-
-      <div class="tag-row">
-        <span class="tag-label">Schwerpunkte</span>
-        <span class="tag tag-accent">Solo</span>
-        <span class="tag">Kammermusik</span>
-        <span class="tag">Orchester</span>
-        <span class="tag">Lehre</span>
-      </div>
-
-      <div class="artist-actions">
-        <a class="p-action primary" href="https://www.sinnyang.com" target="_blank" rel="noopener noreferrer">sinnyang.com</a>
-      </div>
-    </div>
-  </div>
-</article>
-
-
-<!-- DUO CAPSULE -->
-<section class="duo-capsule reveal">
-  <div class="duo-capsule-inner">
-    <span class="duo-capsule-kicker">Über das Ensemble</span>
-    <blockquote>
-      Zwei Instrumente, vier Jahrhunderte — Violine und klassisches Akkordeon
-      verschmelzen in Eigenarrangements von Harald Oeler zu einer gemeinsamen
-      Sprache. <em>Vom barocken Affekt bis zum argentinischen Tango.</em>
-      <footer><cite>— Duo ViA!</cite></footer>
-    </blockquote>
-    <ul class="duo-points" aria-label="Duo ViA! Profil">
-      <li><strong>Klang</strong>Violine und klassisches Akkordeon als gleichberechtigte kammermusikalische Stimmen.</li>
-      <li><strong>Programme</strong>Eigenarrangierte Konzertformate vom Barock bis zu Tango und Gegenwart.</li>
-      <li><strong>Booking</strong>Geeignet für Festivals, Kulturhäuser, Konzertreihen und moderierte Programme.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- PERFORMANCE HISTORY -->
-<section class="section-wrap" style="padding: 5rem 3rem;">
-  <div class="section-eyebrow reveal">Konzertgeschichte</div>
-  <h2 class="section-heading reveal">Seit 2009 auf großen Bühnen</h2>
-  <div class="reveal" style="max-width: 54ch;">
-    <p class="artist-bio">Zahlreiche Festival-Konzerte mit Duo ViA! führten das Ensemble auf renommierte Bühnen wie die Würzburger Residenz, das Prinzregententheater München und das Teo Otto Theater Remscheid. Seit der Gründung 2009 konzertiert Duo ViA! regelmäßig auf internationalen Kammermusik-Festivals und in Kulturhäusern im deutschsprachigen Raum.</p>
-    <p class="artist-bio">Highlights der Konzerttätigkeit umfassen eine Tournee durch Südkorea mit Auftritt am Daejon Arts Center sowie Engagements beim internationalen Festival „Heidelberger Frühling". Das Programm „8 Jahreszeiten" (Vivaldi &amp; Piazzolla) wurde dabei zu einer Signaturproduktion des Ensembles.</p>
-    <p class="artist-bio">Eine vollständige Konzertliste der vergangenen Jahre finden Sie im <a href="konzerte.html#cal-archive" style="color: var(--white); border-bottom: 1px solid var(--white-48); text-decoration: none; transition: border-color .2s;">Konzertarchiv</a>.</p>
-  </div>
-</section>
-
-<!-- BOOKING BAND -->
-<section class="booking-band">
-  <div class="booking-band-inner">
-    <div>
-      <span class="booking-small">Anfragen &amp; Engagements</span>
-      <h2>Duo ViA! für Ihr Konzert buchen</h2>
-    </div>
-    <a class="booking-cta" href="mailto:booking@duovia.de">
-      Booking anfragen
-      <span class="arrow"></span>
-    </a>
-  </div>
-</section>
-
 </main>
 
 <div id="shared-footer"></div>
 
 <script>
+const sp = document.getElementById('scroll-progress');
+document.addEventListener('scroll', () => {
+  const max = document.body.scrollHeight - window.innerHeight;
+  sp.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + '%';
+}, { passive: true });
+
 const dot  = document.getElementById('cur-dot');
 const ring = document.getElementById('cur-ring');
 let mx = 0, my = 0, rx = 0, ry = 0;

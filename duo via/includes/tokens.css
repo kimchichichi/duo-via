@@ -1,0 +1,23 @@
+/* Duo ViA! — shared design tokens */
+:root {
+  --sage:        #93A5A1;
+  --sage-deep:   #788B87;
+  --sage-darker: #5F716D;
+  --sage-soft:   #A8B7B3;
+  --sage-tint:   #C0CBC8;
+  --paper:       #EFEDE7;
+  --ink:         #1B2422;
+  --white:       #FFFFFF;
+  --muted-white: rgba(255,255,255,0.94);
+  --accent:      #5F716D;
+  --white-72:    rgba(255,255,255,0.72);
+  --white-48:    rgba(255,255,255,0.48);
+  --white-24:    rgba(255,255,255,0.24);
+  --white-12:    rgba(255,255,255,0.12);
+  --rule:        rgba(255,255,255,0.28);
+  --maxw:        1480px;
+  --sans:        'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --nav-h:       60px;
+  --ease:        cubic-bezier(0.65, 0, 0.35, 1);
+  --dur:         0.55s;
+}

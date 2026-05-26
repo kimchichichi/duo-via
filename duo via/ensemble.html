@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das Ensemble — Duo ViA!</title>
+<meta name="description" content="Duo ViA! — Sinn Yang (Violine) und Harald Oeler (Akkordeon). Geschichte, Konzertbiografie und Profil des Kammermusik-Ensembles seit 2009.">
+<meta property="og:title" content="Das Ensemble — Duo ViA!">
+<meta property="og:description" content="Duo ViA! — Kammermusik mit Violine und Akkordeon seit 2009.">
+<meta property="og:image" content="https://duovia.de/hero.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://duovia.de/ensemble.html">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 100%; overflow-x: hidden; }
+body {
+  background: var(--sage);
+  color: var(--white);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  font-weight: 400;
+}
+img { max-width: 100%; display: block; }
+
+/* Scroll progress */
+#scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+  background: var(--white); z-index: 900; pointer-events: none;
+  transition: width .08s linear;
+}
+
+/* Inline text link */
+.text-link {
+  color: var(--white);
+  border-bottom: 1px solid var(--white-48);
+  text-decoration: none;
+  transition: border-color .2s;
+}
+.text-link:hover { border-color: var(--white); }
+
+/* Skip link */
+.skip-link {
+  position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+}
+.skip-link:focus {
+  position: fixed; left: 1rem; top: 1rem; width: auto; height: auto; overflow: visible;
+  padding: .65rem 1rem; background: var(--ink); color: var(--white);
+  font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; text-decoration: none; z-index: 9999;
+  outline: 2px solid var(--white); outline-offset: 2px;
+}
+
+/* Cursor */
+#cur-dot {
+  position: fixed; width: 4px; height: 4px; background: var(--white);
+  border-radius: 50%; pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+}
+#cur-ring {
+  position: fixed; width: 24px; height: 24px;
+  border: 1px solid rgba(255,255,255,0.3); border-radius: 50%;
+  pointer-events: none; z-index: 9998; transform: translate(-50%,-50%);
+}
+
+/* Nav extras not in nav.css */
+.nav-close-label {
+  position: absolute; right: 48px;
+  font-size: .62rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--white); opacity: 0;
+  transform: translateX(.4rem);
+  transition: opacity .25s, transform .25s;
+}
+.nav-open .nav-close-label { opacity: .78; transform: translateX(0); }
+.nav-overlay-footer {
+  display: flex; flex-wrap: wrap; gap: 1rem 1.6rem;
+  align-items: center;
+  font-size: .68rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--white-72);
+}
+.nav-overlay-footer a { color: var(--white); text-decoration: none; }
+.nav-overlay-footer a:hover { color: var(--sage-tint); }
+.nav-links-main li:nth-child(6) a { transition-delay: .27s; }
+
+/* Hero */
+.hero {
+  padding: calc(var(--nav-h) + 2.6rem) 2rem 1.6rem;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+.hero-eyebrow {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.8rem;
+}
+.eyebrow-stack {
+  font-size: .68rem; font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--white); line-height: 1.5;
+}
+.eyebrow-stack span { display: block; opacity: .72; font-weight: 400; }
+.hero-meta {
+  text-align: right; font-size: .62rem; font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase;
+  line-height: 1.6; color: var(--white-72);
+}
+.hero-meta b { font-weight: 500; color: var(--white); display: block; }
+.hero-display {
+  font-family: var(--sans); font-weight: 500;
+  font-size: clamp(3.6rem, 12vw, 13rem);
+  line-height: .90; letter-spacing: -0.045em;
+  color: var(--white); margin: 0 0 .3rem;
+  text-wrap: balance;
+}
+.hero-display .line { display: block; }
+.hero-display .lt { font-weight: 300; }
+.hero-sub {
+  font-size: .82rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--white-72); margin: .6rem 0 1.6rem;
+}
+.hero-media {
+  position: relative;
+  min-height: clamp(220px, 26vw, 390px);
+  margin-top: 1.4rem;
+  overflow: hidden;
+  background: var(--sage-deep);
+}
+.hero-media img {
+  width: 100%; height: 100%;
+  position: absolute; inset: 0;
+  object-fit: cover; object-position: center 34%;
+  filter: grayscale(8%) contrast(1.04) brightness(.92);
+}
+.hero-media::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to top, rgba(27,36,34,.48), transparent 52%),
+    linear-gradient(to right, rgba(27,36,34,.28), transparent 44%);
+  pointer-events: none;
+}
+.hero-media-label {
+  position: absolute; left: 1.4rem; bottom: 1.2rem; z-index: 1;
+  max-width: 32ch; color: var(--white);
+  font-size: .72rem; font-weight: 500; letter-spacing: .18em;
+  line-height: 1.5; text-transform: uppercase;
+}
+.hero .hero-display.reveal { transition-delay: .12s; }
+
+/* Artist block */
+.artist {
+  display: block;
+  min-height: clamp(360px, 50vh, 580px);
+  border-top: 1px solid var(--white-24);
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+
+/* Bio panel */
+.artist-body {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: clamp(2.2rem, 5vw, 4.5rem) 2rem;
+  display: flex; flex-direction: column; justify-content: center; min-width: 0;
+}
+.body-inner { max-width: 44rem; }
+@media (min-width: 980px) {
+  .body-inner {
+    max-width: none;
+    display: grid;
+    grid-template-columns: minmax(20rem, .78fr) minmax(0, 1fr);
+    gap: 1.4rem clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+  .bio-section:first-of-type { margin-top: 0; }
+  .bio-quote.featured { margin-bottom: 0; }
+  .next-links { margin-top: .5rem; }
+  .bio-timeline {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 1.2rem 0;
+  }
+  .bio-timeline li {
+    display: block;
+    padding: 1rem;
+  }
+  .bio-timeline time,
+  .bio-timeline span,
+  .bio-timeline p {
+    padding: 0;
+  }
+  .bio-timeline p {
+    margin-top: .65rem;
+    font-size: .88rem;
+    line-height: 1.42;
+  }
+}
+.p-kicker {
+  font-size: .62rem; font-weight: 500; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--white); margin-bottom: 1.4rem;
+  display: inline-flex; align-items: center; gap: .7rem;
+}
+.p-kicker::before { content:''; width: 1.6rem; height: 1px; background: var(--white-24); }
+.artist-name {
+  font-family: var(--sans); font-weight: 500;
+  font-size: clamp(2.6rem, 6vw, 5.4rem);
+  line-height: .92; letter-spacing: -0.035em;
+  color: var(--white); margin-bottom: .25rem; text-transform: uppercase;
+}
+.artist-name em {
+  font-style: normal; font-weight: 300;
+  color: var(--white-72);
+  letter-spacing: -0.02em; text-transform: none;
+}
+.artist-byline {
+  font-size: 1.05rem; font-weight: 400;
+  color: var(--white-72); margin: 1.4rem 0 1.3rem; max-width: 50ch;
+}
+.artist-summary {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--white-24); border-bottom: 1px solid var(--white-24);
+  margin: 1.6rem 0 1.4rem;
+}
+.summary-item {
+  padding: .85rem 1rem .85rem 0;
+  border-left: 1px solid var(--white-24); padding-left: 1rem; min-width: 0;
+}
+.summary-item:first-child { border-left: 0; padding-left: 0; }
+.summary-item span {
+  display: block; color: var(--white-72);
+  font-size: .62rem; font-weight: 500; letter-spacing: .22em;
+  text-transform: uppercase; margin-bottom: .35rem;
+}
+.summary-item strong, .summary-item a {
+  color: var(--white); font-size: .82rem; font-weight: 500;
+  line-height: 1.28; text-decoration: none; overflow-wrap: anywhere;
+}
+.summary-item a:hover, .summary-item a:focus-visible { text-decoration: underline; outline: 0; }
+.artist-bio {
+  font-size: 1rem; line-height: 1.55; color: var(--white);
+  max-width: 54ch; text-wrap: pretty; margin-bottom: 1rem;
+}
+.next-links {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px; background: var(--white-24);
+  margin: 1.7rem 0 1.6rem;
+}
+.next-links a {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: 48px; padding: .9rem 1rem;
+  background: var(--sage-darker); color: var(--white); text-decoration: none;
+  font-size: .68rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+  transition: background .2s, color .2s;
+}
+.next-links a::after { content: ''; width: .85rem; height: 1px; background: currentColor; flex: 0 0 auto; }
+.next-links a:hover,
+.next-links a:focus-visible { background: var(--white); color: var(--sage-darker); outline: 0; }
+.artist-actions { display: flex; flex-wrap: wrap; gap: .55rem; }
+.p-action {
+  display: inline-flex; align-items: center; justify-content: center; gap: .8rem;
+  min-height: 44px; color: var(--white); text-decoration: none;
+  font-size: .68rem; font-weight: 500; letter-spacing: .08em;
+  padding: .9rem 1.2rem; border: 1px solid var(--white-24);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.p-action:hover { background: var(--white); color: var(--sage-darker); border-color: var(--white); }
+.p-action.primary { background: var(--white); color: var(--sage-darker); border-color: var(--white); }
+.p-action.primary:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.p-action svg { flex-shrink: 0; }
+.p-action:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+.bio-quote { margin: 1.6rem 0; padding-left: 1.4rem; border-left: 1px solid var(--white-48); }
+.bio-quote p {
+  font-size: clamp(1.05rem, 1.3vw, 1.18rem); font-weight: 300;
+  line-height: 1.4; color: var(--white); letter-spacing: -0.004em; text-wrap: pretty;
+}
+.bio-quote p::before {
+  content: '\201C'; font-size: 2em; line-height: 0;
+  vertical-align: -.24em; color: var(--white-48); margin-right: .06em;
+}
+.bio-quote cite {
+  display: block; margin-top: .7rem; font-style: normal;
+  font-size: .72rem; font-weight: 500; letter-spacing: .04em; color: var(--white);
+}
+.bio-quote.featured {
+  margin: 0 0 1.9rem;
+  padding: 1.1rem 0 1.1rem 1.4rem;
+  border-top: 1px solid var(--white-24);
+  border-bottom: 1px solid var(--white-24);
+}
+.bio-quote.featured p {
+  font-size: clamp(1.18rem, 1.75vw, 1.48rem);
+  line-height: 1.34;
+}
+.bio-section { margin-top: 1.7rem; }
+.bio-section-title {
+  display: flex; align-items: center; gap: .75rem;
+  margin-bottom: .75rem;
+  font-size: .64rem; font-weight: 500; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--white-72);
+}
+.bio-section-title::before {
+  content: ''; width: 1.4rem; height: 1px; background: var(--white-24);
+}
+.bio-timeline {
+  display: grid; gap: 1px;
+  margin: 1.8rem 0;
+  background: var(--white-24);
+  list-style: none;
+}
+.bio-timeline li {
+  display: grid; grid-template-columns: minmax(5.5rem, .28fr) minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1rem 0;
+  background: var(--sage-darker);
+}
+.bio-timeline time,
+.bio-timeline span {
+  padding-left: 1rem;
+  font-size: .68rem; font-weight: 500; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--white-72);
+}
+.bio-timeline p {
+  padding-right: 1rem;
+  font-size: .95rem; line-height: 1.45; color: var(--white);
+  text-wrap: pretty;
+}
+
+/* Duo capsule */
+.duo-capsule {
+  max-width: 1480px; margin: 0 auto;
+  padding: 2.7rem 2rem;
+  border-top: 1px solid var(--white-24);
+  display: grid; grid-template-columns: minmax(0, 1fr);
+}
+.duo-capsule-inner {
+  display: grid;
+  grid-template-columns: minmax(18rem, .75fr) minmax(0, 1fr);
+  gap: 1.8rem 2rem;
+  align-items: center;
+}
+.duo-capsule-kicker {
+  font-size: .62rem; font-weight: 500; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--white-72); margin-bottom: 1.1rem;
+  display: inline-flex; align-items: center; gap: .7rem;
+}
+.duo-capsule-kicker::before {
+  content:''; width: 1.6rem; height: 1px; background: var(--white-48);
+}
+.duo-capsule blockquote {
+  font-family: var(--sans); font-weight: 300;
+  font-size: clamp(1.25rem, 2vw, 1.9rem);
+  line-height: 1.22; letter-spacing: -0.018em;
+  color: var(--white); text-wrap: balance;
+}
+.duo-capsule blockquote em { font-style: normal; color: var(--white-72); }
+.duo-capsule blockquote footer {
+  margin-top: 1.2rem; font-size: .68rem; font-weight: 500;
+  letter-spacing: .24em; text-transform: uppercase; color: var(--white-72);
+}
+.duo-capsule blockquote footer cite { font-style: normal; }
+.duo-points {
+  list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px; background: var(--white-24); margin-top: 0; text-align: left;
+}
+.duo-points li {
+  background: var(--sage);
+  color: var(--white); font-size: .9rem; line-height: 1.45;
+}
+.duo-points li a {
+  display: block; height: 100%; padding: 1rem;
+  color: inherit; text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.duo-points li a:hover,
+.duo-points li a:focus-visible {
+  background: var(--sage-deep);
+  outline: 0;
+}
+.duo-points strong {
+  display: block; font-size: .64rem; font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--white-72); margin-bottom: .5rem;
+}
+
+/* Booking band */
+.booking-band { background: var(--ink); color: var(--white); padding: 2rem; }
+.booking-band-inner {
+  max-width: 1480px; margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 2rem; align-items: center;
+}
+.booking-cta {
+  display: inline-flex; align-items: center; justify-content: space-between;
+  min-height: 44px; font-size: .68rem; font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink); background: var(--white); text-decoration: none;
+  padding: 1rem 1.2rem; transition: background .25s, color .25s; gap: 1rem;
+}
+.booking-cta:hover { background: var(--sage); color: var(--white); }
+.booking-cta svg { flex-shrink: 0; }
+.booking-cta:focus-visible { outline: 2px solid var(--sage-soft); outline-offset: 2px; }
+
+/* Footer */
+#shared-footer footer {
+  background: var(--sage-deep); border-top: 1px solid var(--white-24); padding: 3rem 2rem 2rem;
+}
+.footer-inner {
+  max-width: 1480px; margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0,1fr) auto;
+  align-items: end; gap: 1.4rem 2.5rem;
+}
+.footer-booking {
+  grid-column: 1 / -1; display: grid;
+  grid-template-columns: minmax(0,1fr) auto; gap: 1.5rem;
+  align-items: end; padding-bottom: 2rem; border-bottom: 1px solid var(--white-24);
+}
+.footer-booking h2 {
+  font-size: clamp(2.2rem, 5vw, 5rem); font-weight: 500;
+  line-height: .95; letter-spacing: -0.025em; text-transform: uppercase;
+  color: var(--white); max-width: 14ch; text-wrap: balance;
+}
+.footer-cta {
+  color: var(--sage-darker); background: var(--white); border: 1px solid var(--white);
+  text-decoration: none; font-size: .68rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: .95rem 1.15rem; min-height: 44px;
+  display: inline-flex; align-items: center; gap: .8rem;
+  transition: background .2s, color .2s, border-color .2s; white-space: nowrap;
+}
+.footer-cta::after { content: ''; width: .85rem; height: 1px; background: currentColor; }
+.footer-cta:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.footer-nav { justify-self: end; }
+.footer-meta, .footer-legal { display: flex; gap: .55rem 1.2rem; flex-wrap: wrap; }
+.footer-logo {
+  display: grid; gap: .35rem; font-size: .82rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--white); text-decoration: none;
+}
+.footer-logo span {
+  font-size: .72rem; font-weight: 400; letter-spacing: .04em;
+  line-height: 1.45; text-transform: none; opacity: .72;
+}
+.footer-links { list-style: none; display: flex; gap: .3rem 1rem; flex-wrap: wrap; }
+.footer-links a, .footer-meta a, .footer-legal a {
+  color: var(--white-72); font-size: .64rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase; text-decoration: none;
+  display: inline-flex; align-items: center; min-height: 40px; transition: color .2s;
+}
+.footer-links a:hover, .footer-links a[aria-current="page"],
+.footer-meta a:hover, .footer-legal a:hover { color: var(--white); }
+.footer-links a[aria-current="page"] { text-decoration: underline; text-underline-offset: .35rem; }
+.footer-meta { justify-self: end; }
+.footer-legal { grid-column: 1; }
+.footer-copy { justify-self: end; font-size: .62rem; font-weight: 500; letter-spacing: .06em; color: var(--white-48); }
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Responsive */
+@media (max-width: 880px) {
+  .artist { min-height: 0; }
+  .booking-band-inner { justify-content: stretch; }
+  .hero { padding: calc(var(--nav-h) + 2rem) 1.4rem 1.2rem; }
+  .artist-body { padding-left: 1.4rem; padding-right: 1.4rem; }
+  .duo-capsule { padding: 3rem 1.4rem; }
+  .duo-capsule-inner { display: block; }
+  .artist-summary { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .next-links { grid-template-columns: 1fr; }
+  .duo-points { grid-template-columns: 1fr; }
+  .footer-inner, .footer-booking { grid-template-columns: 1fr; align-items: start; }
+  .footer-nav, .footer-meta, .footer-copy { justify-self: start; }
+  .footer-legal { grid-column: auto; }
+}
+@media (max-width: 560px) {
+  .artist-actions .p-action { flex: 1 1 auto; justify-content: center; }
+  .artist-actions .p-action::after { display: none; }
+  .hero-eyebrow { flex-direction: column; }
+  .hero-meta { text-align: left; }
+  .hero-media-label { left: 1rem; right: 1rem; bottom: 1rem; }
+  .bio-timeline li { grid-template-columns: 1fr; gap: .35rem; }
+  .bio-timeline time,
+  .bio-timeline span,
+  .bio-timeline p { padding: 0 1rem; }
+  .booking-cta { width: 100%; justify-content: space-between; }
+  #shared-footer footer { padding: 2.4rem 1.4rem calc(1.8rem + env(safe-area-inset-bottom, 0px)); }
+  .footer-booking { gap: 1rem; padding-bottom: 1.5rem; }
+  .footer-cta { justify-content: center; width: 100%; }
+  .footer-links, .footer-meta, .footer-legal { display: grid; grid-template-columns: 1fr; gap: .1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; transition-delay: 0s !important; }
+  .reveal { opacity: 1; transform: none; }
+  #cur-dot, #cur-ring { display: none; }
+}
+@media (max-width: 420px) {
+  .artist-summary { grid-template-columns: 1fr; }
+  .summary-item,
+  .summary-item:first-child {
+    border-left: 0; padding-left: 0;
+  }
+  .summary-item + .summary-item {
+    border-top: 1px solid var(--white-24);
+  }
+}
+@media (pointer: coarse) { #cur-dot, #cur-ring { display: none; } html, body, a, button { cursor: auto; } }
+</style>
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+<link rel="stylesheet" href="includes/tokens.css">
+<link rel="stylesheet" href="includes/nav.css">
+</head>
+<body>
+
+<div id="scroll-progress" aria-hidden="true"></div>
+<a class="skip-link" href="#content">Zum Inhalt springen</a>
+<div id="cur-dot" aria-hidden="true"></div>
+<div id="cur-ring" aria-hidden="true"></div>
+
+<div id="shared-nav"></div>
+<script src="includes/include.js" defer></script>
+
+<main id="content">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow reveal">
+    <div class="eyebrow-stack">
+      Das Ensemble<br><span>Duo ViA! — Konzertprofil</span>
+    </div>
+    <div class="hero-meta">
+      <b>Seit 2009</b>
+      Violine &amp; Akkordeon<br>Kammermusik ohne Grenzen
+    </div>
+  </div>
+  <h1 class="hero-display reveal">
+    <span class="line">DUO <span class="lt">ViA!</span></span>
+  </h1>
+  <p class="hero-sub reveal">Sinn Yang · Violine &nbsp;–&nbsp; Harald Oeler · Akkordeon</p>
+  <div class="hero-media reveal">
+    <img src="hero.webp" alt="Duo ViA! — Sinn Yang und Harald Oeler auf der Bühne" loading="eager" decoding="async" width="1600" height="1000">
+    <span class="hero-media-label">Kammermusikprofil · Violine und klassisches Akkordeon</span>
+  </div>
+</section>
+
+<!-- ENSEMBLE ARTICLE -->
+<article class="artist reveal" id="duo-via" aria-labelledby="duo-via-heading">
+  <div class="artist-body">
+    <div class="body-inner">
+      <div class="profile-primary">
+        <span class="p-kicker">Das Ensemble</span>
+        <h2 class="artist-name" id="duo-via-heading">Duo <em>ViA!</em></h2>
+        <p class="artist-byline">Violine &amp; Akkordeon — Kammermusik zwischen Barock und Tango.</p>
+        <div class="artist-summary" aria-label="Kurzprofil Duo ViA!">
+          <div class="summary-item"><span>Gründung</span><strong>2009</strong></div>
+          <div class="summary-item"><span>Besetzung</span><strong>Sinn Yang · Harald Oeler</strong></div>
+        </div>
+
+        <div class="bio-quote featured">
+          <p>Yang und Oeler spielen wie aufeinander eingeschworen — sie bilden nicht nur rhythmisch eine Einheit.</p>
+          <cite>NDR Kultur · Pressestimme</cite>
+        </div>
+      </div>
+
+      <div class="profile-detail">
+        <section class="bio-section" aria-labelledby="bio-debut">
+          <h3 class="bio-section-title" id="bio-debut">Debüt</h3>
+          <p class="artist-bio">Duo ViA! (Sinn Yang &amp; Harald Oeler) debütierte 2009 beim Festival „Heidelberger Frühling". Der Auftritt verband Vivaldis <em>I quattro stagioni</em> mit Astor Piazzollas <em>Las cuatro estaciones porteñas</em> und wurde zum Ausgangspunkt einer anhaltenden Konzerttätigkeit.</p>
+        </section>
+
+        <ol class="bio-timeline" aria-label="Stationen des Ensembles">
+          <li><time datetime="2009">2009</time><p>Debüt beim Heidelberger Frühling vor ausverkauftem Saal.</p></li>
+          <li><span>Bühnen</span><p>Konzerte unter anderem in der Würzburger Residenz, im Prinzregententheater München und im Teo Otto Theater Remscheid.</p></li>
+          <li><span>International</span><p>Tournee durch Südkorea mit Auftritt am Daejeon Arts Center, Festival „Opere" in Bracciano und Konzerte in Helsinki.</p></li>
+        </ol>
+
+        <section class="bio-section" aria-labelledby="bio-profile">
+          <h3 class="bio-section-title" id="bio-profile">Klangprofil</h3>
+          <p class="artist-bio">Violine und klassisches Akkordeon treten im Duo ViA! als gleichberechtigte kammermusikalische Stimmen auf. Die Eigenarrangements von Harald Oeler öffnen dem Ensemble ein Repertoire vom barocken Affekt bis zum argentinischen Tango.</p>
+        </section>
+        <p class="artist-bio">Eine vollständige Konzertliste finden Sie im <a class="text-link" href="konzerte.html#cal-archive">Konzertarchiv</a>.</p>
+
+        <div class="artist-actions">
+          <a class="p-action primary" href="mailto:booking@duovia.de?subject=Anfrage%20Duo%20ViA!">Duo ViA! buchen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          <a class="p-action" href="https://youtu.be/AJ6uhwH7-gI?si=9EyDyEvR9CdvExny" target="_blank" rel="noopener noreferrer">Trailer ansehen <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="8 5 19 12 8 19 8 5"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- DUO CAPSULE -->
+<section class="duo-capsule reveal">
+  <div class="duo-capsule-inner">
+    <span class="duo-capsule-kicker">Klang &amp; Repertoire</span>
+    <blockquote>
+      Zwei Instrumente, vier Jahrhunderte — Violine und klassisches Akkordeon
+      verschmelzen in Eigenarrangements von Harald Oeler zu einer gemeinsamen
+      Sprache. <em>Vom barocken Affekt bis zum argentinischen Tango.</em>
+    </blockquote>
+    <ul class="duo-points" aria-label="Duo ViA! Profil">
+      <li><a href="artists.html"><strong>Klang</strong>Violine und klassisches Akkordeon als gleichberechtigte kammermusikalische Stimmen.</a></li>
+      <li><a href="projects.html"><strong>Programme</strong>Eigenarrangierte Konzertformate vom Barock bis zu Tango und Gegenwart.</a></li>
+      <li><a href="presse.html#trailer"><strong>Video</strong>Trailer und Presseclips für einen direkten Eindruck von Klang und Auftritt ansehen.</a></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<div id="shared-footer"></div>
+
+<script>
+const sp = document.getElementById('scroll-progress');
+document.addEventListener('scroll', () => {
+  const max = document.body.scrollHeight - window.innerHeight;
+  sp.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + '%';
+}, { passive: true });
+
+const dot  = document.getElementById('cur-dot');
+const ring = document.getElementById('cur-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+const finePointer = window.matchMedia('(pointer: fine)').matches;
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (finePointer && !reducedMotion) {
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+  });
+  (function tick() {
+    rx += (mx - rx) * .13; ry += (my - ry) * .13;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(tick);
+  })();
+} else {
+  dot.style.display = 'none';
+  ring.style.display = 'none';
+}
+
+let menuOpen = false;
+let menuReturnFocus = null;
+let previousBodyOverflow = '';
+const navFocusables = () => Array.from(document.querySelectorAll('#nav-overlay a[href], #nav-overlay button:not([disabled])'));
+function setOverlayTabState(open) { navFocusables().forEach(el => open ? el.removeAttribute('tabindex') : el.setAttribute('tabindex','-1')); }
+function openMenu(){
+  const overlay = document.getElementById('nav-overlay');
+  const burger = document.getElementById('nav-burger');
+  if (!overlay || !burger) return;
+  menuOpen = true; menuReturnFocus = document.activeElement;
+  previousBodyOverflow = document.body.style.overflow;
+  document.body.style.overflow = 'hidden';
+  document.body.classList.add('nav-open');
+  overlay.setAttribute('aria-hidden','false');
+  burger.setAttribute('aria-expanded','true');
+  burger.setAttribute('aria-label','Navigation schließen');
+  setOverlayTabState(true);
+  setTimeout(() => { const target = overlay.querySelector('[aria-current="page"]') || navFocusables()[0]; if (target) target.focus(); }, 80);
+}
+function closeMenu(){
+  const overlay = document.getElementById('nav-overlay');
+  const burger = document.getElementById('nav-burger');
+  if (!overlay || !burger) return;
+  menuOpen = false; document.body.classList.remove('nav-open');
+  document.body.style.overflow = previousBodyOverflow;
+  overlay.setAttribute('aria-hidden','true');
+  burger.setAttribute('aria-expanded','false');
+  burger.setAttribute('aria-label','Navigation öffnen');
+  setOverlayTabState(false);
+  if (menuReturnFocus && document.contains(menuReturnFocus)) menuReturnFocus.focus({ preventScroll: true });
+}
+function toggleMenu(){ menuOpen ? closeMenu() : openMenu(); }
+window.toggleMenu = toggleMenu;
+setTimeout(() => setOverlayTabState(false), 0);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeMenu();
+  if (e.key !== 'Tab' || !menuOpen) return;
+  const focusables = navFocusables();
+  if (!focusables.length) return;
+  const first = focusables[0]; const last = focusables[focusables.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

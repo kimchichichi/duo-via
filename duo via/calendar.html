@@ -272,7 +272,6 @@ button:focus-visible {
 .nav-booking-item a {
   width: fit-content;
   padding: .12em .28em .2em;
-  border: 1px solid rgba(17,27,45,0.16);
 }
 .nav-links-main li:nth-child(1) a { transition-delay: .02s; }
 .nav-links-main li:nth-child(2) a { transition-delay: .09s; }
@@ -1536,14 +1535,14 @@ footer {
      NAVIGATION
 ───────────────────────────────────────── -->
 <header id="nav-bar">
-  <a href="landing.html" class="nav-logo" aria-label="Duo ViA! — Startseite">Duo <em>ViA!</em></a>
+  <a href="index.html" class="nav-logo" aria-label="Duo ViA! — Startseite">Duo <em>ViA!</em></a>
 
   <ul id="nav-quick">
     <li><a href="projects.html">Programme</a></li>
     <li><a href="artists.html">Künstler</a></li>
     <li><a href="presse.html">Presse</a></li>
     <li><a href="konzerte.html" aria-current="page">Konzerte</a></li>
-    <li><a href="mailto:booking@duovia.de">Booking</a></li>
+    <li><a href="booking.html">Booking</a></li>
   </ul>
 
     <div class="language-toggle" aria-label="Sprachauswahl">
@@ -1568,7 +1567,7 @@ footer {
     <li><a href="artists.html"><span class="nav-num">02</span><span class="nav-item-main">Künstler</span><em>Sinn Yang &amp; Harald Oeler</em></a></li>
     <li><a href="presse.html"><span class="nav-num">03</span><span class="nav-item-main">Presse</span><em>Fotos, Bio &amp; Pressematerial</em></a></li>
     <li><a href="konzerte.html" aria-current="page"><span class="nav-num">04</span><span class="nav-item-main">Konzerte</span><em>Termine &amp; Saison 2026/27</em></a></li>
-    <li class="nav-booking-item"><a href="mailto:booking@duovia.de"><span class="nav-num">05</span><span class="nav-item-main">Booking</span><em>booking@duovia.de</em></a></li>
+    <li class="nav-booking-item"><a href="booking.html"><span class="nav-num">05</span><span class="nav-item-main">Booking</span><em>booking@duovia.de</em></a></li>
   </ul>
 
   <hr class="nav-rule">
@@ -1891,7 +1890,7 @@ footer {
       <a class="footer-cta" href="mailto:booking@duovia.de">Booking anfragen</a>
     </div>
 
-    <a class="footer-logo" href="landing.html" aria-label="Duo ViA! — Startseite">
+    <a class="footer-logo" href="index.html" aria-label="Duo ViA! — Startseite">
       Duo ViA!
       <span>Sinn Yang, Violine · Harald Oeler, Akkordeon</span>
     </a>
@@ -2056,7 +2055,7 @@ revealEls.forEach(el=>io.observe(el));
 <script>
 (() => {
   const pageAliases = {
-    "landing.html": "home", "land.html": "home", "": "home",
+    "index.html": "home", "land.html": "home", "": "home",
     "projects.html": "programme", "projects.html": "programme", "projects draft.html": "programme",
     "artists.html": "artists", "artists1.html": "artists",
     "presse.html": "media", "presse.html": "media",

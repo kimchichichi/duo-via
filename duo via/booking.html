@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Buchung & Kontakt — Duo ViA!</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%235F716D'/%3E%3Ctext x='16' y='24' font-family='Helvetica%2CArial%2Csans-serif' font-size='14' font-weight='700' letter-spacing='1' text-anchor='middle' fill='white'%3EV%3C%2Ftext%3E%3C/svg%3E">
+<meta name="description" content="Konzertanfragen und Buchung für Duo ViA! — Sinn Yang (Violine) und Harald Oeler (Akkordeon). Für Festivals, Konzertreihen und Kulturhäuser.">
+<meta property="og:title" content="Buchung & Kontakt — Duo ViA!">
+<meta property="og:description" content="Konzertanfragen, EPK und Buchung für Duo ViA! — Sinn Yang (Violine) und Harald Oeler (Akkordeon). Antwort innerhalb von zwei Werktagen.">
+<meta property="og:image" content="https://duovia.de/hero.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#93A5A1">
+<link rel="canonical" href="https://duovia.de/booking.html">
+<link rel="alternate" hreflang="de" href="booking.html">
+
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS — SAGE THEME · HELVETICA
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sage:        #93A5A1;
+  --sage-deep:   #788B87;
+  --sage-darker: #5F716D;
+  --sage-soft:   #A8B7B3;
+  --sage-tint:   #C0CBC8;
+  --paper:       #EFEDE7;
+  --ink:         #1B2422;
+  --white:       #FFFFFF;
+  --white-92:    rgba(255,255,255,0.97);
+  --white-72:    rgba(255,255,255,0.78);
+  --white-48:    rgba(255,255,255,0.65);
+  --white-24:    rgba(255,255,255,0.24);
+  --rule:        rgba(255,255,255,0.22);
+
+  --sans:        'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --nav-h:       60px;
+  --ease:        cubic-bezier(0.65, 0, 0.35, 1);
+  --dur:         0.65s;
+  --maxw:        1480px;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+
+@keyframes bodyFadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bodyFadeOut { to { opacity: 0; } }
+@keyframes gShift {
+  0%  { transform: translate(0,0); }   25% { transform: translate(-2%,1%); }
+  50% { transform: translate(1%,-2%); } 75% { transform: translate(-1%,2%); }
+}
+
+body {
+  background: var(--sage);
+  color: var(--white);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  font-weight: 400;
+  animation: bodyFadeIn 0.32s ease forwards;
+}
+
+img { max-width: 100%; display: block; }
+
+/* ─── Grain ─────────────────────────────── */
+.grain {
+  position: fixed; inset: -50%; width: 200%; height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .038; pointer-events: none; z-index: 5000;
+  animation: gShift 7s steps(2) infinite;
+  mix-blend-mode: overlay;
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ═══════════════════════════════════════════
+   HERO HEADER
+═══════════════════════════════════════════ */
+.contact-hero {
+  padding: calc(var(--nav-h) + 5rem) max(3rem, env(safe-area-inset-right)) 3rem max(3rem, env(safe-area-inset-left));
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+
+.contact-overline {
+  font-family: var(--sans);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  margin-bottom: 1.8rem;
+}
+.contact-overline::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: var(--white-48);
+  flex-shrink: 0;
+}
+
+.contact-title {
+  font-family: var(--sans);
+  font-size: clamp(5rem, 14vw, 13rem);
+  font-weight: 500;
+  line-height: .88;
+  color: var(--white);
+  letter-spacing: -0.04em;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+}
+
+.contact-hero-rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+.contact-intro {
+  max-width: 60ch;
+  margin-top: 1.6rem;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--white-72);
+  font-weight: 300;
+  letter-spacing: .01em;
+}
+.contact-intro span {
+  display: block;
+}
+.contact-intro .artist-line {
+  color: var(--white);
+  font-weight: 400;
+}
+.contact-intro .request-line {
+  margin-top: .7rem;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin-top: 1.8rem;
+}
+.hero-action {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .85rem 1.4rem;
+  border: 1px solid var(--white);
+  color: var(--ink);
+  background: var(--white);
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.hero-action:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+/* ═══════════════════════════════════════════
+   TWO-COLUMN BODY
+═══════════════════════════════════════════ */
+.contact-body {
+  --rule: rgba(255,255,255,0.30);
+  max-width: min(var(--maxw), calc(100% - 6rem));
+  margin: 2rem auto 7rem;
+  padding: 4.5rem max(3rem, env(safe-area-inset-right)) 5rem max(3rem, env(safe-area-inset-left));
+  display: grid;
+  grid-template-columns: 38fr 62fr;
+  gap: 6rem;
+  align-items: start;
+  background: var(--sage-darker);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 28px 70px rgba(27,36,34,0.12);
+}
+
+/* ── Left: Info Panel ── */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  padding-top: .4rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.info-item:first-child { border-top: 1px solid var(--rule); }
+
+.info-label {
+  font-family: var(--sans);
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white-48);
+}
+
+.info-link {
+  font-family: var(--sans);
+  font-size: .92rem;
+  letter-spacing: .02em;
+  color: var(--white);
+  text-decoration: none;
+  display: inline-block;
+  width: fit-content;
+  position: relative;
+  transition: opacity .3s ease;
+}
+.info-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 0; height: 1px;
+  background: var(--white);
+  transition: width .4s var(--ease);
+}
+.info-link:hover { opacity: .65; }
+.info-link:hover::after { width: 100%; }
+
+.info-text {
+  font-family: var(--sans);
+  font-size: .92rem;
+  color: var(--white-72);
+  letter-spacing: .02em;
+}
+
+/* Formats block */
+.formats-block { margin-top: 3rem; }
+.formats-label {
+  font-family: var(--sans);
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  display: block;
+  margin-bottom: 1.2rem;
+}
+.formats-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.formats-list li {
+  font-family: var(--sans);
+  font-size: .88rem;
+  font-weight: 300;
+  letter-spacing: .03em;
+  color: var(--white-72);
+  padding: .65rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+}
+.formats-list li::before {
+  content: '';
+  width: .8rem;
+  height: 1px;
+  background: var(--rule);
+  flex-shrink: 0;
+}
+
+.booking-assurance {
+  margin-top: 2rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: .8rem 0;
+}
+.assurance-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .65rem;
+  color: var(--white-72);
+  font-family: var(--sans);
+  font-size: .82rem;
+  letter-spacing: .03em;
+  line-height: 1.65;
+  padding: .25rem 0;
+}
+.assurance-item svg { flex-shrink: 0; margin-top: .18rem; opacity: .65; }
+.booking-flow {
+  margin-top: 2rem;
+  border: 1px solid var(--rule);
+  padding: 1.2rem;
+}
+.booking-flow-title {
+  display: block;
+  margin-bottom: .75rem;
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.booking-flow ol {
+  list-style: none;
+  counter-reset: flow;
+  display: grid;
+  gap: .55rem;
+}
+.booking-flow li {
+  counter-increment: flow;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: .75rem;
+  align-items: start;
+  color: var(--white-72);
+  font-family: var(--sans);
+  font-size: .84rem;
+  line-height: 1.45;
+}
+.booking-flow li::before {
+  content: counter(flow, decimal-leading-zero);
+  color: var(--white);
+  font-size: .7rem;
+  letter-spacing: .12em;
+}
+
+/* ── Right: Form ── */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem;
+}
+
+.field {
+  position: relative;
+  margin-bottom: 1.7rem;
+}
+.field::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--rule);
+}
+.field::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--white);
+  transition: width .5s var(--ease);
+}
+.field:focus-within::after { width: 100%; }
+.field.has-error::after { width: 100%; background: #C86B55; }
+
+.field input,
+.field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 1.7rem 0 .5rem;
+  font-family: var(--sans);
+  font-size: .95rem;
+  letter-spacing: .02em;
+  color: var(--white);
+  -webkit-appearance: none;
+  appearance: none;
+  font-weight: 300;
+}
+.field textarea {
+  resize: none;
+  line-height: 1.7;
+  min-height: 140px;
+}
+
+.field label {
+  position: absolute;
+  top: 1.1rem; left: 0;
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--white-48);
+  pointer-events: none;
+  transform-origin: left top;
+  transition: transform .3s var(--ease), color .3s ease;
+}
+.field-error {
+  display: none;
+  margin-top: .4rem;
+  color: #E0A091;
+  font-family: var(--sans);
+  font-size: .75rem;
+  letter-spacing: .06em;
+}
+.field.has-error .field-error { display: block; }
+
+.field input:not(:placeholder-shown) ~ label,
+.field input:focus ~ label,
+.field textarea:not(:placeholder-shown) ~ label,
+.field textarea:focus ~ label {
+  transform: translateY(-1.15rem) scale(0.8);
+  color: var(--white);
+}
+
+.field--full { grid-column: 1 / -1; }
+
+.field select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 1.7rem 1.4rem .5rem 0;
+  font-family: var(--sans);
+  font-size: .95rem;
+  letter-spacing: .02em;
+  color: var(--white);
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  font-weight: 300;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23ffffff' fill-opacity='0.4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right .3rem center;
+  background-size: 8px 5px;
+}
+.field select option { background: var(--sage-darker); color: var(--white); }
+
+.field--select label { transform: translateY(-1.15rem) scale(0.8); }
+.field--select:focus-within label { color: var(--white); }
+.field--static-label label { transform: translateY(-1.15rem) scale(0.8); color: var(--white-48); }
+
+.form-footer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: .4rem;
+  flex-wrap: wrap;
+}
+.submit-note {
+  max-width: 34ch;
+  font-family: var(--sans);
+  font-size: .78rem;
+  line-height: 1.65;
+  letter-spacing: .04em;
+  color: var(--white-48);
+  font-weight: 300;
+}
+.submit-note a {
+  color: var(--white);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.submit-note a:hover { color: var(--white-72); }
+.form-required-note {
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  color: var(--white-48);
+  margin-bottom: 1.6rem;
+  font-weight: 300;
+}
+.form-required-note::before { content: '* Pflichtfelder · '; color: var(--white); }
+.response-note {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  margin-bottom: 1.1rem;
+  color: var(--white-72);
+  font-family: var(--sans);
+  font-size: .82rem;
+  letter-spacing: .03em;
+  line-height: 1.5;
+  font-weight: 300;
+}
+.response-note svg {
+  flex-shrink: 0;
+  opacity: .65;
+}
+.submit-mailto-note {
+  font-family: var(--sans);
+  font-size: .78rem;
+  letter-spacing: .03em;
+  line-height: 1.5;
+  color: var(--white-72);
+  margin-bottom: 1.6rem;
+  font-weight: 300;
+}
+
+.btn-submit {
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--white);
+  border-radius: 0;
+  padding: .9rem 2.6rem;
+  cursor: pointer;
+  transition: background .35s var(--ease), color .35s var(--ease),
+              border-color .35s var(--ease), transform .22s ease;
+}
+.btn-submit:hover {
+  background: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+.btn-submit:active { transform: translateY(0); }
+
+.field-hint {
+  display: block;
+  margin-top: .4rem;
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .02em;
+  color: var(--white-48);
+}
+
+#form-msg {
+  display: none;
+  font-family: var(--sans);
+  font-size: .82rem;
+  font-weight: 300;
+  letter-spacing: .08em;
+  color: var(--white);
+  margin-top: 1.6rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER (shared include styles)
+═══════════════════════════════════════════ */
+.site-footer {
+  background: var(--sage-deep);
+  border-top: 1px solid var(--white-24);
+  padding: 3rem max(2rem, env(safe-area-inset-right)) 2rem max(2rem, env(safe-area-inset-left));
+}
+.footer-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem 3rem;
+  align-items: end;
+}
+.footer-booking {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--white-24);
+  flex-wrap: wrap;
+}
+.footer-booking h2 {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--white);
+  max-width: 16ch;
+}
+.footer-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .9rem 1.3rem;
+  border: 1px solid var(--white);
+  background: var(--white);
+  color: var(--ink);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .2s, color .2s;
+}
+.footer-cta::after { content: '→'; font-size: .9rem; letter-spacing: 0; }
+.footer-cta:hover { background: var(--ink); color: var(--white); }
+.footer-logo {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+}
+.footer-logo span {
+  display: block;
+  font-weight: 400;
+  opacity: .62;
+  margin-top: .3rem;
+  letter-spacing: .1em;
+}
+.footer-links {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  color: var(--white-72);
+  font-size: .64rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-links a:hover { color: var(--white); }
+.footer-meta {
+  display: flex;
+  gap: 1.2rem;
+}
+.footer-meta a {
+  color: var(--white-72);
+  font-size: .64rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-meta a:hover { color: var(--white); }
+.footer-legal {
+  display: flex;
+  gap: 1.2rem;
+}
+.footer-legal a {
+  color: var(--white-48);
+  font-size: .64rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-legal a:hover { color: var(--white-72); }
+.footer-copy {
+  grid-column: 1 / -1;
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--white-48);
+}
+
+.booking-page .footer-booking {
+  display: none;
+}
+.mobile-booking { display: none; }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 960px) {
+  .contact-hero {
+    padding: calc(var(--nav-h) + 3.5rem) 2rem 2.5rem;
+  }
+  .contact-body {
+    max-width: calc(100% - 4rem);
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    padding: 3.5rem 2rem 4rem;
+  }
+  .contact-title { font-size: clamp(4rem, 17vw, 8rem); }
+  .field-row { grid-template-columns: 1fr; gap: 0; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-booking { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 600px) {
+  .contact-hero { padding: calc(var(--nav-h) + 2.5rem) 1.5rem 2rem; }
+  .contact-body {
+    max-width: calc(100% - 2rem);
+    margin-top: 1rem;
+    margin-bottom: 4rem;
+    padding: 2rem 1.25rem 3rem;
+  }
+  .contact-form { order: -1; }
+  .hero-actions { flex-direction: column; }
+  .hero-action { width: 100%; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .mobile-booking {
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    z-index: 900;
+    display: inline-flex;
+    justify-content: center;
+    padding: .9rem 1rem;
+    background: var(--white);
+    color: var(--ink);
+    text-decoration: none;
+    font-family: var(--sans);
+    font-size: .74rem;
+    font-weight: 500;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+}
+
+/* ─── Focus & motion ─────────────────────── */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  .grain { animation: none; }
+}
+</style>
+
+<link rel="stylesheet" href="includes/nav.css">
+</head>
+<body class="booking-page">
+
+<div class="grain" aria-hidden="true"></div>
+
+<div id="shared-nav"></div>
+
+<!-- ═══════════════════════════════════════
+     CONTACT HERO
+═══════════════════════════════════════ -->
+<div class="contact-hero reveal">
+  <span class="contact-overline">Buchung &amp; Kontakt</span>
+  <h1 class="contact-title">Buchung</h1>
+  <hr class="contact-hero-rule">
+
+</div>
+
+<!-- ═══════════════════════════════════════
+     CONTACT BODY
+═══════════════════════════════════════ -->
+<div class="contact-body">
+
+  <!-- Left: Info staggered list -->
+  <aside id="contact-info" class="contact-info reveal">
+
+    <div class="info-item">
+      <span class="info-label">E-Mail</span>
+      <a href="mailto:booking@duovia.de" class="info-link">booking@duovia.de</a>
+    </div>
+
+    <div class="info-item">
+      <span class="info-label">Künstler</span>
+      <span class="info-text">Sinn Yang · Violine</span>
+      <span class="info-text">Harald Oeler · Akkordeon</span>
+      <a href="https://www.sinnyang.com" target="_blank" rel="noopener" class="info-link">sinnyang.com</a>
+      <a href="https://www.haraldoeler.com" target="_blank" rel="noopener" class="info-link">haraldoeler.com</a>
+    </div>
+
+    <div class="info-item">
+      <span class="info-label">Presse &amp; EPK</span>
+      <a href="presse.html" class="info-link">Pressebereich &amp; Materialien</a>
+    </div>
+
+    <div class="formats-block">
+      <span class="formats-label">Formate</span>
+      <ul class="formats-list">
+        <li>30–45 Min.</li>
+        <li>60 Min.</li>
+        <li>90 Min.</li>
+        <li>Vermittlung / Familie</li>
+      </ul>
+    </div>
+
+    <div class="booking-flow" aria-label="Ablauf einer Buchung">
+      <span class="booking-flow-title">Ablauf</span>
+      <ol>
+        <li>Anfrage mit Termin, Ort und Format senden</li>
+        <li>Programm, Dauer und Rahmenbedingungen abstimmen</li>
+        <li>EPK, Pressefotos und technischen Rider erhalten</li>
+        <li>Vertrag und technische Details finalisieren</li>
+      </ol>
+    </div>
+
+    <div class="info-item">
+      <span class="info-label">Standort</span>
+      <span class="info-text">Deutschland</span>
+    </div>
+
+  </aside>
+
+  <!-- Right: Form -->
+  <form id="booking-form" class="contact-form reveal" onsubmit="submitForm(event)" novalidate method="POST">
+    <p class="response-note">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Antwort meist innerhalb von zwei Werktagen.
+    </p>
+    <p class="submit-mailto-note">Öffnet eine vorbereitete E-Mail.</p>
+    <p class="form-required-note">Name, E-Mail und Nachricht sind erforderlich.</p>
+
+    <div class="field-row">
+      <div class="field">
+        <input type="text" id="f-name" name="name" placeholder=" " autocomplete="name" required>
+        <label for="f-name">Name / Institution *</label>
+        <span class="field-error">Bitte Namen oder Institution eintragen.</span>
+      </div>
+      <div class="field">
+        <input type="email" id="f-email" name="email" placeholder=" " autocomplete="email" required>
+        <label for="f-email">E-Mail *</label>
+        <span class="field-error">Bitte eine gültige E-Mail eintragen.</span>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field field--static-label">
+        <input type="text" id="f-date" name="date" placeholder="Oktober 2026 oder flexibel" inputmode="text" autocomplete="off">
+        <label for="f-date">Datum / Zeitraum (optional)</label>
+      </div>
+      <div class="field">
+        <input type="text" id="f-venue" name="venue" placeholder=" " autocomplete="organization">
+        <label for="f-venue">Veranstaltungsort (optional)</label>
+      </div>
+    </div>
+
+    <div class="field field--full">
+      <textarea id="f-msg" name="message" placeholder=" " rows="4" required></textarea>
+      <label for="f-msg">Nachricht *</label>
+      <span class="field-hint">Kurze Beschreibung des Anlasses, ca. 3–5 Sätze</span>
+      <span class="field-error">Bitte kurz Anlass, Ort oder Frage beschreiben.</span>
+    </div>
+
+    <div class="form-footer">
+      <button type="submit" class="btn-submit">E-Mail vorbereiten</button>
+      <span class="submit-note">Oder direkt an <a href="mailto:booking@duovia.de">booking@duovia.de</a></span>
+    </div>
+
+    <p id="form-msg" role="status" aria-live="polite"></p>
+  </form>
+
+</div>
+
+<div id="shared-footer"></div>
+<a class="mobile-booking" href="mailto:booking@duovia.de?subject=Buchungsanfrage%20Duo%20ViA%21&body=Name%20%2F%20Institution%3A%0ADatum%20%2F%20Zeitraum%3A%0AVeranstaltungsort%3A%0AProgramm%20%2F%20Format%3A%0APublikumsgr%C3%B6%C3%9Fe%3A%0A%0ANachricht%3A">E-Mail an Buchung</a>
+
+<!-- SCRIPTS -->
+<script>
+/* FORM */
+function submitForm(e) {
+  e.preventDefault();
+  const msg = document.getElementById('form-msg');
+  const btn = e.target.querySelector('.btn-submit');
+  const required = [
+    document.getElementById('f-name'),
+    document.getElementById('f-email'),
+    document.getElementById('f-msg')
+  ];
+  let valid = true;
+  required.forEach(field => {
+    const ok = field.checkValidity() && field.value.trim().length > 0;
+    field.closest('.field').classList.toggle('has-error', !ok);
+    if (!ok) valid = false;
+  });
+  if (!valid) {
+    msg.style.display = 'block';
+    msg.textContent = 'Bitte die markierten Pflichtfelder ausfüllen.';
+    e.target.querySelector('.has-error input, .has-error textarea')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  const f = {
+    name:      document.getElementById('f-name').value,
+    email:     document.getElementById('f-email').value,
+    date:      document.getElementById('f-date').value,
+    venue:     document.getElementById('f-venue').value,
+    message:   document.getElementById('f-msg').value
+  };
+  const body = [
+    `Name / Institution: ${f.name}`,
+    `E-Mail: ${f.email}`,
+    `Datum / Zeitraum: ${f.date}`,
+    `Veranstaltungsort: ${f.venue}`,
+    'Programm / Format:',
+    'Publikumsgröße:',
+    'Technische Rahmenbedingungen:',
+    '',
+    f.message
+  ].filter(l => l !== null).join('\n');
+  window.location.href = `mailto:booking@duovia.de?subject=${encodeURIComponent('Buchungsanfrage Duo ViA!')}&body=${encodeURIComponent(body)}`;
+  msg.style.display = 'block';
+  msg.textContent = 'E-Mail vorbereitet. Falls sich kein Mailprogramm öffnet: booking@duovia.de';
+  btn.textContent = 'Mail erneut öffnen';
+}
+document.querySelectorAll('.contact-form input, .contact-form textarea').forEach(field => {
+  field.addEventListener('input', () => {
+    if (field.checkValidity() && field.value.trim().length > 0) {
+      field.closest('.field').classList.remove('has-error');
+    }
+  });
+});
+
+/* PAGE TRANSITIONS */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('a[href]').forEach(a => {
+    try {
+      const url = new URL(a.href, location.href);
+      if (url.hostname !== location.hostname) return;
+      if (a.target === '_blank') return;
+      if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const dest = a.href;
+        document.body.style.animation = 'bodyFadeOut 0.28s ease forwards';
+        setTimeout(() => { location.href = dest; }, 280);
+      });
+    } catch(_) {}
+  });
+});
+
+/* SCROLL REVEAL */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+</script>
+<script src="includes/include.js"></script>
+
+</body>
+</html>

@@ -11,31 +11,14 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://duovia.de/projects.html">
+<link rel="stylesheet" href="includes/tokens.css">
 <style>
-/* ═══════════════════════════════════════════
-   TOKENS — SAGE THEME · HELVETICA
-═══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-  --sage:        #93A5A1;
-  --sage-deep:   #788B87;
-  --sage-darker: #5F716D;
-  --sage-soft:   #A8B7B3;
-  --sage-tint:   #C0CBC8;
-  --paper:       #EFEDE7;
-  --ink:         #1B2422;
-  --white:       #FFFFFF;
-  --muted-white: rgba(255,255,255,0.94);
-  --accent:      #5F716D;
-  --white-72:    rgba(255,255,255,0.78);
-  --white-48:    rgba(255,255,255,0.52);
-  --white-24:    rgba(255,255,255,0.24);
-  --rule:        rgba(255,255,255,0.28);
-
-  --sans:        'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  --nav-h:       60px;
-  --ease:        cubic-bezier(0.65, 0, 0.35, 1);
+#scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+  background: var(--white); z-index: 900; pointer-events: none;
+  transition: width .08s linear;
 }
 
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -217,7 +200,6 @@ body {
 .nav-booking-item a {
   width: fit-content;
   padding: .18em .34em .24em;
-  border: 1px solid var(--white-24);
 }
 .nav-overlay-footer {
   display: flex; flex-wrap: wrap; gap: 1rem 1.6rem;
@@ -358,18 +340,18 @@ body {
   gap: 1.2rem;
   align-items: center;
   transition: background .2s, padding .26s var(--ease);
-  filter: grayscale(60%) brightness(0.88);
+  filter: grayscale(60%) brightness(0.55);
 }
 /* individual background images */
 .choice:nth-child(1) {
-  background-image: url("hero.webp");
-  background-position: center 60%;
+  background-image: url("image/duo\ via\ 1.webp");
+  background-position: center 45%;
 
 }
 .choice:nth-child(2) {
   /* TODO: replace with programme-2 photo when available */
   background-image: url("hero.webp");
-  background-position: center 40%;
+  background-position: center 65%;
 }
 
 .choice:hover,
@@ -380,7 +362,9 @@ body {
 }
 
 .choice.trailer-choice {
-  background: var(--sage);
+  background:
+    linear-gradient(rgba(27,36,34,0.16), rgba(27,36,34,0.34)),
+    url('image/duo via trailer.webp') center / cover;
 }
 .choice-play {
   width: 60px;
@@ -538,9 +522,22 @@ body {
   font-size: 1rem;
   line-height: 1.55;
   color: var(--white);
-  max-width: 58ch;
+  max-width: 54ch;
   text-wrap: pretty;
   margin-bottom: 2rem;
+}
+.p-desc-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+  margin-bottom: 2rem;
+}
+.p-desc-cols .p-desc {
+  max-width: none;
+  margin-bottom: 0;
+}
+.p-desc + .p-desc {
+  margin-top: -1rem;
 }
 .programme-fit {
   display: flex;
@@ -611,26 +608,6 @@ body {
   background: rgba(255,255,255,0.07);
   padding-inline: .5rem;
 }
-.werkfolge.spotify-linked li {
-  grid-template-columns: 2.2rem 1fr auto 5.2rem;
-}
-.werkfolge.spotify-linked li::after {
-  content: 'Anhören';
-  justify-self: end;
-  color: var(--white-48);
-  font-size: .68rem;
-  font-weight: 500;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  transform: translateY(-1px);
-  transition: color .15s, transform .15s;
-}
-.werkfolge.spotify-linked li:hover::after,
-.werkfolge.spotify-linked li:focus-visible::after,
-.werkfolge.spotify-linked li.now-playing::after {
-  color: var(--white);
-  transform: translateY(-1px) scale(1.12);
-}
 .werkfolge li::before {
   content: counter(werk, decimal-leading-zero);
   font-weight: 500;
@@ -641,7 +618,7 @@ body {
 }
 .werk-piece { line-height: 1.35; font-weight: 400; }
 .werk-piece i { font-style: italic; opacity: .9; }
-.werkfolge.spotify-linked li:focus-visible {
+.werkfolge li:focus-visible {
   outline: 1px solid var(--white);
   outline-offset: 4px;
 }
@@ -817,7 +794,7 @@ body {
   min-height: 100%;
   background:
     linear-gradient(rgba(27,36,34,0.16), rgba(27,36,34,0.34)),
-    url('https://img.youtube.com/vi/AJ6uhwH7-gI/maxresdefault.jpg') center / cover;
+    url('image/duo via trailer.webp') center / cover;
 }
 .trailer-play {
   position: absolute;
@@ -1681,11 +1658,9 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
 @media (pointer: coarse) { #cur-dot, #cur-ring { display: none; } html, body, a, button { cursor: auto; } }
 
 /* ─── Improvements ─────────────────────────── */
-.chooser .choice.is-active { filter: grayscale(0%); box-shadow: inset 0 -2px 0 var(--white); }
+.chooser .choice.is-active { box-shadow: inset 0 -2px 0 var(--white); }
 .choice-play svg { display: block; }
 .chooser.is-sticky .choice-play svg { width: 18px; height: 18px; }
-.werkfolge li.piazzolla .werk-piece { color: var(--sage-tint); }
-.werkfolge li.piazzolla::before { opacity: .65; }
 .skip-link {
   position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
 }
@@ -1701,6 +1676,7 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
 </head>
 <body>
 
+<div id="scroll-progress" aria-hidden="true"></div>
 <a class="skip-link" href="#content">Zum Inhalt springen</a>
 <div id="cur-dot" aria-hidden="true"></div>
 <div id="cur-ring" aria-hidden="true"></div>
@@ -1710,7 +1686,7 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
 <script src="includes/include.js" defer></script>
 
 <div id="programme-sticky-cta" aria-label="Schnelle Aktionen für 8 Jahreszeiten">
-  <a href="mailto:booking@duovia.de?subject=Booking%20Duo%20ViA%21%20-%208%20Jahreszeiten" data-event="sticky_booking_click" data-programme="eight-seasons">8 Jahreszeiten anfragen</a>
+  <a href="mailto:booking@duovia.de?subject=Buchungsanfrage%20Duo%20ViA%21%20-%208%20Jahreszeiten&body=Programm%3A%208%20Jahreszeiten%0AGew%C3%BCnschtes%20Datum%20%2F%20Zeitraum%3A%0AVeranstaltungsort%3A%0APublikumsgr%C3%B6%C3%9Fe%3A%0AGew%C3%BCnschtes%20Format%3A%2045%20%2F%2060%20%2F%2090%20Min.%0ATechnische%20Rahmenbedingungen%3A%0A%0ANachricht%3A" data-event="sticky_booking_click" data-programme="eight-seasons">8 Jahreszeiten anfragen</a>
   <button type="button" data-trailer-trigger data-event="sticky_trailer_open" data-programme="eight-seasons">Trailer ansehen</button>
 </div>
 
@@ -1739,7 +1715,9 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
     </div>
     <div>
       <div class="hero-intro-label">Intro</div>
-      <p class="hero-intro">Duo ViA! verbindet musikalische Epochen und Kulturen in eigenarrangierten Werken für Violine und klassisches Akkordeon — Barock trifft Tango, Sonett trifft Bandoneon-Poesie.</p>
+      <p class="hero-intro">Neue Klangwelten entdecken — ein Ziel, das sich mit der außergewöhnlichen Besetzung aus Violine und Akkordeon spielerisch erreichen lässt.
+
+      </p>
     </div>
   </div>
 </section>
@@ -1785,11 +1763,11 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
 <article class="programme reveal" id="eight-seasons">
   <div class="p-num">01</div>
   <aside class="p-aside">
-    <div class="p-aside-row recommended">Empfohlen<b>90 Min</b></div>
     <div class="p-aside-row">Dauer<b>45 / 60 / 90 Min</b></div>
-    <div class="p-aside-row">Besetzung<b>Violine &amp; Akkordeon</b></div>
-    <div class="p-aside-row">Moderation<b>DE / EN</b></div>
-    <div class="p-aside-row">Repertoire<b>16 Werke</b></div>
+    <div class="p-aside-row">Ideal für<b>Festivals · Kammermusikreihen</b></div>
+    <div class="p-aside-row">Publikum<b>Klassik · Tango · Familie</b></div>
+    <div class="p-aside-row">Technik<b>Akustisch / Mikrofonierung ab großen Sälen</b></div>
+    <div class="p-aside-row recommended">Format<b>Empfohlen 90 Min · DE / EN</b></div>
   </aside>
   <div class="p-main">
     <span class="p-kicker">Hauptprogramm · Vivaldi · Piazzolla</span>
@@ -1799,7 +1777,9 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
       </button>
     </h2>
     <p class="p-byline">Vier Sonette aus Venedig — vier Tangos aus Buenos Aires.</p>
-    <p class="p-desc">Die kontrastreichen Klangwelten Vivaldis und Piazzollas vereinen sich in originellen Eigenarrangements für Violine und klassisches Akkordeon. Intime Kammermusik, die vertraute Melodien in überraschender Klangfarbe neu erfahrbar macht.</p>
+    <div class="p-desc-cols">
+      <p class="p-desc">Duo ViA!s CD der »8 Jahreszeiten« von Vivaldi und Piazzolla erschien 2014 bei OehmsClassics und erhielt begeisterte Kritiken. Duo ViA! (Sinn Yang & Harald Oeler) debütierte 2009 mit dem Programm Jahreszeiten beim Festival „Heidelberger Frühling”. Es erforderte damals eine Menge Mut, sich dem Publikum mit einem der wohl populärsten und meistgespielten Werke der Klassik, den I quattro stagioni von Vivaldi in Kombination mit Astor Piazzollas Las cuatro portenas vor ausverkauftem Saal zu präsentieren. Für das Duo war und ist dieses Programm Jahreszeiten ein Experiment und Wagnis.</p>
+    </div>
     <div class="programme-fit" aria-label="Geeignete Kontexte">
       <span class="fit-chip">Festival</span>
       <span class="fit-chip">Kammermusikreihe</span>
@@ -1858,17 +1838,17 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
 <article class="programme reveal" id="one-world">
   <div class="p-num">02</div>
   <aside class="p-aside">
-    <div class="p-aside-row recommended">Empfohlen<b>60 Min</b></div>
     <div class="p-aside-row">Dauer<b>60 / 90 Min</b></div>
-    <div class="p-aside-row">Besetzung<b>Violine &amp; Akkordeon</b></div>
     <div class="p-aside-row">Ideal für<b>Festivals · Kulturhäuser</b></div>
-    <div class="p-aside-row">Repertoire<b>6 Werke</b></div>
+    <div class="p-aside-row">Publikum<b>Crossover · Education · Themenreihen</b></div>
+    <div class="p-aside-row">Technik<b>Akustisch / Mikrofonierung nach Raum</b></div>
+    <div class="p-aside-row recommended">Format<b>Empfohlen 60 Min · mit Werkeinführung</b></div>
   </aside>
   <div class="p-main">
     <span class="p-kicker">Erweitert · Vivaldi · Piazzolla · Oeler</span>
     <h2 class="p-title" lang="en">Four Seasons<em>One World</em></h2>
     <p class="p-byline">Vier Klimazonen — ein Dialog der Kulturen.</p>
-    <p class="p-desc">Europäische Barocktraditionen begegnen dem Tango argentino und zeitgenössischen Kompositionen von Harald Oeler — ideal für interkulturelle Festivalprogramme und thematische Kulturreihen.</p>
+    <p class="p-desc">Im Programm „Four Seasons – One World“ vereint das Duo Musik aus verschiedenen Kulturen mit ihren ursprünglichen musikalischen Traditionen. Die vier Jahreszeiten erklingen in unterschiedlichen Musikstilen und werden von Violine und Akkordeon lebendig interpretiert – klassisch, modern und klanglich vielseitig zugleich. Von Barock-klassisch über Jazz-Bebop, Klezmer, Tango Nuevo, New Musette bis hin zur Orientalischen Melodie: Jedes Werk öffnet ein Fenster in eine andere Kultur und im Konzert verbinden sich die Einzigartigkeiten zu einem harmonischen Ganzen. So entsteht eine musikalische Reise, die Grenzen überwindet und die Welt in ihren Jahreszeiten hörbar macht. </p>
     <div class="programme-fit" aria-label="Geeignete Kontexte">
       <span class="fit-chip">Festival</span>
       <span class="fit-chip">Kulturhaus</span>
@@ -1918,7 +1898,6 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
       <blockquote class="press-quote-text">Hier haben sich zwei Interpreten außergewöhnlichen Ranges zusammengefunden, um Altbewährtes in neuem Gewande und auf höchstem Niveau vorzustellen.</blockquote>
     </li>
   </ul>
-  <button class="list-toggle" type="button" aria-expanded="false" aria-controls="press-quotes-list">Mehr Pressestimmen</button>
 </section>
 
 
@@ -1945,15 +1924,15 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
       </div>
     </div>
     <aside class="booking">
-      <span class="booking-small">Booking</span>
+      <span class="booking-small">Buchung</span>
       <h4>Erleben Sie Duo ViA! auf Ihrer Bühne</h4>
-      <a href="mailto:booking@duovia.de" class="booking-cta">
+      <a href="mailto:booking@duovia.de?subject=Buchungsanfrage%20Duo%20ViA%21&body=Programm%3A%0AGew%C3%BCnschtes%20Datum%20%2F%20Zeitraum%3A%0AVeranstaltungsort%3A%0APublikumsgr%C3%B6%C3%9Fe%3A%0AGew%C3%BCnschtes%20Format%3A%0ATechnische%20Rahmenbedingungen%3A%0A%0ANachricht%3A" class="booking-cta">
         Verfügbarkeit anfragen
         <span class="arrow"></span>
       </a>
       <div class="booking-contact">
         Antwort innerhalb von 48 Stunden.<br>
-        <a href="mailto:booking@duovia.de"><span class="__cf_email__" data-cfemail="52303d3d393b3c351236273d243b337c313d3f">[email&#160;protected]</span></a>
+        <a href="mailto:booking@duovia.de">booking@duovia.de</a>
       </div>
     </aside>
   </div>
@@ -1979,7 +1958,13 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
   <iframe id="spotify-iframe" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify Vorschau"></iframe>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+const sp = document.getElementById('scroll-progress');
+document.addEventListener('scroll', () => {
+  const max = document.body.scrollHeight - window.innerHeight;
+  sp.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + '%';
+}, { passive: true });
+
 const dot  = document.getElementById('cur-dot');
 const ring = document.getElementById('cur-ring');
 let mx = 0, my = 0, rx = 0, ry = 0;

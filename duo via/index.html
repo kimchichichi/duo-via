@@ -12,9 +12,9 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1B2422">
-<link rel="canonical" href="https://duovia.de/landing.html">
+<link rel="canonical" href="https://duovia.de/index.html">
 <link rel="preload" as="image" href="hero.webp">
-<link rel="alternate" hreflang="de" href="landing.html">
+<link rel="alternate" hreflang="de" href="index.html">
 
 <style>
 /* ═══════════════════════════════════════════
@@ -90,6 +90,19 @@ body {
   object-position: center 28%;
   filter: grayscale(100%) contrast(1.08) brightness(0.84);
 }
+.hero-caption {
+  position: fixed;
+  right: max(1.5rem, env(safe-area-inset-right));
+  bottom: 1.25rem;
+  z-index: 3;
+  color: rgba(245,241,232,.72);
+  font-family: var(--sans);
+  font-size: .64rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-align: right;
+}
 
 .hero-overlay {
   position: fixed; inset: 0; z-index: 1;
@@ -161,6 +174,14 @@ body {
 }
 #nav-logo:hover { color: var(--sage); }
 #nav-logo span { font-weight: 400; opacity: .7; }
+#nav-logo .home-mark {
+  margin-left: .75rem;
+  padding-left: .75rem;
+  border-left: 1px solid var(--white-24);
+  font-size: .62rem;
+  letter-spacing: .18em;
+  opacity: 1;
+}
 
 #nav-quick {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
@@ -635,7 +656,7 @@ a:focus-visible, button:focus-visible {
 </style>
 <link rel="stylesheet" href="includes/nav.css">
 </head>
-<body>
+<body data-page="home">
 
 <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
 
@@ -649,12 +670,13 @@ a:focus-visible, button:focus-visible {
 <!-- B&W HERO BACKGROUND -->
 <figure class="hero-bg">
   <img src="hero.webp" alt="Sinn Yang mit Violine und Harald Oeler mit Akkordeon auf der Bühne">
+  <figcaption class="hero-caption">Duo ViA! · Sinn Yang &amp; Harald Oeler</figcaption>
 </figure>
 <div class="hero-overlay" aria-hidden="true"></div>
 
 <!-- NAV BAR -->
 <header id="nav-bar">
-  <a href="landing.html" id="nav-logo" aria-label="Duo ViA! — Startseite">Duo <span>ViA!</span></a>
+  <a href="index.html" id="nav-logo" aria-label="Duo ViA! — Startseite" aria-current="page">Duo <span>ViA!</span><span class="home-mark">Start</span></a>
 
   <nav aria-label="Hauptnavigation">
     <ul id="nav-quick">
@@ -662,7 +684,7 @@ a:focus-visible, button:focus-visible {
       <li><a href="artists.html">Künstler</a></li>
       <li><a href="presse.html">Presse</a></li>
       <li><a href="konzerte.html">Konzerte</a></li>
-      <li><a href="mailto:booking@duovia.de">Booking</a></li>
+      <li><a href="booking.html">Buchung</a></li>
     </ul>
   </nav>
 
@@ -684,7 +706,7 @@ a:focus-visible, button:focus-visible {
     <li><a href="artists.html"><span class="nav-sub">02 /</span><span class="nav-item-main">Künstler</span><span class="nav-item-desc">Sinn Yang &amp; Harald Oeler</span></a></li>
     <li><a href="presse.html"><span class="nav-sub">03 /</span><span class="nav-item-main">Presse</span><span class="nav-item-desc">Fotos, Bio &amp; Pressematerial</span></a></li>
     <li><a href="konzerte.html"><span class="nav-sub">04 /</span><span class="nav-item-main">Konzerte</span><span class="nav-item-desc">Termine &amp; Saison 2026/27</span></a></li>
-    <li class="nav-booking-item"><a href="mailto:booking@duovia.de"><span class="nav-sub">05 /</span><span class="nav-item-main">Booking</span><span class="nav-item-desc">booking@duovia.de</span></a></li>
+    <li class="nav-booking-item"><a href="booking.html"><span class="nav-sub">05 /</span><span class="nav-item-main">Buchung</span><span class="nav-item-desc">booking@duovia.de</span></a></li>
   </ul>
   <div class="nav-overlay-footer">
     <a href="mailto:booking@duovia.de">booking@duovia.de</a>
@@ -736,7 +758,7 @@ a:focus-visible, button:focus-visible {
 
       <div class="foot-actions">
         <a class="foot-action primary" href="projects.html">Programme ansehen</a>
-        <a class="foot-action secondary" href="mailto:booking@duovia.de">Booking anfragen</a>
+        <a class="foot-action secondary" href="mailto:booking@duovia.de?subject=Buchungsanfrage%20Duo%20ViA%21&body=Name%20%2F%20Institution%3A%0ADatum%20%2F%20Zeitraum%3A%0AVeranstaltungsort%3A%0AProgramm%20%2F%20Format%3A%0APublikumsgr%C3%B6%C3%9Fe%3A%0A%0ANachricht%3A">Buchung anfragen</a>
       </div>
 
       <blockquote class="foot-quote">
@@ -832,7 +854,7 @@ document.addEventListener('click', e => {
 
 /* ACTIVE PAGE */
 const pageAliases = {
-  'landing.html': 'home', '': 'home',
+  'index.html': 'home', '': 'home',
   'projects.html': 'programme',
   'artists.html': 'artists',
   'presse.html': 'media',

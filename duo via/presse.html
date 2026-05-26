@@ -11,32 +11,9 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://duovia.de/presse.html">
+<link rel="stylesheet" href="includes/tokens.css">
 <style>
-/* ═══════════════════════════════════════════
-   TOKENS — SAGE THEME · HELVETICA  (matches site)
-═══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --sage:        #93A5A1;
-  --sage-deep:   #788B87;
-  --sage-darker: #5F716D;
-  --sage-soft:   #A8B7B3;
-  --sage-tint:   #C0CBC8;
-  --paper:       #EFEDE7;
-  --ink:         #1B2422;
-  --white:       #FFFFFF;
-  --white-72:    rgba(255,255,255,0.78);
-  --white-48:    rgba(255,255,255,0.52);
-  --white-24:    rgba(255,255,255,0.24);
-  --white-12:    rgba(255,255,255,0.12);
-  --rule:        rgba(255,255,255,0.28);
-
-  --sans:        'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  --nav-h:       60px;
-  --ease:        cubic-bezier(0.65, 0, 0.35, 1);
-  --maxw:        1480px;
-}
 
 html { scroll-behavior: smooth; font-size: 16px; }
 
@@ -199,7 +176,6 @@ body {
 .nav-booking-item a {
   width: fit-content;
   padding: .18em .34em .24em;
-  border: 1px solid var(--white-24);
 }
 .nav-overlay-footer {
   display: flex; flex-wrap: wrap; gap: 1rem 1.6rem;
@@ -314,6 +290,13 @@ body {
   letter-spacing: .22em; text-transform: uppercase;
   transition: background .2s, color .2s, border-color .2s;
 }
+.hero-button[disabled],
+.kit-cta[disabled],
+.kit-card[disabled],
+.foto-request[disabled],
+.contact-action[disabled] {
+  font: inherit;
+}
 .hero-button {
   background: var(--white);
   color: var(--ink);
@@ -326,13 +309,22 @@ body {
 .kit-cta.is-disabled,
 .kit-card.is-disabled,
 .foto-request.is-disabled,
-.contact-action.is-disabled {
+.contact-action.is-disabled,
+.hero-button[disabled],
+.kit-cta[disabled],
+.kit-card[disabled],
+.foto-request[disabled],
+.contact-action[disabled] {
   cursor: not-allowed;
 }
 .hero-button.is-disabled,
 .kit-cta.is-disabled,
 .foto-request.is-disabled,
-.contact-action.is-disabled {
+.contact-action.is-disabled,
+.hero-button[disabled],
+.kit-cta[disabled],
+.foto-request[disabled],
+.contact-action[disabled] {
   opacity: 1;
 }
 .hero-button.is-disabled:hover,
@@ -390,10 +382,39 @@ body {
   margin-top: 1.5rem;
 }
 .kit-summary {
-  display: none;
+  display: block;
   color: var(--white);
   font-size: .9rem;
   line-height: 1.45;
+}
+.press-essentials {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--white-12);
+  border: 1px solid var(--white-24);
+}
+.press-essential {
+  background: rgba(255,255,255,.035);
+  padding: .9rem .85rem;
+}
+.press-essential dt {
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--white-48);
+  margin-bottom: .35rem;
+}
+.press-essential dd {
+  font-size: .88rem;
+  line-height: 1.35;
+  color: var(--white);
+}
+.press-essential dd a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--white-24);
 }
 .kit-stat {
   padding: 1.15rem 0;
@@ -463,50 +484,26 @@ body {
   backdrop-filter: blur(16px);
 }
 .index-inner {
-  display: grid;
-  grid-template-columns: 220px repeat(4, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 0;
 }
-.index-label {
-  padding: 1rem 1.2rem 1rem 0;
-  font-size: .66rem; font-weight: 500;
-  letter-spacing: .2em; text-transform: uppercase;
-  color: var(--white-72);
-  border-right: 1px solid var(--white-24);
-  display: flex; align-items: center; gap: .8rem;
-}
-.index-label::before {
-  content: ''; width: 1.8rem; height: 1px; background: var(--white-48);
-}
 .index-item {
-  padding: 1rem 1.2rem;
-  color: var(--white);
+  padding: .75rem 1.4rem;
+  color: var(--white-72);
   text-decoration: none;
   border-right: 1px solid var(--white-24);
-  display: flex; flex-direction: column; gap: .25rem;
-  transition: background .18s;
+  display: flex; align-items: center;
+  font-size: .72rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  transition: color .18s, background .18s;
+  white-space: nowrap;
 }
 .index-item:last-child { border-right: 0; }
 .index-item:hover, .index-item:focus-visible {
+  color: var(--white);
   background: var(--sage-deep);
   outline: none;
-}
-.index-item-num {
-  font-size: .66rem; font-weight: 500;
-  letter-spacing: .2em;
-  color: var(--white-48);
-  font-variant-numeric: tabular-nums;
-}
-.index-item-title {
-  font-size: .95rem;
-  font-weight: 500;
-  letter-spacing: -0.012em;
-}
-.index-item-meta {
-  font-size: .66rem; font-weight: 500;
-  letter-spacing: .16em; text-transform: uppercase;
-  color: var(--white-72);
-  margin-top: .15rem;
 }
 
 /* ═══════════════════════════════════════════
@@ -689,9 +686,9 @@ body {
 }
 .section-head {
   display: grid;
-  grid-template-columns: 80px 220px minmax(0, 1fr) auto;
-  gap: 2.4rem;
-  align-items: end;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 1.4rem;
+  align-items: baseline;
   padding-bottom: 1.6rem;
   border-bottom: 1px solid var(--white-24);
 }
@@ -702,13 +699,6 @@ body {
   letter-spacing: -0.02em;
   color: var(--white);
 }
-.section-tag {
-  font-size: .72rem; font-weight: 500;
-  letter-spacing: .22em; text-transform: uppercase;
-  color: var(--white-72);
-  line-height: 1.55;
-}
-.section-tag b { display: block; color: var(--white); font-weight: 500; }
 .section-title {
   font-size: clamp(1.8rem, 2.6vw, 2.8rem);
   font-weight: 500;
@@ -718,16 +708,13 @@ body {
 }
 .section-title em {
   font-style: normal; font-weight: 300;
+  font-size: .52em;
   color: var(--white-72);
+  display: block;
+  margin-top: .3rem;
+  letter-spacing: .08em;
+  text-transform: none;
 }
-.section-aside {
-  font-size: .72rem; font-weight: 500;
-  letter-spacing: .22em; text-transform: uppercase;
-  color: var(--white-72);
-  text-align: right;
-  line-height: 1.6;
-}
-.section-aside b { color: var(--white); font-weight: 500; display: block; }
 
 .kit-grid {
   display: grid;
@@ -783,6 +770,20 @@ body {
   border-radius: 999px;
   padding: .35rem .7rem;
   width: fit-content;
+}
+.kit-card-status {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: .34rem .62rem;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  color: var(--white);
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
 }
 .kit-card-num {
   font-size: .72rem; font-weight: 500;
@@ -935,6 +936,55 @@ body {
   font-weight: 500;
   letter-spacing: .08em;
 }
+.foto-cell-actions {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 4.25rem;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+}
+.foto-cell-actions a,
+.foto-cell-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: .45rem .6rem;
+  border: 1px solid rgba(255,255,255,.24);
+  background: rgba(27,36,34,.48);
+  color: var(--white);
+  font: inherit;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.foto-cell-actions a:hover,
+.foto-cell-actions a:focus-visible,
+.foto-cell-actions button:hover,
+.foto-cell-actions button:focus-visible {
+  background: var(--white);
+  color: var(--ink);
+  border-color: var(--white);
+  outline: none;
+}
+.foto-cell-actions button[disabled] {
+  cursor: not-allowed;
+  color: var(--white-72);
+}
+.foto-cell-actions button[disabled]:hover,
+.foto-cell-actions button[disabled]:focus-visible {
+  background: rgba(27,36,34,.48);
+  color: var(--white-72);
+  border-color: rgba(255,255,255,.24);
+}
 
 .foto-footer {
   display: flex; flex-wrap: wrap; align-items: center;
@@ -1028,6 +1078,7 @@ body {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 4rem 2rem 0;
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
 }
 .press-list {
     list-style: none;
@@ -1147,6 +1198,7 @@ body {
 .contact-action {
   display: inline-flex; align-items: center; gap: .8rem;
   text-decoration: none;
+  border: 1px solid var(--white);
   font-size: .68rem; font-weight: 500;
   letter-spacing: .22em; text-transform: uppercase;
   padding: 1rem 1.2rem;
@@ -1166,7 +1218,11 @@ body {
 .hero-button.is-disabled:hover,
 .kit-cta.is-disabled:hover,
 .foto-request.is-disabled:hover,
-.contact-action.is-disabled:hover {
+.contact-action.is-disabled:hover,
+.hero-button[disabled]:hover,
+.kit-cta[disabled]:hover,
+.foto-request[disabled]:hover,
+.contact-action[disabled]:hover {
   background: var(--white);
   color: var(--ink);
   border-color: var(--white);
@@ -1319,6 +1375,53 @@ footer {
 }
 
 /* ═══════════════════════════════════════════
+   STATUS BAR
+═══════════════════════════════════════════ */
+.status-bar {
+  background: var(--sage-deep);
+  border-bottom: 1px solid var(--white-12);
+  padding: .6rem 2rem;
+  text-align: center;
+  font-size: .68rem; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--white-72);
+}
+.status-bar a { color: var(--white); text-decoration: none; border-bottom: 1px solid var(--white-24); }
+.status-bar a:hover { color: var(--white); border-bottom-color: var(--white); }
+
+/* ═══════════════════════════════════════════
+   PRESS QUOTES IN BIO
+═══════════════════════════════════════════ */
+.bio-quotes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 1px;
+  background: var(--white-12);
+  border: 1px solid var(--white-24);
+  border-top: 0;
+}
+.bio-quote-item {
+  background: var(--sage-deep);
+  padding: 1.8rem;
+  display: flex; flex-direction: column; gap: .75rem;
+  margin: 0;
+}
+.bio-quote-item p {
+  font-size: clamp(.95rem, 1.3vw, 1.15rem);
+  font-weight: 300; line-height: 1.6;
+  color: var(--white);
+  padding-left: 1.2rem;
+  border-left: 1px solid var(--white-24);
+  text-wrap: pretty;
+}
+.bio-quote-item cite {
+  font-size: .68rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--white-72); font-style: normal;
+  padding-left: 1.2rem;
+}
+
+/* ═══════════════════════════════════════════
    VIDEO MODAL
 ═══════════════════════════════════════════ */
 #video-modal {
@@ -1378,20 +1481,10 @@ footer {
   .hero-left { min-height: auto; }
   .hero-headline { font-size: clamp(4rem, calc((100cqw - 1.5rem) / 3.55), 10rem); }
   .hero-right { min-height: 0; }
-  .kit-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .kit-stat { border-bottom: 0; padding: 1rem .85rem; }
-  .kit-stat:nth-child(odd),
-  .kit-stat:nth-child(even) { padding-left: .85rem; padding-right: .85rem; border-right: 1px solid var(--white-12); }
-  .kit-stat:last-child { border-right: 0; }
-  .index-inner { grid-template-columns: repeat(2, 1fr); }
-  .index-label { display: none; }
-  .index-item { border-bottom: 1px solid var(--white-24); }
-  .index-item:nth-child(odd) { border-right: 1px solid var(--white-24); }
-  .index-item:nth-child(even) { border-right: 0; }
-  .index-item:nth-last-child(-n+2) { border-bottom: 0; }
   .feature-trailer { grid-template-columns: 1fr; }
   .kit-grid { grid-template-columns: repeat(2, 1fr); }
   .kit-card:last-child { grid-column: span 2; min-height: auto; }
+  .bio-quotes { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 880px) {
@@ -1444,10 +1537,9 @@ footer {
   .contact-action {
     letter-spacing: .12em;
   }
+  .press-essentials { grid-template-columns: 1fr; }
   .hero-right { padding: 1.4rem; gap: 1rem; }
   .kit-title { font-size: clamp(1.45rem, 6vw, 2rem); }
-  .kit-stats { display: none; }
-  .kit-summary { display: block; }
   .hero-lede { grid-template-columns: 1fr; gap: .8rem; }
   .hero-lede-meta { text-align: left; }
   .hero-actions { flex-direction: column; }
@@ -1465,22 +1557,12 @@ footer {
   }
   .feature-band, .kit-section, .foto-section, .bio-section, .press-section { padding-top: 3rem; }
   .contact-band { padding-top: 3rem; padding-bottom: 3.5rem; }
-  .section-head { grid-template-columns: 1fr; gap: .8rem; align-items: start; }
-  .section-aside { text-align: left; }
+  .section-head { grid-template-columns: 1fr; gap: .6rem; }
   .kit-grid { grid-template-columns: 1fr; }
   .kit-card:last-child { grid-column: auto; }
   .foto-strip { grid-template-columns: 1fr 1fr; }
   .foto-cell.wide { grid-column: span 2; aspect-ratio: 4/3; }
   .bio-grid { grid-template-columns: 1fr; }
-  .press-list li,
-  .press-list li:nth-child(even) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  .press-list li:nth-child(even) .press-num { order: 0; text-align: left; }
-  .press-list li:nth-child(even) .press-quote-text { order: 0; padding-right: 0; padding-left: 2.2rem; }
-  .press-list li:nth-child(even) .press-quote-text::before { left: 0; right: auto; }
-  .press-list li:nth-child(even) .press-source { order: 0; }
   .contact-grid { grid-template-columns: 1fr; }
   .contact-side { border-left: 0; border-top: 1px solid var(--white-24); }
   .footer-inner,
@@ -1509,13 +1591,15 @@ footer {
   }
   .kit-card { padding: 1.35rem; min-height: 15rem; }
   .kit-card-details span { font-size: .62rem; }
+  .press-essential { padding: .8rem; }
   .index-inner { grid-template-columns: 1fr; }
   .index-item { border-right: 0 !important; }
   .index-item { padding: .9rem 0; }
   .index-item:not(:last-child) { border-bottom: 1px solid var(--white-24); }
   .foto-strip { grid-template-columns: 1fr; }
   .foto-cell.wide { grid-column: auto; aspect-ratio: 4/3; }
-  .foto-cell-use { left: 1rem; right: 1rem; bottom: 4.2rem; justify-content: flex-start; max-width: none; }
+  .foto-cell-actions { position: static; padding: 1rem; background: rgba(27,36,34,.72); }
+  .foto-cell-caption { bottom: 5.3rem; }
   .feature-copy { padding: 1.4rem 1.2rem; }
   .feature-actions a { flex: 1 1 auto; justify-content: center; }
   .contact-copy, .contact-side { padding: 1.6rem 1.4rem; }
@@ -1560,6 +1644,9 @@ footer {
 <div id="shared-nav"></div>
 <script src="includes/include.js" defer></script>
 
+<!-- STATUS BAR -->
+<div class="status-bar">Downloads ab Herbst&nbsp;2026 &middot; Material aktuell per E-Mail anfragen: <a href="mailto:booking@duovia.de">booking@duovia.de</a></div>
+
 <!-- HERO — SPLIT SCREEN -->
 <section class="hero-split">
   <div class="hero-left reveal">
@@ -1569,84 +1656,58 @@ footer {
       </div>
       <div class="hero-coord">
         <b>Stand 2026 / 27</b>
-        <a href="mailto:booking@duovia.de">booking@duovia.de</a><br>Downloads bald bereit
+        <a href="mailto:booking@duovia.de">booking@duovia.de</a>
       </div>
     </div>
     <h1 class="hero-headline">
       <span class="stack">PRES<span class="stack-lt">SE.</span></span>
     </h1>
     <div class="hero-lede">
-      <p>Fertige Presseunterlagen für Ankündigungen, Programmhefte und Journalist:innen.</p>
+      <p>Pressematerial für Duo ViA!: Fotos, Biografien, Videos und Kontakt für Ankündigungen.</p>
       <div class="hero-lede-meta">
-        <b>3 Pakete</b>
-        DE / EN
+        <b>Downloads</b>
+        ab Herbst 2026
       </div>
     </div>
     <div class="hero-actions">
-      <a class="hero-button is-disabled" href="downloads/duovia-pressemappe.zip" download aria-disabled="true">Pressemappe herunterladen</a>
-      <a class="hero-link" href="#trailer">Videos ansehen</a>
+      <a class="hero-button" href="mailto:booking@duovia.de?subject=Pressemappe%20Duo%20ViA%21%20anfragen&body=Name%20%2F%20Institution%3A%0AMedium%20%2F%20Veranstaltung%3A%0ABen%C3%B6tigtes%20Material%3A%0AFrist%3A%0A%0ANachricht%3A">Material anfragen</a>
+      <a class="hero-link" href="#trailer">Trailer ansehen</a>
     </div>
   </div>
 
   <aside class="hero-right reveal">
     <span class="kit-eyebrow">Pressemappe</span>
-    <h2 class="kit-title">Alles in einem<em>für Ihre Ankündigung</em></h2>
-    <div class="kit-stats">
-      <div class="kit-stat">
-        <div class="kit-stat-num">3</div>
-        <span class="kit-stat-label">Druckfotos 300 dpi</span>
-      </div>
-      <div class="kit-stat">
-        <div class="kit-stat-num">DE/EN</div>
-        <span class="kit-stat-label">Alle Texte zweisprachig</span>
-      </div>
-      <div class="kit-stat">
-        <div class="kit-stat-num">24h</div>
-        <span class="kit-stat-label">Downloads sobald bereit</span>
-      </div>
-    </div>
-    <p class="kit-summary">3 Druckfotos · Texte in DE/EN · Downloads sobald alle Dateien bereit sind.</p>
-    <a href="downloads/duovia-pressemappe.zip" download aria-disabled="true" class="kit-cta is-disabled">
-      Komplett-Paket herunterladen
+    <h2 class="kit-title">Press Essentials<em>für Ihre Ankündigung</em></h2>
+    <p class="kit-summary">Die Download-Pakete werden vorbereitet. Bis dahin senden wir passendes Material direkt per E-Mail.</p>
+    <dl class="press-essentials">
+      <div class="press-essential"><dt>Besetzung</dt><dd>Violine &amp; Akkordeon</dd></div>
+      <div class="press-essential"><dt>Künstler:innen</dt><dd>Sinn Yang · Harald Oeler</dd></div>
+      <div class="press-essential"><dt>Material</dt><dd>Fotos · Bios · Videos · Kontakt</dd></div>
+      <div class="press-essential"><dt>Kontakt</dt><dd><a href="mailto:booking@duovia.de">booking@duovia.de</a></dd></div>
+    </dl>
+    <a href="mailto:booking@duovia.de?subject=Pressemappe%20Duo%20ViA%21%20anfragen&body=Name%20%2F%20Institution%3A%0AMedium%20%2F%20Veranstaltung%3A%0ABen%C3%B6tigtes%20Material%3A%0AFrist%3A%0A%0ANachricht%3A" class="kit-cta">
+      Pressemappe anfragen
       <span class="arrow"></span>
     </a>
-    <p class="kit-sub">Die Downloads werden hier freigeschaltet, sobald alle Dateien bereit sind. Fragen zu Bildrechten? <a href="mailto:booking@duovia.de">booking@duovia.de</a></p>
   </aside>
 </section>
 
 <!-- QUICK INDEX BAND -->
 <nav class="index-band reveal" aria-label="Schnellzugriff">
   <div class="index-inner">
-    <div class="index-label">Inhalt</div>
-    <a class="index-item" href="#trailer">
-      <span class="index-item-num">01 / 04</span>
-      <span class="index-item-title">Trailer &amp; Making-of</span>
-      <span class="index-item-meta">2 Videos · YouTube</span>
-    </a>
-    <a class="index-item" href="#material">
-      <span class="index-item-num">02 / 04</span>
-      <span class="index-item-title">Material &amp; Pressemappe</span>
-      <span class="index-item-meta">3 Pakete · DE / EN</span>
-    </a>
-    <a class="index-item" href="#fotos">
-      <span class="index-item-num">03 / 04</span>
-      <span class="index-item-title">Pressefotos</span>
-      <span class="index-item-meta">3 Motive · 300 dpi</span>
-    </a>
-    <a class="index-item" href="#bios">
-      <span class="index-item-num">04 / 04</span>
-      <span class="index-item-title">Biografien</span>
-      <span class="index-item-meta">Sinn Yang · Harald Oeler</span>
-    </a>
+    <a class="index-item" href="#trailer">Trailer &amp; Hörprobe</a>
+    <a class="index-item" href="#material">Pressemappe</a>
+    <a class="index-item" href="#fotos">Pressefotos</a>
+    <a class="index-item" href="#bios">Biografien</a>
+    <a class="index-item" href="#pressestimmen">Pressestimmen</a>
   </div>
 </nav>
 
 <!-- FEATURED TRAILER BAND -->
 <section class="feature-band reveal" id="trailer">
-  <header class="feature-band-head">
+  <header class="section-head">
     <div class="section-num">01</div>
-    <span class="feature-band-label">Trailer &amp; Making-of</span>
-    <h2 class="section-title">Trailer<em> · Videos</em></h2>
+    <h2 class="section-title">Erst hören<em>Trailer &amp; Hörprobe · 2 Clips</em></h2>
   </header>
   <div class="feature-band-grid">
   <button class="feature-trailer" type="button" data-video="AJ6uhwH7-gI" aria-label="Trailer 8 Jahreszeiten ansehen">
@@ -1684,44 +1745,40 @@ footer {
 <section class="kit-section reveal" id="material">
   <header class="section-head">
     <div class="section-num">02</div>
-    <div class="section-tag">Pressemappe<b>Downloads</b></div>
-    <h2 class="section-title">Material<em> · herunterladen</em></h2>
-    <div class="section-aside">
-      Status<b>in Vorbereitung</b>
-    </div>
+    <h2 class="section-title">Pressemappe<em>3 Pakete · DE / EN · als Download</em></h2>
   </header>
   <div class="kit-grid">
-    <a class="kit-card is-disabled" href="downloads/duovia-pressemappe.zip" download aria-disabled="true">
+    <a class="kit-card" href="mailto:booking@duovia.de?subject=Komplette%20Pressemappe%20Duo%20ViA%21%20anfragen&body=Name%20%2F%20Institution%3A%0AMedium%20%2F%20Veranstaltung%3A%0ABen%C3%B6tigtes%20Material%3A%20Komplette%20Pressemappe%0AFrist%3A%0A%0ANachricht%3A">
       <div class="kit-card-head">
-        <span class="kit-card-num">01 · Komplett</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span class="kit-card-status">Ab Herbst 2026</span>
       </div>
       <h3 class="kit-card-title">Komplette Pressemappe</h3>
-      <div class="kit-card-details"><span>ZIP</span><span>DE / EN</span><span>bald bereit</span></div>
+      <div class="kit-card-details"><span>ZIP · DE / EN</span><span>PDF / DOCX / JPG</span><span>Größe folgt</span></div>
       <p class="kit-card-desc">Alle Texte, Fotos und Kontaktdaten in einem Paket.</p>
-      <div class="kit-card-meta"><span>Komplett-Paket herunterladen</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></div>
+      <div class="kit-card-meta"><span>Komplett-Paket anfragen</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></div>
     </a>
 
-    <a class="kit-card is-disabled" href="downloads/duovia-biografien.zip" download aria-disabled="true">
+    <a class="kit-card" href="mailto:booking@duovia.de?subject=Biografien%20Duo%20ViA%21%20anfragen&body=Name%20%2F%20Institution%3A%0AMedium%20%2F%20Veranstaltung%3A%0ABen%C3%B6tigtes%20Material%3A%20Biografien%0AFrist%3A%0A%0ANachricht%3A">
       <div class="kit-card-head">
-        <span class="kit-card-num">02 · Texte</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="kit-card-status">Auf Anfrage</span>
       </div>
       <h3 class="kit-card-title">Biografien</h3>
-      <div class="kit-card-details"><span>DOCX</span><span>kurz / lang</span><span>bald bereit</span></div>
+      <div class="kit-card-details"><span>DOCX / PDF</span><span>kurz / lang</span><span>DE / EN</span></div>
       <p class="kit-card-desc">Sinn Yang, Harald Oeler und Duo-Text — kurz &amp; lang.</p>
-      <div class="kit-card-meta"><span>Bios herunterladen</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></div>
+      <div class="kit-card-meta"><span>Bios anfragen</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></div>
     </a>
 
-    <a class="kit-card is-disabled" href="downloads/duovia-pressefotos.zip" download aria-disabled="true">
+    <a class="kit-card" href="mailto:booking@duovia.de?subject=Pressefotos%20Duo%20ViA%21%20anfragen&body=Name%20%2F%20Institution%3A%0AMedium%20%2F%20Veranstaltung%3A%0ABen%C3%B6tigtes%20Material%3A%20Pressefotos%0AFrist%3A%0A%0ANachricht%3A">
       <div class="kit-card-head">
-        <span class="kit-card-num">03 · Bild</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="kit-card-status">Ab Herbst 2026</span>
       </div>
       <h3 class="kit-card-title">Pressefotos</h3>
-      <div class="kit-card-details"><span>3 Motive</span><span>300 dpi</span><span>bald bereit</span></div>
+      <div class="kit-card-details"><span>3 Motive</span><span>300 dpi</span><span>JPG / TIFF</span></div>
       <p class="kit-card-desc">Druckfähige Fotos in 300 dpi für Print &amp; Online.</p>
-      <div class="kit-card-meta"><span>Fotos herunterladen</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></div>
+      <div class="kit-card-meta"><span>Fotos anfragen</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></div>
     </a>
 
   </div>
@@ -1731,29 +1788,33 @@ footer {
 <section class="foto-section reveal" id="fotos">
   <header class="section-head">
     <div class="section-num">03</div>
-    <div class="section-tag">Bildmaterial<b>Pressefotos</b></div>
-    <h2 class="section-title">Foto<em> · 3 Motive</em></h2>
-    <div class="section-aside">
-      Auflösung<b>300 dpi · JPG / TIFF</b>
-    </div>
+    <h2 class="section-title">Pressefotos<em>3 Motive · 300 dpi · JPG / TIFF</em></h2>
   </header>
 
   <div class="foto-strip">
     <div class="foto-cell">
-      <div class="foto-cell-bg"></div>
+      <div class="foto-cell-bg" style="background: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)), url('download/duo%20via%201.jpg') center/cover no-repeat;"></div>
       <span class="foto-cell-tag">01 · Porträt</span>
       <span class="foto-cell-credit">Credit im Paket</span>
-      <div class="foto-cell-use"><span>Print</span><span>Online</span><span>300 dpi</span></div>
+      <div class="foto-cell-actions">
+        <a href="download/duo%20via%201.jpg">Vorschau öffnen</a>
+        <button type="button" data-copy="Credit im Paket">Credit kopieren</button>
+        <a href="mailto:booking@duovia.de?subject=Bildrechte%20Pressefoto%2001%20Duo%20ViA%21">Rechte anfragen</a>
+      </div>
       <div class="foto-cell-caption">
         <span>Hochformat</span>
         <strong>Sinn Yang &amp; Harald Oeler</strong>
       </div>
     </div>
     <div class="foto-cell wide">
-      <div class="foto-cell-bg"></div>
-      <span class="foto-cell-tag">02 · Bühne</span>
-      <span class="foto-cell-credit">Credit im Paket</span>
-      <div class="foto-cell-use"><span>Print</span><span>Online</span><span>300 dpi</span></div>
+      <div class="foto-cell-bg" style="background: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)), url('download/duo%20via%201.jpg') center/cover no-repeat;"></div>
+      <span class="foto-cell-tag">02 · Porträt</span>
+      <span class="foto-cell-credit">© Iréne Zandel</span>
+      <div class="foto-cell-actions">
+        <a href="download/duo%20via%201.jpg">Vorschau öffnen</a>
+        <button type="button" data-copy="© Iréne Zandel">Credit kopieren</button>
+        <a href="mailto:booking@duovia.de?subject=Bildrechte%20Pressefoto%2002%20Duo%20ViA%21">Rechte anfragen</a>
+      </div>
       <div class="foto-cell-caption">
         <span>Querformat — Live</span>
         <strong>Konzert · Duo ViA!</strong>
@@ -1763,7 +1824,11 @@ footer {
       <div class="foto-cell-bg"></div>
       <span class="foto-cell-tag">03 · Banner</span>
       <span class="foto-cell-credit">Credit im Paket</span>
-      <div class="foto-cell-use"><span>Print</span><span>Online</span><span>300 dpi</span></div>
+      <div class="foto-cell-actions">
+        <button type="button" disabled>Vorschau folgt</button>
+        <button type="button" data-copy="Credit im Paket">Credit kopieren</button>
+        <a href="mailto:booking@duovia.de?subject=Bildrechte%20Pressebanner%20Duo%20ViA%21">Rechte anfragen</a>
+      </div>
       <div class="foto-cell-caption">
         <span>Pressebanner</span>
         <strong>Violine &amp; Akkordeon</strong>
@@ -1772,8 +1837,8 @@ footer {
   </div>
 
   <div class="foto-footer">
-    <p class="foto-footer-note">Abdruck und Online-Verwendung nur mit Quellenangabe. Hochauflösende Dateien werden hier als Download bereitgestellt.</p>
-    <a class="foto-request is-disabled" href="downloads/duovia-pressefotos.zip" download aria-disabled="true">Foto-Paket herunterladen <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></a>
+    <p class="foto-footer-note">Abdruck und Online-Verwendung nur mit Quellenangabe. Hochauflösende Dateien: 3 Motive · 300 dpi · JPG / TIFF · Paketgröße folgt.</p>
+    <a class="foto-request" href="mailto:booking@duovia.de?subject=Pressefotos%20Duo%20ViA%21%20anfragen&body=Name%20%2F%20Institution%3A%0AMedium%20%2F%20Veranstaltung%3A%0ABen%C3%B6tigtes%20Material%3A%20Pressefotos%0AFrist%3A%0A%0ANachricht%3A">Foto-Paket anfragen <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></a>
   </div>
 </section>
 
@@ -1781,11 +1846,7 @@ footer {
 <section class="bio-section reveal" id="bios">
   <header class="section-head">
     <div class="section-num">04</div>
-    <div class="section-tag">Künstler<b>Biografien</b></div>
-    <h2 class="section-title">Bio<em> · DE / EN als Download</em></h2>
-    <div class="section-aside">
-      Fassungen<b>Kurz · Lang · Duo</b>
-    </div>
+    <h2 class="section-title">Biografien<em>Kurz · Lang · Duo · DE / EN</em></h2>
   </header>
 
   <div class="bio-grid">
@@ -1810,17 +1871,23 @@ footer {
       </div>
     </article>
   </div>
+  <div class="bio-quotes">
+    <blockquote class="bio-quote-item">
+      <p>Yang und Oeler spielen wie aufeinander eingeschworen — sie bilden nicht nur rhythmisch eine Einheit.</p>
+      <cite>NDR Kultur</cite>
+    </blockquote>
+    <blockquote class="bio-quote-item">
+      <p>Akkordeon und Solo-Geige verschmelzen auf eine neue, man könnte fast sagen: ideale Weise.</p>
+      <cite>NDR Kultur · Konzertkritik</cite>
+    </blockquote>
+  </div>
 </section>
 
-<!-- PRESS QUOTES — alternating layout -->
-<section class="press-section reveal">
+<!-- PRESSESTIMMEN -->
+<section class="press-section reveal" id="pressestimmen">
   <header class="section-head">
     <div class="section-num">05</div>
-    <div class="section-tag">Pressestimmen<b>Auswahl</b></div>
-    <h2 class="section-title">Stimmen<em> · Ausgewählt</em></h2>
-    <div class="section-aside">
-      Komplettübersicht<b>bald als Download</b>
-    </div>
+    <h2 class="section-title">Pressestimmen<em>Zitate für Programmhefte &amp; Ankündigungen</em></h2>
   </header>
   <ol class="press-list">
     <li>
@@ -1828,14 +1895,14 @@ footer {
         <span class="press-num">01</span>
         <blockquote class="press-quote-text">Yang und Oeler spielen wie aufeinander eingeschworen — sie bilden nicht nur rhythmisch eine Einheit.</blockquote>
       </div>
-      <span class="press-source"><b>NDR</b>Kultur</span>
+      <cite class="press-source"><b>NDR Kultur</b>Pressestimme</cite>
     </li>
     <li>
       <div class="press-card-top">
         <span class="press-num">02</span>
         <blockquote class="press-quote-text">Akkordeon und Solo-Geige verschmelzen auf eine neue, man könnte fast sagen: ideale Weise.</blockquote>
       </div>
-      <span class="press-source"><b>NDR</b>Kultur · Konzertkritik</span>
+      <cite class="press-source"><b>NDR Kultur</b>Konzertkritik</cite>
     </li>
   </ol>
 </section>
@@ -1845,8 +1912,8 @@ footer {
   <div class="contact-grid">
     <div class="contact-copy">
       <span class="contact-eyebrow">Kontakt</span>
-      <h3 class="contact-head">Material für Ihr Event<em>als Download</em></h3>
-      <p class="contact-body">Sobald alle Dateien bereit sind, können Pressemappe, Fotos, Biografien und Rider direkt heruntergeladen werden. Fragen zu Bildrechten beantworten wir per E-Mail.</p>
+      <h3 class="contact-head">Material für Ihr Event<em>per E-Mail anfragen</em></h3>
+      <p class="contact-body">Pressemappe, Fotos, Biografien und Rider werden ab Herbst 2026 direkt hier zum Download bereitgestellt. Bis dahin senden wir Material und Bildrechte auf Anfrage.</p>
       <div class="contact-options" aria-label="Download-Materialien">
         <span>Pressemappe</span>
         <span>Fotos</span>
@@ -1854,15 +1921,15 @@ footer {
         <span>Rider</span>
       </div>
       <div class="contact-actions">
-        <a class="contact-action is-disabled" href="downloads/duovia-pressemappe.zip" download aria-disabled="true">Material herunterladen</a>
-        <a class="contact-action ghost" href="mailto:booking@duovia.de">Booking öffnen</a>
+        <a class="contact-action" href="mailto:booking@duovia.de?subject=Pressemappe%20Duo%20ViA%21%20anfragen&body=Name%20%2F%20Institution%3A%0AAnlass%20%2F%20Medium%3A%0ABen%C3%B6tigtes%20Material%3A%0AFrist%3A%0A%0ANachricht%3A">Material anfragen</a>
+        <a class="contact-action ghost" href="mailto:booking@duovia.de?subject=Presse-%20und%20Buchungsanfrage%20Duo%20ViA%21&body=Name%20%2F%20Institution%3A%0AAnlass%20%2F%20Medium%3A%0ABen%C3%B6tigtes%20Material%3A%0AFrist%3A%0A%0ANachricht%3A">E-Mail schreiben</a>
       </div>
     </div>
     <div class="contact-side">
       <span class="contact-side-eyebrow">Kanäle</span>
       <dl>
         <div class="contact-row"><dt>E-Mail</dt><dd><a href="mailto:booking@duovia.de">booking@duovia.de</a></dd></div>
-        <div class="contact-row"><dt>Status</dt><dd>Downloads in Vorbereitung</dd></div>
+        <div class="contact-row"><dt>Verfügbar</dt><dd>Herbst 2026</dd></div>
         <div class="contact-row"><dt>Sprachen</dt><dd>Deutsch · English</dd></div>
         <div class="contact-row"><dt>Format</dt><dd>ZIP / PDF / DOCX / JPG</dd></div>
         <div class="contact-row"><dt>Stand</dt><dd>Saison 2026 / 27</dd></div>
@@ -1905,6 +1972,8 @@ if ('ontouchstart' in window) {
 let menuOpen = false;
 let menuReturnFocus = null;
 let previousBodyOverflow = '';
+let videoReturnFocus = null;
+let videoPreviousBodyOverflow = '';
 const navFocusables = () => Array.from(document.querySelectorAll('#nav-overlay a[href], #nav-overlay button:not([disabled])'));
 function setOverlayTabState(open) { navFocusables().forEach(el => open ? el.removeAttribute('tabindex') : el.setAttribute('tabindex','-1')); }
 function openMenu(){
@@ -1959,23 +2028,38 @@ document.addEventListener('click', e => {
 
 const videoModal = document.getElementById('video-modal');
 const videoIframe = document.getElementById('video-iframe');
-function openVideo(id) {
+const videoClose = document.getElementById('video-close');
+function openVideo(id, trigger) {
+  videoReturnFocus = trigger || document.activeElement;
+  videoPreviousBodyOverflow = document.body.style.overflow;
   videoIframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
   videoModal.classList.add('open');
   document.body.style.overflow = 'hidden';
+  videoClose.focus({ preventScroll: true });
 }
 function closeVideo() {
   if (!videoModal.classList.contains('open')) return;
   videoModal.classList.remove('open');
   videoIframe.src = '';
-  document.body.style.overflow = '';
+  document.body.style.overflow = videoPreviousBodyOverflow;
+  if (videoReturnFocus && document.contains(videoReturnFocus)) videoReturnFocus.focus({ preventScroll: true });
+  videoReturnFocus = null;
 }
 videoModal.addEventListener('click', e => { if (e.target === videoModal) closeVideo(); });
 document.querySelectorAll('[data-video]').forEach(btn => {
-  btn.addEventListener('click', () => openVideo(btn.dataset.video));
+  btn.addEventListener('click', () => openVideo(btn.dataset.video, btn));
 });
-document.querySelectorAll('a[aria-disabled="true"]').forEach(link => {
-  link.addEventListener('click', event => event.preventDefault());
+document.querySelectorAll('[data-copy]').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const original = btn.textContent;
+    try {
+      await navigator.clipboard.writeText(btn.dataset.copy);
+      btn.textContent = 'Kopiert';
+      setTimeout(() => { btn.textContent = original; }, 1400);
+    } catch {
+      btn.textContent = btn.dataset.copy;
+    }
+  });
 });
 
 const io = new IntersectionObserver(entries => {

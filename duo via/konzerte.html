@@ -13,29 +13,9 @@
 <link rel="canonical" href="https://duovia.de/konzerte.html">
 <meta name="description" content="Konzerttermine und buchbare Formate für Duo ViA! — Sinn Yang und Harald Oeler. Kammermusik für Festivals, Kulturhäuser und Konzertreihen. Saison 2026/27.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%235F716D'/%3E%3Ctext x='16' y='24' font-family='Helvetica%2CArial%2Csans-serif' font-size='18' font-weight='700' text-anchor='middle' fill='%23FFFFFF'%3EV%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="includes/tokens.css">
 <style>
-/* ═══════════════════════════════════════════
-   TOKENS
-═══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --sage:        #93A5A1;
-  --sage-deep:   #788B87;
-  --sage-darker: #5F716D;
-  --sage-soft:   #A8B7B3;
-  --ink:         #1B2422;
-  --white:       #FFFFFF;
-  --muted-white: rgba(255,255,255,0.94);
-  --white-72:    rgba(255,255,255,0.78);
-  --white-48:    rgba(255,255,255,0.52);
-  --white-24:    rgba(255,255,255,0.24);
-  --rule:        rgba(255,255,255,0.28);
-  --sans:        'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  --nav-h:       60px;
-  --ease:        cubic-bezier(0.65, 0, 0.35, 1);
-  --dur:         0.55s;
-}
 
 html { scroll-behavior: smooth; font-size: 16px; }
 @keyframes bodyFadeOut { to { opacity: 0; } }
@@ -181,7 +161,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--white); outline
 .nav-booking-item a {
   width: fit-content;
   padding: .18em .34em .24em;
-  border: 1px solid var(--white-24);
 }
 .nav-overlay-footer {
   display: flex; flex-wrap: wrap; gap: 1rem 1.6rem;
@@ -990,7 +969,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 <script>
 (() => {
   const pageAliases = {
-    "landing.html": "home", "land.html": "home", "": "home",
+    "index.html": "home", "land.html": "home", "": "home",
     "projects.html": "programme", "projects draft.html": "programme",
     "artists.html": "artists", "artists1.html": "artists",
     "presse.html": "media", "konzerte.html": "calendar",

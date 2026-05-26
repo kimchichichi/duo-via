@@ -31,6 +31,7 @@
       document.body.classList.contains('nav-open') ? window.closeMenu() : window.openMenu();
     };
 
+    burger.addEventListener('click', window.toggleMenu);
     setOverlayTabState(false);
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape' && document.body.classList.contains('nav-open')) window.closeMenu();
@@ -57,14 +58,20 @@
     document.querySelectorAll('#nav-quick a, .nav-links-main a, .footer-links a').forEach(a => {
       a.removeAttribute('aria-current');
       const href = a.getAttribute('href') || '';
-      if (href.endsWith(path) || ((path === '' || path === 'index.html') && href.endsWith('landing.html'))) {
+      if (href.endsWith(path) || ((path === '' || path === 'index.html') && href.endsWith('index.html'))) {
         a.setAttribute('aria-current','page');
       }
     });
   }
 
-  document.addEventListener('DOMContentLoaded', function(){
+  function initIncludes(){
     loadInclude('includes/nav.html','shared-nav');
     loadInclude('includes/footer.html','shared-footer');
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initIncludes, { once: true });
+  } else {
+    initIncludes();
+  }
 })();
