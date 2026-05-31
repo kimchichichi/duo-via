@@ -64,6 +64,13 @@ body {
 }
 
 img { max-width: 100%; display: block; }
+.skip-link {
+  position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;
+}
+.skip-link:focus {
+  position: fixed; left: 1rem; top: 1rem; width: auto; height: auto; overflow: visible;
+  padding: .7rem 1rem; color: var(--white); background: var(--ink); z-index: 9999;
+}
 
 /* ─── Grain ─────────────────────────────── */
 .grain {
@@ -293,11 +300,12 @@ img { max-width: 100%; display: block; }
 .contact-form {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .field-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2.4rem;
 }
 
@@ -322,6 +330,7 @@ img { max-width: 100%; display: block; }
 }
 .field:focus-within::after { width: 100%; }
 .field.has-error::after { width: 100%; background: #C86B55; }
+.field.has-error label { color: #FFD1C7; }
 
 .field input,
 .field textarea {
@@ -401,6 +410,12 @@ img { max-width: 100%; display: block; }
 .field--select label { transform: translateY(-1.15rem) scale(0.8); }
 .field--select:focus-within label { color: var(--white); }
 .field--static-label label { transform: translateY(-1.15rem) scale(0.8); color: var(--white-48); }
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 5px;
+}
 
 .form-footer {
   display: flex;
@@ -441,6 +456,10 @@ img { max-width: 100%; display: block; }
   opacity: .65;
 }
 .btn-submit {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--sans);
   font-size: .72rem;
   font-weight: 500;
@@ -612,15 +631,32 @@ img { max-width: 100%; display: block; }
 /* ═══════════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════════ */
-@media (max-width: 960px) {
+@media (max-width: 1080px) {
   .contact-hero {
-    padding: calc(var(--nav-h) + 3.5rem) 2rem 2.5rem;
+    padding: calc(var(--nav-h) + 3rem) max(2rem, env(safe-area-inset-right)) 2.2rem max(2rem, env(safe-area-inset-left));
   }
   .contact-body {
     max-width: calc(100% - 4rem);
     grid-template-columns: 1fr;
-    gap: 3.5rem;
-    padding: 3.5rem 2rem 4rem;
+    gap: clamp(2.6rem, 6vw, 3.5rem);
+    padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 5vw, 3.5rem) clamp(2.5rem, 6vw, 4rem);
+  }
+  .contact-form {
+    order: -1;
+    width: min(100%, 46rem);
+    margin-inline: auto;
+  }
+  .contact-info {
+    width: min(100%, 46rem);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+  }
+  .contact-info .info-item:nth-child(2) { border-top: 1px solid var(--rule); }
+  .formats-block,
+  .booking-assurance {
+    grid-column: 1 / -1;
   }
   .contact-title { font-size: clamp(3.4rem, 14vw, 6.5rem); }
   .field-row { grid-template-columns: 1fr; gap: 0; }
@@ -628,17 +664,101 @@ img { max-width: 100%; display: block; }
   .footer-booking { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 600px) {
-  .contact-hero { padding: calc(var(--nav-h) + 2.5rem) 1.5rem 2rem; }
-  .contact-body {
-    max-width: calc(100% - 2rem);
-    margin-top: 1rem;
-    margin-bottom: 4rem;
-    padding: 2rem 1.25rem 3rem;
+  .contact-hero {
+    padding: calc(var(--nav-h) + 2rem) max(1.25rem, env(safe-area-inset-right)) 1.5rem max(1.25rem, env(safe-area-inset-left));
   }
-  .contact-form { order: -1; }
+  .contact-overline {
+    font-size: .64rem;
+    letter-spacing: .2em;
+    margin-bottom: 1rem;
+  }
+  .contact-title {
+    font-size: clamp(2.85rem, 15vw, 4.4rem);
+    line-height: .92;
+    margin-bottom: 1.15rem;
+  }
+  .contact-intro {
+    font-size: .98rem;
+    line-height: 1.55;
+    margin-top: 1rem;
+  }
+  .contact-body {
+    max-width: calc(100% - 1.5rem);
+    margin-top: .5rem;
+    margin-bottom: 3rem;
+    padding: 1.6rem max(1rem, env(safe-area-inset-right)) 2.3rem max(1rem, env(safe-area-inset-left));
+    gap: 2.2rem;
+  }
+  .contact-info {
+    display: flex;
+    width: 100%;
+    margin: 0;
+  }
+  .contact-info .info-item:nth-child(2) { border-top: none; }
+  .response-note {
+    align-items: flex-start;
+    margin-bottom: 1.3rem;
+  }
+  .field {
+    margin-bottom: 1.45rem;
+  }
+  .field label {
+    font-size: .68rem;
+    letter-spacing: .13em;
+  }
   .hero-actions { flex-direction: column; }
   .hero-action { width: 100%; }
+  .field input,
+  .field select,
+  .field textarea {
+    font-size: 1rem;
+  }
+  .field input,
+  .field select { min-height: 50px; }
+  .field textarea { min-height: 148px; }
+  .field-hint { line-height: 1.5; }
+  .btn-submit { width: 100%; }
+  .form-footer {
+    display: block;
+    margin-top: .25rem;
+  }
+  .submit-note {
+    display: block;
+    max-width: none;
+    margin-top: 1rem;
+  }
+  .formats-block { margin-top: 2rem; }
+  .formats-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 1.25rem;
+  }
+  .booking-assurance {
+    margin-top: 1.6rem;
+  }
+  .site-footer {
+    padding: 2.4rem max(1.25rem, env(safe-area-inset-right)) max(calc(1.8rem + env(safe-area-inset-bottom)), 2rem) max(1.25rem, env(safe-area-inset-left));
+  }
+  .footer-links,
+  .footer-meta,
+  .footer-legal {
+    display: grid;
+    gap: .8rem;
+  }
   .footer-inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 380px) {
+  .contact-body { max-width: calc(100% - 1rem); }
+  .formats-list { grid-template-columns: 1fr; }
+  .field label { letter-spacing: .1em; }
+  .btn-submit { padding-inline: 1rem; letter-spacing: .14em; }
+}
+@media (max-height: 600px) and (orientation: landscape) {
+  .contact-hero {
+    padding-top: calc(var(--nav-h) + 1.2rem);
+    padding-bottom: 1.2rem;
+  }
+  .contact-body { margin-top: .5rem; }
 }
 
 /* ─── Focus & motion ─────────────────────── */
@@ -658,14 +778,16 @@ a:focus-visible, button:focus-visible {
 }
 </style>
 
-<link rel="stylesheet" href="includes/nav.css">
+<link rel="stylesheet" href="includes/nav.css?v=7">
 </head>
 <body class="booking-page">
 
 <div class="grain" aria-hidden="true"></div>
+<a class="skip-link" href="#main-content">Zum Inhalt springen</a>
 
 <div id="shared-nav"></div>
 
+<main id="main-content" tabindex="-1">
 <!-- ═══════════════════════════════════════
      CONTACT HERO
 ═══════════════════════════════════════ -->
@@ -673,7 +795,7 @@ a:focus-visible, button:focus-visible {
   <span class="contact-overline">Buchung &amp; Kontakt</span>
   <h1 class="contact-title">Buchung</h1>
   <hr class="contact-hero-rule">
-  <p class="contact-intro">Konzertanfragen für Festivals, Konzertreihen und Kulturhäuser.</p>
+  <p class="contact-intro">Konzertanfragen für Festivals, Konzertreihen und Kulturhäuser. Teilen Sie uns Termin, Ort und gewünschtes Programm mit.</p>
 </div>
 
 <!-- ═══════════════════════════════════════
@@ -682,7 +804,7 @@ a:focus-visible, button:focus-visible {
 <div class="contact-body">
 
   <!-- Left: Info staggered list -->
-  <aside id="contact-info" class="contact-info reveal">
+  <aside id="contact-info" class="contact-info reveal" aria-label="Kontakt und Buchungsinformationen">
 
     <div class="info-item">
       <span class="info-label">E-Mail</span>
@@ -704,25 +826,45 @@ a:focus-visible, button:focus-visible {
       </ul>
     </div>
 
+    <div class="booking-assurance">
+      <div class="assurance-item">Ihre Angaben werden in einer E-Mail vorbereitet und nicht auf dieser Website gespeichert.</div>
+      <div class="assurance-item">Antwort meist innerhalb von zwei Werktagen.</div>
+    </div>
+
   </aside>
 
   <!-- Right: Form -->
   <form id="booking-form" class="contact-form reveal" onsubmit="submitForm(event)" novalidate method="POST">
     <p class="response-note">
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Antwort meist innerhalb von zwei Werktagen. * Pflichtfelder
+      Das Formular öffnet Ihre E-Mail-App. * Pflichtfelder
     </p>
 
     <div class="field-row">
       <div class="field">
-        <input type="text" id="f-name" name="name" placeholder=" " autocomplete="name" required>
+        <input type="text" id="f-name" name="name" placeholder=" " autocomplete="name" aria-describedby="f-name-error" required>
         <label for="f-name">Ihr Name oder Veranstalter *</label>
-        <span class="field-error">Bitte Namen oder Veranstalter eintragen.</span>
+        <span class="field-error" id="f-name-error">Bitte Namen oder Veranstalter eintragen.</span>
       </div>
       <div class="field">
-        <input type="email" id="f-email" name="email" placeholder=" " autocomplete="email" required>
+        <input type="email" id="f-email" name="email" placeholder=" " autocomplete="email" aria-describedby="f-email-error" required>
         <label for="f-email">E-Mail *</label>
-        <span class="field-error">Bitte eine gültige E-Mail eintragen.</span>
+        <span class="field-error" id="f-email-error">Bitte eine gültige E-Mail eintragen.</span>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field field--select">
+        <select id="f-programme" name="programme">
+          <option value="Noch offen">Programm noch offen</option>
+          <option value="8 Jahreszeiten">8 Jahreszeiten</option>
+          <option value="Four Seasons - One World">Four Seasons - One World</option>
+        </select>
+        <label for="f-programme">Gewünschtes Programm</label>
+      </div>
+      <div class="field field--static-label">
+        <input type="text" id="f-budget" name="budget" placeholder="optional" autocomplete="off">
+        <label for="f-budget">Budget / Publikum (optional)</label>
       </div>
     </div>
 
@@ -738,21 +880,22 @@ a:focus-visible, button:focus-visible {
     </div>
 
     <div class="field field--full">
-      <textarea id="f-msg" name="message" placeholder=" " rows="4" required></textarea>
+      <textarea id="f-msg" name="message" placeholder=" " rows="4" aria-describedby="f-msg-hint f-msg-error" required></textarea>
       <label for="f-msg">Ihre Anfrage *</label>
-      <span class="field-hint">Anlass, gewünschter Termin, Ort und Konzertformat</span>
-      <span class="field-error">Bitte kurz Anlass, Ort oder Frage beschreiben.</span>
+      <span class="field-hint" id="f-msg-hint">Anlass, gewünschter Termin, Ort und Konzertformat</span>
+      <span class="field-error" id="f-msg-error">Bitte kurz Anlass, Ort oder Frage beschreiben.</span>
     </div>
 
     <div class="form-footer">
-      <button type="submit" class="btn-submit">Anfrage per E-Mail senden</button>
-      <span class="submit-note">Oder direkt an <a href="mailto:booking@duovia.de">booking@duovia.de</a></span>
+      <button type="submit" class="btn-submit">E-Mail mit Anfrage öffnen</button>
+      <span class="submit-note">Es erfolgt keine automatische Übermittlung. Alternativ direkt an <a href="mailto:booking@duovia.de">booking@duovia.de</a> schreiben.</span>
     </div>
 
     <p id="form-msg" role="status" aria-live="polite"></p>
   </form>
 
 </div>
+</main>
 
 <div id="shared-footer"></div>
 
@@ -772,17 +915,25 @@ function submitForm(e) {
   required.forEach(field => {
     const ok = field.checkValidity() && field.value.trim().length > 0;
     field.closest('.field').classList.toggle('has-error', !ok);
+    field.setAttribute('aria-invalid', String(!ok));
     if (!ok) valid = false;
   });
   if (!valid) {
+    const firstError = e.target.querySelector('.has-error input, .has-error textarea');
     msg.style.display = 'block';
     msg.textContent = 'Bitte die markierten Pflichtfelder ausfüllen.';
-    e.target.querySelector('.has-error input, .has-error textarea')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    firstError?.focus({ preventScroll: true });
+    firstError?.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      block: 'center'
+    });
     return;
   }
   const f = {
     name:      document.getElementById('f-name').value,
     email:     document.getElementById('f-email').value,
+    programme: document.getElementById('f-programme').value,
+    budget:    document.getElementById('f-budget').value,
     date:      document.getElementById('f-date').value,
     venue:     document.getElementById('f-venue').value,
     message:   document.getElementById('f-msg').value
@@ -792,8 +943,8 @@ function submitForm(e) {
     `E-Mail: ${f.email}`,
     `Wunschtermin: ${f.date}`,
     `Ort / Spielstätte: ${f.venue}`,
-    'Programm / Format:',
-    'Publikumsgröße:',
+    `Programm / Format: ${f.programme}`,
+    `Budget / Publikumsgröße: ${f.budget}`,
     'Technische Rahmenbedingungen:',
     '',
     f.message
@@ -801,12 +952,13 @@ function submitForm(e) {
   window.location.href = `mailto:booking@duovia.de?subject=${encodeURIComponent('Buchungsanfrage Duo ViA!')}&body=${encodeURIComponent(body)}`;
   msg.style.display = 'block';
   msg.textContent = 'E-Mail vorbereitet. Falls sich kein Mailprogramm öffnet: booking@duovia.de';
-  btn.textContent = 'Mail erneut öffnen';
+  btn.textContent = 'E-Mail erneut öffnen';
 }
 document.querySelectorAll('.contact-form input, .contact-form textarea').forEach(field => {
   field.addEventListener('input', () => {
     if (field.checkValidity() && field.value.trim().length > 0) {
       field.closest('.field').classList.remove('has-error');
+      field.removeAttribute('aria-invalid');
     }
   });
 });
@@ -838,7 +990,7 @@ const io = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
 </script>
-<script src="includes/include.js"></script>
+<script src="includes/include.js?v=7"></script>
 
 </body>
 </html>

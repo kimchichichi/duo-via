@@ -11,6 +11,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://duovia.de/presse.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%235F716D'/%3E%3Ctext x='16' y='24' font-family='Helvetica%2CArial%2Csans-serif' font-size='14' font-weight='700' letter-spacing='1' text-anchor='middle' fill='white'%3EV%3C%2Ftext%3E%3C/svg%3E">
 <link rel="stylesheet" href="includes/tokens.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,161 +41,6 @@ body {
 }
 
 /* ═══════════════════════════════════════════
-   NAV (identical to site)
-═══════════════════════════════════════════ */
-#nav-bar {
-  position: fixed; top: 0; left: 0; right: 0;
-  height: var(--nav-h); z-index: 800;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 2rem;
-  background: rgba(147,165,161,0.85);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--white-24);
-}
-.nav-open #nav-bar { border-color: transparent; background: transparent; backdrop-filter: none; }
-
-#nav-logo {
-  font-family: var(--sans); font-size: .82rem; font-weight: 700;
-  letter-spacing: .14em; text-transform: uppercase;
-  color: var(--white); text-decoration: none;
-  position: relative; z-index: 820;
-}
-#nav-logo span { font-weight: 400; opacity: .7; }
-
-#nav-quick {
-  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-  display: flex; gap: 2.6rem; list-style: none;
-}
-.nav-open #nav-quick { opacity: 0; pointer-events: none; }
-#nav-quick a {
-  font-family: var(--sans); font-weight: 500; font-size: .68rem;
-  letter-spacing: .22em; text-transform: uppercase;
-  color: var(--white-72); text-decoration: none;
-  transition: color .2s;
-}
-#nav-quick a:hover { color: var(--white); }
-#nav-quick a[aria-current="page"] { color: var(--white); }
-#nav-quick a[aria-current="page"]::before {
-  content:''; display:inline-block; width:6px; height:6px;
-  background: var(--white); border-radius: 50%;
-  margin-right: .55rem; vertical-align: middle;
-}
-.nav-sub {
-  font-size: .22em; letter-spacing: .26em; text-transform: uppercase;
-  color: var(--sage); font-weight: 400;
-}
-
-#nav-burger {
-  position: relative; z-index: 820;
-  width: 92px; height: 40px;
-  display: flex; align-items: center; justify-content: center;
-  background: none; border: none; cursor: pointer;
-}
-.nav-close-label {
-  position: absolute; right: 48px;
-  font-size: .62rem; font-weight: 500;
-  letter-spacing: .14em; text-transform: uppercase;
-  color: var(--white); opacity: 0;
-  transform: translateX(.4rem);
-  transition: opacity .25s, transform .25s;
-}
-.nav-open .nav-close-label { opacity: .78; transform: translateX(0); }
-.bline {
-  position: absolute; right: 9px; width: 22px; height: 1.5px;
-  background: var(--white); transform-origin: center;
-  transition: transform .45s var(--ease), top .45s var(--ease);
-}
-.bline-top { top: 16px; }
-.bline-bottom { top: 23px; }
-.nav-open .bline-top    { top: 19.5px; transform: rotate(45deg); }
-.nav-open .bline-bottom { top: 19.5px; transform: rotate(-45deg); }
-
-#nav-overlay {
-  position: fixed; inset: 0; z-index: 700;
-  background: var(--ink);
-  display: flex; flex-direction: column; justify-content: center;
-  padding: calc(var(--nav-h) + 2rem) 3rem 2.2rem;
-  clip-path: inset(100% 0 0 0);
-  transition: clip-path .55s var(--ease);
-  pointer-events: none;
-}
-.nav-open #nav-overlay { clip-path: inset(0% 0 0 0); pointer-events: all; }
-.nav-links-main { list-style: none; margin: auto 0; }
-.nav-links-main li { overflow: hidden; padding: .2rem 0; }
-.nav-links-main a {
-  position: relative;
-  display: grid;
-  grid-template-columns: clamp(3.4rem, 7vw, 7rem) minmax(0, auto) minmax(12rem, 25rem);
-  align-items: baseline; gap: 1.1rem;
-  font-family: var(--sans);
-  font-size: clamp(2.4rem, 7vw, 5.8rem);
-  font-weight: 500; line-height: 1.05;
-  letter-spacing: -0.025em;
-  color: rgba(255,255,255,0.62);
-  text-decoration: none;
-  transform: translateY(110%);
-  transition: transform .55s var(--ease), color .25s;
-}
-.nav-links-main a::after {
-  content: '';
-  position: absolute; left: 0; right: 0; bottom: .02em;
-  height: 1px; background: rgba(255,255,255,0.28);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .34s var(--ease);
-}
-.nav-links-main a:hover::after,
-.nav-links-main a:focus-visible::after,
-.nav-links-main a[aria-current="page"]::after { transform: scaleX(1); }
-.nav-links-main a span,
-.nav-sub {
-  font-size: .22em; letter-spacing: .26em; text-transform: uppercase;
-  color: var(--sage); font-weight: 400;
-}
-.nav-item-main { color: inherit; font-size: 1em !important; letter-spacing: -0.025em !important; text-transform: none !important; }
-.nav-item-desc {
-  align-self: center;
-  max-width: 28ch;
-  color: var(--white-72) !important;
-  font-size: clamp(.72rem, 1vw, .92rem) !important;
-  line-height: 1.45;
-  letter-spacing: .08em !important;
-  text-transform: uppercase !important;
-  transform: translateX(-.35rem);
-  opacity: .72;
-  transition: opacity .25s, transform .25s;
-}
-.nav-links-main a:hover .nav-item-desc,
-.nav-links-main a:focus-visible .nav-item-desc,
-.nav-links-main a[aria-current="page"] .nav-item-desc { opacity: 1; transform: translateX(0); color: var(--white) !important; }
-.nav-links-main a[aria-current="page"] { color: var(--white); }
-.nav-links-main a[aria-current="page"] .nav-sub { color: var(--white); }
-.nav-booking-item {
-  margin-top: .7rem;
-  padding-top: .9rem !important;
-  border-top: 1px solid var(--white-24);
-}
-.nav-booking-item a {
-  width: fit-content;
-  padding: .18em .34em .24em;
-}
-.nav-overlay-footer {
-  display: flex; flex-wrap: wrap; gap: 1rem 1.6rem;
-  align-items: center;
-  font-size: .68rem; font-weight: 500;
-  letter-spacing: .14em; text-transform: uppercase;
-  color: var(--white-72);
-}
-.nav-overlay-footer a { color: var(--white); text-decoration: none; }
-.nav-overlay-footer a:hover { color: var(--sage-tint); }
-.nav-open .nav-links-main a { transform: translateY(0); }
-.nav-links-main a:hover { color: var(--white); }
-.nav-links-main li:nth-child(1) a { transition-delay: .02s; }
-.nav-links-main li:nth-child(2) a { transition-delay: .07s; }
-.nav-links-main li:nth-child(3) a { transition-delay: .12s; }
-.nav-links-main li:nth-child(4) a { transition-delay: .17s; }
-.nav-links-main li:nth-child(5) a { transition-delay: .22s; }
-
-/* ═══════════════════════════════════════════
    HERO — SPLIT SCREEN (50/50)
 ═══════════════════════════════════════════ */
 .hero-split {
@@ -211,7 +57,7 @@ body {
   display: flex; flex-direction: column;
   justify-content: space-between;
   gap: 2rem;
-  min-height: 38rem;
+  min-height: clamp(31rem, 43vw, 38rem);
   background: transparent;
   border: none;
   border-radius: 0;
@@ -486,24 +332,34 @@ body {
 .index-inner {
   display: flex;
   flex-wrap: wrap;
-  gap: 0;
+  gap: .45rem;
 }
 .index-item {
-  padding: .75rem 1.4rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
   color: var(--white-72);
   text-decoration: none;
-  border-right: 1px solid var(--white-24);
-  display: flex; align-items: center;
+  border: 1px solid var(--white-24);
+  display: inline-flex; align-items: center; justify-content: center;
   font-size: .72rem; font-weight: 500;
   letter-spacing: .14em; text-transform: uppercase;
   transition: color .18s, background .18s;
   white-space: nowrap;
 }
-.index-item:last-child { border-right: 0; }
+.index-item svg {
+  width: 1.08rem;
+  height: 1.08rem;
+  stroke-width: 1.7;
+}
 .index-item:hover, .index-item:focus-visible {
   color: var(--white);
   background: var(--sage-deep);
   outline: none;
+}
+.index-item[aria-current="location"] {
+  color: var(--white);
+  background: rgba(95,113,109,.48);
 }
 
 /* ═══════════════════════════════════════════
@@ -515,7 +371,7 @@ body {
   padding: 4rem 2rem 0;
   display: grid;
   gap: 2rem;
-  scroll-margin-top: calc(var(--nav-h) + 1rem);
+  scroll-margin-top: calc(var(--nav-h) + 3.75rem);
 }
 .feature-band-head {
   display: grid;
@@ -535,17 +391,31 @@ body {
 }
 .feature-band-grid {
   display: grid;
-  gap: 2rem;
+  gap: 1.4rem;
   grid-template-columns: 1fr;
   align-items: start;
 }
-@media (min-width: 900px) {
+@media (min-width: 768px) {
   .feature-band-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .feature-trailer:last-child { grid-column: 1 / -1; }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .feature-trailer:last-child {
+    grid-template-columns: minmax(0, 1.05fr) minmax(15rem, .95fr);
+  }
+  .feature-trailer:last-child .feature-thumb {
+    aspect-ratio: auto;
+    min-height: 18rem;
+  }
+}
+@media (min-width: 1200px) {
+  .feature-band-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .feature-trailer:last-child { grid-column: auto; }
 }
 .feature-trailer {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-columns: 1fr;
   gap: 0;
   border: 1px solid var(--white-24);
   background: var(--sage-deep);
@@ -562,7 +432,7 @@ body {
 }
 .feature-thumb {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   background-image: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)),
                     url('https://img.youtube.com/vi/AJ6uhwH7-gI/maxresdefault.jpg');
   background-size: cover; background-position: center;
@@ -592,8 +462,7 @@ body {
 .feature-meta {
   position: absolute;
   left: 1.6rem; bottom: 1.4rem; right: 1.6rem;
-  display: flex; align-items: end; justify-content: space-between;
-  gap: 1rem;
+  display: flex; align-items: end; justify-content: flex-start;
 }
 .feature-time {
   display: inline-flex;
@@ -616,9 +485,9 @@ body {
   color: var(--ink);
 }
 .feature-copy {
-  padding: 2.2rem 2rem 2rem;
+  padding: 1.45rem 1.4rem 1.55rem;
   display: flex; flex-direction: column;
-  gap: 1.2rem;
+  gap: .8rem;
   background: var(--sage);
 }
 .feature-kicker {
@@ -629,7 +498,7 @@ body {
 }
 .feature-kicker::before { content: ''; width: 1.6rem; height: 1px; background: var(--white-48); }
 .feature-headline {
-  font-size: clamp(1.8rem, 2.2vw, 2.2rem);
+  font-size: clamp(1.42rem, 1.75vw, 1.85rem);
   font-weight: 500; line-height: 1.1;
   letter-spacing: -0.03em;
   text-transform: uppercase;
@@ -651,7 +520,7 @@ body {
   display: block; font-size: .62em; margin-top: .15rem;
 }
 .feature-body {
-  font-size: .98rem; line-height: 1.5;
+  font-size: .92rem; line-height: 1.5;
   color: var(--white); max-width: 42ch;
   text-wrap: pretty;
 }
@@ -684,7 +553,7 @@ body {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 4rem 2rem 0;
-  scroll-margin-top: calc(var(--nav-h) + 1rem);
+  scroll-margin-top: calc(var(--nav-h) + 3.75rem);
 }
 .section-head {
   display: grid;
@@ -720,7 +589,7 @@ body {
 
 .kit-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
   gap: 1.5rem;
   width: 100%;
   margin: 1.6rem 0 0;
@@ -863,18 +732,18 @@ body {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 4rem 2rem 0;
-  scroll-margin-top: calc(var(--nav-h) + 1rem);
+  scroll-margin-top: calc(var(--nav-h) + 3.75rem);
 }
 .foto-strip {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   background: var(--white-24);
   border: 1px solid var(--white-24);
 }
 .foto-cell {
   position: relative;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 16 / 10;
   background: var(--sage-deep);
   overflow: hidden;
 }
@@ -888,7 +757,7 @@ body {
       rgba(255,255,255,0.0) 36px),
     linear-gradient(160deg, var(--sage-deep) 0%, var(--sage-darker) 100%);
 }
-.foto-cell.wide { grid-column: span 2; aspect-ratio: 3 / 2; }
+.foto-cell.wide { grid-column: auto; aspect-ratio: 16 / 10; }
 .foto-cell-tag {
   position: absolute; top: 1rem; left: 1rem;
   z-index: 2;
@@ -899,50 +768,23 @@ body {
   border: 1px solid var(--white-24);
   background: rgba(27,36,34,0.32);
 }
-.foto-cell-caption {
-  position: absolute; left: 1rem; right: 1rem; bottom: 1rem;
-  z-index: 2;
-  display: flex; flex-direction: column; gap: .15rem;
-}
-.foto-cell-caption span {
-  font-size: .72rem; font-weight: 500;
-  letter-spacing: .26em; text-transform: uppercase;
-  color: var(--white-72);
-}
-.foto-cell-caption strong {
-  font-size: .98rem; font-weight: 500;
-  letter-spacing: -0.01em;
-}
+.foto-section .foto-cell-tag { display: none; }
 .foto-cell-credit {
-  position: absolute; top: 1rem; right: 1rem;
+  position: absolute; left: .85rem; bottom: .75rem;
   z-index: 2;
-  font-size: .72rem; font-weight: 500;
-  letter-spacing: .22em; text-transform: uppercase;
-  color: var(--white-48);
-}
-.foto-cell-use {
-  position: absolute; right: 1rem; bottom: 1rem;
-  z-index: 2;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: .35rem;
-  max-width: 45%;
-}
-.foto-cell-use span {
-  padding: .3rem .45rem;
-  border: 1px solid rgba(255,255,255,.2);
-  background: rgba(27,36,34,.36);
-  color: var(--white-72);
-  font-size: .58rem;
-  font-weight: 500;
-  letter-spacing: .08em;
+  padding: .22rem .38rem;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(27,36,34,.34);
+  color: rgba(255,255,255,.78);
+  font-size: .62rem; font-weight: 500;
+  letter-spacing: .04em; text-transform: none;
+  backdrop-filter: blur(6px);
 }
 .foto-cell-actions {
   position: absolute;
-  left: 1rem;
-  right: 1rem;
-  bottom: 4.25rem;
+  left: auto;
+  right: .85rem;
+  bottom: .75rem;
   z-index: 3;
   display: flex;
   flex-wrap: wrap;
@@ -953,15 +795,15 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 34px;
-  padding: .45rem .6rem;
-  border: 1px solid rgba(255,255,255,.24);
-  background: rgba(27,36,34,.48);
+  min-height: 30px;
+  padding: .32rem .52rem;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(27,36,34,.42);
   color: var(--white);
   font: inherit;
   font-size: .62rem;
   font-weight: 600;
-  letter-spacing: .1em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
@@ -1019,7 +861,7 @@ body {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 4rem 2rem 0;
-  scroll-margin-top: calc(var(--nav-h) + 1rem);
+  scroll-margin-top: calc(var(--nav-h) + 3.75rem);
 }
 .bio-grid {
   display: grid;
@@ -1094,7 +936,7 @@ body {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 4rem 2rem 0;
-  scroll-margin-top: calc(var(--nav-h) + 1rem);
+  scroll-margin-top: calc(var(--nav-h) + 3.75rem);
 }
 .press-list {
     list-style: none;
@@ -1494,42 +1336,23 @@ footer {
 /* ═══════════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════════ */
-@media (max-width: 1100px) { #nav-quick { display: none; } }
-
-@media (max-width: 1080px) {
+@media (max-width: 1180px) {
   .hero-split { grid-template-columns: 1fr; gap: 1.6rem; }
   .hero-left { min-height: auto; }
   .hero-headline { font-size: clamp(4rem, calc((100cqw - 1.5rem) / 3.55), 10rem); }
   .hero-right { min-height: 0; }
-  .feature-trailer { grid-template-columns: 1fr; }
-  .kit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .bio-quotes { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 880px) {
-  #nav-burger { width: 40px; }
-  .nav-close-label { display: none; }
-  #nav-overlay { justify-content: flex-start; padding: calc(var(--nav-h) + 1.6rem) 1.4rem max(1.6rem, env(safe-area-inset-bottom)); }
-  .nav-links-main { margin: 0 0 auto; }
-  .nav-links-main a {
-    grid-template-columns: 3rem minmax(0, 1fr);
-    gap: .4rem 1rem;
-    font-size: clamp(2.2rem, 12vw, 4.2rem);
-  }
-  .nav-item-desc { grid-column: 2; max-width: none; font-size: .68rem !important; }
-  .nav-booking-item { margin-top: 1.1rem; }
-  .nav-overlay-footer { margin-top: 1.6rem; display: grid; gap: .85rem; }
   .hero-split { padding: 1.4rem 1.4rem 1.6rem; gap: 1rem; }
   .hero-left { padding: 1rem 0 0; gap: 1.2rem; }
   .hero-top { flex-direction: column; gap: 1rem; }
   .hero-coord { text-align: left; }
   .hero-headline {
-    order: 3;
     font-size: clamp(3rem, 16vw, 7rem);
     margin-top: .35rem;
   }
-  .hero-lede { order: 1; }
-  .hero-actions { order: 2; margin-top: .2rem; }
+  .hero-actions { margin-top: .2rem; }
   .hero-tag,
   .hero-coord,
   .hero-lede-meta,
@@ -1546,7 +1369,6 @@ footer {
   .kit-card-num,
   .kit-card-meta span,
   .foto-cell-tag,
-  .foto-cell-caption span,
   .foto-cell-credit,
   .bio-eyebrow,
   .bio-chip,
@@ -1561,25 +1383,34 @@ footer {
   .kit-title { font-size: clamp(1.45rem, 6vw, 2rem); }
   .hero-lede { grid-template-columns: 1fr; gap: .8rem; }
   .hero-lede-meta { text-align: left; }
-  .hero-actions { flex-direction: column; }
-  .hero-actions a { width: 100%; }
   .index-band {
-    position: static;
-    top: auto;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    background: transparent;
-    backdrop-filter: none;
+    position: sticky;
+    top: var(--nav-h);
+    padding-top: .45rem;
+    padding-bottom: .45rem;
+    background: rgba(120,139,135,.96);
+    backdrop-filter: blur(14px);
   }
+  .index-inner {
+    flex-wrap: nowrap;
+    gap: .45rem;
+    overflow-x: auto;
+    padding: .2rem 0;
+    scrollbar-width: none;
+  }
+  .index-inner::-webkit-scrollbar { display: none; }
+  .index-item { flex: 0 0 auto; }
   .index-band, .feature-band, .kit-section, .foto-section, .bio-section, .press-section, .contact-band {
     padding-left: 1.4rem; padding-right: 1.4rem;
+  }
+  .feature-band, .kit-section, .foto-section, .bio-section, .press-section {
+    scroll-margin-top: calc(var(--nav-h) + 3.6rem);
   }
   .feature-band, .kit-section, .foto-section, .bio-section, .press-section { padding-top: 3rem; }
   .contact-band { padding-top: 3rem; padding-bottom: 3.5rem; }
   .section-head { grid-template-columns: 1fr; gap: .6rem; }
-  .kit-grid { grid-template-columns: 1fr; }
   .foto-strip { grid-template-columns: 1fr 1fr; }
-  .foto-cell.wide { grid-column: span 2; aspect-ratio: 4/3; }
+  .foto-cell.wide { grid-column: auto; aspect-ratio: 16/10; }
   .bio-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   .contact-side { border-left: 0; border-top: 1px solid var(--white-24); }
@@ -1610,24 +1441,19 @@ footer {
   .kit-card { padding: 1.35rem; min-height: 15rem; }
   .kit-card-details span { font-size: .62rem; }
   .press-essential { padding: .8rem; }
-  .index-inner {
-    flex-wrap: nowrap;
-    gap: .45rem;
-    overflow-x: auto;
-    padding: .25rem 0;
-    scrollbar-width: none;
-  }
-  .index-inner::-webkit-scrollbar { display: none; }
-  .index-item {
-    flex: 0 0 auto;
-    border: 1px solid var(--white-24) !important;
-    padding: .72rem .8rem;
-  }
+  .status-detail, .hero-lede-meta { display: none; }
+  .status-bar { padding: .6rem 1rem; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions a { width: 100%; }
   .foto-strip { grid-template-columns: 1fr; }
-  .foto-cell.wide { grid-column: auto; aspect-ratio: 4/3; }
-  .foto-cell-actions { position: static; padding: 1rem; background: rgba(27,36,34,.72); }
-  .foto-cell-caption { bottom: 5.3rem; }
-  .feature-copy { padding: 1.4rem 1.2rem; }
+  .foto-cell, .foto-cell.wide { aspect-ratio: 4/3; }
+  .foto-cell-actions { position: absolute; right: .7rem; bottom: .7rem; padding: 0; background: transparent; }
+  .foto-cell-credit { left: .85rem; bottom: .65rem; }
+  .feature-play { left: 1rem; top: 1rem; width: 3rem; }
+  .feature-meta { left: 1rem; right: 1rem; bottom: 1rem; }
+  .feature-time { padding: .3rem .55rem; }
+  .feature-headline-main { white-space: normal; }
+  .feature-copy { padding: 1.2rem 1rem 1.3rem; }
   .feature-actions a { flex: 1 1 auto; justify-content: center; }
   .contact-copy, .contact-side { padding: 1.6rem 1.4rem; }
   footer { padding: 2.4rem 1.4rem calc(1.8rem + env(safe-area-inset-bottom, 0px)); }
@@ -1653,8 +1479,6 @@ footer {
 .kit-card-meta span,
 .foto-cell-tag,
 .foto-cell-credit,
-.foto-cell-actions a,
-.foto-cell-actions button,
 .bio-chip,
 .contact-row dt {
   font-size: max(.72rem, 12px);
@@ -1670,8 +1494,29 @@ footer {
   text-transform: uppercase; text-decoration: none; z-index: 9999;
   outline: 2px solid var(--white); outline-offset: 2px;
 }
+
+@media (max-width: 560px) {
+  .video-modal-outer { width: calc(100vw - 2.4rem); }
+  .video-modal-wrap {
+    height: auto;
+    max-height: none;
+    aspect-ratio: 16 / 9;
+  }
+  #video-close {
+    top: calc(-2.8rem - env(safe-area-inset-top, 0px));
+    min-height: 44px;
+  }
+  .hero-button,
+  .hero-link,
+  .kit-cta,
+  .contact-action,
+  .foto-request {
+    min-height: 48px;
+    justify-content: center;
+  }
+}
 </style>
-<link rel="stylesheet" href="includes/nav.css">
+<link rel="stylesheet" href="includes/nav.css?v=7">
 </head>
 <body>
 
@@ -1681,22 +1526,17 @@ footer {
 
 <!-- NAV -->
 <div id="shared-nav"></div>
-<script src="includes/include.js" defer></script>
+<script src="includes/include.js?v=7" defer></script>
 
-<!-- STATUS BAR -->
-<main id="main-content" tabindex="-1">
-<div class="status-bar">Kurzinfo und Pressebilder jetzt verfügbar &middot; Weitere Materialien ab Herbst&nbsp;2026</div>
 
+
+<main id="main-content">
 <!-- HERO — SPLIT SCREEN -->
 <section class="hero-split">
   <div class="hero-left reveal">
     <div class="hero-top">
       <div class="hero-tag">
         Pressemappe<br><span>Material für Veranstalter &amp; Redaktionen</span>
-      </div>
-      <div class="hero-coord">
-        <b>Stand 2026 / 27</b>
-        <a href="mailto:booking@duovia.de">booking@duovia.de</a>
       </div>
     </div>
     <h1 class="hero-headline">
@@ -1709,10 +1549,7 @@ footer {
         sofort verfügbar
       </div>
     </div>
-    <div class="hero-actions">
-      <a class="hero-button" href="#material">Material ansehen</a>
-      <a class="hero-link" href="#fotos">Pressefotos</a>
-    </div>
+
   </div>
 
   <aside class="hero-right reveal">
@@ -1735,11 +1572,11 @@ footer {
 <!-- QUICK INDEX BAND -->
 <nav class="index-band reveal" aria-label="Schnellzugriff">
   <div class="index-inner">
-    <a class="index-item" href="#material">Pressemappe</a>
-    <a class="index-item" href="#fotos">Pressefotos</a>
-    <a class="index-item" href="#bios">Biografien</a>
-    <a class="index-item" href="#trailer">Trailer</a>
-    <a class="index-item" href="#pressestimmen">Pressestimmen</a>
+    <a class="index-item" href="#material" aria-label="Pressemappe"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></a>
+    <a class="index-item" href="#fotos" aria-label="Pressefotos"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg></a>
+    <a class="index-item" href="#bios" aria-label="Biografien"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-8 0v2"/><circle cx="12" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></a>
+    <a class="index-item" href="#trailer" aria-label="Videos"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 8 6 4-6 4V8Z"/><rect width="20" height="16" x="2" y="4" rx="2"/></svg></a>
+    <a class="index-item" href="#pressestimmen" aria-label="Pressestimmen"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H5c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1 0 1-1 2-3 2"/><path d="M14 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-3c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1 0 1-1 2-3 2"/></svg></a>
   </div>
 </nav>
 
@@ -1775,10 +1612,10 @@ footer {
     <a class="kit-card" href="#fotos">
       <div class="kit-card-head">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <span class="kit-card-status">Auf Anfrage</span>
+        <span class="kit-card-status">Jetzt verfügbar</span>
       </div>
       <h3 class="kit-card-title">Pressefotos</h3>
-      <div class="kit-card-details"><span>2 Bilder</span><span>WebP</span><span>© Iréne Zandel</span></div>
+      <div class="kit-card-details"><span>2 Bilder</span><span>WebP</span><span>© Irène Zandel</span></div>
       <p class="kit-card-desc">Zwei Pressebilder mit sichtbarem Credit für Ihre Ankündigung.</p>
       <div class="kit-card-meta"><span>Bilder ansehen</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></div>
     </a>
@@ -1790,40 +1627,30 @@ footer {
 <section class="foto-section reveal" id="fotos">
   <header class="section-head">
     <div class="section-num">02</div>
-    <h2 class="section-title">Pressefotos<em>2 Bilder · © Iréne Zandel</em></h2>
+    <h2 class="section-title">Pressefotos<em>2 Bilder · © Irène Zandel</em></h2>
   </header>
 
   <div class="foto-strip">
     <div class="foto-cell">
       <div class="foto-cell-bg" style="background: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)), url('image/duo%20via%201.webp') center/cover no-repeat;"></div>
       <span class="foto-cell-tag">01 · Duo-Porträt</span>
-      <span class="foto-cell-credit">© Iréne Zandel</span>
+      <span class="foto-cell-credit">© Irène Zandel</span>
       <div class="foto-cell-actions">
-        <a href="image/duo%20via%201.webp" download="Duo-ViA-Pressefoto-01.webp">Bild speichern</a>
-        <button type="button" data-copy="© Iréne Zandel">Credit kopieren</button>
-      </div>
-      <div class="foto-cell-caption">
-        <span>Querformat · WebP</span>
-        <strong>Sinn Yang &amp; Harald Oeler</strong>
+        <a href="image/duo%20via%201.webp" download="Duo-ViA-Pressefoto-01.webp" aria-label="Pressefoto 01 speichern">Speichern</a>
       </div>
     </div>
     <div class="foto-cell wide">
       <div class="foto-cell-bg" style="background: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)), url('image/duo%20via%20trailer.webp') center/cover no-repeat;"></div>
       <span class="foto-cell-tag">02 · Trailerstill</span>
-      <span class="foto-cell-credit">© Iréne Zandel</span>
+      <span class="foto-cell-credit">© Irène Zandel</span>
       <div class="foto-cell-actions">
-        <a href="image/duo%20via%20trailer.webp" download="Duo-ViA-Pressefoto-02.webp">Bild speichern</a>
-        <button type="button" data-copy="© Iréne Zandel">Credit kopieren</button>
-      </div>
-      <div class="foto-cell-caption">
-        <span>Querformat · Vorschau</span>
-        <strong>8 Jahreszeiten · Duo ViA!</strong>
+        <a href="image/duo%20via%20trailer.webp" download="Duo-ViA-Pressefoto-02.webp" aria-label="Pressefoto 02 speichern">Speichern</a>
       </div>
     </div>
   </div>
 
   <div class="foto-footer">
-    <p class="foto-footer-note">Für Presse- und Veranstaltungsankündigungen. Bitte bei Veröffentlichung den Credit © Iréne Zandel sichtbar angeben.</p>
+    <p class="foto-footer-note">Credit bei Veröffentlichung: © Irène Zandel.</p>
   </div>
 </section>
 
@@ -1868,43 +1695,32 @@ footer {
     <button class="feature-trailer" type="button" data-video="AJ6uhwH7-gI" aria-label="Trailer 8 Jahreszeiten ansehen">
       <span class="feature-thumb" aria-hidden="true">
         <span class="feature-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
-        <span class="feature-meta">
-          <span class="feature-time">YouTube · HD · 02:18</span>
-          <span class="feature-time"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg> Trailer</span>
-        </span>
       </span>
       <span class="feature-copy">
-        <span class="feature-kicker">Trailer · Studio · 2025</span>
+        <span class="feature-kicker">Video · Duo ViA!</span>
         <span class="feature-headline"><span class="feature-headline-main">8 Jahreszeiten</span> <em>in Bewegung erleben</em></span>
         <span class="feature-body">Kurzvideo für Programmhefte und Pressearbeit.</span>
       </span>
     </button>
-    <button class="feature-trailer" type="button" data-video="wiQTY9AOcVg" aria-label="Making of Duo ViA! ansehen">
-      <span class="feature-thumb" aria-hidden="true" style="background-image: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)), url('https://img.youtube.com/vi/wiQTY9AOcVg/maxresdefault.jpg');">
+    <button class="feature-trailer" type="button" data-video="kw7_NO-klxM" aria-label="Making of Duo ViA! ansehen">
+      <span class="feature-thumb" aria-hidden="true" style="background-image: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)), url('https://img.youtube.com/vi/kw7_NO-klxM/maxresdefault.jpg');">
         <span class="feature-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
-        <span class="feature-meta">
-          <span class="feature-time">YouTube · HD</span>
-          <span class="feature-time"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg> Making-of</span>
-        </span>
       </span>
       <span class="feature-copy">
-        <span class="feature-kicker">Making-of · rbb · 2014</span>
+        <span class="feature-kicker">Making-of · CD 8 Jahreszeiten</span>
         <span class="feature-headline"><span class="feature-headline-main">Making of</span> <span class="feature-headline-sub">Duo ViA!</span> <em>CD 8 Jahreszeiten</em></span>
-        <span class="feature-body">Making-of-Clip aus der rbb-Produktion, kompakt und nutzbar für Presse.</span>
+        <span class="feature-body">Making-of-Clip zur CD-Produktion, kompakt und nutzbar für Presse.</span>
       </span>
     </button>
     <button class="feature-trailer" type="button" data-video="GfzeqN5tr98" aria-label="Live-Video: 8 Jahreszeiten im MühlenForum Glattbach ansehen">
       <span class="feature-thumb" aria-hidden="true" style="background-image: linear-gradient(rgba(27,36,34,0.18), rgba(27,36,34,0.42)), url('https://img.youtube.com/vi/GfzeqN5tr98/maxresdefault.jpg');">
         <span class="feature-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
-        <span class="feature-meta">
-          <span class="feature-time">YouTube · Live</span>
-          <span class="feature-time"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg> Konzert</span>
-        </span>
+
       </span>
       <span class="feature-copy">
-        <span class="feature-kicker">Konzert · MühlenForum Glattbach · 2026</span>
+        <span class="feature-kicker">Konzertvideo · Duo ViA!</span>
         <span class="feature-headline"><span class="feature-headline-main">8 Jahreszeiten</span> <em>Live im Konzert</em></span>
-        <span class="feature-body">Live-Mitschnitt aus dem Programm „8 Jahreszeiten“ im MühlenForum Glattbach.</span>
+        <span class="feature-body">Live-Mitschnitt aus dem Programm „8 Jahreszeiten“.</span>
       </span>
     </button>
   </div>
@@ -1932,37 +1748,9 @@ footer {
       <cite class="press-source"><b>NDR Kultur</b>Konzertkritik</cite>
     </li>
   </ol>
+  <br>
 </section>
 
-<!-- CONTACT BAND -->
-<section class="contact-band reveal">
-  <div class="contact-grid">
-    <div class="contact-copy">
-      <span class="contact-eyebrow">Kontakt</span>
-      <h3 class="contact-head">Material für Ihr Event<em>per E-Mail anfragen</em></h3>
-      <p class="contact-body">Die Presse-Kurzinfo und zwei Pressebilder sind sofort verfügbar. Biografien und Rider senden wir aktuell auf Anfrage.</p>
-      <div class="contact-options" aria-label="Pressematerialien">
-        <span>Pressemappe</span>
-        <span>Fotos</span>
-        <span>Bio</span>
-        <span>Rider</span>
-      </div>
-      <div class="contact-actions">
-        <a class="contact-action" href="mailto:booking@duovia.de?subject=Presse-%20und%20Buchungsanfrage%20Duo%20ViA%21&body=Name%20%2F%20Institution%3A%0AAnlass%20%2F%20Medium%3A%0ABen%C3%B6tigtes%20Material%3A%0AFrist%3A%0A%0ANachricht%3A">Material anfragen</a>
-      </div>
-    </div>
-    <div class="contact-side">
-      <span class="contact-side-eyebrow">Kanäle</span>
-      <dl>
-        <div class="contact-row"><dt>E-Mail</dt><dd><a href="mailto:booking@duovia.de">booking@duovia.de</a></dd></div>
-        <div class="contact-row"><dt>Verfügbar</dt><dd>Kurzinfo sofort · Pakete Herbst 2026</dd></div>
-        <div class="contact-row"><dt>Sprachen</dt><dd>Deutsch · English</dd></div>
-        <div class="contact-row"><dt>Format</dt><dd>TXT / WebP sofort · PDF auf Anfrage</dd></div>
-        <div class="contact-row"><dt>Stand</dt><dd>Saison 2026 / 27</dd></div>
-      </dl>
-    </div>
-  </div>
-</section>
 </main>
 
 <!-- FOOTER -->
@@ -2111,6 +1899,26 @@ const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+const indexLinks = Array.from(document.querySelectorAll('.index-item'));
+const indexTargets = indexLinks
+  .map(link => document.querySelector(link.getAttribute('href')))
+  .filter(Boolean);
+if (indexLinks.length && indexTargets.length) {
+  const selectSection = id => indexLinks.forEach(link => {
+    if (link.getAttribute('href') === `#${id}`) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) selectSection(entry.target.id);
+    });
+  }, { rootMargin: '-28% 0px -58% 0px', threshold: 0 });
+  indexTargets.forEach(section => sectionObserver.observe(section));
+  indexLinks.forEach(link => link.addEventListener('click', () => {
+    selectSection(link.getAttribute('href').slice(1));
+  }));
+}
 </script>
 </body>
 </html>

@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Über uns — Duo ViA!</title>
-<meta name="description" content="Duo ViA! — Sinn Yang (Violine) und Harald Oeler (Akkordeon). Geschichte, Konzertprofil und Biografien des Ensembles seit 2009.">
+<meta name="description" content="Duo ViA! — Sinn Yang (Violine) und Harald Oeler (Akkordeon). Geschichte, Konzertprofil und Biografien des Duos seit 2009.">
 <meta property="og:title" content="Über uns — Duo ViA!">
 <meta property="og:description" content="Duo ViA! — Geschichte, Konzertprofil und die Musiker Sinn Yang und Harald Oeler.">
 <meta property="og:image" content="https://duovia.de/hero.webp">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://duovia.de/ueber-uns.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%235F716D'/%3E%3Ctext x='16' y='24' font-family='Helvetica%2CArial%2Csans-serif' font-size='14' font-weight='700' letter-spacing='1' text-anchor='middle' fill='white'%3EV%3C%2Ftext%3E%3C/svg%3E">
 <link rel="stylesheet" href="includes/tokens.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -60,7 +61,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* ═══════════════════════════════════════════
-   NAV — identical to projects.html
+   NAV — identical to programm.html
 ═══════════════════════════════════════════ */
 #nav-bar {
   position: fixed; top: 0; left: 0; right: 0;
@@ -261,6 +262,7 @@ img { max-width: 100%; display: block; }
 }
 .hero-display .line {
   display: block;
+  line-height: .88;
 }
 .hero-display .lt { font-weight: 300; }
 .hero-intro {
@@ -283,16 +285,18 @@ img { max-width: 100%; display: block; }
   display: grid;
   grid-template-columns: minmax(260px, .78fr) minmax(280px, .52fr);
   justify-content: space-between;
-  align-items: end;
+  align-items: center;
   gap: clamp(2rem, 8vw, 8rem);
   margin-top: clamp(1.25rem, 2.5vw, 2rem);
 }
 .hero-image {
   position: relative;
   overflow: hidden;
-  width: min(100%, 28rem);
+  width: min(100%, 38rem);
   justify-self: end;
-  aspect-ratio: 5 / 4;
+  align-self: start;
+  margin-top: -8rem;
+  aspect-ratio: 4 / 3;
   min-height: 0;
   border: 1px solid var(--white-24);
 }
@@ -305,6 +309,13 @@ img { max-width: 100%; display: block; }
   object-position: 68% center;
   filter: contrast(1.03);
 }
+.hero-actions {
+  margin-top: 1.6rem;
+  display: flex;
+  gap: .55rem;
+  flex-wrap: wrap;
+}
+.hero-image img { object-position: 60% center; }
 .hero-image figcaption {
   position: absolute;
   left: 1.2rem;
@@ -475,6 +486,38 @@ img { max-width: 100%; display: block; }
 }
 
 /* ═══════════════════════════════════════════
+   DUO PHOTO STRIP
+═══════════════════════════════════════════ */
+.duo-photo-strip {
+  width: 100%;
+  border-top: 1px solid var(--white-24);
+  border-bottom: 1px solid var(--white-24);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16 / 6;
+}
+.duo-photo-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+  filter: contrast(1.03);
+}
+.duo-photo-strip figcaption {
+  position: absolute;
+  right: 2rem;
+  bottom: 1.2rem;
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: rgba(27,36,34,.5);
+  padding: .4rem .7rem;
+}
+
+/* ═══════════════════════════════════════════
    ARTIST BLOCK — full-bleed 50/50 zigzag
    (Structurally distinct from projects' 80/220/1fr
     num+sticky-aside+main grid.)
@@ -504,6 +547,12 @@ img { max-width: 100%; display: block; }
   border-right: 0;
   border-left: 1px solid var(--white-24);
 }
+@media (min-width: 1101px) {
+  .artist.flip .artist-portrait {
+    align-self: center;
+    margin-block: clamp(2rem, 3vw, 3.25rem);
+  }
+}
 .artist-portrait::before {
   /* placeholder stripe pattern — sits behind any real image */
   content: '';
@@ -525,7 +574,7 @@ img { max-width: 100%; display: block; }
   filter: grayscale(8%) contrast(1.02);
 }
 .portrait-sinn img { object-position: 78% center; }
-.portrait-harald img { object-position: 43% center; }
+.portrait-harald img { object-position: 43% 28%; }
 .media-fallback {
   position: absolute; inset: 0;
   z-index: 0;
@@ -604,10 +653,6 @@ img { max-width: 100%; display: block; }
   padding: .38rem .6rem;
   border: 1px solid var(--white-72);
   z-index: 2;
-}
-.artist.flip .portrait-tag {
-  right: auto;
-  left: 2rem;
 }
 .portrait-caption {
   position: absolute;
@@ -1012,7 +1057,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* ═══════════════════════════════════════════
-   FOOTER — identical to projects.html
+   FOOTER — identical to programm.html
 ═══════════════════════════════════════════ */
 #shared-footer footer {
   background: var(--sage-deep);
@@ -1137,6 +1182,30 @@ img { max-width: 100%; display: block; }
   .hero-display { font-size: clamp(3rem, 10vw, 7.25rem); }
   .hero-ledger { grid-template-columns: repeat(3, minmax(0,1fr)); row-gap: 1rem; }
 }
+@media (min-width: 701px) and (max-width: 1100px) {
+  .artist { grid-template-columns: 40fr 60fr; }
+  .artist.flip { grid-template-columns: 60fr 40fr; }
+  .artist-portrait {
+    align-self: stretch;
+    aspect-ratio: auto;
+    min-height: 520px;
+  }
+  .artist-body {
+    padding: clamp(2rem, 3vw, 2.8rem) clamp(1.35rem, 3vw, 2.3rem);
+  }
+  .artist-name { font-size: clamp(2.35rem, 4.6vw, 3.7rem); }
+  .facts { grid-template-columns: 1fr; margin: 1.25rem 0; }
+  .fact { border-left: 0; padding: .7rem 0; }
+  .fact + .fact { border-top: 1px solid var(--white-24); }
+  .portrait-caption {
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .portrait-caption .pc-meta { text-align: left; }
+}
 @media (max-width: 880px) {
   #nav-burger { width: 40px; }
   .nav-close-label { display: none; }
@@ -1153,13 +1222,6 @@ img { max-width: 100%; display: block; }
   .ensemble-profile { grid-template-columns: 1fr; padding-left: 1.4rem; padding-right: 1.4rem; }
   .hero-feature { grid-template-columns: 1fr; gap: 1.8rem; }
   .hero-image { justify-self: start; width: min(100%, 28rem); aspect-ratio: 16 / 10; }
-  .artist { grid-template-columns: 1fr; min-height: 0; }
-  .artist.flip .artist-portrait { order: 0; border-left: 0; }
-  .artist.flip .artist-body { order: 0; }
-  .artist-portrait { aspect-ratio: 16 / 11; min-height: auto; border-right: 0; border-bottom: 1px solid var(--white-24); }
-  .facts { grid-template-columns: 1fr; }
-  .fact { border-left: 0; padding-left: 0; border-top: 1px solid var(--white-24); padding-top: .9rem; }
-  .fact:first-child { border-top: 1px solid var(--white-24); }
   .booking-band-inner { grid-template-columns: 1fr; }
   .quick-paths { padding-left: 1.4rem; padding-right: 1.4rem; }
   .hero { padding: calc(var(--nav-h) + 1.6rem) 1.4rem 1.1rem; }
@@ -1180,27 +1242,79 @@ img { max-width: 100%; display: block; }
   }
   .footer-legal { grid-column: auto; }
 }
-@media (max-width: 560px) {
-  .hero-display { font-size: clamp(3rem, 17vw, 5rem); line-height: .95; letter-spacing: -0.04em; }
-  .milestones li { grid-template-columns: 1fr; gap: .35rem; }
-  .quick-paths {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
+@media (max-width: 700px) {
+  .artist,
+  .artist.flip { grid-template-columns: 1fr; min-height: 0; }
+  .artist .artist-portrait,
+  .artist.flip .artist-portrait {
+    order: 0;
+    aspect-ratio: 16 / 11;
+    min-height: auto;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--white-24);
   }
-  .quick-paths::-webkit-scrollbar { display: none; }
-  .quick-paths a { flex: 0 0 auto; }
-  .artist-portrait { aspect-ratio: 4 / 5; }
+  .artist .artist-body,
+  .artist.flip .artist-body { order: 1; }
+  .facts { grid-template-columns: 1fr; }
+  .fact { border-left: 0; padding-left: 0; border-top: 1px solid var(--white-24); padding-top: .9rem; }
+  .fact:first-child { border-top: 1px solid var(--white-24); }
+}
+@media (max-width: 600px) {
+  .hero-display { font-size: clamp(3rem, 17vw, 5rem); line-height: .95; letter-spacing: -0.04em; }
+  .hero-eyebrow { margin-bottom: 1.15rem; }
+  .eyebrow-stack span,
+  .hero-meta { display: none; }
+  .hero-feature { margin-top: .8rem; gap: 0; }
+  .hero-intro { font-size: 1.02rem; line-height: 1.42; }
+  .hero-intro strong { font-size: 1.25rem; }
+  .hero-image { display: none; }
+  .quick-paths {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: .5rem .7rem;
+    gap: .35rem;
+  }
+  .quick-paths a {
+    justify-content: center;
+    padding: .65rem .15rem;
+    min-height: 2.35rem;
+    font-size: .6rem;
+    letter-spacing: .06em;
+  }
+  .ensemble-profile { padding: 2.1rem 1.2rem; gap: 1.3rem; }
+  .ensemble-profile .artist-name { margin-top: .65rem; }
+  .founding-mark { margin: 1.25rem 0; padding: .85rem 0; }
+  .founding-mark strong { font-size: clamp(2.5rem, 14vw, 3.2rem); }
+  .milestones { margin: 1.3rem 0; }
+  .milestones li { grid-template-columns: 1fr; gap: .25rem; padding: .72rem 0; }
+  .ensemble-copy .artist-actions .p-action:not(.primary) {
+    background: transparent;
+    border-color: transparent;
+    padding-left: .1rem;
+  }
+  .artist-portrait { aspect-ratio: 5 / 4; }
+  .portrait-sinn img { object-position: 73% 45%; }
+  .portrait-harald img { object-position: 44% 18%; }
+  .portrait-tag,
+  .portrait-numeral { display: none; }
+  .portrait-caption {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    padding-top: .7rem;
+  }
+  .portrait-caption .pc-meta { display: none; }
+  .artist-body { padding: 2rem 1.2rem 2.2rem; }
+  .artist-name { font-size: clamp(2.35rem, 13vw, 3.2rem); }
+  .artist-byline { margin: 1rem 0; font-size: .98rem; }
+  .artist-bio { font-size: .95rem; line-height: 1.5; }
+  .facts { margin: 1.15rem 0 1.35rem; }
+  .fact { padding: .7rem 0; }
+  .fact dt { margin-bottom: .25rem; letter-spacing: .18em; font-size: .62rem; }
+  .tag-row { display: none; }
   .artist-actions .p-action { flex: 1 1 auto; justify-content: center; }
   .artist-actions .p-action::after { display: none; }
-  .hero-eyebrow { flex-direction: column; }
-  .hero-meta { text-align: left; }
-  .hero-image { min-height: 0; aspect-ratio: 16 / 11; }
-  .hero-image figcaption { left: .8rem; right: .8rem; bottom: .8rem; }
-  .portrait-numeral { font-size: 3.4rem; }
-  .portrait-caption { flex-direction: column; align-items: flex-start; }
-  .portrait-caption .pc-meta { text-align: left; }
   .hero-ledger { grid-template-columns: 1fr; }
   .ledger-cell,
   .ledger-cell:nth-child(3) { border-left: 0; padding-left: 0; border-top: 1px solid var(--white-24); padding-top: 1rem; }
@@ -1215,6 +1329,14 @@ img { max-width: 100%; display: block; }
   .booking-cta { width: 100%; justify-content: space-between; }
   #shared-footer footer { padding: 2.4rem 1.4rem calc(1.8rem + env(safe-area-inset-bottom, 0px)); }
   .footer-booking { gap: 1rem; padding-bottom: 1.5rem; }
+  .footer-booking h2 { font-size: clamp(1.7rem, 10vw, 2.3rem); }
+  .footer-actions .footer-cta:not(.footer-cta--secondary) { order: -1; }
+  .footer-actions .footer-cta--secondary {
+    border-color: transparent;
+    min-height: 38px;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+  }
   .footer-cta { justify-content: center; width: 100%; }
   .footer-links,
   .footer-meta,
@@ -1231,9 +1353,44 @@ img { max-width: 100%; display: block; }
   .reveal { opacity: 1; transform: none; }
 }
 @media (pointer: coarse) { #cur-dot, #cur-ring { display: none; } html, body, a, button { cursor: auto; } }
+
+@media (min-width: 701px) and (max-width: 880px) {
+  .artist,
+  .artist.flip {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .artist .artist-portrait,
+  .artist.flip .artist-portrait {
+    order: 0;
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--white-24);
+  }
+  .artist .artist-body,
+  .artist.flip .artist-body { order: 1; }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+  .quick-paths {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-inline: .7rem;
+    scrollbar-width: none;
+  }
+  .quick-paths::-webkit-scrollbar { display: none; }
+  .quick-paths a {
+    flex: 0 0 auto;
+    padding-inline: .8rem;
+  }
+}
 </style>
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
-<link rel="stylesheet" href="includes/nav.css">
+<link rel="stylesheet" href="includes/nav.css?v=7">
 </head>
 <body>
 
@@ -1244,7 +1401,7 @@ img { max-width: 100%; display: block; }
 
 <!-- NAV -->
 <div id="shared-nav"></div>
-<script src="includes/include.js" defer></script>
+<script src="includes/include.js?v=7" defer></script>
 
 <main id="content">
 <!-- HERO -->
@@ -1253,30 +1410,21 @@ img { max-width: 100%; display: block; }
     <div class="eyebrow-stack">
       Über uns<br><span>Duo ViA! — seit 2009</span>
     </div>
-    <div class="hero-meta">
-      <b>Violine &amp; Akkordeon</b>
-      2 Musiker · 1 Ensemble<br>Barock bis Gegenwart
-    </div>
   </div>
 
   <h1 class="hero-display reveal">
-    <span class="line">DUO <span class="lt">ViA!</span></span>
+    <span class="line">Duo</span>
+    <span class="line lt">ViA!</span>
   </h1>
-  <div class="hero-feature">
-    <p class="hero-intro reveal">
-      <strong>Sinn Yang &amp; Harald Oeler</strong>
-      Kammermusik für Violine und Akkordeon seit 2009.
-    </p>
-    <figure class="hero-image reveal">
-      <img src="image/duo via 1.webp" alt="Sinn Yang und Harald Oeler als Duo ViA! im Konzert" width="2168" height="1446" decoding="async">
-      <figcaption>Duo ViA! · Konzert</figcaption>
-    </figure>
-  </div>
+
+  <p class="hero-intro reveal">
+    Sinn Yang (Violine) &amp; Harald Oeler (Akkordeon) — Kammermusik seit 2009.
+  </p>
 </section>
 
 <!-- SECTION GUIDE -->
 <nav class="quick-paths reveal" aria-label="Bereiche auf dieser Seite">
-  <a href="#ensemble" data-section-link="ensemble" aria-current="true">Ensemble</a>
+  <a href="#ensemble" data-section-link="ensemble" aria-current="true">Duo</a>
   <a href="#sinn-yang" data-section-link="sinn-yang">Sinn Yang</a>
   <a href="#harald-oeler" data-section-link="harald-oeler">Harald Oeler</a>
 </nav>
@@ -1284,7 +1432,7 @@ img { max-width: 100%; display: block; }
 <!-- ENSEMBLE -->
 <section class="ensemble-profile reveal" id="ensemble" aria-labelledby="ensemble-heading">
   <div>
-    <span class="p-kicker">Das Ensemble</span>
+    <span class="p-kicker">Das Duo</span>
     <h2 class="artist-name" id="ensemble-heading">Duo <em>ViA!</em></h2>
     <p class="artist-byline">Violine &amp; Akkordeon — Kammermusik zwischen Barock und Tango.</p>
     <div class="founding-mark" aria-label="Duo ViA! gegründet 2009">
@@ -1295,7 +1443,7 @@ img { max-width: 100%; display: block; }
   <div class="ensemble-copy">
     <h3>Debüt</h3>
     <p class="artist-bio">Duo ViA! (Sinn Yang &amp; Harald Oeler) debütierte 2009 beim Festival „Heidelberger Frühling" mit dem Programm <em>Seasons</em>: Vivaldis <em>I quattro stagioni</em> in Verbindung mit Astor Piazzollas <em>Las cuatro estaciones porteñas</em>.</p>
-    <ol class="milestones" aria-label="Stationen des Ensembles">
+    <ol class="milestones" aria-label="Stationen des Duos">
       <li><span>2009</span><p>Debüt mit <em>Seasons</em> beim Heidelberger Frühling.</p></li>
       <li><span>2014</span><p>Veröffentlichung der CD <em>8 Jahreszeiten / 8 Seasons</em> bei OehmsClassics.</p></li>
       <li><span>Auftritte</span><p>Festival „Opere" in Bracciano sowie Konzerte in Berlin, München und Helsinki.</p></li>
@@ -1303,36 +1451,42 @@ img { max-width: 100%; display: block; }
     <h3>Klangprofil</h3>
     <p class="artist-bio">Violine und klassisches Akkordeon bilden die Besetzung des Duo ViA!. Im Programm <em>8 Jahreszeiten</em> stehen Vivaldi und Piazzolla in einer Transkription Harald Oelers nebeneinander.</p>
     <div class="artist-actions">
-      <a class="p-action primary" href="projects.html">Programme entdecken</a>
-      <a class="p-action" href="konzerte.html">Konzerte</a>
+      <a class="p-action primary" href="konzerte.html">Konzerte ansehen</a>
+      <a class="p-action" href="programm.html">Programme entdecken</a>
     </div>
   </div>
 </section>
+
+<!-- DUO PHOTO STRIP -->
+<figure class="duo-photo-strip reveal" aria-label="Duo ViA! im Konzert">
+  <img src="image/duo via 1.webp" alt="Sinn Yang und Harald Oeler als Duo ViA! im Konzert" width="2168" height="1446" loading="lazy" decoding="async">
+  <figcaption>Duo ViA! · Konzert</figcaption>
+</figure>
 
 <!-- ARTIST I — Sinn Yang -->
 <article class="artist reveal" id="sinn-yang" aria-labelledby="sinn-yang-heading">
   <div class="artist-portrait portrait-sinn">
     <picture>
-      <img src="image/duo via 1.webp" alt="Sinn Yang, Violinistin im Duo ViA!, im Konzert" loading="lazy" decoding="async" width="2168" height="1446" onerror="this.closest('.artist-portrait').classList.add('media-missing')">
+      <img src="image/sinnyang bio.webp" alt="Porträt von Sinn Yang, Violinistin im Duo ViA!" loading="lazy" decoding="async" width="1772" height="2655" onerror="this.closest('.artist-portrait').classList.add('media-missing')">
     </picture>
     <div class="media-fallback" aria-hidden="true"><div><strong>Sinn Yang</strong><span>Violine</span></div></div>
     <div class="portrait-numeral">I<small>Violine</small></div>
     <span class="portrait-tag">N° 01 / 02</span>
     <div class="portrait-caption">
       <span class="pc-name">Sinn Yang</span>
-      <span class="pc-meta">Dozentin · Solistin<br>HfM Würzburg · HfKM Regensburg</span>
+      <span class="pc-meta">Solistin · Kammermusikerin<br>Violine<br>© Irène Zandel</span>
     </div>
   </div>
   <div class="artist-body">
     <div class="body-inner">
       <span class="p-kicker">Musikerin I · Violine</span>
       <h2 class="artist-name" id="sinn-yang-heading">Sinn<em>Yang</em></h2>
-      <p class="artist-byline">Solistin, Kammermusikerin und Dozentin — ausgebildet in Würzburg und Lübeck.</p>
+      <p class="artist-byline">Solistin und Kammermusikerin — ausgebildet in Würzburg und Lübeck.</p>
       <p class="artist-bio">Die Geigerin Sinn Yang verbindet eine internationale Solisten- und Orchesterlaufbahn mit engagierter Kammermusik. Sie studierte in Würzburg und Lübeck und schloss 2009 ihr Solistenklasse-Examen ab.</p>
       <p class="artist-bio">Als Solistin trat sie unter anderem mit dem Deutschen Symphonie-Orchester Berlin und den Nürnberger Philharmonikern auf. Nach Konzertmeistertätigkeiten unter anderem beim Luzerner Sinfonieorchester und an der Deutschen Oper Berlin widmet sie sich heute eigenen Konzerten und der Lehre.</p>
 
       <dl class="facts">
-        <div class="fact"><dt>Lehre</dt><dd>HfM Würzburg<br>HfKM Regensburg</dd></div>
+        <div class="fact"><dt>Solo</dt><dd>Deutsches Symphonie-Orchester Berlin<br>Nürnberger Philharmoniker</dd></div>
         <div class="fact"><dt>Examen</dt><dd>Solistenklasse<br>MH Lübeck, 2009</dd></div>
         <div class="fact"><dt>Auszeichnungen</dt><dd>Kulturförderpreis Würzburg, 2009<br>„Ton und Erklärung", 2008</dd></div>
       </dl>
@@ -1342,7 +1496,6 @@ img { max-width: 100%; display: block; }
         <span class="tag tag-accent">Solo</span>
         <span class="tag">Kammermusik</span>
         <span class="tag">Orchester</span>
-        <span class="tag">Lehre</span>
       </div>
 
       <div class="artist-actions">
@@ -1357,36 +1510,36 @@ img { max-width: 100%; display: block; }
 <article class="artist flip reveal" id="harald-oeler" aria-labelledby="harald-oeler-heading">
   <div class="artist-portrait portrait-harald">
     <picture>
-      <img src="image/duo via 1.webp" alt="Harald Oeler, Akkordeonist im Duo ViA!, im Konzert" loading="lazy" decoding="async" width="2168" height="1446" onerror="this.closest('.artist-portrait').classList.add('media-missing')">
+      <img src="image/haraldoeler bio.webp" alt="Porträt von Harald Oeler, Akkordeonist im Duo ViA!" loading="lazy" decoding="async" width="4300" height="6074" onerror="this.closest('.artist-portrait').classList.add('media-missing')">
     </picture>
     <div class="media-fallback" aria-hidden="true"><div><strong>Harald Oeler</strong><span>Akkordeon</span></div></div>
     <div class="portrait-numeral">II<small>Akkordeon</small></div>
     <span class="portrait-tag">N° 02 / 02</span>
     <div class="portrait-caption">
       <span class="pc-name">Harald Oeler</span>
-      <span class="pc-meta">Komponist · Arrangeur<br>Solist</span>
+      <span class="pc-meta">Akkordeonist · Solist<br>Duo ViA!<br>© Irène Zandel</span>
     </div>
   </div>
   <div class="artist-body">
     <div class="body-inner">
       <span class="p-kicker">Musiker II · Akkordeon</span>
       <h2 class="artist-name" id="harald-oeler-heading">Harald<em>Oeler</em></h2>
-      <p class="artist-byline">Akkordeonist, Komponist und Arrangeur im Duo ViA!</p>
+      <p class="artist-byline">Akkordeonist und Kammermusiker — Solist und Arrangeur im Duo ViA!</p>
       <p class="artist-bio">Harald Oeler studierte Akkordeon bei Prof. Hugo Noth und Prof. Stefan Hussong an der Hochschule für Musik Würzburg. Sein künstlerisches Arbeitsfeld umfasst Jazz, Transkriptionsmusik und zeitgenössische Musik.</p>
-      <p class="artist-bio">Er erhielt unter anderem den 3. Preis beim International Accordion Competition JAA Tokyo 2002 und wurde während seines Studiums durch die Studienstiftung des deutschen Volkes sowie „Live Music Now" gefördert.</p>
+      <p class="artist-bio">Im Duo ViA! gestaltet er gemeinsam mit Sinn Yang die Verbindung von Violine und klassischem Akkordeon. Für das Programm <em>8 Jahreszeiten</em> schuf er die Transkription von Vivaldi und Piazzolla.</p>
 
       <dl class="facts">
-        <div class="fact"><dt>Arrangement</dt><dd><em>8 Jahreszeiten</em><br>Transkription</dd></div>
+        <div class="fact"><dt>Instrument</dt><dd>Klassisches<br>Akkordeon</dd></div>
+        <div class="fact"><dt>Programm</dt><dd><em>8 Jahreszeiten</em><br>Transkription</dd></div>
         <div class="fact"><dt>Wettbewerb</dt><dd>3. Preis<br>JAA Tokyo, 2002</dd></div>
-        <div class="fact"><dt>Förderung</dt><dd>Studienstiftung<br>Live Music Now</dd></div>
       </dl>
 
       <div class="tag-row">
         <span class="tag-label">Schwerpunkte</span>
-        <span class="tag tag-accent">Komposition</span>
-        <span class="tag">Arrangement</span>
-        <span class="tag">Solo</span>
+        <span class="tag tag-accent">Solo</span>
         <span class="tag">Kammermusik</span>
+        <span class="tag">Komposition</span>
+        <span class="tag">Arrangement</span>
       </div>
 
       <div class="artist-actions">

@@ -1,0 +1,51 @@
+{
+  "last_checked": "2026-05-28",
+  "purpose": "Internal source notes for future factual audits. Match entries to event rows via data-source-id.",
+  "events": [
+    {
+      "id": "oberstdorf-2027-07-18",
+      "display_status": "planned",
+      "source_status": "unverified_public",
+      "source_url": null,
+      "source_label": "Project-provided date; no public authoritative listing found during the 2026-05-28 audit.",
+      "verified_fields": ["date", "city", "venue", "time"],
+      "notes": "Keep status as planning until an organizer or venue page confirms the listing."
+    },
+    {
+      "id": "berlin-2026-04-18",
+      "display_status": "planned",
+      "source_status": "unverified_public",
+      "source_url": null,
+      "source_label": "Project-provided date; no public authoritative listing found during the 2026-05-28 audit.",
+      "verified_fields": ["date", "city", "time"],
+      "notes": "Organizer is intentionally shown as 'wird bekanntgegeben'."
+    },
+    {
+      "id": "wuerzburg-2026-05-07",
+      "display_status": "planned",
+      "source_status": "authoritative",
+      "source_url": "https://www.kammermusik-wuerzburg.de/duo-via",
+      "source_label": "Kammermusik Würzburg event page",
+      "verified_fields": ["date", "time", "city", "venue", "program", "organizer"],
+      "notes": "Use the organizer page as the source of truth for programme wording and timing."
+    },
+    {
+      "id": "glattbach-2026-05-09",
+      "display_status": "confirmed",
+      "source_status": "authoritative",
+      "source_url": "https://www.muehlenforum-glattbach.de/events",
+      "source_label": "MühlenForum Glattbach events page",
+      "verified_fields": ["date", "time", "city", "venue", "price", "organizer"],
+      "notes": "2026-05-28 audit corrected the site from 13:00 / Muttertagskonzert to 19:30 / Duo ViA!."
+    },
+    {
+      "id": "remscheid-2026-05-13",
+      "display_status": "confirmed",
+      "source_status": "authoritative",
+      "source_url": "https://www.bergischesymphoniker.de/konzert/4-meisterkonzert-593104666/",
+      "source_label": "Bergische Symphoniker event page",
+      "verified_fields": ["date", "time", "city", "venue", "program", "organizer"],
+      "notes": "Organizer page is the source of truth for ticket and programme updates."
+    }
+  ]
+}
