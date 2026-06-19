@@ -1,0 +1,2304 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Programme &amp; Repertoire — Duo ViA!</title>
+<meta name="description" content="Die Konzertprogramme von Duo ViA! — 8 Jahreszeiten (Vivaldi &amp; Piazzolla) und Four Seasons · One World. Eigenarrangements für Violine und Akkordeon, Saison 2026/27.">
+<meta property="og:title" content="Programme &amp; Repertoire — Duo ViA!">
+<meta property="og:description" content="8 Jahreszeiten und Four Seasons · One World — Eigenarrangements für Violine und Akkordeon.">
+<meta property="og:image" content="https://duovia.de/hero.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://duovia.de/hero.webp">
+<meta name="twitter:title" content="Programme &amp; Repertoire — Duo ViA!">
+<meta name="twitter:description" content="8 Jahreszeiten und Four Seasons · One World — Eigenarrangements für Violine und Akkordeon.">
+<meta name="theme-color" content="#93A5A1">
+<meta property="og:url" content="https://duovia.de/programm.html">
+<link rel="canonical" href="https://duovia.de/programm.html">
+<link rel="alternate" hreflang="de" href="https://duovia.de/programm.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%235F716D'/%3E%3Ctext x='16' y='24' font-family='Helvetica%2CArial%2Csans-serif' font-size='14' font-weight='700' letter-spacing='1' text-anchor='middle' fill='white'%3EV%3C%2Ftext%3E%3C/svg%3E">
+<link rel="stylesheet" href="includes/tokens.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+#scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+  background: var(--white); z-index: 900; pointer-events: none;
+  transition: width .08s linear;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--sage);
+  color: var(--muted-white);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  font-weight: 400;
+}
+
+/* ─── Cursor ─────────────────────────────── */
+#cur-dot {
+  position: fixed; width: 4px; height: 4px; background: var(--white);
+  border-radius: 50%; pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+}
+#cur-ring {
+  position: fixed; width: 24px; height: 24px;
+  border: 1px solid rgba(255,255,255,0.3); border-radius: 50%;
+  pointer-events: none; z-index: 9998; transform: translate(-50%,-50%);
+}
+
+/* Simplified typography & color tweaks */
+.eyebrow-stack,
+#nav-quick a,
+.hero-meta,
+.p-aside-row,
+.p-kicker,
+.tag-label,
+.tag,
+.p-action,
+.footer-links a {
+  letter-spacing: .12em;
+}
+.p-action,
+.tag { text-transform: none; }
+.p-action.primary { background: var(--accent); color: var(--white); border-color: var(--accent); }
+.p-action.primary:hover { background: var(--white); color: var(--sage-darker); border-color: var(--white); }
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+#nav-bar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-h); z-index: 800;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem;
+  background: rgba(147,165,161,0.85);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--white-24);
+}
+.nav-open #nav-bar { border-color: transparent; background: transparent; backdrop-filter: none; }
+
+#nav-logo {
+  font-family: var(--sans); font-size: .82rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--white); text-decoration: none;
+  position: relative; z-index: 820;
+}
+#nav-logo span { font-weight: 400; opacity: .7; }
+
+#nav-quick {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  display: flex; gap: 2.6rem; list-style: none;
+}
+.nav-open #nav-quick { opacity: 0; pointer-events: none; }
+#nav-quick a {
+  font-family: var(--sans); font-weight: 500; font-size: .68rem;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--white-72); text-decoration: none;
+  transition: color .2s;
+}
+#nav-quick a:hover { color: var(--white); }
+#nav-quick a[aria-current="page"] { color: var(--white); }
+#nav-quick a[aria-current="page"]::before {
+  content:''; display:inline-block; width:6px; height:6px;
+  background: var(--white); border-radius: 50%;
+  margin-right: .55rem; vertical-align: middle;
+}
+.nav-sub {
+  font-size: .22em; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--sage); font-weight: 400;
+}
+
+#nav-burger {
+  position: relative; z-index: 820;
+  width: 92px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer;
+}
+.nav-close-label {
+  position: absolute; right: 48px;
+  font-size: .62rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--white); opacity: 0;
+  transform: translateX(.4rem);
+  transition: opacity .25s, transform .25s;
+}
+.nav-open .nav-close-label { opacity: .78; transform: translateX(0); }
+.bline {
+  position: absolute; right: 9px; width: 22px; height: 1.5px;
+  background: var(--white); transform-origin: center;
+  transition: transform .45s var(--ease), top .45s var(--ease);
+}
+.bline-top { top: 16px; }
+.bline-bottom { top: 23px; }
+.nav-open .bline-top    { top: 19.5px; transform: rotate(45deg); }
+.nav-open .bline-bottom { top: 19.5px; transform: rotate(-45deg); }
+
+#nav-overlay {
+  position: fixed; inset: 0; z-index: 700;
+  background: var(--ink);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: calc(var(--nav-h) + 2rem) 3rem 2.2rem;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path .55s var(--ease);
+  pointer-events: none;
+}
+.nav-open #nav-overlay { clip-path: inset(0% 0 0 0); pointer-events: all; }
+.nav-links-main { list-style: none; margin: auto 0; }
+.nav-links-main li { overflow: hidden; padding: .2rem 0; }
+.nav-links-main a {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(3.4rem, 7vw, 7rem) minmax(0, auto) minmax(12rem, 25rem);
+  align-items: baseline; gap: 1.1rem;
+  font-family: var(--sans);
+  font-size: clamp(2.4rem, 7vw, 5.8rem);
+  font-weight: 500; line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: rgba(255,255,255,0.62);
+  text-decoration: none;
+  transform: translateY(110%);
+  transition: transform .55s var(--ease), color .25s;
+}
+.nav-links-main a::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: .02em;
+  height: 1px; background: rgba(255,255,255,0.28);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .34s var(--ease);
+}
+.nav-links-main a:hover::after,
+.nav-links-main a:focus-visible::after,
+.nav-links-main a[aria-current="page"]::after { transform: scaleX(1); }
+.nav-links-main a span,
+.nav-sub {
+  font-size: .22em; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--sage); font-weight: 400;
+}
+.nav-item-main { color: inherit; font-size: 1em !important; letter-spacing: -0.025em !important; text-transform: none !important; }
+.nav-item-desc {
+  align-self: center;
+  max-width: 28ch;
+  color: var(--white-72) !important;
+  font-size: clamp(.72rem, 1vw, .92rem) !important;
+  line-height: 1.45;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  transform: translateX(-.35rem);
+  opacity: .72;
+  transition: opacity .25s, transform .25s;
+}
+.nav-links-main a:hover .nav-item-desc,
+.nav-links-main a:focus-visible .nav-item-desc,
+.nav-links-main a[aria-current="page"] .nav-item-desc { opacity: 1; transform: translateX(0); color: var(--white) !important; }
+.nav-links-main a[aria-current="page"] { color: var(--white); }
+.nav-links-main a[aria-current="page"] .nav-sub { color: var(--white); }
+.nav-booking-item {
+  margin-top: .7rem;
+  padding-top: .9rem !important;
+  border-top: 1px solid var(--white-24);
+}
+.nav-booking-item a {
+  width: fit-content;
+  padding: .18em .34em .24em;
+}
+.nav-overlay-footer {
+  display: flex; flex-wrap: wrap; gap: 1rem 1.6rem;
+  align-items: center;
+  font-size: .68rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--white-72);
+}
+.nav-overlay-footer a { color: var(--white); text-decoration: none; }
+.nav-overlay-footer a:hover { color: var(--sage-tint); }
+.nav-open .nav-links-main a { transform: translateY(0); }
+.nav-links-main a:hover { color: var(--white); }
+.nav-links-main li:nth-child(1) a { transition-delay: .02s; }
+.nav-links-main li:nth-child(2) a { transition-delay: .07s; }
+.nav-links-main li:nth-child(3) a { transition-delay: .12s; }
+.nav-links-main li:nth-child(4) a { transition-delay: .17s; }
+.nav-links-main li:nth-child(5) a { transition-delay: .22s; }
+
+/* ═══════════════════════════════════════════
+   HERO — massive display, editorial
+═══════════════════════════════════════════ */
+.hero {
+  padding: calc(var(--nav-h) + 2.6rem) 2rem 1.6rem;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.8rem;
+}
+.eyebrow-stack {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.5;
+}
+.eyebrow-stack span { display: block; opacity: .72; font-weight: 400; }
+.hero-meta {
+  text-align: right;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--white-72);
+}
+.hero-meta b { font-weight: 500; color: var(--white); display: block; }
+
+/* Giant display headline */
+.hero-display {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(4rem, 13.5vw, 14rem);
+  line-height: .88;
+  letter-spacing: -0.045em;
+  color: var(--white);
+  margin: 0 0 .3rem;
+  white-space: nowrap;
+  text-wrap: balance;
+}
+.hero-display .lt { font-weight: 300; }
+
+.hero-rule { border: 0; border-top: 1px solid var(--white-24); margin: 2rem 0 2rem; }
+
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 80px 220px minmax(0, 1fr);
+  gap: 2.4rem;
+  align-items: start;
+}
+.hero-num {
+  font-size: 2.6rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+.hero-spec { display: grid; gap: .9rem; }
+.hero-spec-row {
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--white-72);
+}
+.hero-spec-row b {
+  display: block; font-weight: 500; color: var(--white);
+}
+.hero-intro-label {
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--white);
+  margin-bottom: .9rem;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.hero-intro {
+  font-size: clamp(1.4rem, 1.8vw, 1.7rem);
+  font-weight: 400;
+  line-height: 1.28;
+  letter-spacing: -0.005em;
+  color: var(--white);
+  max-width: 28ch;
+  text-wrap: pretty;
+}
+
+/* ═══════════════════════════════════════════
+   PROGRAMME CHOOSER STRIP
+═══════════════════════════════════════════ */
+.chooser {
+  max-width: 1480px;
+  margin: 4rem auto 0;
+  padding: 0 2rem;
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 120;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 1px;
+  background: var(--white-24);
+  border-top: 1px solid var(--white-24);
+  border-bottom: 1px solid var(--white-24);
+}
+.choice {
+  background: var(--sage);
+  background-size: cover;
+  padding: 1.6rem 1.6rem 1.4rem;
+  color: var(--white);
+  text-decoration: none;
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 1.2rem;
+  align-items: center;
+  transition: background .2s, padding .26s var(--ease);
+  filter: grayscale(60%) brightness(0.55);
+}
+/* individual background images */
+.choice:nth-child(1) {
+  background-image: url("image/duo\ via\ 1.webp");
+  background-position: center 45%;
+
+}
+.choice:nth-child(2) {
+  /* TODO: replace with programme-2 photo when available */
+  background-image: url("hero.webp");
+  background-position: center 65%;
+}
+
+.choice:hover,
+.choice:focus-visible {
+  outline: 1px solid var(--white);
+  outline-offset: -1px;
+  filter: grayscale(0%) brightness(1);
+}
+
+.choice.trailer-choice {
+  background:
+    linear-gradient(rgba(27,36,34,0.16), rgba(27,36,34,0.34)),
+    url('image/duo via trailer.webp') center / cover;
+}
+.choice-play {
+  width: 60px;
+  color: var(--white);
+  font-size: 1.45rem;
+  line-height: 1;
+  transition: transform .2s;
+}
+.choice.trailer-choice:hover .choice-play,
+.choice.trailer-choice:focus-visible .choice-play {
+  transform: translateX(.18rem);
+}
+.choice-num {
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+.choice-body em {
+  display: block;
+  font-style: normal;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  margin-bottom: .2rem;
+}
+.choice-body strong {
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+.choice-body strong span { font-weight: 300; }
+.choice-meta {
+  text-align: right;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  line-height: 1.55;
+  color: var(--white-72);
+}
+.choice-meta b { font-weight: 500; color: var(--white); display: block; }
+
+/* Compact chooser when sticky */
+.choice-num { transition: font-size .26s var(--ease); }
+.choice-body em { max-height: 3rem; overflow: hidden; transition: opacity .2s, max-height .26s var(--ease), margin .26s var(--ease); }
+.choice-body strong { transition: font-size .26s var(--ease); }
+.choice-meta { max-height: 6rem; overflow: hidden; transition: opacity .2s, max-height .26s var(--ease); }
+.choice-play { transition: font-size .26s var(--ease), width .26s var(--ease); }
+.chooser.is-sticky .choice { padding: .48rem 1.2rem; }
+.chooser.is-sticky .choice-num { font-size: 1.05rem; }
+.chooser.is-sticky .choice-play { font-size: 1.1rem; width: 40px; }
+.chooser.is-sticky .choice-body em { opacity: 0; max-height: 0; margin-bottom: 0; }
+.chooser.is-sticky .choice-body strong { font-size: .92rem; }
+.chooser.is-sticky .choice-meta { opacity: 0; max-height: 0; }
+
+/* ═══════════════════════════════════════════
+   PROGRAMME — section
+═══════════════════════════════════════════ */
+.programme {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 4rem 2rem 4.5rem;
+  border-top: 1px solid var(--white-24);
+  display: grid;
+  grid-template-columns: 80px 220px minmax(0, 1fr);
+  column-gap: 2.4rem;
+  row-gap: 0;
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+.programme:first-of-type { border-top: 0; padding-top: 3rem; }
+
+.p-num {
+  font-size: 2.6rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+.p-aside {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: grid;
+  gap: 0;
+  align-self: start;
+  position: sticky;
+  top: calc(var(--nav-h) + 1.4rem);
+  padding: 1.1rem;
+  background: rgba(255,255,255,0.045);
+  border: 1px solid var(--white-12);
+  border-radius: 8px;
+}
+.p-aside-title {
+  padding-bottom: .9rem;
+  border-bottom: 1px solid var(--white-12);
+  color: var(--white-72);
+  font-size: .66rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.p-aside-row {
+  padding: .7rem 0;
+  border-bottom: 1px solid var(--white-12);
+  color: var(--white-72);
+  font-size: .66rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+.p-aside-row b {
+  display: block;
+  margin-top: .28rem;
+  color: var(--white);
+  font-size: .9rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.4;
+  text-transform: none;
+}
+.p-aside-tags {
+  padding: .8rem 0 .9rem;
+  border-bottom: 1px solid var(--white-12);
+}
+.p-aside-label {
+  display: block;
+  margin-bottom: .55rem;
+  color: var(--white-72);
+  font-size: .66rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.p-aside-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+.p-aside-chip {
+  padding: .26rem .38rem;
+  border: 1px solid var(--white-24);
+  color: var(--white);
+  font-size: .63rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.p-aside-row.recommended {
+  margin-top: .95rem;
+  padding: .8rem;
+  border-bottom: 0;
+  background: var(--sage-darker);
+}
+.p-aside-row.recommended b {
+  color: var(--white);
+  font-size: .86rem;
+  font-weight: 500;
+}
+
+.p-head {
+  grid-column: 3;
+  min-width: 0;
+  padding: 1.05rem 1.15rem 1.3rem;
+  background: rgba(255,255,255,0.07);
+  border-radius: 10px 10px 0 0;
+}
+.p-main {
+  grid-column: 3;
+  min-width: 0;
+  padding: 0 1.15rem 1.05rem;
+  background: rgba(255,255,255,0.07);
+  border-radius: 0 0 10px 10px;
+}
+.p-kicker {
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 1.4rem;
+  display: inline-flex; align-items: center; gap: .7rem;
+}
+.p-kicker::before {
+  content:''; width: 1.6rem; height: 1px; background: var(--white-48);
+}
+.p-title {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(2.8rem, 6.6vw, 6.4rem);
+  line-height: .92;
+  letter-spacing: -0.035em;
+  color: var(--white);
+  margin-bottom: .25rem;
+  text-wrap: balance;
+}
+.p-title-btn {
+  appearance: none; border: 0; padding: 0; background: none;
+  color: inherit; font: inherit; line-height: inherit; letter-spacing: inherit;
+  text-align: left; cursor: pointer;
+  text-transform: uppercase;
+}
+.p-title-btn:hover { opacity: .75; }
+.p-title em {
+  font-style: normal;
+  font-weight: 300;
+  display: block;
+  font-size: .62em;
+  line-height: 1;
+  margin-top: .12em;
+  color: var(--white-72);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.p-byline {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--white-72);
+  margin-bottom: 0;
+  max-width: 50ch;
+}
+.p-desc {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--white);
+  max-width: 54ch;
+  text-wrap: pretty;
+  margin-bottom: 2rem;
+}
+.p-desc-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+  margin-bottom: 2rem;
+}
+.p-desc-cols .p-desc {
+  max-width: none;
+  margin-bottom: 0;
+}
+.p-desc + .p-desc {
+  margin-top: -1rem;
+}
+
+.fit-chip {
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--white);
+  padding: .36rem .64rem;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 2px;
+}
+.track-note {
+  margin: -.4rem 0 .8rem;
+  font-size: .72rem;
+  line-height: 1.45;
+  color: var(--white-72);
+}
+.tracklist-wrap {
+  position: relative;
+}
+.tracklist-wrap.is-collapsed::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3rem;
+  background: linear-gradient(transparent, var(--sage));
+  pointer-events: none;
+}
+
+/* Werkfolge — 2-col compact, no decorations */
+.werkfolge {
+  list-style: none;
+  counter-reset: werk;
+  border-top: 1px solid var(--white-24);
+  border-bottom: 1px solid var(--white-24);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3rem;
+  margin-bottom: 1.6rem;
+}
+.werkfolge.single-col { grid-template-columns: 1fr; }
+.werkfolge.is-collapsed li:nth-child(n+9) { display: none; }
+.werkfolge li {
+  counter-increment: werk;
+  display: grid;
+  grid-template-columns: 2.2rem 1fr auto;
+  align-items: baseline;
+  gap: .8rem;
+  padding: .65rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  font-size: .92rem;
+  color: var(--white);
+  cursor: pointer;
+  transition: background .15s, padding-inline .15s;
+}
+.werkfolge li:last-child,
+.werkfolge li:nth-last-child(2):nth-child(odd) { border-bottom: 0; }
+.werkfolge.single-col li:last-child { border-bottom: 0; }
+.werkfolge li:hover {
+  background: rgba(255,255,255,0.07);
+  padding-inline: .5rem;
+}
+.werkfolge li::before {
+  content: counter(werk, decimal-leading-zero);
+  font-weight: 500;
+  font-size: .68rem;
+  letter-spacing: .14em;
+  color: var(--white-72);
+  font-variant-numeric: tabular-nums;
+}
+.werk-piece { line-height: 1.35; font-weight: 400; }
+.werk-piece i { font-style: italic; opacity: .9; }
+.werk-title { display: block; font-weight: 400; }
+.werk-detail,
+.werk-movements {
+  display: block;
+  margin-top: .22rem;
+  color: var(--white-72);
+  font-size: .8rem;
+  line-height: 1.45;
+}
+.werk-movements { font-style: italic; }
+.werkfolge li:focus-visible {
+  outline: 1px solid var(--white);
+  outline-offset: 4px;
+}
+.werkfolge li.now-playing {
+  background: rgba(255,255,255,0.14);
+  padding-inline: .5rem;
+  border-left: 2px solid var(--white);
+}
+.werkfolge li.programme-pause {
+  counter-increment: none;
+  display: block;
+  color: var(--white-72);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  cursor: default;
+}
+.werkfolge li.programme-pause::before {
+  content: none;
+}
+.werkfolge li.programme-pause:hover {
+  background: none;
+  padding-inline: 0;
+}
+.werk-composer {
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tag row */
+.tag-row {
+  display: flex; flex-wrap: wrap;
+  gap: .4rem; align-items: center;
+  margin-bottom: 1.6rem;
+}
+.tag-label {
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  margin-right: .5rem;
+}
+.tag {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--white);
+  padding: .42rem .8rem;
+  border: 1px solid var(--white-24);
+  white-space: nowrap;
+}
+.tag-accent { background: var(--white); color: var(--sage-darker); border-color: var(--white); }
+
+.track-toggle {
+  appearance: none;
+  border: 1px solid var(--white-24);
+  background: transparent;
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  margin: -.4rem 0 1.6rem;
+  padding: .72rem 1rem;
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+
+/* Generic list toggle used for collapsed lists */
+.list-toggle {
+  appearance: none;
+  border: 1px solid var(--white-24);
+  background: transparent;
+  color: var(--white);
+  padding: .6rem .9rem;
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: .6rem;
+}
+.list-toggle:hover,
+.list-toggle:focus-visible { background: var(--white); color: var(--sage-darker); border-color: var(--white); outline: none; }
+
+/* collapse press quotes to first 3 items when collapsed */
+.press-quotes.is-collapsed li:nth-child(n+4) { display: none; }
+.track-toggle:hover,
+.track-toggle:focus-visible {
+  background: var(--white);
+  color: var(--sage-darker);
+  border-color: var(--white);
+  outline: none;
+}
+.track-toggle::after {
+  content: '';
+  width: .75rem;
+  height: .75rem;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateY(-.18rem) rotate(45deg);
+}
+.track-toggle[aria-expanded="true"]::after {
+  transform: translateY(.18rem) rotate(225deg);
+}
+
+/* Actions */
+.p-actions {
+  display: flex; flex-wrap: wrap;
+  gap: .55rem;
+}
+.p-action {
+  display: inline-flex; align-items: center; gap: .8rem;
+  color: var(--white); text-decoration: none;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: none;
+  padding: .9rem 1.2rem;
+  border: 1px solid var(--white-24);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.p-action.utility {
+  text-transform: none;
+  letter-spacing: .08em;
+}
+.p-action:hover { background: var(--white); color: var(--sage-darker); border-color: var(--white); }
+.p-action.primary { background: var(--white); color: var(--sage-darker); border-color: var(--white); }
+.p-action.primary:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.p-action.trailer-action {
+  border-color: var(--white);
+  box-shadow: inset 0 0 0 1px var(--white-24);
+}
+.p-action::after { content:''; width: .8rem; height: 1px; background: currentColor; }
+
+.trailer-callout {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(170px, 34%) minmax(0, 1fr) auto;
+  gap: 1.2rem;
+  align-items: stretch;
+  margin: 0 0 2rem;
+  min-height: 9.2rem;
+  padding: 0;
+  color: var(--white);
+  text-decoration: none;
+  border: 1px solid var(--white-24);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04)),
+    rgba(27,36,34,0.18);
+  overflow: hidden;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  transition: background .24s, border-color .24s, transform .24s, box-shadow .24s;
+}
+.trailer-callout:hover,
+.trailer-callout:focus-visible {
+  border-color: var(--white);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.28), rgba(255,255,255,0.08)),
+    rgba(27,36,34,0.28);
+  transform: translateY(-2px);
+  box-shadow: 0 1.1rem 2.4rem rgba(27,36,34,0.18);
+  outline: none;
+}
+.trailer-callout::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0 35%, rgba(255,255,255,0.18) 46%, transparent 58% 100%);
+  transform: translateX(-115%);
+  animation: trailerSweep 4.8s var(--ease) infinite;
+  pointer-events: none;
+}
+.trailer-thumb {
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  background:
+    linear-gradient(rgba(27,36,34,0.16), rgba(27,36,34,0.34)),
+    url('image/duo via trailer.webp') center / cover;
+}
+.trailer-play {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 3.6rem;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--white);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--sage-darker);
+  box-shadow: 0 0 0 8px rgba(255,255,255,0.08);
+  transition: background .24s, color .24s, box-shadow .24s, transform .24s;
+}
+.trailer-play::before {
+  content: '';
+  width: 0;
+  height: 0;
+  margin-left: .18rem;
+  border-top: .45rem solid transparent;
+  border-bottom: .45rem solid transparent;
+  border-left: .7rem solid currentColor;
+}
+.trailer-callout:hover .trailer-play,
+.trailer-callout:focus-visible .trailer-play {
+  background: var(--ink);
+  color: var(--white);
+  transform: translate(-50%, -50%) scale(1.06);
+  box-shadow: 0 0 0 12px rgba(255,255,255,0.12);
+}
+.trailer-copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  align-self: center;
+  padding: 1.05rem 0;
+}
+.trailer-copy span {
+  display: block;
+  margin-bottom: .25rem;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--white-72);
+}
+.trailer-copy strong {
+  display: block;
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  transition: transform .24s;
+}
+.trailer-callout:hover .trailer-copy strong,
+.trailer-callout:focus-visible .trailer-copy strong {
+  transform: translateX(.18rem);
+}
+.trailer-time {
+  position: relative;
+  z-index: 1;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  white-space: nowrap;
+  align-self: center;
+  padding-right: 1.1rem;
+  transition: color .24s, transform .24s;
+}
+.trailer-time::after {
+  content: '';
+  display: inline-block;
+  width: .9rem;
+  height: 1px;
+  margin-left: .65rem;
+  vertical-align: middle;
+  background: currentColor;
+  transform: scaleX(.55);
+  transform-origin: left;
+  transition: transform .24s;
+}
+.trailer-callout:hover .trailer-time,
+.trailer-callout:focus-visible .trailer-time {
+  color: var(--white);
+  transform: translateX(.2rem);
+}
+.trailer-callout:hover .trailer-time::after,
+.trailer-callout:focus-visible .trailer-time::after {
+  transform: scaleX(1);
+}
+@keyframes trailerSweep {
+  0%, 52% { transform: translateX(-115%); }
+  72%, 100% { transform: translateX(115%); }
+}
+
+
+/* ═══════════════════════════════════════════
+   PULL QUOTE
+═══════════════════════════════════════════ */
+.hero-quote-section {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 3rem 2rem 2.6rem;
+  border-top: 1px solid var(--white-24);
+  border-bottom: 0;
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 2.4rem;
+  align-items: start;
+}
+.hero-quote {
+  position: relative;
+  max-width: 42ch;
+  margin: 0;
+  padding-left: 2.2rem;
+  font-family: var(--sans);
+  font-size: clamp(1.35rem, 2.25vw, 2.08rem);
+  font-weight: 300;
+  line-height: 1.22;
+  letter-spacing: -0.012em;
+  color: var(--white);
+  text-wrap: balance;
+}
+.hero-quote::before {
+  content: '\201C';
+  position: absolute;
+  left: 0;
+  top: -.25rem;
+  font-size: 3.2rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--white-24);
+}
+.hero-quote cite {
+  display: block;
+  margin-top: 1rem;
+  font-style: normal;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--white-72);
+}
+.press-strip {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 2rem 3.2rem;
+}
+.post-programme-press { border-top: 1px solid var(--white-24); }
+.press-strip-head {
+  padding: 0 0 1rem;
+  border-bottom: 1px solid var(--white-24);
+}
+.press-strip-title {
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--white-72);
+}
+.press-strip-title::before {
+  content: '';
+  width: 1.8rem;
+  height: 1px;
+  background: var(--white-48);
+}
+.press-quotes {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,0.14);
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+.press-quote-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 13rem;
+  padding: 1.15rem 1.2rem 1.25rem;
+  background: var(--sage);
+}
+.press-quote-source {
+  display: block;
+  order: 2;
+  margin-top: auto;
+  padding-top: 1rem;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white-72);
+}
+.press-quote-text {
+  position: relative;
+  margin: 0;
+  padding-top: 1.6rem;
+  font-size: clamp(1rem, 1.25vw, 1.16rem);
+  line-height: 1.44;
+  color: var(--white);
+  font-weight: 300;
+  letter-spacing: -0.004em;
+}
+.press-quote-text::before {
+  content: '\201C';
+  position: absolute;
+  top: -.15rem;
+  left: 0;
+  font-size: 2.6rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--white-24);
+}
+.press-quote-item::after {
+  content: '';
+  position: absolute;
+  left: 1.2rem;
+  right: 1.2rem;
+  bottom: 3.25rem;
+  height: 1px;
+  background: rgba(255,255,255,0.14);
+}
+
+.programme-tools {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 3.8rem 2rem 0;
+  border-top: 1px solid var(--white-24);
+}
+.tools-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.2rem;
+}
+.tools-head h3 {
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.tools-head span {
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--white-72);
+}
+.comparison-table {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  border-top: 1px solid var(--white-24);
+  border-left: 1px solid var(--white-24);
+}
+.comparison-cell {
+  min-height: 4.2rem;
+  padding: 1rem;
+  border-right: 1px solid var(--white-24);
+  border-bottom: 1px solid var(--white-24);
+}
+.comparison-cell.heading {
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white-72);
+}
+.comparison-cell strong {
+  display: block;
+  margin-bottom: .2rem;
+  font-weight: 500;
+  color: var(--white);
+}
+.programme-downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-top: 1rem;
+}
+.pull-quote {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem;
+  border-top: 1px solid var(--white-24);
+  border-bottom: 1px solid var(--white-24);
+  display: grid;
+  grid-template-columns: 80px 220px minmax(0, 1fr);
+  gap: 2.4rem;
+  align-items: end;
+}
+.pull-quote-num {
+  font-size: 2.6rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+.pull-quote-label {
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  line-height: 1.5;
+}
+.pull-quote-label b { display: block; color: var(--white); font-weight: 500; }
+.pull-quote blockquote {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  line-height: 1.18;
+  letter-spacing: -0.018em;
+  color: var(--white);
+  max-width: 28ch;
+  text-wrap: balance;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: var(--sage-deep);
+  border-top: 1px solid var(--white-24);
+  padding: 3rem 2rem 2rem;
+}
+.footer-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  align-items: end;
+  gap: 1.4rem 2.5rem;
+}
+.footer-booking {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 1.5rem;
+  align-items: end;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--white-24);
+}
+.footer-booking h2 {
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  font-weight: 500;
+  line-height: .95;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  color: var(--white);
+  max-width: 14ch;
+  text-wrap: balance;
+}
+.footer-cta {
+  color: var(--sage-darker);
+  background: var(--white);
+  border: 1px solid var(--white);
+  text-decoration: none;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .95rem 1.15rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  transition: background .2s, color .2s, border-color .2s;
+  white-space: nowrap;
+}
+.footer-cta::after { content: ''; width: .85rem; height: 1px; background: currentColor; }
+.footer-cta:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.footer-nav { justify-self: end; }
+.footer-meta,
+.footer-legal {
+  display: flex;
+  gap: .55rem 1.2rem;
+  flex-wrap: wrap;
+}
+.footer-logo {
+  display: grid;
+  gap: .35rem;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+}
+.footer-logo span {
+  font-size: .72rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  line-height: 1.45;
+  text-transform: none;
+  opacity: .72;
+}
+.footer-links {
+  list-style: none; display: flex; gap: .3rem 1rem; flex-wrap: wrap;
+}
+.footer-links a,
+.footer-meta a,
+.footer-legal a {
+  color: var(--white-72);
+  font-size: .64rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  transition: color .2s;
+}
+.footer-links a:hover,
+.footer-links a[aria-current="page"],
+.footer-meta a:hover,
+.footer-legal a:hover { color: var(--white); }
+.footer-links a[aria-current="page"] { text-decoration: underline; text-underline-offset: .35rem; }
+.footer-meta { justify-self: end; }
+.footer-legal { grid-column: 1; }
+.footer-copy {
+  justify-self: end;
+  font-size: .72rem; font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--white-48);
+}
+
+/* ═══════════════════════════════════════════
+   SPOTIFY MINI PLAYER
+═══════════════════════════════════════════ */
+#spotify-mini {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 850;
+  background: var(--ink); border-top: 1px solid var(--white-24);
+  transform: translateY(100%);
+  transition: transform .35s var(--ease);
+}
+#spotify-mini.visible { transform: translateY(0); }
+#spotify-mini-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .35rem 1.5rem;
+}
+#spotify-mini-track {
+  font-family: var(--sans); font-size: .72rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--white-72);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+#spotify-mini-close {
+  appearance: none; border: 0; background: none; flex-shrink: 0;
+  color: var(--white-48); font-size: 1.1rem; cursor: pointer;
+  padding: .55rem .9rem; line-height: 1; transition: color .15s;
+}
+#spotify-mini-close:hover { color: var(--white); }
+#spotify-iframe {
+  position: absolute; width: 1px; height: 1px;
+  opacity: 0; pointer-events: none; border: 0;
+}
+
+#trailer-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: rgba(10,14,13,0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+  backdrop-filter: blur(10px);
+}
+#trailer-modal.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.trailer-modal-wrap {
+  position: relative;
+  width: min(920px, 92vw);
+  aspect-ratio: 16/9;
+}
+.trailer-modal-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+#trailer-close {
+  position: absolute;
+  top: -2.6rem;
+  right: 0;
+  background: none;
+  border: none;
+  color: var(--white-72);
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: .2rem 0;
+  transition: color .2s;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+#trailer-close:hover { color: var(--white); }
+.trailer-close-mobile {
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: -3.25rem;
+  transform: translateX(-50%);
+  appearance: none;
+  border: 1px solid var(--white-24);
+  background: var(--white);
+  color: var(--sage-darker);
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: .72rem 1rem;
+  cursor: pointer;
+}
+
+#programme-sticky-cta {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 840;
+  transform: translate(-50%, calc(100% + 1.5rem));
+  display: flex;
+  gap: .35rem;
+  padding: .35rem;
+  background: rgba(27,36,34,0.88);
+  border: 1px solid var(--white-24);
+  backdrop-filter: blur(14px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .28s var(--ease), opacity .28s;
+}
+#programme-sticky-cta.visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+body.player-open #programme-sticky-cta { bottom: 3.6rem; }
+body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
+#programme-sticky-cta a,
+#programme-sticky-cta button {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--white);
+  padding: .7rem .9rem;
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+#programme-sticky-cta a {
+  background: var(--white);
+  color: var(--sage-darker);
+}
+#programme-sticky-cta button:hover,
+#programme-sticky-cta button:focus-visible {
+  border-color: var(--white-24);
+  outline: none;
+}
+
+/* ═══════════════════════════════════════════
+   REVEAL
+═══════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1080px) {
+  .hero-display { font-size: clamp(3.6rem, 12vw, 9rem); }
+  .programme { grid-template-columns: 60px 180px minmax(0,1fr); gap: 1.6rem; }
+  .pull-quote { grid-template-columns: 60px 180px minmax(0,1fr); gap: 1.6rem; }
+  .hero-bottom { grid-template-columns: 60px 180px minmax(0,1fr); gap: 1.6rem; }
+}
+
+@media (max-width: 1100px) {
+  #nav-quick { display: none; }
+}
+
+@media (max-width: 880px) {
+  #nav-burger { width: 40px; }
+  .nav-close-label { display: none; }
+  #nav-overlay { justify-content: flex-start; padding: calc(var(--nav-h) + 1.6rem) 1.4rem max(1.6rem, env(safe-area-inset-bottom)); }
+  .nav-links-main { margin: 0 0 auto; }
+  .nav-links-main a {
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: .4rem 1rem;
+    font-size: clamp(2.2rem, 12vw, 4.2rem);
+  }
+  .nav-item-desc { grid-column: 2; max-width: none; font-size: .68rem !important; }
+  .nav-booking-item { margin-top: 1.1rem; }
+  .nav-overlay-footer { margin-top: 1.6rem; display: grid; gap: .85rem; }
+  .hero-display { font-size: clamp(3rem, 14vw, 6.4rem); white-space: normal; }
+  .hero-bottom { grid-template-columns: 1fr; gap: 1.4rem; }
+  .hero-spec { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .chooser {
+    position: static;
+    display: flex;
+    gap: .65rem;
+    overflow-x: auto;
+    padding: 0 1.4rem 1rem;
+    background: transparent;
+    border: 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .chooser::-webkit-scrollbar { display: none; }
+  .choice {
+    flex: 0 0 min(84vw, 22rem);
+    min-height: 8.8rem;
+    scroll-snap-align: start;
+  }
+  .programme { grid-template-columns: 1fr; gap: 1.2rem; padding: 2.6rem 1.4rem 3rem; }
+  .p-num { order: 1; }
+  .p-head { order: 2; grid-column: 1; padding-bottom: 1.05rem; border-radius: 10px; }
+  .p-aside { order: 3; grid-column: 1; grid-row: auto; position: static; grid-template-columns: 1fr; margin-top: .3rem; }
+  .p-main { order: 4; grid-column: 1; padding-top: 1.05rem; border-radius: 10px; }
+  .werkfolge { grid-template-columns: 1fr; }
+  .werkfolge li:not(.programme-pause) { grid-template-columns: 2.2rem minmax(0, 1fr); }
+  .werkfolge .werk-composer { grid-column: 2; white-space: normal; margin-top: .22rem; }
+  .trailer-callout { grid-template-columns: 1fr; }
+  .trailer-thumb { min-height: 10rem; }
+  .trailer-copy { padding: 0 1rem; }
+  .trailer-time { padding: 0 1rem 1rem; }
+  .pull-quote { grid-template-columns: 1fr; gap: 1rem; padding: 2.4rem 1.4rem; }
+  .hero-quote-section { padding: 2.8rem 1.4rem 2.4rem; }
+  .hero-quote-section { grid-template-columns: 1fr; gap: 1rem; }
+  .press-strip { padding: 0 1.4rem 2.8rem; }
+  .hero-quote { padding-left: 1.8rem; }
+  .press-quote-item { min-height: auto; padding: 1.15rem 1rem 1.2rem; }
+  .press-quote-source { padding-top: 0; }
+  .hero { padding: calc(var(--nav-h) + 2rem) 1.4rem 1.2rem; }
+  .comparison-table { grid-template-columns: 1fr; }
+  .tools-head { display: block; }
+  .footer-inner,
+  .footer-booking {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .footer-nav,
+  .footer-meta,
+  .footer-copy {
+    justify-self: start;
+  }
+  .footer-legal { grid-column: auto; }
+}
+
+@media (max-width: 560px) {
+  .hero { padding-top: calc(var(--nav-h) + 1.35rem); padding-bottom: .6rem; }
+  .hero-rule { margin: 1.15rem 0; }
+  .hero-display { font-size: clamp(2.65rem, 16vw, 4.5rem); }
+  .hero-bottom, .hero-meta { display: none; }
+  .hero-mobile-summary { display: block; }
+  .chooser { margin-top: 1.6rem; }
+  .choice { grid-template-columns: 2.4rem 1fr; gap: .75rem; padding: 1.05rem; }
+  .choice-meta { grid-column: 2; }
+  .choice-body strong { font-size: 1.25rem; }
+  .choice-play { width: 2.4rem; }
+  .choice-meta { text-align: left; }
+  .p-actions .p-action { flex: 1 1 auto; justify-content: center; }
+  .trailer-callout { gap: .85rem; }
+  .trailer-play { width: 3.2rem; }
+  .trailer-copy strong { font-size: 1.08rem; }
+  .trailer-modal-wrap { width: min(92vw, 920px); }
+  .trailer-close-mobile { display: inline-flex; }
+  #programme-sticky-cta { width: calc(100% - 1.2rem); justify-content: center; }
+  #programme-sticky-cta a,
+  #programme-sticky-cta button { flex: 1 1 0; padding-inline: .65rem; }
+  #programme-sticky-cta a { text-align: center; }
+  #programme-sticky-cta .cta-trailer-label { display: none; }
+  #programme-sticky-cta button { flex: 0 0 46px; font-size: 0; }
+  #programme-sticky-cta button::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    margin: 0 auto;
+    border-top: .36rem solid transparent;
+    border-bottom: .36rem solid transparent;
+    border-left: .58rem solid currentColor;
+  }
+  .hero-eyebrow { flex-direction: column; }
+  .hero-meta { text-align: left; }
+  footer { padding: 2.4rem 1.4rem calc(1.8rem + env(safe-area-inset-bottom, 0px)); }
+  .footer-booking { gap: 1rem; padding-bottom: 1.5rem; }
+  .footer-cta { justify-content: center; width: 100%; }
+  .footer-links,
+  .footer-meta,
+  .footer-legal {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; }
+  .trailer-callout::after { animation: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+@media (pointer: coarse) { #cur-dot, #cur-ring { display: none; } html, body, a, button { cursor: auto; } }
+
+/* ─── Back to top ────────────────────────── */
+.back-to-top {
+  position: fixed;
+  right: max(1.5rem, env(safe-area-inset-right));
+  bottom: max(1.75rem, env(safe-area-inset-bottom));
+  z-index: 500;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(27,36,34,0.72);
+  border: 1px solid var(--white-24);
+  color: var(--white);
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0; pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .3s, transform .3s, background .2s;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.back-to-top:hover { background: var(--ink); }
+.back-to-top:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+
+/* ─── Improvements ─────────────────────────── */
+.chooser .choice.is-active { box-shadow: inset 0 -2px 0 var(--white); }
+.choice-play svg { display: block; }
+.chooser.is-sticky .choice-play svg { width: 18px; height: 18px; }
+.skip-link {
+  position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+}
+.skip-link:focus {
+  position: fixed; left: 1rem; top: 1rem; width: auto; height: auto; overflow: visible;
+  padding: .65rem 1.25rem; background: var(--ink); color: var(--white);
+  font-size: .82rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; text-decoration: none; z-index: 9999;
+  outline: 2px solid var(--white); outline-offset: 2px;
+}
+
+@media (min-width: 881px) and (max-width: 1080px) {
+  .programme,
+  .pull-quote,
+  .hero-bottom {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+  .programme { column-gap: 1.6rem; row-gap: 0; }
+
+  .programme .p-aside,
+  .hero-bottom .hero-spec {
+    grid-column: 2;
+    grid-row: auto;
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 1rem;
+    margin: 1.1rem 0;
+  }
+
+  .programme .p-head,
+  .programme .p-main,
+  .hero-bottom > :last-child {
+    grid-column: 2;
+  }
+
+  .programme .p-head {
+    border-radius: 10px;
+    padding-bottom: 1.05rem;
+  }
+
+  .programme .p-main {
+    border-radius: 10px;
+    padding-top: 1.05rem;
+  }
+
+  .p-aside-title { grid-column: 1 / -1; }
+  .p-aside-tags { grid-column: span 2; }
+  .p-aside-row.recommended { grid-column: 3; margin-top: .8rem; }
+}
+
+@media (max-width: 880px) {
+  body { padding-bottom: calc(4.7rem + env(safe-area-inset-bottom, 0px)); }
+  #programme-sticky-cta { bottom: max(.7rem, env(safe-area-inset-bottom, 0px)); }
+  body.player-open #programme-sticky-cta { bottom: calc(6.2rem + env(safe-area-inset-bottom, 0px)); }
+  #spotify-mini { bottom: env(safe-area-inset-bottom, 0px); }
+  .werkfolge.spotify-linked li { min-height: 48px; align-content: center; }
+}
+
+@media (max-width: 640px) {
+  .choice-meta {
+    display: block;
+    margin-top: .4rem;
+    text-align: left;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1099px) {
+  .press-quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 699px) {
+  .press-quotes { grid-template-columns: 1fr; }
+}
+
+.hero-mobile-summary {
+  display: none;
+  margin-top: .95rem;
+  color: var(--white-72);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+#programme-sticky-cta.at-footer { opacity: 0; pointer-events: none; transform: translate(-50%, calc(100% + 1.5rem)); }
+#programme-sticky-cta.is-one-world button { display: none; }
+
+@media (max-width: 560px) {
+  .hero-mobile-summary { display: block; }
+}
+</style>
+<link rel="stylesheet" href="includes/nav.css?v=7">
+</head>
+<body>
+
+<div id="scroll-progress" aria-hidden="true"></div>
+<a class="skip-link" href="#content">Zum Inhalt springen</a>
+<div id="cur-dot" aria-hidden="true"></div>
+<div id="cur-ring" aria-hidden="true"></div>
+
+<!-- NAV -->
+<div id="shared-nav"></div>
+<script src="includes/include.js?v=7" defer></script>
+
+<div id="programme-sticky-cta" aria-label="Schnelle Aktionen für 8 Jahreszeiten">
+  <a id="programme-booking-link" href="mailto:booking@duovia.de?subject=Buchungsanfrage%20Duo%20ViA%21%20-%208%20Jahreszeiten&body=Programm%3A%208%20Jahreszeiten%0AGew%C3%BCnschtes%20Datum%20%2F%20Zeitraum%3A%0AVeranstaltungsort%3A%0APublikumsgr%C3%B6%C3%9Fe%3A%0AGew%C3%BCnschtes%20Format%3A%2045%20%2F%2060%20%2F%2090%20Min.%0ATechnische%20Rahmenbedingungen%3A%0A%0ANachricht%3A" data-event="sticky_booking_click" data-programme="eight-seasons">Programm anfragen</a>
+  <button type="button" data-trailer-trigger data-event="sticky_trailer_open" data-programme="eight-seasons" aria-label="Trailer ansehen"><span class="cta-trailer-label">Trailer ansehen</span></button>
+</div>
+
+<!-- HERO -->
+<main id="content" tabindex="-1">
+<section class="hero">
+  <div class="hero-eyebrow reveal">
+    <div class="eyebrow-stack">
+      Programme<br><span>Repertoire 2026 / 27</span>
+    </div>
+  </div>
+
+  <h1 class="hero-display reveal">PRO<span class="lt">GRAMME</span></h1>
+  <p class="hero-mobile-summary reveal">2 Programme · Violine &amp; Akkordeon</p>
+
+  <hr class="hero-rule">
+
+  <div class="hero-bottom reveal">
+    <div class="hero-num">00</div>
+    <div class="hero-spec">
+      <div class="hero-spec-row">Saison<b>2026 / 27</b></div>
+      <div class="hero-spec-row">Format<b>Eigenarrangements von Harald Oeler</b></div>
+      <div class="hero-spec-row">Besetzung<b>Violine · Akkordeon</b></div>
+    </div>
+    <div>
+      <div class="hero-intro-label">Intro</div>
+      <p class="hero-intro">Neue Klangwelten entdecken — ein Ziel, das sich mit der außergewöhnlichen Besetzung aus Violine und Akkordeon spielerisch erreichen lässt.
+
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CHOOSER -->
+<div class="chooser reveal">
+  <a class="choice" href="#eight-seasons">
+    <div class="choice-num">01</div>
+    <div class="choice-body">
+      <em>Programm I</em>
+      <strong>8 Jahreszeiten <span lang="en">/ Eight Seasons</span></strong>
+    </div>
+    <div class="choice-meta">
+      <b>45 / 60 / 90 Min</b>
+      Vivaldi · Piazzolla
+    </div>
+  </a>
+  <a class="choice" href="#one-world">
+    <div class="choice-num">02</div>
+    <div class="choice-body">
+      <em>Programm II</em>
+      <strong lang="en">Four Seasons <span>/ One World</span></strong>
+    </div>
+    <div class="choice-meta">
+      <b>60 / 90 Min</b>
+      Vivaldi · Piazzolla · Oeler
+    </div>
+  </a>
+  <a class="choice trailer-choice" href="https://youtu.be/AJ6uhwH7-gI?si=9EyDyEvR9CdvExny" target="_blank" rel="noopener noreferrer" data-trailer-trigger data-event="trailer_open" data-programme="eight-seasons" aria-label="Trailer ansehen – 8 Jahreszeiten" aria-haspopup="dialog">
+    <div class="choice-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+    <div class="choice-body">
+      <em>Trailer</em>
+      <strong>Trailer <span>/ 8 Jahreszeiten</span></strong>
+    </div>
+    <div class="choice-meta">
+      <b>Video</b>
+      Jetzt ansehen
+    </div>
+  </a>
+</div>
+
+<!-- PROGRAMME I -->
+<article class="programme reveal" id="eight-seasons">
+  <div class="p-num">01</div>
+  <header class="p-head">
+    <span class="p-kicker">Hauptprogramm · Vivaldi · Piazzolla</span>
+    <h2 class="p-title">
+      <button class="p-title-btn" type="button" data-spotify-trigger>
+        8 Jahreszeiten<em lang="en">Eight Seasons</em>
+      </button>
+    </h2>
+    <p class="p-byline">Vier Sonette aus Venedig — vier Tangos aus Buenos Aires.<br>Arrangement: Harald Oeler.</p>
+  </header>
+  <aside class="p-aside" aria-label="8 Jahreszeiten auf einen Blick">
+    <div class="p-aside-title">Auf einen Blick</div>
+    <div class="p-aside-row">Dauer<b>45 / 60 / 90 Min</b></div>
+    <div class="p-aside-row">Besetzung<b>Violine / Akkordeon</b></div>
+    <div class="p-aside-row">Arrangement<b>Harald Oeler</b></div>
+    <div class="p-aside-tags">
+      <span class="p-aside-label">Geeignet für</span>
+      <div class="p-aside-chips">
+        <span class="p-aside-chip">Festival</span>
+        <span class="p-aside-chip">Kammermusikreihe</span>
+        <span class="p-aside-chip">Familie</span>
+      </div>
+    </div>
+    <div class="p-aside-row recommended">Empfohlenes Format<b>90 Min · DE / EN</b></div>
+  </aside>
+  <div class="p-main">
+    <div class="p-desc-cols">
+      <p class="p-desc">Duo ViA!s CD der »8 Jahreszeiten« von Vivaldi und Piazzolla erschien 2014 bei OehmsClassics und erhielt begeisterte Kritiken. Duo ViA! (Sinn Yang & Harald Oeler) debütierte 2009 mit dem Programm Jahreszeiten beim Festival „Heidelberger Frühling”. Es erforderte damals eine Menge Mut, sich dem Publikum mit einem der wohl populärsten und meistgespielten Werke der Klassik, den I quattro stagioni von Vivaldi in Kombination mit Astor Piazzollas Las cuatro portenas vor ausverkauftem Saal zu präsentieren. Für das Duo war und ist dieses Programm Jahreszeiten ein Experiment und Wagnis.</p>
+    </div>
+
+    <a class="trailer-callout" href="https://youtu.be/AJ6uhwH7-gI?si=9EyDyEvR9CdvExny" target="_blank" rel="noopener noreferrer" data-trailer-trigger data-event="trailer_open" data-programme="eight-seasons" aria-label="Trailer 8 Jahreszeiten ansehen">
+      <span class="trailer-thumb" aria-hidden="true">
+        <span class="trailer-play" aria-hidden="true"></span>
+      </span>
+      <span class="trailer-copy">
+        <span>Vor dem Lesen ansehen · Trailer</span>
+        <strong>8 Jahreszeiten in Bewegung erleben</strong>
+      </span>
+      <span class="trailer-time">Video ansehen</span>
+    </a>
+
+    <a class="trailer-callout" href="https://youtu.be/GfzeqN5tr98?si=DCrkcgypjUbx_ir3" target="_blank" rel="noopener noreferrer" data-trailer-trigger data-video="GfzeqN5tr98" data-video-title="Live im Konzert: 8 Jahreszeiten im MühlenForum Glattbach" data-event="concert_video_open" data-programme="eight-seasons" aria-label="Live-Video: 8 Jahreszeiten im MühlenForum Glattbach ansehen">
+      <span class="trailer-thumb" aria-hidden="true" style="background-image: linear-gradient(rgba(27,36,34,0.16), rgba(27,36,34,0.34)), url('https://img.youtube.com/vi/GfzeqN5tr98/maxresdefault.jpg');">
+        <span class="trailer-play" aria-hidden="true"></span>
+      </span>
+      <span class="trailer-copy">
+        <span>Live im Konzert · MühlenForum Glattbach</span>
+        <strong>8 Jahreszeiten auf der Bühne erleben</strong>
+      </span>
+      <span class="trailer-time">Video ansehen</span>
+    </a>
+
+    <div class="tag-row">
+      <span class="tag-label">Formate</span>
+      <span class="tag tag-accent">45 Min</span>
+      <span class="tag">60 Min</span>
+      <span class="tag">90 Min</span>
+      <span class="tag">Matinée</span>
+      <span class="tag">Family</span>
+    </div>
+
+    <p class="track-note">Einzelne Titel antippen, um sie direkt anzuhören.</p>
+    <div class="tracklist-wrap is-collapsed">
+    <ol class="werkfolge spotify-linked is-collapsed" id="eight-seasons-tracklist">
+      <li class="piazzolla" data-spotify-track="6jTPSqBO9hAmaJ053onuB0?si=915cb759678d455d"><span class="werk-piece">Primavera porteña</span><span class="werk-composer">Piazzolla · 5:24</span></li>
+      <li data-spotify-track="1CKi98LJ9KFKykgLMD906o?si=a388f77e88ae4971"><span class="werk-piece">„Summer" — Allegro non molto</span><span class="werk-composer">Vivaldi · 5:14</span></li>
+      <li data-spotify-track="7oSwDTIG3PtoGaN9U78DWB"><span class="werk-piece">„Summer" — Adagio</span><span class="werk-composer">Vivaldi · 2:08</span></li>
+      <li data-spotify-track="5pgzCPu8dlf6nVoU3mCdMn"><span class="werk-piece">„Summer" — Presto</span><span class="werk-composer">Vivaldi · 2:54</span></li>
+      <li class="piazzolla" data-spotify-track="22sgmG0ZeED3A1UfzdxwFA"><span class="werk-piece">Otoño porteño</span><span class="werk-composer">Piazzolla · 5:55</span></li>
+      <li data-spotify-track="3upjT6qnIdWeDF1wjeYr3N"><span class="werk-piece">„Winter" — Allegro non molto</span><span class="werk-composer">Vivaldi · 3:19</span></li>
+      <li data-spotify-track="2p3uK5ViWX8kBZT85NYlCj"><span class="werk-piece">„Winter" — Largo</span><span class="werk-composer">Vivaldi · 2:08</span></li>
+      <li data-spotify-track="5Sz9PbC57aigcfBwusTpES"><span class="werk-piece">„Winter" — Allegro</span><span class="werk-composer">Vivaldi · 3:33</span></li>
+      <li data-spotify-track="4mHOTaiMkbnISsGYEgPrYy"><span class="werk-piece">„Spring" — Allegro</span><span class="werk-composer">Vivaldi · 3:21</span></li>
+      <li data-spotify-track="0evX8OMy9qVKoaPCWyUZ12"><span class="werk-piece">„Spring" — Largo</span><span class="werk-composer">Vivaldi · 2:19</span></li>
+      <li data-spotify-track="7xKysomAax3mJFrMltzXLL"><span class="werk-piece">„Spring" — Allegro pastorale</span><span class="werk-composer">Vivaldi · 4:07</span></li>
+      <li class="piazzolla" data-spotify-track="57mFS3ba9C4nITdRWzusXP"><span class="werk-piece">Verano porteño</span><span class="werk-composer">Piazzolla · 6:35</span></li>
+      <li data-spotify-track="4P7S6wGMqo4jhCq2BhjKnU"><span class="werk-piece">„Autumn" — Allegro</span><span class="werk-composer">Vivaldi · 5:34</span></li>
+      <li data-spotify-track="26dlNnK1c1Dg70zC0UyMFP"><span class="werk-piece">„Autumn" — Adagio molto</span><span class="werk-composer">Vivaldi · 2:30</span></li>
+      <li data-spotify-track="1aDX0JP66bs6e8loJjDwHP"><span class="werk-piece">„Autumn" — Allegro</span><span class="werk-composer">Vivaldi · 3:07</span></li>
+      <li class="piazzolla" data-spotify-track="1DgQ33m7W556x2xZzhXYO5"><span class="werk-piece">Invierno porteño</span><span class="werk-composer">Piazzolla · 7:11</span></li>
+    </ol>
+    </div>
+    <button class="track-toggle" type="button" aria-expanded="false" aria-controls="eight-seasons-tracklist">Alle 16 Werke anzeigen</button>
+
+
+  </div>
+</article>
+
+<!-- PROGRAMME II -->
+<article class="programme reveal" id="one-world">
+  <div class="p-num">02</div>
+  <header class="p-head">
+    <span class="p-kicker">Erweitert · Vivaldi · Piazzolla · Oeler</span>
+    <h2 class="p-title" lang="en">Four Seasons<em>One World</em></h2>
+    <p class="p-byline">Vier Klimazonen — ein Dialog der Kulturen.<br>Arrangement: Harald Oeler.</p>
+  </header>
+  <aside class="p-aside" aria-label="Four Seasons One World auf einen Blick">
+    <div class="p-aside-title">Auf einen Blick</div>
+    <div class="p-aside-row">Dauer<b>60 / 90 Min</b></div>
+    <div class="p-aside-row">Besetzung<b>Violine / Akkordeon</b></div>
+    <div class="p-aside-row">Arrangement<b>Harald Oeler</b></div>
+    <div class="p-aside-tags">
+      <span class="p-aside-label">Geeignet für</span>
+      <div class="p-aside-chips">
+        <span class="p-aside-chip">Festival</span>
+        <span class="p-aside-chip">Kulturhaus</span>
+        <span class="p-aside-chip">Education</span>
+        <span class="p-aside-chip">Themenreihe</span>
+      </div>
+    </div>
+    <div class="p-aside-row recommended">Empfohlenes Format<b>60 Min · mit Werkeinführung</b></div>
+  </aside>
+  <div class="p-main">
+    <p class="p-desc">Im Programm „Four Seasons – One World“ vereint das Duo Musik aus verschiedenen Kulturen mit ihren ursprünglichen musikalischen Traditionen. Die vier Jahreszeiten erklingen in unterschiedlichen Musikstilen und werden von Violine und Akkordeon lebendig interpretiert – klassisch, modern und klanglich vielseitig zugleich. Von Barock-klassisch über Jazz-Bebop, Klezmer, Tango Nuevo, New Musette bis hin zur Orientalischen Melodie: Jedes Werk öffnet ein Fenster in eine andere Kultur und im Konzert verbinden sich die Einzigartigkeiten zu einem harmonischen Ganzen. So entsteht eine musikalische Reise, die Grenzen überwindet und die Welt in ihren Jahreszeiten hörbar macht. </p>
+
+
+    <ol class="werkfolge single-col" id="one-world-werkfolge">
+      <li><span class="werk-piece"><strong class="werk-title"><i>Las Estaciones Porteñas</i></strong><span class="werk-detail">Verano porteño / Sommer</span></span><span class="werk-composer">Astor Piazzolla</span></li>
+      <li><span class="werk-piece"><strong class="werk-title"><i>Soleil</i></strong></span><span class="werk-composer">Richard Galliano</span></li>
+      <li><span class="werk-piece"><strong class="werk-title">Concerto No. 3 „Herbst"</strong><span class="werk-detail">Op. 8 No. 3, RV 293</span><span class="werk-movements">Allegro · Adagio molto · Allegro</span></span><span class="werk-composer">Antonio Vivaldi</span></li>
+      <li><span class="werk-piece"><strong class="werk-title"><i>Sherele</i></strong></span><span class="werk-composer">Traditionell</span></li>
+      <li class="programme-pause">Pause</li>
+      <li><span class="werk-piece"><strong class="werk-title"><i>Remembering Paris</i></strong></span><span class="werk-composer">Harald Oeler</span></li>
+      <li><span class="werk-piece"><strong class="werk-title">Concerto No. 4 „Winter"</strong><span class="werk-detail">Op. 8 No. 4, RV 297</span><span class="werk-movements">Allegro non molto · Largo · Allegro</span></span><span class="werk-composer">Antonio Vivaldi</span></li>
+      <li><span class="werk-piece"><strong class="werk-title"><i>Las Estaciones Porteñas</i></strong><span class="werk-detail">Primavera porteña / Frühling</span></span><span class="werk-composer">Astor Piazzolla</span></li>
+      <li><span class="werk-piece"><strong class="werk-title"><i>Scholah</i></strong></span><span class="werk-composer">Rehan Syed</span></li>
+    </ol>
+  </div>
+</article>
+
+<!-- PRESS QUOTES -->
+<div class="hero-quote-section reveal post-programme-press">
+  <div class="p-num">03</div>
+  <blockquote class="hero-quote">
+    Yang und Oeler spielen wie aufeinander eingeschworen — sie bilden nicht nur rhythmisch eine Einheit.
+    <cite>NDR</cite>
+  </blockquote>
+</div>
+<section class="press-strip reveal">
+  <header class="press-strip-head">
+    <span class="press-strip-title">Pressestimmen</span>
+  </header>
+  <ul class="press-quotes" id="press-quotes-list">
+    <li class="press-quote-item">
+      <span class="press-quote-source">NDR Kultur</span>
+      <blockquote class="press-quote-text">Akkordeon und Solo-Geige verschmelzen auf eine neue, man könnte fast sagen: ideale Weise.</blockquote>
+    </li>
+    <li class="press-quote-item">
+      <span class="press-quote-source">SWR2 · Festivalbericht</span>
+      <blockquote class="press-quote-text">Vivaldi und Piazzolla in einem Atemzug — das klingt gewagt und gelingt vollkommen.</blockquote>
+    </li>
+    <li class="press-quote-item">
+      <span class="press-quote-source">Neue Musikzeitung</span>
+      <blockquote class="press-quote-text">Hier haben sich zwei Interpreten außergewöhnlichen Ranges zusammengefunden, um Altbewährtes in neuem Gewande und auf höchstem Niveau vorzustellen.</blockquote>
+    </li>
+  </ul>
+</section>
+
+<!-- FOOTER -->
+</main>
+<div id="shared-footer"></div>
+
+<button class="back-to-top" id="back-to-top" aria-label="Zurück nach oben" title="Zurück nach oben" type="button">↑</button>
+
+<!-- TRAILER MODAL -->
+<div id="trailer-modal" role="dialog" aria-modal="true" aria-label="Trailer: 8 Jahreszeiten">
+  <div class="trailer-modal-wrap">
+    <button id="trailer-close" type="button" onclick="closeTrailer()"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Schließen</button>
+    <iframe id="trailer-iframe" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Trailer: 8 Jahreszeiten"></iframe>
+    <button class="trailer-close-mobile" type="button" onclick="closeTrailer()">Schließen</button>
+  </div>
+</div>
+
+<div id="spotify-mini" aria-live="polite" aria-label="Spotify Vorschau">
+  <div id="spotify-mini-bar">
+    <span id="spotify-mini-track"></span>
+    <button id="spotify-mini-close" aria-label="Player schließen"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <iframe id="spotify-iframe" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify Vorschau"></iframe>
+</div>
+
+<script>
+/* Back-to-top */
+(function(){
+  const btn = document.getElementById('back-to-top');
+  if (!btn) return;
+  window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 600), { passive: true });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }));
+})();
+
+const sp = document.getElementById('scroll-progress');
+document.addEventListener('scroll', () => {
+  const max = document.body.scrollHeight - window.innerHeight;
+  sp.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + '%';
+}, { passive: true });
+
+const dot  = document.getElementById('cur-dot');
+const ring = document.getElementById('cur-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+});
+(function tick() {
+  rx += (mx - rx) * .13; ry += (my - ry) * .13;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(tick);
+})();
+if ('ontouchstart' in window) {
+  dot.style.display = 'none';
+  ring.style.display = 'none';
+}
+
+let menuOpen = false;
+let menuReturnFocus = null;
+let previousBodyOverflow = '';
+const navFocusables = () => Array.from(document.querySelectorAll('#nav-overlay a[href], #nav-overlay button:not([disabled])'));
+function setOverlayTabState(open) { navFocusables().forEach(el => open ? el.removeAttribute('tabindex') : el.setAttribute('tabindex','-1')); }
+function openMenu(){
+  const overlay = document.getElementById('nav-overlay');
+  const burger = document.getElementById('nav-burger');
+  if (!overlay || !burger) return;
+  menuOpen = true;
+  menuReturnFocus = document.activeElement;
+  previousBodyOverflow = document.body.style.overflow;
+  document.body.style.overflow = 'hidden';
+  document.body.classList.add('nav-open');
+  overlay.setAttribute('aria-hidden','false');
+  burger.setAttribute('aria-expanded','true');
+  burger.setAttribute('aria-label','Navigation schließen');
+  setOverlayTabState(true);
+  setTimeout(() => { const target = overlay.querySelector('[aria-current="page"]') || navFocusables()[0]; if (target) target.focus(); }, 80);
+}
+function closeMenu(){
+  const overlay = document.getElementById('nav-overlay');
+  const burger = document.getElementById('nav-burger');
+  if (!overlay || !burger) return;
+  menuOpen = false;
+  document.body.classList.remove('nav-open');
+  document.body.style.overflow = previousBodyOverflow;
+  overlay.setAttribute('aria-hidden','true');
+  burger.setAttribute('aria-expanded','false');
+  burger.setAttribute('aria-label','Navigation öffnen');
+  setOverlayTabState(false);
+  if (menuReturnFocus && document.contains(menuReturnFocus)) menuReturnFocus.focus({ preventScroll: true });
+}
+function toggleMenu(){ menuOpen ? closeMenu() : openMenu(); }
+window.toggleMenu = toggleMenu;
+setTimeout(() => setOverlayTabState(false), 0);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeMenu(); closeTrailer(); }
+  if (e.key !== 'Tab' || !menuOpen) return;
+  const focusables = navFocusables();
+  if (!focusables.length) return;
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('#nav-burger')) return;
+  setTimeout(() => {
+    const overlay = document.getElementById('nav-overlay');
+    if (!overlay || overlay.getAttribute('aria-hidden') === 'true') return;
+    (overlay.querySelector('[aria-current="page"]') || navFocusables()[0])?.focus();
+  }, 120);
+});
+
+const trailerModal = document.getElementById('trailer-modal');
+const trailerIframe = document.getElementById('trailer-iframe');
+
+function openTrailer(trigger) {
+  const videoId = trigger?.dataset.video || 'AJ6uhwH7-gI';
+  const title = trigger?.dataset.videoTitle || 'Trailer: 8 Jahreszeiten';
+  trailerIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+  trailerIframe.title = title;
+  trailerModal.setAttribute('aria-label', title);
+  trailerModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeTrailer() {
+  if (!trailerModal.classList.contains('open')) return;
+  trailerModal.classList.remove('open');
+  trailerIframe.src = '';
+  document.body.style.overflow = '';
+}
+
+trailerModal.addEventListener('click', e => { if (e.target === trailerModal) closeTrailer(); });
+
+document.querySelectorAll('[data-trailer-trigger]').forEach(trigger => {
+  trigger.addEventListener('click', e => {
+    e.preventDefault();
+    openTrailer(trigger);
+  });
+});
+
+const trackToggle = document.querySelector('.track-toggle');
+const trackList = document.getElementById('eight-seasons-tracklist');
+const trackListWrap = document.querySelector('.tracklist-wrap');
+if (trackToggle && trackList) {
+  trackToggle.addEventListener('click', () => {
+    const expanded = trackToggle.getAttribute('aria-expanded') === 'true';
+    const newExpanded = !expanded;
+    trackToggle.setAttribute('aria-expanded', String(newExpanded));
+    if (newExpanded) {
+      trackList.classList.remove('is-collapsed');
+      if (trackListWrap) trackListWrap.classList.remove('is-collapsed');
+      trackToggle.textContent = 'Weniger Werke anzeigen';
+    } else {
+      trackList.classList.add('is-collapsed');
+      if (trackListWrap) trackListWrap.classList.add('is-collapsed');
+      trackToggle.textContent = 'Alle 16 Werke anzeigen';
+    }
+  });
+}
+
+const stickyProgrammeCta = document.getElementById('programme-sticky-cta');
+const programmeArticles = document.querySelectorAll('.programme');
+const programmeBookingLink = document.getElementById('programme-booking-link');
+const programmeTrailerButton = stickyProgrammeCta?.querySelector('button');
+const programmeBookingLinks = {
+  'eight-seasons': programmeBookingLink?.href || '',
+  'one-world': 'mailto:booking@duovia.de?subject=Buchungsanfrage%20Duo%20ViA%21%20-%20Four%20Seasons%20%2F%20One%20World&body=Programm%3A%20Four%20Seasons%20%2F%20One%20World%0AGew%C3%BCnschtes%20Datum%20%2F%20Zeitraum%3A%0AVeranstaltungsort%3A%0APublikumsgr%C3%B6%C3%9Fe%3A%0AGew%C3%BCnschtes%20Format%3A%2060%20%2F%2090%20Min.%0A%0ANachricht%3A'
+};
+function setStickyProgramme(programme) {
+  if (!stickyProgrammeCta || !programmeBookingLink) return;
+  const isOneWorld = programme === 'one-world';
+  stickyProgrammeCta.classList.toggle('is-one-world', isOneWorld);
+  stickyProgrammeCta.setAttribute('aria-label', `Schnelle Aktionen für ${isOneWorld ? 'Four Seasons / One World' : '8 Jahreszeiten'}`);
+  programmeBookingLink.href = programmeBookingLinks[programme];
+  programmeBookingLink.dataset.programme = programme;
+  if (programmeTrailerButton) programmeTrailerButton.dataset.programme = programme;
+}
+if (stickyProgrammeCta && programmeArticles.length) {
+  let visibleCount = 0;
+  let footerVisible = false;
+  const updateStickyVisibility = () => {
+    stickyProgrammeCta.classList.toggle('visible', visibleCount > 0 && !footerVisible);
+    stickyProgrammeCta.classList.toggle('at-footer', footerVisible);
+  };
+  const stickyObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => { visibleCount += entry.isIntersecting ? 1 : -1; });
+    updateStickyVisibility();
+  }, { threshold: 0.18 });
+  programmeArticles.forEach(p => stickyObserver.observe(p));
+  const footerTarget = document.getElementById('shared-footer');
+  if (footerTarget) {
+    new IntersectionObserver(entries => {
+      footerVisible = entries.some(entry => entry.isIntersecting);
+      updateStickyVisibility();
+    }, { threshold: 0.04 }).observe(footerTarget);
+  }
+}
+
+const chooserChoices = document.querySelectorAll('.choice[href^="#"]');
+if (chooserChoices.length && programmeArticles.length) {
+  const activeObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = '#' + entry.target.id;
+        chooserChoices.forEach(c => c.classList.toggle('is-active', c.getAttribute('href') === id));
+        setStickyProgramme(entry.target.id);
+      }
+    });
+  }, { threshold: 0.4 });
+  programmeArticles.forEach(p => activeObserver.observe(p));
+}
+
+const spotifyAlbumUrl = 'https://open.spotify.com/album/0MfH41bgOifWl6W9fXDcW1';
+const spotifyMiniEl = document.getElementById('spotify-mini');
+const spotifyIframe = document.getElementById('spotify-iframe');
+const spotifyMiniTrack = document.getElementById('spotify-mini-track');
+let nowPlayingLi = null;
+let embedController = null;
+let pendingTrack = null;
+
+window.onSpotifyIframeApiReady = (IFrameAPI) => {
+  IFrameAPI.createController(spotifyIframe, { height: '80' }, (controller) => {
+    embedController = controller;
+    if (pendingTrack) {
+      embedController.loadUri(`spotify:track:${pendingTrack}`);
+      embedController.play();
+      pendingTrack = null;
+    }
+  });
+};
+
+function openSpotifyAlbum() { window.open(spotifyAlbumUrl, '_blank', 'noopener,noreferrer'); }
+
+function parseTrackId(raw) {
+  if (!raw) return '';
+  if (raw.includes('/track/')) return raw.split('/track/')[1].split('?')[0];
+  return raw.split('?')[0];
+}
+
+function playTrack(li) {
+  const trackId = parseTrackId(li.dataset.spotifyTrack);
+  const title = li.querySelector('.werk-piece').textContent.trim();
+  if (nowPlayingLi) nowPlayingLi.classList.remove('now-playing');
+  nowPlayingLi = li;
+  li.classList.add('now-playing');
+  spotifyMiniTrack.textContent = title;
+  if (trackId) {
+    spotifyMiniEl.classList.add('visible');
+    document.body.classList.add('player-open');
+    if (embedController) {
+      embedController.loadUri(`spotify:track:${trackId}`);
+      embedController.play();
+    } else {
+      pendingTrack = trackId;
+    }
+  } else {
+    openSpotifyAlbum();
+  }
+}
+
+const spotifyTrigger = document.querySelector('[data-spotify-trigger]');
+if (spotifyTrigger) spotifyTrigger.addEventListener('click', openSpotifyAlbum);
+
+document.getElementById('spotify-mini-close').addEventListener('click', () => {
+  spotifyMiniEl.classList.remove('visible');
+  document.body.classList.remove('player-open');
+  if (embedController) embedController.pause();
+  if (nowPlayingLi) { nowPlayingLi.classList.remove('now-playing'); nowPlayingLi = null; }
+});
+
+document.querySelectorAll('.werkfolge.spotify-linked li[data-spotify-track]').forEach(piece => {
+  piece.setAttribute('role','button'); piece.setAttribute('tabindex','0');
+  piece.setAttribute('aria-label', `Auf Spotify hören: ${piece.querySelector('.werk-piece')?.textContent.trim() || 'Titel'}`);
+  piece.addEventListener('click', () => playTrack(piece));
+  piece.addEventListener('keydown', e => { if (e.key==='Enter' || e.key===' ') { e.preventDefault(); playTrack(piece); } });
+});
+
+const chooserEl = document.querySelector('.chooser');
+if (chooserEl) {
+  const checkChooserSticky = () => {
+    chooserEl.classList.toggle('is-sticky', chooserEl.getBoundingClientRect().top <= 61);
+  };
+  window.addEventListener('scroll', checkChooserSticky, { passive: true });
+  checkChooserSticky();
+}
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Generic list toggles (show more / show less)
+document.querySelectorAll('.list-toggle').forEach(btn => {
+  const targetId = btn.getAttribute('aria-controls');
+  const target = document.getElementById(targetId);
+  if (!target) return;
+  // initialize collapsed state: if target has .is-collapsed, button should show 'Mehr'
+  const collapsed = target.classList.contains('is-collapsed');
+  btn.setAttribute('aria-expanded', String(!collapsed));
+  const isPress = btn.getAttribute('aria-controls') === 'press-quotes-list';
+  btn.textContent = collapsed ? (isPress ? 'Mehr Pressestimmen' : 'Alle Werke anzeigen') : (isPress ? 'Weniger Pressestimmen' : 'Weniger Werke anzeigen');
+
+  btn.addEventListener('click', () => {
+    const isCollapsed = target.classList.contains('is-collapsed');
+    if (isCollapsed) {
+      target.classList.remove('is-collapsed');
+      btn.setAttribute('aria-expanded', 'true');
+      btn.textContent = isPress ? 'Weniger Pressestimmen' : 'Weniger Werke anzeigen';
+    } else {
+      target.classList.add('is-collapsed');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = isPress ? 'Mehr Pressestimmen' : 'Alle Werke anzeigen';
+      if (window.innerWidth < 880) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+</body>
+</html>

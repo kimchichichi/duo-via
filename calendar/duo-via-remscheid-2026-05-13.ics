@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Duo ViA!//Konzerte//DE
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:event-remscheid-2026-05-13@duovia.de
+DTSTAMP:20260526T000000Z
+DTSTART:20260513T173000Z
+DTEND:20260513T193000Z
+SUMMARY:4. Meisterkonzert | Duo ViA!
+DESCRIPTION:Four Seasons - One World
+LOCATION:Teo Otto Theater\, Remscheid
+URL:https://duovia.de/konzerte.html#event-remscheid-2026-05-13
+END:VEVENT
+END:VCALENDAR

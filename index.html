@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Duo ViA! — Sinn Yang &amp; Harald Oeler</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%235F716D'/%3E%3Ctext x='16' y='24' font-family='Helvetica%2CArial%2Csans-serif' font-size='14' font-weight='700' letter-spacing='1' text-anchor='middle' fill='white'%3EV%3C%2Ftext%3E%3C/svg%3E">
+<meta name="description" content="Duo ViA! — Sinn Yang (Violine) und Harald Oeler (Akkordeon). Eigenarrangierte Kammermusikprogramme für Festivals, Kulturhäuser und Konzertreihen. Saison 2026/27.">
+<meta property="og:title" content="Duo ViA! — Sinn Yang &amp; Harald Oeler">
+<meta property="og:description" content="Violine und Akkordeon. Kammermusik vom Barock bis zum Tango Argentino.">
+<meta property="og:image" content="https://duovia.de/hero.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://duovia.de/hero.webp">
+<meta name="twitter:title" content="Duo ViA! — Sinn Yang &amp; Harald Oeler">
+<meta name="twitter:description" content="Violine und Akkordeon. Kammermusik vom Barock bis zum Tango Argentino. Saison 2026/27.">
+<meta name="theme-color" content="#1B2422">
+<meta property="og:url" content="https://duovia.de/">
+<link rel="canonical" href="https://duovia.de/">
+<link rel="preload" as="image" href="hero-1600.webp" imagesrcset="hero-1600.webp 1600w, hero.webp 3840w" imagesizes="100vw">
+<link rel="alternate" hreflang="de" href="index.html">
+
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS — SAGE THEME · HELVETICA
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sage:        #93A5A1;
+  --sage-deep:   #788B87;
+  --sage-darker: #5F716D;
+  --sage-soft:   #A8B7B3;
+  --sage-tint:   #C0CBC8;
+  --paper:       #EFEDE7;
+  --ink:         #1B2422;
+  --white:       #FFFFFF;
+  --muted-white: rgba(255,255,255,0.94);
+  --white-72:    rgba(255,255,255,0.72);
+  --white-48:    rgba(255,255,255,0.48);
+  --white-24:    rgba(255,255,255,0.24);
+
+  --sans:        'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --nav-h:       60px;
+  --ease:        cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+html { font-size: 16px; }
+html, body { min-height: 100dvh; }
+body { overflow-x: hidden; }
+
+body {
+  background: var(--ink);
+  color: var(--muted-white);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-weight: 400;
+}
+
+@keyframes bodyFadeOut { to { opacity: 0; } }
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; transform: none; } }
+@keyframes fadeUp  { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* ─── Hero background ────────────────────── */
+.hero-bg {
+  position: fixed; inset: 0; z-index: 0;
+  transform-origin: center 30%;
+  overflow: hidden;
+}
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+  filter: grayscale(36%) contrast(1.02) brightness(0.9) saturate(0.96);
+}
+.hero-caption {
+  position: fixed;
+  right: max(1.5rem, env(safe-area-inset-right));
+  bottom: 1.25rem;
+  z-index: 3;
+  color: rgba(255,255,255,.56);
+  font-family: var(--sans);
+  font-size: .64rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.hero-overlay {
+  position: fixed; inset: 0; z-index: 1;
+  background:
+    linear-gradient(to top,
+      rgba(27,36,34,0.82) 0%,
+      rgba(27,36,34,0.54) 34%,
+      rgba(27,36,34,0.14) 66%,
+      rgba(27,36,34,0.06) 100%),
+    linear-gradient(to right,
+      rgba(27,36,34,0.34) 0%,
+      rgba(27,36,34,0.10) 48%,
+      transparent 100%);
+}
+
+/* ─── Skip link ─────────────────────────── */
+.skip-link {
+  position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+}
+.skip-link:focus {
+  position: fixed; left: 1rem; top: 1rem; width: auto; height: auto; overflow: visible;
+  padding: .65rem 1.25rem; background: var(--ink); color: var(--white);
+  font-family: var(--sans); font-size: .82rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; text-decoration: none; z-index: 9999;
+  outline: 2px solid var(--white); outline-offset: 2px;
+}
+
+body[data-page="home"] #nav-bar {
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body[data-page="home"] #nav-quick,
+body[data-page="home"] .home-mark {
+  display: none;
+}
+
+body[data-page="home"].nav-open #nav-bar {
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* ═══════════════════════════════════════════
+   MAIN PAGE — FULL-BLEED CINEMATIC POSTER
+═══════════════════════════════════════════ */
+.page {
+  position: relative; z-index: 10;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 clamp(1.4rem, 4vw, 3rem);
+}
+
+/* ─── Top: Season meta block ─────────────── */
+.page-top {
+  display: block;
+  padding-top: calc(var(--nav-h) + 2.4rem);
+  animation: fadeIn .7s ease .35s both;
+}
+
+.top-eyebrow {
+  font-family: var(--sans);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  line-height: 1.6;
+}
+.top-eyebrow b { display: block; color: var(--white); font-weight: 500; }
+.top-eyebrow small {
+  display: block;
+  max-width: 34ch;
+  margin-top: .65rem;
+  font-size: .74rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  line-height: 1.45;
+  color: var(--white-72);
+}
+
+/* ─── Bottom editorial strip ─────────────── */
+.page-foot {
+  position: relative;
+  padding-bottom: clamp(2.2rem, 6vh, 4.5rem);
+  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 28rem);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: end;
+}
+
+/* ─── Brand display ──────────────────────── */
+.brand-display {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(4.6rem, 12vw, 13.5rem);
+  line-height: 0.92;
+  letter-spacing: 0;
+  color: var(--white);
+  text-transform: uppercase;
+  animation: fadeUp .75s var(--ease) .45s both;
+}
+.brand-display .lt { font-weight: 300; }
+
+/* ─── Right meta column ──────────────────── */
+.foot-meta {
+  display: grid;
+  gap: 1.15rem;
+  align-self: end;
+  animation: fadeUp .75s var(--ease) .56s both;
+}
+
+.foot-kicker {
+  font-family: var(--sans);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--white-72);
+  line-height: 1.55;
+}
+.foot-kicker b { display: block; color: var(--white); font-weight: 500; }
+
+.foot-desc {
+  font-family: var(--sans);
+  font-size: clamp(1.08rem, 1.45vw, 1.38rem);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0;
+  color: var(--white);
+  max-width: 28ch;
+  text-wrap: balance;
+}
+
+.booking-note {
+  font-family: var(--sans);
+  font-size: .88rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.55;
+  color: var(--white-72);
+  max-width: 36ch;
+}
+
+.foot-actions {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+.foot-action {
+  display: inline-flex; align-items: center; gap: .8rem;
+  color: var(--white); text-decoration: none;
+  font-family: var(--sans);
+  font-size: .68rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .9rem 1.15rem;
+  border: 1px solid var(--white-24);
+  min-height: 46px;
+  transition: background .2s, color .2s, border-color .2s, transform .2s;
+}
+.foot-action::after {
+  content: '\2192';
+  font-size: .9rem;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+.foot-action:hover  { background: var(--white); color: var(--sage-darker); border-color: var(--white); transform: translateY(-1px); }
+.foot-action.primary { background: var(--white); color: var(--sage-darker); border-color: var(--white); }
+.foot-action.primary:hover { background: var(--sage); color: var(--ink); border-color: var(--sage); }
+.foot-action:focus-visible {
+  outline: 2px solid var(--sage-tint);
+  outline-offset: 5px;
+  box-shadow: 0 0 0 6px rgba(27,36,34,.55);
+}
+.foot-action.secondary {
+  border-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+.foot-action.secondary:hover {
+  background: transparent;
+  color: var(--sage);
+  border-color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .page-foot {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    padding-top: 1.4rem;
+    padding-bottom: 2.2rem;
+  }
+  .brand-display { font-size: clamp(4rem, 18vw, 7.5rem); }
+}
+
+@media (max-width: 640px) {
+  .page { padding: 0 1.35rem; }
+  .page-top,
+  .page-foot {
+    position: relative;
+    z-index: 2;
+  }
+  .page-top { padding-top: calc(var(--nav-h) + 1.35rem); }
+  .top-eyebrow,
+  .foot-kicker {
+    letter-spacing: .13em;
+  }
+  .booking-note {
+    font-size: .82rem;
+  }
+  .brand-display { font-size: clamp(3.35rem, 19vw, 5.6rem); }
+  .foot-meta { gap: 1rem; }
+  .page-foot {
+    padding-bottom: calc(1.8rem + env(safe-area-inset-bottom, 0px));
+    gap: 1.1rem;
+  }
+  .foot-actions { display: grid; gap: .45rem; }
+  .foot-action {
+    width: 100%;
+    justify-content: space-between;
+    letter-spacing: .08em;
+  }
+  .foot-action.secondary {
+    justify-content: flex-start;
+    width: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--sage-tint);
+  outline-offset: 4px;
+}
+
+/* Responsive refinements */
+@media (max-width: 980px) {
+  .hero-caption { max-width: calc(100vw - 3rem); }
+}
+
+@media (max-width: 640px) {
+  .hero-bg, .hero-overlay, .landing { min-height: 100svh; min-height: 100dvh; }
+  .hero-caption {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .hero-bg img { object-position: 56% center; }
+}
+
+@media (max-width: 479px) {
+  .brand-display { font-size: clamp(3.3rem, 18vw, 5.2rem); }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .brand-display { font-size: clamp(3.3rem, 15vh, 6.4rem); }
+}
+</style>
+<link rel="stylesheet" href="includes/nav.css?v=7">
+</head>
+<body data-page="home">
+
+<a class="skip-link" href="#main-content">Zum Inhalt springen</a>
+
+<!-- HERO BACKGROUND -->
+<figure class="hero-bg">
+  <img src="hero-1600.webp" srcset="hero-1600.webp 1600w, hero.webp 3840w" sizes="100vw" alt="Sinn Yang mit Violine und Harald Oeler mit Akkordeon auf der Bühne">
+  <figcaption class="hero-caption">Foto: © Irène Zandel · Duo ViA!</figcaption>
+</figure>
+<div class="hero-overlay" aria-hidden="true"></div>
+
+<div id="shared-nav"></div>
+
+<!-- MAIN -->
+<main class="page" id="main-content">
+
+  <div class="page-top">
+    <div class="top-eyebrow">
+      Sinn Yang · Harald Oeler
+      <b>Violine und Akkordeon</b>
+      <small>Aktuell: Saison 2026/27 mit Four Seasons - One World und 8 Jahreszeiten.</small>
+    </div>
+  </div>
+
+  <div class="page-foot">
+
+    <div>
+      <h1 class="brand-display">DUO<br><span class="lt">ViA!</span></h1>
+    </div>
+
+    <div class="foot-meta">
+
+      <div class="foot-kicker">
+        Saison 2026 · 27
+        <b>Nächster geplanter Termin: 18. Juli 2027 · Oberstdorf</b>
+      </div>
+
+      <p class="foot-desc">
+        Kammermusik zwischen Barock und Tango.
+      </p>
+
+      <p class="booking-note">
+        Seit 2009 auf Konzertbühnen. Verfügbar für Festivals, Kulturhäuser und Konzertreihen.
+      </p>
+
+      <div class="foot-actions">
+        <a class="foot-action primary" href="booking.html">Buchung anfragen</a>
+        <a class="foot-action secondary" href="programm.html">Programme entdecken</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+<script src="includes/include.js?v=7" defer></script>
+<script>
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* PAGE TRANSITIONS */
+document.querySelectorAll('a[href]').forEach(a => {
+  try {
+    const url = new URL(a.href, location.href);
+    if (url.hostname !== location.hostname) return;
+    if (a.target === '_blank') return;
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const dest = a.href;
+      if (prefersReducedMotion) { location.href = dest; return; }
+      document.body.style.animation = 'bodyFadeOut 0.28s ease forwards';
+      setTimeout(() => { location.href = dest; }, 280);
+    });
+  } catch (_) {}
+});
+</script>
+
+</body>
+</html>
