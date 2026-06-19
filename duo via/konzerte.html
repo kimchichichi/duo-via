@@ -9,8 +9,13 @@
 <meta property="og:image" content="https://duovia.de/hero.webp">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://duovia.de/hero.webp">
+<meta name="twitter:title" content="Konzertkalender — Duo ViA!">
+<meta name="twitter:description" content="Konzerttermine der Saison 2026/27 — Duo ViA! mit Violine und Akkordeon.">
 <meta name="theme-color" content="#93A5A1">
+<meta property="og:url" content="https://duovia.de/konzerte.html">
 <link rel="canonical" href="https://duovia.de/konzerte.html">
+<link rel="alternate" hreflang="de" href="https://duovia.de/konzerte.html">
 <meta name="description" content="Konzerttermine für Duo ViA! — Sinn Yang und Harald Oeler. Kammermusik für Festivals, Kulturhäuser und Konzertreihen. Saison 2026/27.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%235F716D'/%3E%3Ctext x='16' y='24' font-family='Helvetica%2CArial%2Csans-serif' font-size='18' font-weight='700' text-anchor='middle' fill='%23FFFFFF'%3EV%3C%2Ftext%3E%3C%2Fsvg%3E">
 <link rel="stylesheet" href="includes/tokens.css">
@@ -393,7 +398,6 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
 .language-toggle span { opacity: .35; }
 @media (max-width: 640px) { .language-toggle { margin-left: 0; margin-right: .55rem; } }
 </style>
-<link rel="alternate" hreflang="de" href="https://duovia.de/konzerte.html">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -456,7 +460,7 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
 </div>
 
 <!-- CALENDAR -->
-<section id="calendar">
+<section id="calendar" tabindex="-1">
   <div class="section-wrap">
     <div class="cal-tabs" role="tablist" aria-label="Kalenderansicht">
       <button id="tab-upcoming" class="cal-tab active" data-tab="upcoming" onclick="switchTab('upcoming')" role="tab" aria-selected="true" aria-controls="cal-upcoming" tabindex="0">Kommende Konzerte</button>
@@ -602,6 +606,14 @@ footer { background: var(--sage-deep); border-top: 1px solid var(--white-24); pa
           </div>
 
         </div>
+      </div>
+    </div>
+
+    <div id="calendar-empty" class="calendar-empty" role="status">
+      <p class="calendar-empty-title">Neue Termine folgen.</p>
+      <p class="calendar-empty-copy">Aktuell sind keine Konzerte angekündigt. Buchungsanfragen sind jederzeit willkommen.</p>
+      <div class="calendar-empty-actions">
+        <a class="ev-cta" href="booking.html">Buchung anfragen</a>
       </div>
     </div>
 
@@ -886,7 +898,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   document.querySelectorAll('.event-row[data-date]').forEach(row => {
     const d = new Date(row.dataset.date + 'T00:00:00');
     if (d < today) {
-      row.classList.add('event-row--listed');
+      row.classList.add('event-row--past');
     } else if (!firstFuture) {
       firstFuture = { row, date: d };
       row.classList.add('event-row--featured');

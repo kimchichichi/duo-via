@@ -11,8 +11,12 @@
 <meta property="og:image" content="https://duovia.de/hero.webp">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://duovia.de/hero.webp">
+<meta name="twitter:title" content="Duo ViA! — Sinn Yang &amp; Harald Oeler">
+<meta name="twitter:description" content="Violine und Akkordeon. Kammermusik vom Barock bis zum Tango Argentino. Saison 2026/27.">
 <meta name="theme-color" content="#1B2422">
-<link rel="canonical" href="https://duovia.de/index.html">
+<meta property="og:url" content="https://duovia.de/">
+<link rel="canonical" href="https://duovia.de/">
 <link rel="preload" as="image" href="hero-1600.webp" imagesrcset="hero-1600.webp 1600w, hero.webp 3840w" imagesizes="100vw">
 <link rel="alternate" hreflang="de" href="index.html">
 
@@ -345,18 +349,20 @@ a:focus-visible, button:focus-visible {
 
 @media (max-width: 640px) {
   .hero-bg, .hero-overlay, .landing { min-height: 100svh; min-height: 100dvh; }
-  .hero-caption { display: none; }
+  .hero-caption {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
   .hero-bg img { object-position: 56% center; }
 }
 
 @media (max-width: 479px) {
   .brand-display { font-size: clamp(3.3rem, 18vw, 5.2rem); }
-  .hero-caption { display: none; }
 }
 
 @media (max-height: 600px) and (orientation: landscape) {
   .brand-display { font-size: clamp(3.3rem, 15vh, 6.4rem); }
-  .hero-caption { display: none; }
 }
 </style>
 <link rel="stylesheet" href="includes/nav.css?v=7">

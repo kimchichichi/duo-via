@@ -11,9 +11,13 @@
 <meta property="og:image" content="https://duovia.de/hero.webp">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://duovia.de/hero.webp">
+<meta name="twitter:title" content="Buchung &amp; Kontakt — Duo ViA!">
+<meta name="twitter:description" content="Konzertanfragen und Buchung für Duo ViA! — Sinn Yang (Violine) und Harald Oeler (Akkordeon).">
 <meta name="theme-color" content="#93A5A1">
+<meta property="og:url" content="https://duovia.de/booking.html">
 <link rel="canonical" href="https://duovia.de/booking.html">
-<link rel="alternate" hreflang="de" href="booking.html">
+<link rel="alternate" hreflang="de" href="https://duovia.de/booking.html">
 
 <style>
 /* ═══════════════════════════════════════════
@@ -455,6 +459,11 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
   opacity: .65;
 }
+.response-note-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .btn-submit {
   min-height: 48px;
   display: inline-flex;
@@ -837,7 +846,7 @@ a:focus-visible, button:focus-visible {
   <form id="booking-form" class="contact-form reveal" onsubmit="submitForm(event)" novalidate method="POST">
     <p class="response-note">
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Das Formular öffnet Ihre E-Mail-App. * Pflichtfelder
+      Das Formular öffnet Ihre E-Mail-App. * Pflichtfelder — oder direkt: <a href="mailto:booking@duovia.de" class="response-note-link">booking@duovia.de</a>
     </p>
 
     <div class="field-row">
@@ -877,6 +886,14 @@ a:focus-visible, button:focus-visible {
         <input type="text" id="f-venue" name="venue" placeholder=" " autocomplete="organization">
         <label for="f-venue">Ort / Spielstätte (optional)</label>
       </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field field--static-label">
+        <input type="tel" id="f-phone" name="phone" placeholder="optional" autocomplete="tel">
+        <label for="f-phone">Telefon (optional)</label>
+      </div>
+      <div style="visibility:hidden" aria-hidden="true"></div>
     </div>
 
     <div class="field field--full">
@@ -936,11 +953,13 @@ function submitForm(e) {
     budget:    document.getElementById('f-budget').value,
     date:      document.getElementById('f-date').value,
     venue:     document.getElementById('f-venue').value,
+    phone:     document.getElementById('f-phone').value,
     message:   document.getElementById('f-msg').value
   };
   const body = [
     `Name / Veranstalter: ${f.name}`,
     `E-Mail: ${f.email}`,
+    f.phone ? `Telefon: ${f.phone}` : null,
     `Wunschtermin: ${f.date}`,
     `Ort / Spielstätte: ${f.venue}`,
     `Programm / Format: ${f.programme}`,

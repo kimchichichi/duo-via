@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Programme &amp; Repertoire — Duo ViA!</title>
 <meta name="description" content="Die Konzertprogramme von Duo ViA! — 8 Jahreszeiten (Vivaldi &amp; Piazzolla) und Four Seasons · One World. Eigenarrangements für Violine und Akkordeon, Saison 2026/27.">
 <meta property="og:title" content="Programme &amp; Repertoire — Duo ViA!">
@@ -10,7 +10,13 @@
 <meta property="og:image" content="https://duovia.de/hero.webp">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://duovia.de/hero.webp">
+<meta name="twitter:title" content="Programme &amp; Repertoire — Duo ViA!">
+<meta name="twitter:description" content="8 Jahreszeiten und Four Seasons · One World — Eigenarrangements für Violine und Akkordeon.">
+<meta name="theme-color" content="#93A5A1">
+<meta property="og:url" content="https://duovia.de/programm.html">
 <link rel="canonical" href="https://duovia.de/programm.html">
+<link rel="alternate" hreflang="de" href="https://duovia.de/programm.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%235F716D'/%3E%3Ctext x='16' y='24' font-family='Helvetica%2CArial%2Csans-serif' font-size='14' font-weight='700' letter-spacing='1' text-anchor='middle' fill='white'%3EV%3C%2Ftext%3E%3C/svg%3E">
 <link rel="stylesheet" href="includes/tokens.css">
 <style>
@@ -1614,6 +1620,29 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
 }
 @media (pointer: coarse) { #cur-dot, #cur-ring { display: none; } html, body, a, button { cursor: auto; } }
 
+/* ─── Back to top ────────────────────────── */
+.back-to-top {
+  position: fixed;
+  right: max(1.5rem, env(safe-area-inset-right));
+  bottom: max(1.75rem, env(safe-area-inset-bottom));
+  z-index: 500;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(27,36,34,0.72);
+  border: 1px solid var(--white-24);
+  color: var(--white);
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0; pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .3s, transform .3s, background .2s;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.back-to-top:hover { background: var(--ink); }
+.back-to-top:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+
 /* ─── Improvements ─────────────────────────── */
 .chooser .choice.is-active { box-shadow: inset 0 -2px 0 var(--white); }
 .choice-play svg { display: block; }
@@ -1728,7 +1757,7 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
 </div>
 
 <!-- HERO -->
-<main id="content">
+<main id="content" tabindex="-1">
 <section class="hero">
   <div class="hero-eyebrow reveal">
     <div class="eyebrow-stack">
@@ -1958,6 +1987,8 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
 </main>
 <div id="shared-footer"></div>
 
+<button class="back-to-top" id="back-to-top" aria-label="Zurück nach oben" title="Zurück nach oben" type="button">↑</button>
+
 <!-- TRAILER MODAL -->
 <div id="trailer-modal" role="dialog" aria-modal="true" aria-label="Trailer: 8 Jahreszeiten">
   <div class="trailer-modal-wrap">
@@ -1976,6 +2007,14 @@ body.player-open footer { padding-bottom: calc(1.8rem + 56px); }
 </div>
 
 <script>
+/* Back-to-top */
+(function(){
+  const btn = document.getElementById('back-to-top');
+  if (!btn) return;
+  window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 600), { passive: true });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }));
+})();
+
 const sp = document.getElementById('scroll-progress');
 document.addEventListener('scroll', () => {
   const max = document.body.scrollHeight - window.innerHeight;
